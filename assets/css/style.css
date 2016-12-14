@@ -80,6 +80,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background: #FF5126;
 }
 
+
 .gtco-container {
   max-width: 1140px;
   position: relative;
@@ -662,6 +663,15 @@ form label {
   clear: both;
   position: relative;
 }
+
+#gtco-footer {
+	padding: 0.5em 0;
+}
+
+.copyright p {
+	margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   #gtco-features,
   #gtco-features-2,
@@ -851,7 +861,7 @@ form label {
 }
 
 #gtco-subscribe {
-  background: #FF5126;
+  background: #2696A0;
 }
 #gtco-subscribe .form-control {
   background: transparent;
@@ -1407,7 +1417,8 @@ form label {
 }
 
 .js .animate-box {
-  opacity: 0;
+  /*opacity: 0;*/
+  display: block;
 }
 
 @media screen and (max-width: 768px) {
