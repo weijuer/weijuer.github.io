@@ -1740,10 +1740,11 @@ form label {
 .owl-carousel .owl-controls .owl-nav .owl-prev,
 .owl-carousel-posts .owl-controls .owl-nav .owl-next,
 .owl-carousel-posts .owl-controls .owl-nav .owl-prev {
-  top: 50%;
   margin-top: -39px;
-  z-index: 9999;
   position: absolute;
+  top: 50%;
+  z-index: 9999;
+  color: #fff;
   -webkit-transition: 0.2s;
   -o-transition: 0.2s;
   transition: 0.2s;
