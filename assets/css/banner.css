@@ -174,11 +174,12 @@ Slider
   vertical-align: middle;
   text-align: center;
   padding: 0 17%;
-  color: #ffffff;
+  color: #fff;
 }
 .cd-radial-slider-content h2 {
   font-size: 2rem;
   font-family: "Vollkorn", serif;
+  color: #fff;
 }
 .cd-radial-slider-content p {
   font-size: 1.4rem;
@@ -187,8 +188,8 @@ Slider
 .cd-radial-slider-content .cd-btn {
   display: inline-block;
   padding: 1em;
-  border: 2px solid #ffffff;
-  color: #ffffff;
+  border: 2px solid #fff;
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: .1em;
   font-size: 1.2rem;

@@ -312,12 +312,8 @@
 		$(".gtco-loader").fadeOut("slow");
 	};
 
-	var counter = function() {
-		$('.js-counter').countUp({
-			formatter: function (value, options) {
-	      		return value.toFixed(options.decimals);
-	    	},
-		});
+	var counterInit = function() {
+		$('.js-counter').countUp();
 	};
 
 	var counterWayPoint = function() {
@@ -384,12 +380,13 @@
 		offcanvasMenu();
 		burgerMenu();
 		navigationSection();
-		contentWayPoint();
+		//contentWayPoint();
 		dropdown();
 		owlCarousel();
 		goToTop();
 		loaderPage();
-		counterWayPoint();
+		counterInit();
+		//counterWayPoint();
 		accordion();
 		// sliderMain();
 	});
