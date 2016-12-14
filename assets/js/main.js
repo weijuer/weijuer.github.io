@@ -245,8 +245,8 @@
 			dots: true,
 			smartSpeed: 800,
 			navText: [
-		      "<i class='fa fa-arrow-left owl-direction'></i>",
-		      "<i class='fa fa-arrow-right owl-direction'></i>"
+		      "<i class='fa fa-angle-left owl-direction'></i>",
+		      "<i class='fa fa-angle-right owl-direction'></i>"
 	     	],
 	     	responsive:{
 	        0:{
@@ -272,8 +272,8 @@
 			smartSpeed: 800,
 			autoHeight: true,
 			navText: [
-		      "<i class='fa fa-arrow-left owl-direction'></i>",
-		      "<i class='fa fa-arrow-right owl-direction'></i>"
+		      "<i class='fa fa-angle-left owl-direction'></i>",
+		      "<i class='fa fa-angle-right owl-direction'></i>"
 	     	]
 		});
 
