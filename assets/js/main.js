@@ -65,12 +65,12 @@
 			    	$('html, body').animate({
 			        	scrollTop: $('[data-section="' + section + '"]').offset().top - 55
 			    	}, 500, 'easeInOutExpo');
-			   }
+			   	}
 
-			   if ($('body').hasClass('offcanvas')) {
-			   	$('body').removeClass('offcanvas');
-			   	$('.js-gtco-nav-toggle').removeClass('active');
-			   }
+			   	if ($('body').hasClass('offcanvas')) {
+			   		$('body').removeClass('offcanvas');
+			   		$('.js-gtco-nav-toggle').removeClass('active');
+			   	}
 		   event.preventDefault();
 		   return false;
 		});
@@ -95,18 +95,12 @@
 		// Hover dropdown menu on mobile
 		$('.offcanvas-has-dropdown').mouseenter(function(){
 			var $this = $(this);
-
-			$this
-				.addClass('active')
-				.find('ul')
-				.slideDown(500, 'easeOutExpo');				
+			$this.addClass('active').find('ul').slideDown(500, 'easeOutExpo');	
+			
 		}).mouseleave(function(){
 
 			var $this = $(this);
-			$this
-				.removeClass('active')
-				.find('ul')
-				.slideUp(500, 'easeOutExpo');				
+			$this.removeClass('active').find('ul').slideUp(500, 'easeOutExpo');				
 		});
 
 
@@ -160,7 +154,6 @@
 
 		$('body').on('click', '.js-gtco-nav-toggle', function(event){
 			var $this = $(this);
-
 
 			if ( $('body').hasClass('offcanvas') ) {
 				$('body').removeClass('offcanvas');
@@ -313,7 +306,10 @@
 	};
 
 	var counterInit = function() {
-		$('.js-counter').countUp();
+		$('.counter').countUp({
+			delay: 10,
+    		time: 2000
+		});
 	};
 
 	var counterWayPoint = function() {
@@ -380,13 +376,13 @@
 		offcanvasMenu();
 		burgerMenu();
 		navigationSection();
-		//contentWayPoint();
+//		//contentWayPoint();
 		dropdown();
 		owlCarousel();
 		goToTop();
 		loaderPage();
-		counterInit();
-		//counterWayPoint();
+		//counterInit();
+//		//counterWayPoint();
 		accordion();
 		// sliderMain();
 	});
