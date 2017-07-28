@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>组件（一）利用纯css实现悬浮提示</title>
+    <meta name="description" content="组件（一）利用纯css实现悬浮提示" />
+    <meta name="keywords" content="tooltip, effect, style, inspiration, css, svg, animation" />
+    <meta name="author" content="Weijuer" />
+
+    <style>
+        html {
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+        }
+        *,*:before,*:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #47c9af;
+        }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip:after,
+        .tooltip:before {
+            position: absolute;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            visibility: hidden;
+            opacity: 0;
+            z-index: 10000;
+            pointer-events: none;
+            -webkit-transition: .3s ease;
+            -moz-transition: .3s ease;
+            transition: .3s ease;
+            -webkit-transition-delay: 0ms;
+            -moz-transition-delay: 0ms;
+            transition-delay: 0ms;
+        }
+        .tooltip:after,
+        .tooltip:before {
+            top: 100%;
+            left: 50%;
+        }
+        .tooltip:before {
+            content: '';
+            position: absolute;
+            background: 0 0;
+            border: 8px solid transparent;
+            z-index: 10001;
+        }
+        .tooltip:after, [data-tooltip]:after {
+            content: attr(data-tooltip);
+        }
+        .tooltip:after {
+            background: #383838;
+            color: #fff;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            line-height: 12px;
+            white-space: nowrap;
+            text-shadow: 0 -1px 0 #000;
+            box-shadow: 4px 4px 8px rgba(0,0,0,.3);
+        }
+        .tooltip:hover:after,
+        .tooltip:hover:before {
+            visibility: visible;
+            opacity: 1;
+            -webkit-transition-delay: 100ms;
+            -moz-transition-delay: 100ms;
+            transition-delay: 100ms;
+        }
+
+        /*tooltip-top*/
+        .tooltip-top:before {
+            margin-bottom: -11px;
+            left: calc(50% - 6px);
+            border-top-color: #383838;
+        }
+
+        .tooltip-top:hover:before {
+            -webkit-transform: translateY(-8px);
+            -moz-transform: translateY(-8px);
+            transform: translateY(-8px);
+        }
+
+        /*tooltip-bottom*/
+        .tooltip-bottom:before {
+            margin-top: -15px;
+            left: calc(50% - 8px);
+            border-bottom-color: #383838;
+        }
+        .tooltip-bottom:after {
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .tooltip-bottom:hover:before {
+            -webkit-transform: translateY(8px);
+            -moz-transform: translateY(8px);
+            transform: translateY(8px);
+        }
+        .tooltip-bottom:hover:after {
+            -webkit-transform: translateX(-50%) translateY(8px);
+            -moz-transform: translateX(-50%) translateY(8px);
+            transform: translateX(-50%) translateY(8px);
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="demo">
+        <p>我是谁是谁，<span class="tooltip tooltip-bottom" data-tooltip="我是从下面出来">下面</span></p>
+    </div>
+</body>
+</html>
