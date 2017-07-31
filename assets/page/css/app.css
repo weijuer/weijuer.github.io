@@ -246,7 +246,8 @@
 }
 
 .search-content-1 .search-container,.search-content-2 .search-container {
-    background-color: #fff
+    background-color: #fff;
+    margin-bottom: 20px;
 }
 
 .search-page .search-pagination.pagination-rounded>.pagination>li>a {
