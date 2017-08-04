@@ -20,6 +20,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
+    <link rel="stylesheet" href="assets/layout/css/normalize.css" />
     <link href="assets/global/css/components.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
 
@@ -80,14 +81,10 @@
                             <div class="hor-menu">
                                 <ul class="nav navbar-nav">
                                     <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
-                                        <a href="javascript:;"> 首页
-                                            <span class="arrow"></span>
-                                        </a>
+                                        <a href="javascript:;"> 首页 </a>
                                     </li>
                                     <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
-                                        <a href="javascript:;"> 文章
-                                            <span class="arrow"></span>
-                                        </a>
+                                        <a href="javascript:;"> 文章 </a>
                                         <ul class="dropdown-menu pull-left">
                                             <li aria-haspopup="true">
                                                 <a href="pages/javascript" class="nav-link">javascript</a>
@@ -99,6 +96,9 @@
                                                 <a href="pages/java" class="nav-link">java</a>
                                             </li>
                                         </ul>
+                                    </li>
+                                    <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown">
+                                        <a href="javascript:;"> 学识 </a>
                                     </li>
                                 </ul>
                             </div>
@@ -133,7 +133,7 @@
                                                 <div class="portlet light">
                                                     <!-- SIDEBAR USERPIC -->
                                                     <div class="profile-userpic">
-                                                        <img src="assets/page/images/user2.png" class="img-responsive" alt="" />
+                                                        <img src="assets/page/images/user.png" class="img-responsive" alt="" />
                                                     </div>
                                                     <!-- END SIDEBAR USERPIC -->
 
@@ -188,62 +188,23 @@
                                                         <div class="search-page search-content-1">
                                                             <div class="row">
                                                                 <div class="col-md-8">
-                                                                    <div class="search-container ">
+                                                                    <div id="searchContainer" class="search-container">
                                                                         <ul>
-                                                                            <li class="search-item clearfix">
+                                                                            <li class="search-item clearfix" v-for="search in searchList">
                                                                                 <a href="javascript:;">
-                                                                                    <img src="assets/page/images/user.jpg" />
+                                                                                    <img v-bind:src="['assets/page/images/' + search.portrait]" />
                                                                                 </a>
                                                                                 <div class="search-content">
                                                                                     <h2 class="search-title">
-                                                                                        <a href="https://github.com/weijuer/tools/tree/master">表格checkbox全选</a>
+                                                                                        <a :href="[search.url]">{{ search.title }}</a>
                                                                                     </h2>
-                                                                                    <p class="search-desc">包含全选、反选、勾选单个，可配置元素...</p>
-                                                                                    <p class="gtco-category">2016.12.15 by Weijuer</p>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li class="search-item clearfix">
-                                                                                <a href="javascript:;">
-                                                                                    <img src="assets/page/images/user.jpg" />
-                                                                                </a>
-                                                                                <div class="search-content">
-                                                                                    <h2 class="search-title">
-                                                                                        <a href="https://github.com/weijuer/tools/tree/master">js判断IE各个版本</a>
-                                                                                    </h2>
-                                                                                    <p class="search-desc">最近做项目，业务要求能判断IE版本，尤其是IE8，故在此记录...</p>
-                                                                                    <p class="gtco-category">2017.01.13 by Weijuer</p>
-                                                                                </div>
-                                                                            </li>
-                                                                            <a href="javascript:;">
-                                                                            <li class="search-item clearfix">
-                                                                                    <img src="assets/page/images/user.jpg" />
-                                                                                </a>
-                                                                                <div class="search-content">
-                                                                                    <h2 class="search-title">
-                                                                                        <a href="pages/7/18/CSS3-Loadings.html">纯CSS加载动画展示</a>
-                                                                                    </h2>
-                                                                                    <p class="search-desc">gif动画虽然兼容性好，但是增加了http请求，CSS3的动画已经被广泛认知和运用在各大网站中，笔者将搜罗到的加载动画收集到一起...</p>
-                                                                                    <p class="gtco-category">2017.07.18 by Weijuer</p>
+                                                                                    <p class="search-desc">{{ search.description }}</p>
+                                                                                    <p class="">{{ search.author }}</p>
                                                                                 </div>
                                                                             </li>
                                                                         </ul>
-                                                                        <div class="search-pagination hidden">
-                                                                            <ul class="pagination">
-                                                                                <li class="page-active">
-                                                                                    <a href="javascriptt:;"> 1 </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="javascriptt:;"> 2 </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="javascriptt:;"> 3 </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="javascriptt:;"> 4 </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
                                                                     </div>
+
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="panel panel-danger">
@@ -344,6 +305,7 @@
     <!-- BEGIN CORE PLUGINS -->
     <script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/global/plugins/vue.js"></script>
     <script src="assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
 

@@ -198,7 +198,7 @@
 /*****************************/
 
 .tabs-topline {
-	max-width: 1200px;
+	
 }
 
 .tabs-topline .tab-bar li {
@@ -362,8 +362,8 @@
 
 .tabs-linemove .tab-bar li.active a {
 	color: #2CC185;
-	-webkit-transform: translate3d(0,8px,0);
-	transform: translate3d(0,8px,0);
+	/*-webkit-transform: translate3d(0,8px,0);
+	transform: translate3d(0,8px,0);*/
 }
 
 .tabs-linemove .tab-bar a span {
@@ -505,7 +505,7 @@
 /*****************************/
 
 .tabs-shape {
-	max-width: 1200px;
+	
 }
 
 .tabs-shape .tab-bar ul li {
@@ -702,7 +702,7 @@
 /*****************************/
 
 .tabs-flip {
-	max-width: 1200px;
+	
 }
 
 .tabs-flip .tab-bar {
@@ -839,7 +839,7 @@
 /*****************************/ 
 
 .tabs-tzoid {
-	max-width: 1200px;
+	
 }
 
 .tabs-tzoid .tab-bar {
