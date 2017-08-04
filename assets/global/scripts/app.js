@@ -1,6 +1,6 @@
 
 // 搜索列表
-/*var searchContainer = new Vue({
+var searchContainer = new Vue({
     el: '#searchContainer',
     data: {
         searchList: [
@@ -10,10 +10,10 @@
             { portrait:'user.png', url: 'pages/8/4/tab.html', title: 'tabs标签页组件', description:'最近项目中用到tab标签页，找了现有的tab插件很久都不是很满意，所以自己动手基于jquery写了一个', author:'2017.08.04 by Weijuer' }
         ]
     }
-});*/
+});
 
 // tree
-var tree = new Vue({
+/*var tree = new Vue({
     el: '#app',
     data: {
         tree: [
@@ -105,5 +105,5 @@ var tree = new Vue({
             template: '#tree-template'
         }
     }
-});
+});*/
 
