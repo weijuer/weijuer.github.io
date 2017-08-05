@@ -2,7 +2,7 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="zh">
+<html lang="zh" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
@@ -190,7 +190,7 @@
                                                                 <div class="col-md-8">
                                                                     <div id="searchContainer" class="search-container">
                                                                         <ul>
-                                                                            <li class="search-item clearfix" v-for="search in searchList">
+                                                                            <li v-cloak class="search-item clearfix" v-for="search in searchList">
                                                                                 <a href="javascript:;">
                                                                                     <img v-bind:src="['assets/page/images/' + search.portrait]" />
                                                                                 </a>
