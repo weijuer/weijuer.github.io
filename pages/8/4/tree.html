@@ -130,12 +130,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        <script type="text/x-template" id="tree-template">
+                                        <template id="tree-template">
                                             <li v-if="children.length" v-repeat="children">
                                                 <span v-on="click: expanded = !expanded">{{title}} <span v-if="children.length">[{{expanded ? '-' : '+'}}]</span></span>
                                                 <ul v-if="children.length && expanded" v-component="tree" v-with="children: children"></ul>
                                             </li>
-                                        </script>
+                                        </template>
 
                                         <div id="app">
                                             <ul v-component="tree" v-with="children: tree"></ul>
@@ -232,7 +232,7 @@
 <script src="assets/layout/scripts/layout.js" type="text/javascript"></script>
 
 <!-- BEGIN THEME PAGE SCRIPTS -->
-<script src="assets/global/scripts/app.js" type="text/javascript"></script>
+<script src="assets/page/scripts/tree.js" type="text/javascript"></script>
 
 </body>
 </html>
