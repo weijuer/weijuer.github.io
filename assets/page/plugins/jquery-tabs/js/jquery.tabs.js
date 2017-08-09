@@ -11,11 +11,14 @@
 
     /*****定义Tab的构造函数******/
     // 将变量定义到对象的属性上，函数变成对象的方法，使用时通过对象获取
-    var Tab = function (elem, opts) {
+    var Tab = function (elem, opts, args) {
 
         // 获取到的jQuery对象
         this.element = elem;
         this.$element = $(this.element);
+
+        // 获取jQuery对象的selector属性
+        this.selector = args.selector;
 
         // 设置默认参数
         this.defaults = {
@@ -47,11 +50,14 @@
         _initEvents: function () {
             // 找回自己
             var self = this;
+            var $options = self.options;
+            // var selector = self.selector + ' ' + this.$tabs.selector;
 
-            this.$tabs.on(this.options.event, {opts: this.options}, function(e) {
+            // 切换为事件委托，已适应未来元素的事件绑定
+            this.$tabs.on($options.event, function(e) {
+
                 // 阻止默认点击事件
                 e.preventDefault();
-                var $options = e.data.opts;
                 var index = $(this).index();
 
                 // tabs切换
@@ -79,9 +85,12 @@
     // 在插件中使用Tab对象
     $.fn.tab = function (options) {
 
+        // 声明变量o，存储的是jQuery对象的selector属性和context属性
+        var args = { selector: this.selector, context: this.context };
+
         return this.each(function () {
             // 创建Tab的实体
-            new Tab(this, options);
+            new Tab(this, options, args);
         });
     };
 })(jQuery, window, document);
