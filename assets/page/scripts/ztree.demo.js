@@ -1,17 +1,3 @@
-var setting = {
-    check: {
-        enable: true
-    },
-    data: {
-        simpleData: {
-            enable: true
-        }
-    },
-    callback: {
-        onNodeCreated: onNodeCreated
-    }
-};
-
 var dataMaker = function (count) {
     var nodes = [], pId = -1,
         min = 10, max = 90, level = 0, curLevel = [], prevLevel = [], levelCount,
@@ -44,84 +30,80 @@ var dataMaker = function (count) {
     return nodes;
 };
 
-var ruler = {
-    doc: null,
-    ruler: null,
-    cursor: null,
-    minCount: 5000,
-    count: 5000,
-    stepCount: 500,
-    minWidth: 30,
-    maxWidth: 215,
+
+var OrgTree = {
+    _orgTree: {
+        tree: null,
+        nodeList: []
+    },
     init: function () {
-        ruler.doc = $(document);
-        ruler.ruler = $("#ruler");
-        ruler.cursor = $("#cursor");
-        if (ruler.ruler) {
-            ruler.ruler.bind("mousedown", ruler.onMouseDown);
+        this.pageRender();
+        this.eventsBind();
+    },
+    pageRender: function () {
+        this.initZtree();
+    },
+    initZtree: function () {
+
+        var setting = {
+            edit: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            view: {
+                showIcon: false,
+                selectedMulti: false,
+                addDiyDom: OrgTree.addDiyDom
+            }
+        };
+
+        var zNodes = [
+            {id: 1, pId: 0, name: "父节点 1", open: true},
+            {id: 11, pId: 1, name: "叶子节点 1-1"},
+            {id: 12, pId: 1, name: "叶子节点 1-2"},
+            {id: 13, pId: 1, name: "叶子节点 1-3"}
+        ];
+
+        OrgTree._orgTree.tree = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+    },
+    eventsBind: function () {
+
+
+        // 1.绑定搜索
+        $('.ztree-search-btn').on('click', function () {
+            // zTree对象
+            var zTree = OrgTree._orgTree.tree;
+            var query = $.trim($('.ztree-search-control').val());
+
+            OrgTree.updateNodes(false);
+            OrgTree._orgTree.nodeList = zTree.getNodesByParamFuzzy('name', query);
+            OrgTree.updateNodes(true);
+        });
+    },
+    updateNodes: function (highlight) {
+        // zTree对象
+        var zTree = OrgTree._orgTree.tree;
+        var nodeList = OrgTree._orgTree.nodeList;
+
+        for (var i = 0, l = nodeList.length; i < l; i++) {
+            nodeList[i].highlight = highlight;
+            zTree.updateNode(nodeList[i]);
         }
     },
-    onMouseDown: function (e) {
-        ruler.drawRuler(e, true);
-        ruler.doc.bind("mousemove", ruler.onMouseMove);
-        ruler.doc.bind("mouseup", ruler.onMouseUp);
-        ruler.doc.bind("selectstart", ruler.onSelect);
-        $("body").css("cursor", "pointer");
-    },
-    onMouseMove: function (e) {
-        ruler.drawRuler(e);
-        return false;
-    },
-    onMouseUp: function (e) {
-        $("body").css("cursor", "auto");
-        ruler.doc.unbind("mousemove", ruler.onMouseMove);
-        ruler.doc.unbind("mouseup", ruler.onMouseUp);
-        ruler.doc.unbind("selectstart", ruler.onSelect);
-        ruler.drawRuler(e);
-    },
-    onSelect: function (e) {
-        return false;
-    },
-    getCount: function (end) {
-        var start = ruler.ruler.offset().left + 1;
-        var c = Math.max((end - start), ruler.minWidth);
-        c = Math.min(c, ruler.maxWidth);
-        return {width: c, count: (c - ruler.minWidth) * ruler.stepCount + ruler.minCount};
-    },
-    drawRuler: function (e, animate) {
-        var c = ruler.getCount(e.clientX);
-        ruler.cursor.stop();
-        if ($.browser.msie || !animate) {
-            ruler.cursor.css({width: c.width});
-        } else {
-            ruler.cursor.animate({width: c.width}, {duration: "fast", easing: "swing", complete: null});
-        }
-        ruler.count = c.count;
-        ruler.cursor.text(c.count);
+    addDiyDom: function (treeId, treeNode) {
+        if (treeNode.parentNode && treeNode.parentNode.id !== 2) return;
+        var aObj = $("#" + treeNode.tId + '_a');
+        var editStr = "<span id='diyBtn_" + treeNode.id + "' class='ztree-user-count'><i class='fa fa-user'></i>(...)</span>";
+        aObj.after(editStr);
     }
+
 };
 
-var showNodeCount = 0;
-function onNodeCreated(event, treeId, treeNode) {
-    showNodeCount++;
-}
-
-function createTree() {
-    var zNodes = dataMaker(ruler.count);
-    showNodeCount = 0;
-    $("#treeDemo").empty();
-    setting.check.enable = $("#showChk").attr("checked");
-    var time1 = new Date();
-    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-    var time2 = new Date();
-
-    alert("节点共 " + zNodes.length + " 个, 初始化生成 DOM 的节点共 " + showNodeCount + " 个"
-        + "\n\n 初始化 zTree 共耗时: " + (time2.getTime() - time1.getTime()) + " ms");
-}
-
 $(document).ready(function () {
-    var zNodes = dataMaker(5000);
-    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-
-
+    OrgTree.init();
 });
