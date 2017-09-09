@@ -63,19 +63,27 @@
   border-bottom: 1px solid #ddd;
 }
 
-.ztree-single-content {
+.ztree-breadcrumb {
   list-style: none;
-  padding: 0;
+  padding: 0 8px;
   margin: 0;
 }
 
-.ztree-single-content > li {
+.ztree-breadcrumb > li {
   display: inline-block;
   height: 28px;
   line-height: 28px;
 }
 
-.ztree-single-content > li > a {
+.ztree-breadcrumb > li+li:before {
+  display: inline-block;
+  content: "\f054";
+  font-family: FontAwesome;
+  padding: 0 5px;
+  color: #ccc;
+}
+
+.ztree-breadcrumb > li > a {
   padding-right: 3px;
   margin: 0;
   cursor: pointer;
@@ -166,7 +174,7 @@
   opacity: 0.8;
 }
 .ztree li a.curSelectedNode_Edit {
-  padding-top: 0px;
+  padding-top: 0;
   background-color: transparent;
   color: #ffff00;
   height: 17px;
@@ -174,7 +182,7 @@
   opacity: 0.8;
 }
 .ztree li a.tmpTargetNode_inner {
-  padding-top: 0px;
+  padding-top: 0;
   background-color: #aaa;
   color: #ffff00;
   height: 17px;
@@ -206,7 +214,7 @@
   padding-top: 10px;
 }
 .ztree li span.button.chk {
-  margin: 0px;
+  margin: 0;
   cursor: auto;
   width: 12px;
   display: inline-block;

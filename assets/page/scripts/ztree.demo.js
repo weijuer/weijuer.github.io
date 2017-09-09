@@ -57,6 +57,7 @@ var OrgTree = {
             view: {
                 showIcon: false,
                 selectedMulti: false,
+                fontCss: OrgTree.getFontCss, //设置搜索颜色
                 addDiyDom: OrgTree.addDiyDom
             }
         };
@@ -80,9 +81,17 @@ var OrgTree = {
             var zTree = OrgTree._orgTree.tree;
             var query = $.trim($('.ztree-search-control').val());
 
+            // 清空上次选中样式
             OrgTree.updateNodes(false);
-            OrgTree._orgTree.nodeList = zTree.getNodesByParamFuzzy('name', query);
-            OrgTree.updateNodes(true);
+
+            if(query){
+                var nodeList = OrgTree._orgTree.nodeList = zTree.getNodesByParamFuzzy('name', query);
+                if(nodeList && nodeList.length > 0 ){
+                    //将找到的nodelist节点更新至Ztree内
+                    //$.fn.zTree.init($("#treeDemo"), setting, nodeList);
+                    OrgTree.updateNodes(true);
+                }
+            }
         });
     },
     updateNodes: function (highlight) {
@@ -100,6 +109,11 @@ var OrgTree = {
         var aObj = $("#" + treeNode.tId + '_a');
         var editStr = "<span id='diyBtn_" + treeNode.id + "' class='ztree-user-count'><i class='fa fa-user'></i>(...)</span>";
         aObj.after(editStr);
+    },
+    getFontCss: function (treeId, treeNode) {
+        return (!!treeNode.highlight)
+            ? {color: "#A60000", "font-weight": "bold"}
+            : {color: "#333", "font-weight": "normal"};
     }
 
 };
