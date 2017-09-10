@@ -67,6 +67,7 @@
   list-style: none;
   padding: 0 8px;
   margin: 0;
+  white-space: nowrap;
 }
 
 .ztree-breadcrumb > li {
@@ -126,7 +127,7 @@
   text-align: left;
   white-space: nowrap;
   list-style: none;
-  /*border-bottom: 1px solid #ddd;*/
+  border-bottom: 1px solid #ddd;
   outline: 0;
 }
 
@@ -353,7 +354,7 @@
   padding: 0;
   display: inline-block;
 }
-.ztree li span.button.root_docu {
+/*.ztree li span.button.root_docu {
   background: none;
 }
 .ztree li span.button.roots_docu::before {
@@ -374,7 +375,7 @@
 }
 .ztree li span.button.noline_docu {
   background: none;
-}
+}*/
 
 /*.ztree li span.button.ico_open::before {
   content: "\f115";
