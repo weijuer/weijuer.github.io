@@ -1,17 +1,18 @@
 
-table tbody {
+.table-head-fixed tbody {
     display:block;
-    height:200px;
-    overflow-y:scroll;
+    height:300px;
+    overflow:auto;
 }
 
-table thead, tbody tr {
+.table-head-fixed thead,
+.table-head-fixed tbody tr {
     display:table;
     width:100%;
     table-layout:fixed;
 }
 
-table thead {
+.table-head-fixed thead {
     /*减去滚动条 17px*/
     /*Firefox*/
     width: -moz-calc(100% - 17px);
@@ -20,3 +21,20 @@ table thead {
     /*Standard */
     width: calc( 100% - 17px )
 }
+
+/*demo*/
+.table-demo .table > thead > tr > th,
+.table-demo .table > thead > tr > td,
+.table-demo .table > tbody > tr > th,
+.table-demo .table > tbody > tr > td {
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-left: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-demo .table>thead>tr>th {
+    border-bottom: 1px solid #ddd;
+}
+
