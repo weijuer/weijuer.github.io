@@ -61,7 +61,8 @@ var OrgTree = {
                 addDiyDom: OrgTree.addDiyDom
             },
             callback: {
-                onExpand: OrgTree.OnExpand
+                // onExpand: OrgTree.onExpand,
+                beforeExpand: OrgTree.beforeExpand
             }
         };
 
@@ -78,12 +79,18 @@ var OrgTree = {
             {id: 1113, pId: 111, name: "叶子节点 1-1-1-3"}
         ];
 
+        // ztree对象容器
+        var $treeContainer = $("#treeDemo");
+
         // ztree对象初始化
-        var treeObj = OrgTree._orgTree.tree = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        var treeObj = OrgTree._orgTree.tree = $.fn.zTree.init($treeContainer, setting, zNodes);
 
         // 隐藏根节点第一个节点
         var nodes = treeObj.getNodes();
+        var rootNode = nodes[0];
         treeObj.hideNode(nodes[0]);
+
+        setting.callback.beforeExpand = OrgTree.beforeExpand(rootNode.id, rootNode);
 
         // 显示某个隐藏的节点
         /*var node = treeObj.getNodeByParam("isHidden", true);
@@ -91,7 +98,7 @@ var OrgTree = {
             treeObj.showNode(node.children);
         }*/
 
-        var treeObj2 = OrgTree._orgTree.tree = $.fn.zTree.init($("#treeDemo"), setting, nodes[0].children);
+        //var treeObj2 = OrgTree._orgTree.tree = $.fn.zTree.init($treeContainer, setting, nodes[0].children);
 
     },
     eventsBind: function () {
@@ -139,8 +146,7 @@ var OrgTree = {
             ? {color: "#A60000", "font-weight": "bold"}
             : {color: "#333", "font-weight": "normal"};
     },
-    OnExpand: function (event, treeId, treeNode) {
-        alert(treeNode.tId + ", " + treeNode.name + ','+ treeNode.children);
+    onExpand: function (event, treeId, treeNode) {
 
         // 1.隐藏树中当前父节点并追加此父节点到父节点导航区
         // 1.1隐藏根节点第一个节点
@@ -154,6 +160,23 @@ var OrgTree = {
 
         // 2.展示其子节点
         var treeObj2 = $.fn.zTree.init($("#treeDemo"), treeObj.setting, treeNode.children);
+    },
+    beforeExpand: function (treeId, treeNode) {
+        // 1.隐藏树中当前父节点并追加此父节点到父节点导航区
+        // 1.1隐藏根节点第一个节点
+        var treeObj = OrgTree._orgTree.tree;
+        treeObj.hideNode(treeNode);
+
+        // 1.2添加到父节点导航区
+        var $li = $('<li><a id="'+ treeNode.tId +'" href="javascript:;"><span class="active">'+ treeNode.name +'</span></a></li>');
+
+        $('.ztree-breadcrumb').find('li>a>span').removeClass('active').end().append($li);
+
+        // 2.展示其子节点
+        var treeObj2 = $.fn.zTree.init($("#treeDemo"), treeObj.setting, treeNode.children);
+
+        // 如果返回 false，zTree 将不会展开节点
+        return false;
     }
 
 };
