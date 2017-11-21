@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas-彩色小球</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Design by Weijuer" name="description"/>
+    <meta content="weijuer" name="author"/>
+    <base href="../../../"/>
+
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<canvas id="canvas">当前浏览器不支持canvas!</canvas>
+<script src="assets/page/plugins/underscore/underscore.js"></script>
+<script>
+    // 1.获取画布
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d'); // 基于2d
+    // 设置画布尺寸
+    canvas.width = 800;
+    canvas.height = 600;
+    canvas.style.backgroundColor = '#000';
+
+    // 2.小球类
+    class Ball {
+        /**
+         *  构造器
+         */
+        constructor(x, y, color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.r = 40;
+        }
+
+        /**
+         * 绘制小球
+         */
+        render() {
+            // 保存
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+
+            // 颜色
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    // 3. 会移动的小球类
+    class MoveBall extends Ball {
+        constructor(x, y, color) {
+            super(x, y, color);
+
+            // 量的变化
+            this.dX = _.random(-5, 5);
+            this.dY = _.random(-5, 5);
+            this.dR = _.random(-5, -1);
+        }
+
+        update() {
+            this.x += this.dX;
+            this.y += this.dY;
+            this.r += this.dR;
+            if (this.r < 0) {
+                this.r = 0;
+            }
+        }
+    }
+
+    // 4. 实例化小球
+    let ballArr = [];
+    let colorArr = ['red', 'green', 'blue', 'yellow', 'pink', 'orange'];
+
+    // 5.监听鼠标移动
+    canvas.addEventListener('mousemove', function (e) {
+
+        let ball = new MoveBall(e.offsetX, e.offsetY, colorArr[_.random(0, colorArr.length - 1)]);
+
+        ballArr.push(ball);
+
+        console.log(ballArr);
+    });
+
+    // 6.开启定时器
+    setInterval(function () {
+        // 清屏
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+        // 绘制
+        for(let i=0;i<ballArr.length;i++) {
+            ballArr[i].render();
+            ballArr[i].update();
+        }
+    },50);
+
+</script>
+</body>
+</html>
