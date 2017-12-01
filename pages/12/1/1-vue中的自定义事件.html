@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>1-vue中的自定义事件</title>
+    <base href="../../../assets/">
+</head>
+<body>
+<div id="app">
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+    <my-btn @total="allCounter()"></my-btn>
+
+    <p>所有按钮一共点击了{{ totalCount }}次</p>
+</div>
+
+<template id="myBtn">
+    <button @click="total()">点击了{{ counter }}次</button>
+</template>
+
+<script src="global/plugins/vue.js"></script>
+<script>
+    Vue.component('my-btn', {
+        template: '#myBtn',
+        data() {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            total() {
+                this.counter += 1;
+
+                // 通知外界，调用此方法
+                this.$emit('total');
+            }
+        }
+    });
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            totalCount: 0
+        },
+        methods: {
+            allCounter() {
+                this.totalCount +=1;
+            }
+        }
+    });
+</script>
+</body>
+</html>
