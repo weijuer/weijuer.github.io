@@ -1,13 +1,21 @@
-# weijuer
-一个开源的项目库
+# weijuer.github.io
 
-### 欢迎光临本厮共享资源库.
-这里是本厮的小破站，尚待完善，敬请谅解哦！[朕乐视频](https://www.weijuer.com/)
+> 我只是比你来坑的早，相信我你也可以！
 
-### 设想
-本着开源的思想，本厮会将自己在学习开发，开发实践当中遇到的常见问题以及解决途径或者思路分享给大家。
+## 项目编译设置 Build Setup
 
-> 本期愿景
-1. 手机端，输入框聚焦，软键盘遮蔽输入框问题；
-2. 手机端自适应样式框架构建，weijuer.m.css库搭建；
-3. 待续...
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
