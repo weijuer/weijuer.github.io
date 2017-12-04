@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5-Vue的组件之间的通信</title>
+    <base href="../../../assets/">
+</head>
+<body>
+<div id="app">
+    <my-temp message="今天我很帅！" imgsrc="global/images/backgrounds/bg-29.jpg"></my-temp>
+    <my-temp message="今天天气不错吆！" imgsrc="global/images/backgrounds/bg-19.jpg"></my-temp>
+</div>
+
+<!--注册一个组件-->
+<template id="my-temp">
+    <div>
+        <h1>{{ message }}</h1>
+        <img :src="imgsrc" width="300" alt="">
+    </div>
+</template>
+
+<script src="global/plugins/vue.js"></script>
+<script>
+    // 1.实例化组件
+    Vue.component('my-temp', {
+        template: '#my-temp',
+        props: ['message', 'imgsrc']
+    });
+
+    new Vue({
+        el: '#app'
+    });
+
+</script>
+</body>
+</html>

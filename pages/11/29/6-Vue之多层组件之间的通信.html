@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-Vue之多层组件之间的通信</title>
+    <base href="../../../assets/">
+</head>
+<body>
+<div id="app">
+    <my-parent :imgsrc="img" :imgtitle="title"></my-parent>
+</div>
+
+<template id="child1">
+    <img width="300" :src="imgscr">
+</template>
+
+<template id="child2">
+    <h1>{{ title }}</h1>
+</template>
+
+<template id="parent">
+    <div>
+        <child1 :imgsrc="imgsrc"></child1>
+        <child2 :title="imgtitle"></child2>
+    </div>
+</template>
+
+<script src="global/plugins/vue.js"></script>
+<script>
+
+    // 1.子组件的实例
+    let Child1 = Vue.extend({
+        template: '#child1',
+        props: ['imgscr']
+    });
+
+    let Child2 = Vue.extend({
+        template: '#child2',
+        props: ['title']
+    });
+
+    Vue.component('my-parent', {
+        template: '#parent',
+        props: ['imgtitle', 'imgsrc'],
+        components: {
+            'child1': Child1,
+            'child2': Child2
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        data: {
+            title: '这张图是不是很美',
+            img: 'global/images/backgrounds/bg-29.jpg'
+        }
+    });
+
+</script>
+</body>
+</html>

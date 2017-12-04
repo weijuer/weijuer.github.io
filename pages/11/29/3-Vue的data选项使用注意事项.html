@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-Vue的data选项使用注意事项</title>
+    <base href="../../../assets/">
+</head>
+<body>
+<div id="app">
+    <my-temp></my-temp>
+    <my-temp2></my-temp2>
+</div>
+
+<!--template标签模板只能有一个平级节点，若想多个节点请使用div包含-->
+<template id="my-temp">
+    <div class="p">
+        <p>我是MT！</p>
+        <input type="date">
+        <p>{{msg}}</p>
+    </div>
+</template>
+
+<!--script标签模板需要规定类型为“text/template”-->
+<script type="text/template" id="my-temp2">
+    <div class="p">
+        <img src="global/images/backgrounds/bg-29.jpg" width="300" alt="">
+        <input type="color">
+    </div>
+</script>
+
+<script src="global/plugins/vue.js"></script>
+<script>
+
+    // 1.实例化组件
+    Vue.component('my-temp', {
+        template: '#my-temp',
+        data() {
+            return {
+                msg: '啥东西？'
+            }
+        }
+    });
+
+    Vue.component('my-temp2', {
+        template: '#my-temp2'
+    });
+
+    new Vue({
+        el: '#app'
+    });
+
+</script>
+</body>
+</html>

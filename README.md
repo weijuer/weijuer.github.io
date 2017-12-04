@@ -2,7 +2,7 @@
 
 > 我只是比你来坑的早，相信我你也可以！
 
-## 项目编译设置 Build Setup
+## Build Setup
 
 ``` bash
 # install dependencies
