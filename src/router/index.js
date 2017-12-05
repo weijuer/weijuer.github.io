@@ -1,15 +1,38 @@
+// 引用vue
 import Vue from 'vue'
+// 引用路由
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// 引用模板
+import content from '@/pages/content'
+import Layout from '@/components/Layout'
 
+// 使用路由
 Vue.use(Router)
 
+// 页面滚动配置
+const scrollBehavior = (to, from, savedPosition) => {
+  if (savedPosition) {
+    return savedPosition
+  } else {
+    return {x: 0, y: 0}
+  }
+}
+
+// 创建 router 实例，然后传 `routes` 配置
 export default new Router({
+  mode: 'history',
+  base: __dirname,
+  linkActiveClass: 'link-active',
+  scrollBehavior,
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Layout',
+      component: Layout
+    }, {
+      path: '/content',
+      name: 'content',
+      component: content
     }
   ]
 })

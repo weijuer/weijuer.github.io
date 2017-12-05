@@ -9,7 +9,7 @@
     },
     {
       "portrait": "user.png",
-      "url": "https"://github.com/weijuer/tools/tree/master",
+      "url": "https://github.com/weijuer/tools/tree/master",
       "title": "js判断IE各个版本",
       "description": "最近做项目，业务要求能判断IE版本，尤其是IE8，故在此记录...",
       "author": "2017.01.13 by Weijuer"
