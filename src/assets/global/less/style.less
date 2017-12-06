@@ -1,0 +1,71 @@
+@fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+@fontSize: 14px;
+@color: #24292e;
+@bgColor: #fff;
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: @fontFamily;
+  font-size: @fontSize;
+  line-height: 1.5;
+  font-weight: 300;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  -ms-overflow-style: scrollbar;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  color: @color;
+  background-color: @bgColor;
+}
+
+html a:active,
+html a:focus,
+body a:active,
+body a:focus {
+  text-decoration: none !important;
+}
+
+.wj-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+@media (min-width: 993px){
+  .wj-header .wj-header--content {
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    background: #3d3b56;
+    height: 70px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+

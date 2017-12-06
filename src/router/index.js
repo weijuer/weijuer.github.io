@@ -3,7 +3,6 @@ import Vue from 'vue'
 // 引用路由
 import Router from 'vue-router'
 // 引用模板
-import content from '@/pages/content'
 import Layout from '@/components/Layout'
 
 // 使用路由
@@ -29,10 +28,6 @@ export default new Router({
       path: '/',
       name: 'Layout',
       component: Layout
-    }, {
-      path: '/content',
-      name: 'content',
-      component: content
     }
   ]
 })

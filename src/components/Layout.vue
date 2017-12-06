@@ -1,11 +1,7 @@
 <template>
-  <div class="">
-    <section class="header">
-      <page-Header></page-Header>
-    </section>
-    <section class="container">
-      <index></index>
-    </section>
+  <div class="wj-layout">
+    <pageHeader></pageHeader>
+    <router-view class="app-view" keep-alive transition transition-mode="out-in" />
   </div>
 </template>
 

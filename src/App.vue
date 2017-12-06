@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <router-view class="view" keep-alive transition transition-mode="out-in" />
+  <div id="app" class="wj-page">
+    <router-view class="app-view" keep-alive transition transition-mode="out-in" />
   </div>
 </template>
 
@@ -10,11 +10,3 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-top: 60px;
-}
-</style>
