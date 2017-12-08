@@ -1,15 +1,21 @@
 <template>
   <header class="wj-header">
-    <div class="wj-header--pre">
-      <div class="wj-container">
+    <div class="wj-header-pre">
+      <div class="wj-container wj-page-container">
 
       </div>
     </div>
-    <div class="wj-header--content">
-      <div class="wj-container">
-        <ul class="nav navbar-nav">
-          <li v-for="menu in menus" :class="{'active':menu.active}"><a href="#" v-text="menu.name"></a></li>
-        </ul>
+    <div class="wj-header-content">
+      <div class="wj-container wj-page-container wj-container--full-height">
+        <div class="wj-stack wj-stack-desktop wj-stack-ver">
+          <div class="wj-stack-item">
+            <div class="wj-header-menu">
+              <ul class="wj-menu-nav">
+                <li v-for="menu in menus" class="wj-menu-item" :class="{'active':menu.active}"><a class="wj-menu-link" href="#"><span class="wj-menu-link-text" v-text="menu.name"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
