@@ -6,6 +6,7 @@ import Vue from 'vue'
 import App from './App'
 // 引入路由配置文件
 import router from './router'
+
 // 引入HTTP工具axios
 import axios from 'axios'
 // 将axios改写为Vue的原型属性$ajax，绑定到全局

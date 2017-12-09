@@ -17,7 +17,7 @@
   }
 </script>
 
-<style lang="less">
+<!--<style lang="less">
   @import "../assets/global/less/style";
-</style>
+</style>-->
 

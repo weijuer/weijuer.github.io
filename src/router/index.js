@@ -19,7 +19,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 
 // 创建 router 实例，然后传 `routes` 配置
 export default new Router({
-  mode: 'history',
+  mode: 'hash', // hash路由以#号分割，history则为常规url
   base: __dirname,
   linkActiveClass: 'link-active',
   scrollBehavior,
