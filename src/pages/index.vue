@@ -1,24 +1,210 @@
 <template>
-  <div class="index">
-    <img src="/static/global/images/logo.png" width="200" alt="">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="wj-content-blog-post-card-1-grid">
+        <div class="row">
+          <div class="col-md-6" v-for="item in searchLists">
+            <div class="wj-content-blog-post-card-1 wj-option-2 wj-bordered">
+              <div class="wj-media wj-content-overlay">
+                <div class="wj-overlay-wrapper">
+                  <div class="wj-overlay-content">
+                    <a href="#"><i class="icon-link"></i></a>
+                    <a href="/static/global/images/logo.png" data-lightbox="fancybox" data-fancybox-group="gallery">
+                      <i class="icon-magnifier"></i>
+                    </a>
+                  </div>
+                </div>
+                <img class="wj-overlay-object img-responsive" src="/static/global/images/logo.png" alt="">
+              </div>
+              <div class="wj-body">
+                <div class="wj-title wj-font-bold wj-font-uppercase">
+                  <a :href="item.url">{{ item.title }}</a>
+                </div>
+                <div class="wj-author">
+                  By <a href="#"><span class="wj-font-uppercase">Nick Strong</span></a>
+                  on <span class="wj-font-uppercase">20 May 2015, 10:30AM</span>
+                </div>
 
-    <div class="media" v-for="item in searchLists">
-      <div class="media-left media-middle">
-        <a :href="item.url">
-          <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="/static/global/images/logo.png" data-holder-rendered="true" style="width: 64px; height: 64px;">
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">{{ item.title }}</h4>
-        <p>{{ item.description }}</p>
+                <div class="wj-panel">
+                  <ul class="wj-tags wj-theme-ul-bg">
+                    <li>ux</li>
+                    <li>web</li>
+                    <li>events</li>
+                  </ul>
+                  <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
+                </div>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wj-pagination">
+          <ul class="wj-content-pagination wj-theme">
+            <li class="wj-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li class="wj-active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li class="wj-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+          </ul>
+        </div>
       </div>
     </div>
 
+    <div class="col-md-3">
+      <!-- BEGIN: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
+      <form action="#" method="post">
+        <div class="input-group">
+          <input type="text" class="form-control wj-square wj-theme-border" placeholder="Search blog...">
+          <span class="input-group-btn">
+        <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">Go!</button>
+      </span>
+        </div>
+      </form>
+
+      <div class="wj-content-ver-nav">
+        <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
+          <h3 class="wj-font-bold wj-font-uppercase">Categories</h3>
+          <div class="wj-line-left wj-theme-bg"></div>
+        </div>
+        <ul class="wj-menu wj-arrow-dot1 wj-theme">
+          <li><a href="#">Web Development(2)</a></li>
+          <li><a href="#">UX Design(12)</a></li>
+          <li><a href="#">Mobile Development(5)</a></li>
+          <li><a href="#">Internet Marketing(7)</a></li>
+          <li><a href="#">Social Networks(11)</a></li>
+          <li><a href="#">Web Design(18)</a></li>
+        </ul>
+      </div>
+
+      <div class="wj-content-tab-1 wj-theme wj-margin-t-30">
+        <div class="nav-justified">
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a href="#blog_recent_posts" data-toggle="tab">Recent Posts</a></li>
+            <li><a href="#blog_popular_posts" data-toggle="tab">Popular Posts</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="blog_recent_posts">
+              <ul class="wj-content-recent-posts-1">
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane" id="blog_popular_posts">
+              <ul class="wj-content-recent-posts-1">
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="wj-image">
+                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                  </div>
+                  <div class="wj-post">
+                    <a href="" class="wj-title">
+                      UX Design Expo 2015...
+                    </a>
+                    <div class="wj-date">27 Jan 2015</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wj-content-ver-nav">
+        <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
+          <h3 class="wj-font-bold wj-font-uppercase">Blogs</h3>
+          <div class="wj-line-left wj-theme-bg"></div>
+        </div>
+        <ul class="wj-menu wj-arrow-dot wj-theme">
+          <li><a href="#">Fasion &amp; Arts</a></li>
+          <li><a href="#">UX &amp; Web Design</a></li>
+          <li><a href="#">Mobile Development</a></li>
+          <li><a href="#">Internet Marketing</a></li>
+          <li><a href="#">Frontend Development</a></li>
+        </ul>
+      </div><!-- END: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
+    </div>
   </div>
 </template>
 
 <script>
   export default {
+    name: 'index',
     data () {
       return {
         searchLists: []

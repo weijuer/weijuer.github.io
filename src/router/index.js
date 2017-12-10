@@ -2,8 +2,9 @@
 import Vue from 'vue'
 // 引用路由
 import Router from 'vue-router'
-// 引用模板
-import Layout from '@/components/Layout'
+
+// 引用子页面模板
+import index from '@/pages/index'
 
 // 使用路由
 Vue.use(Router)
@@ -26,8 +27,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Layout',
-      component: Layout
+      name: 'index',
+      component: index
     }
   ]
 })

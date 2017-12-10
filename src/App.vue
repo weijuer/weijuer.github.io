@@ -1,10 +1,21 @@
 <template>
-  <router-view class="app-view" keep-alive transition transition-mode="out-in" />
+  <div id="app" class="wj-layout">
+    <pageHeader></pageHeader>
+    <pageContent></pageContent>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  // 引入公共布局组件
+  import pageHeader from '@/components/header'
+  import pageContent from '@/components/Content'
+
+  export default {
+    name: 'app',
+    components: {
+      pageHeader,
+      pageContent
+    }
+  }
 </script>
 

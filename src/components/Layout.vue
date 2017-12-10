@@ -1,18 +1,16 @@
 <template>
-  <div class="wj-layout">
+  <div class="wj-layout-page">
     <pageHeader></pageHeader>
-    <router-view class="app-view" keep-alive transition transition-mode="out-in" />
+    <router-view class="app-content-view" keep-alive transition transition-mode="out-in" />
   </div>
 </template>
 
 <script>
   import pageHeader from '@/components/header'
-  import index from '@/pages/index'
   export default {
     name: 'layout',
     components: {
-      pageHeader,
-      index
+      pageHeader
     }
   }
 </script>

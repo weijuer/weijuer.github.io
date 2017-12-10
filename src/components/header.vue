@@ -373,7 +373,7 @@
 <script>
   export default {
     name: 'header',
-    data() {
+    data () {
       return {
         menus: [
           {name: '首页', path: '/', active: true},
