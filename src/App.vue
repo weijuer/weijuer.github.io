@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="wj-layout">
+  <div id="app" class="wj-layout" :class="{'wj-page-on-scroll': isPageScroll}">
     <pageHeader></pageHeader>
     <pageContent></pageContent>
-    <go2Top></go2Top>
+    <go2Top :isScroll="isPageScroll" @pageScroll="pageScrolled"></go2Top>
   </div>
 </template>
 
@@ -14,10 +14,23 @@
 
   export default {
     name: 'app',
+    data () {
+      return {
+        isPageScroll: false
+      }
+    },
+    props: ['isScroll'],
     components: {
       pageHeader,
       pageContent,
       go2Top
+    },
+    methods: {
+      pageScrolled () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        let offsetTop = document.querySelector('.wj-navbar').offsetTop
+        this.isPageScroll = scrollTop > offsetTop
+      }
     }
   }
 </script>

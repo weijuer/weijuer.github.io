@@ -1,5 +1,5 @@
 <template>
-  <div class="wj-go-top" :data-tips="top" :class="pageOnScroll ? 'active':'' " @click="backToTop()">
+  <div class="wj-go-top" :data-tips="top" :class="{ 'active': pageOnScroll}" @click="backToTop">
     <i class="fa fa-arrow-up"></i>
   </div>
 </template>
@@ -13,23 +13,24 @@
         pageOnScroll: false
       }
     },
+    props: ['isScroll'],
     mounted () {
       // 1.绑定页面监听滚动事件
-      window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('scroll', this.pageScroll)
     },
     methods: {
       // 2.滚动事件处理
-      handleScroll () {
+      pageScroll () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        console.log(scrollTop)
-
         let offsetTop = document.querySelector('.wj-navbar').offsetTop
         this.pageOnScroll = scrollTop > offsetTop
+
+        // 5.通知外界，调用此方法
+        this.$emit('pageScroll')
       },
       // 4.回到顶部
       backToTop () {
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        scrollTop = 0
+        window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
       }
     },
     destroyed () {
