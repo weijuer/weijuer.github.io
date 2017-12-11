@@ -8,9 +8,9 @@
               <div class="wj-media wj-content-overlay">
                 <div class="wj-overlay-wrapper">
                   <div class="wj-overlay-content">
-                    <a href="#"><i class="icon-link"></i></a>
+                    <a href="#"><i class="fa fa-link"></i></a>
                     <a href="/static/global/images/logo.png" data-lightbox="fancybox" data-fancybox-group="gallery">
-                      <i class="icon-magnifier"></i>
+                      <i class="fa fa-search"></i>
                     </a>
                   </div>
                 </div>
@@ -21,8 +21,8 @@
                   <a :href="item.url">{{ item.title }}</a>
                 </div>
                 <div class="wj-author">
-                  By <a href="#"><span class="wj-font-uppercase">Nick Strong</span></a>
-                  on <span class="wj-font-uppercase">20 May 2015, 10:30AM</span>
+                  By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a>
+                  on <span class="wj-font-uppercase">{{ item.date }}</span>
                 </div>
 
                 <div class="wj-panel">
@@ -31,7 +31,7 @@
                     <li>web</li>
                     <li>events</li>
                   </ul>
-                  <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
+                  <div class="wj-comments"><a href="#"><i class="fa fa-speech"></i> 30 comments</a></div>
                 </div>
                 <p>{{ item.description }}</p>
               </div>

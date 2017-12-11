@@ -1,5 +1,5 @@
 <template>
-  <header class="wj-layout-header wj-layout-header-4 wj-layout-header-default-mobile">
+  <header class="wj-layout-header wj-layout-header-3 wj-layout-header-default-mobile">
     <div class="wj-topbar wj-topbar-light wj-solid-bg">
       <div class="container">
         <!-- BEGIN: INLINE NAV -->
