@@ -14,7 +14,8 @@
                     </a>
                   </div>
                 </div>
-                <img class="wj-overlay-object img-responsive" src="/static/global/images/logo.png" alt="">
+
+                <img class="wj-overlay-object img-responsive" src="/static/global/images/wj-logo.svg" alt="">
               </div>
               <div class="wj-body">
                 <div class="wj-title wj-font-bold wj-font-uppercase">
