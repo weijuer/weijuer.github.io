@@ -4402,6 +4402,7 @@ h1 {
 
 .wj-layout-header .wj-brand .wj-desktop-logo {
   display: inline-block;
+  line-height: 20px;
 }
 
 .wj-layout-header .wj-brand .wj-desktop-logo-inverse {
@@ -4492,15 +4493,6 @@ h1 {
     display: none;
   }
 
-  .wj-layout-header .wj-brand .wj-desktop-logo {
-    display: inline-block;
-    line-height: 20px;
-  }
-
-  .wj-layout-header .wj-brand .wj-mobile-logo {
-    display: none;
-  }
-
   .wj-layout-header .wj-quick-search > .form-control {
     padding: 10px 0;
     height: 100px;
@@ -4547,7 +4539,7 @@ h1 {
   }
 
   .wj-page-on-scroll.wj-layout-header-fixed .wj-layout-header .wj-brand .wj-desktop-logo {
-    display: none;
+    /*display: none;*/
   }
 
   .wj-page-on-scroll.wj-layout-header-fixed .wj-layout-header .wj-brand .wj-desktop-logo-inverse {

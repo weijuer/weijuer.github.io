@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="wj-layout" :class="{'wj-page-on-scroll': isPageScroll}">
+  <div id="app" class="wj-layout-header-fixed wj-layout-header-mobile-fixed wj-layout-header-topbar wj-layout-header-topbar-collapse" :class="{'wj-page-on-scroll': isPageScroll}">
     <pageHeader></pageHeader>
     <pageContent></pageContent>
     <go2Top :isScroll="isPageScroll" @pageScroll="pageScrolled"></go2Top>

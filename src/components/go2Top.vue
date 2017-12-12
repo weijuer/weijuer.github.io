@@ -10,7 +10,8 @@
     data () {
       return {
         top: '去顶部',
-        pageOnScroll: false
+        pageOnScroll: false,
+        delay: 0
       }
     },
     props: ['isScroll'],
@@ -30,7 +31,17 @@
       },
       // 4.回到顶部
       backToTop () {
-        window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
+        // 4.1 scrollTo方法
+        // window.scrollTo(0,0)
+
+        // 4.2 scrollBy方法
+        window.scrollBy(0, -100) // Only for y vertical-axis
+        if (this.pageOnScroll) {
+          this.delay = setTimeout(this.backToTop, 10)
+        }
+
+        // 4.3 直接修改属性
+        // window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
       }
     },
     destroyed () {

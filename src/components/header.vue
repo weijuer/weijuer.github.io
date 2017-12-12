@@ -11,7 +11,7 @@
             <li class="hide"><span>Phone: +99890345677</span></li>
           </ul>
         </nav>
-        <!-- END: INLINE NAV -->
+
         <!-- BEGIN: INLINE NAV -->
         <nav class="wj-top-menu wj-pull-right">
           <ul class="wj-links wj-theme-ul">
@@ -25,20 +25,16 @@
             <li class="wj-lang dropdown wj-last">
               <a href="#">en</a>
               <ul class="dropdown-menu pull-right" role="menu">
-                <li class="active"><a href="#">English</a></li>
-                <li><a href="#">German</a></li>
-                <li><a href="#">Espaniol</a></li>
-                <li><a href="#">Portugise</a></li>
+                <li class="active"><a href="#">中文</a></li>
+                <li><a href="#">English</a></li>
               </ul>
             </li>
             <li class="wj-search hide">
               <!-- BEGIN: QUICK SEARCH -->
               <form action="#">
-                <input type="text" name="query" placeholder="search..." value="" class="form-control"
-                       autocomplete="off">
+                <input type="text" name="query" placeholder="search..." value="" class="form-control" autocomplete="off">
                 <i class="fa fa-search"></i>
               </form>
-              <!-- END: QUICK SEARCH -->
             </li>
           </ul>
         </nav>
@@ -383,6 +379,8 @@
       }
     }
   }
+
+
 </script>
 
 <style scoped>
@@ -395,3 +393,4 @@
   }
 
 </style>
+
