@@ -47,8 +47,8 @@
         <div class="wj-navbar-wrapper clearfix">
           <div class="wj-brand wj-pull-left">
             <a href="index.html" class="wj-logo">
-              <span class="wj-desktop-logo">weijuer</span>
-              <!--<img src="/static/global/images/logo.png" alt="JANGO" class="wj-desktop-logo">-->
+              <!--<span class="wj-desktop-logo">weijuer</span>-->
+              <img src="/static/global/images/nav-logo.svg" alt="WEIJUER" class="wj-desktop-logo">
             </a>
             <button class="wj-hor-nav-toggler" type="button" data-target=".wj-mega-menu">
               <span class="wj-line"></span>
