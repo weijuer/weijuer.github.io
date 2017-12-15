@@ -1,5 +1,5 @@
 <template>
-  <header class="wj-layout-header wj-layout-header-3 wj-layout-header-default-mobile">
+  <header class="wj-layout-header wj-layout-header-2 wj-layout-header-default-mobile">
     <div class="wj-topbar wj-topbar-light wj-solid-bg">
       <div class="container">
         <!-- BEGIN: INLINE NAV -->
@@ -48,7 +48,7 @@
           <div class="wj-brand wj-pull-left">
             <a href="index.html" class="wj-logo">
               <!--<span class="wj-desktop-logo">weijuer</span>-->
-              <img src="/static/global/images/nav-logo.svg" alt="WEIJUER" class="wj-desktop-logo">
+              <img src="/static/global/images/logo-white.svg" alt="WEIJUER" class="wj-desktop-logo">
             </a>
             <button class="wj-hor-nav-toggler" type="button" data-target=".wj-mega-menu">
               <span class="wj-line"></span>
@@ -382,8 +382,6 @@
       }
     }
   }
-
-
 </script>
 
 <style scoped>

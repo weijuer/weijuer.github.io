@@ -4402,7 +4402,8 @@ h1 {
 
 .wj-layout-header .wj-brand .wj-desktop-logo {
   display: inline-block;
-  line-height: 20px;
+  line-height: 40px;
+  height: 40px;
 }
 
 .wj-layout-header .wj-brand .wj-desktop-logo-inverse {
@@ -4486,7 +4487,7 @@ h1 {
   }
 
   .wj-layout-header .wj-brand {
-    margin: 40px 0 37px 0;
+    margin: 30px 0;
   }
 
   .wj-layout-header .wj-brand .wj-desktop-logo-inverse {
@@ -4535,7 +4536,7 @@ h1 {
 
   .wj-page-on-scroll.wj-layout-header-fixed .wj-layout-header .wj-brand {
     transition: margin 0.2s;
-    margin: 22px 0 19px 0;
+    margin: 12.5px 0;
   }
 
   .wj-page-on-scroll.wj-layout-header-fixed .wj-layout-header .wj-brand .wj-desktop-logo {
@@ -6002,7 +6003,7 @@ h1 {
 @media (min-width: 992px) {
   /* 992px */
   .wj-layout-header.wj-layout-header-2 {
-    background: rgba(30, 36, 42, 0.25);
+    background: rgba(30, 36, 42, 0.82);
     border-bottom: 0;
   }
 
