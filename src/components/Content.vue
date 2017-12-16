@@ -3,15 +3,15 @@
     <div class="wj-layout-breadcrumbs-1 wj-fonts-uppercase wj-fonts-bold wj-bordered wj-bordered-both">
       <div class="container">
         <div class="wj-page-title wj-pull-left">
-          <h3 class="wj-font-uppercase wj-font-sbold">Blog Grid View</h3>
+          <h3 class="wj-font-uppercase wj-font-sbold">Blogs</h3>
         </div>
 
         <ul class="wj-page-breadcrumbs wj-theme-nav wj-pull-right wj-fonts-regular">
-          <li><a href="#">Pages</a></li>
+          <li><a href="#">Home</a></li>
           <li>/</li>
-          <li><a href="page-blog-grid.html">Blog Grid View</a></li>
+          <li><a href="blogs.html">Blogs</a></li>
           <li>/</li>
-          <li class="wj-state_active">Jango Components</li>
+          <li class="wj-state_active">Blog View</li>
         </ul>
       </div>
     </div>

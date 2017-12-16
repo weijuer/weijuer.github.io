@@ -71,9 +71,9 @@
 
   .wj-go-top {
     background: #fff;
-    -webkit-box-shadow: 0px 0px 15px 1px rgba(113, 106, 202, 0.2);
-    -moz-box-shadow: 0px 0px 15px 1px rgba(113, 106, 202, 0.2);
-    box-shadow: 0px 0px 15px 1px rgba(113, 106, 202, 0.2);
+    -webkit-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.8);
   }
 
   .wj-go-top.active {

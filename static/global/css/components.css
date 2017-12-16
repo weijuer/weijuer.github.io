@@ -4372,6 +4372,9 @@ h1 {
 .wj-layout-header .wj-navbar:after {
   clear: both;
 }
+.wj-layout-header .wj-logo {
+  display: inline-block;
+}
 
 .wj-layout-header .wj-brand {
   transition: all 0.2s;
@@ -4597,7 +4600,7 @@ h1 {
   }
 
   .wj-layout-header .wj-navbar {
-    height: 65px;
+    height: 66px;
   }
 
   .wj-layout-header .wj-navbar > .container {
@@ -4608,7 +4611,7 @@ h1 {
   .wj-layout-header .wj-brand {
     float: none !important;
     display: block;
-    margin: 20px 15px 21px 15px;
+    margin: 13px 15px;
   }
 
   .wj-layout-header .wj-brand .wj-desktop-logo-inverse {
@@ -4619,7 +4622,7 @@ h1 {
     display: inline-block;
     background: none;
     border: 0;
-    margin: -1px 0 0 0;
+    margin: 0;
     padding: 0;
     float: right;
     outline: none;
@@ -4642,7 +4645,7 @@ h1 {
   .wj-layout-header .wj-brand > .wj-cart-toggler {
     background: none;
     border: 0;
-    margin: 0 25px 0 0;
+    margin: 8px 25px 0 0;
     padding: 0;
     float: right;
     outline: none;
@@ -4873,11 +4876,6 @@ h1 {
     font-size: 14px;
   }
 
-  .wj-layout-header .wj-navbar .wj-mega-menu > .nav.navbar-nav > li .dropdown-menu > li.dropdown-submenu > .dropdown-menu {
-    margin-top: -10px;
-    margin-left: 0;
-  }
-
   .wj-layout-header .wj-navbar .wj-mega-menu > .nav.navbar-nav > li > .dropdown-menu.wj-menu-type-fullwidth {
     width: 100%;
     left: 0;
@@ -4985,6 +4983,34 @@ h1 {
 
   .wj-layout-header .wj-navbar .wj-mega-menu > .nav.navbar-nav > li:hover > .dropdown-menu {
     display: block;
+  }
+
+  /* Dropdown submenu support for Bootsrap 3 */
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu > .dropdown-menu {
+    top: 5px;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: 0;
+  }
+
+  .dropdown-submenu > .dropdown-menu.wj-pull-left {
+    left: -100%;
+    margin-left: -1px;
+  }
+
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+
+  .dropup .dropdown-submenu > .dropdown-menu {
+    top: auto;
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: -2px;
   }
 
   .wj-layout-header .wj-navbar .wj-mega-menu > .nav.navbar-nav .wj-visible-mobile {
@@ -5925,7 +5951,7 @@ h1 {
 
   .wj-layout-header.wj-layout-header-dark-mobile .wj-brand > .wj-hor-nav-toggler {
     position: relative;
-    top: -1px;
+    top: 5px;
     display: inline-block;
     background: #2e333a;
     padding: 5px 8px 6px 8px;
@@ -5944,7 +5970,7 @@ h1 {
   }
 
   .wj-layout-header.wj-layout-header-dark-mobile .wj-brand > .wj-topbar-toggler > i,
-  .wj-layout-header.wj-layout-header-dark-mobile .wj-brand > .wj-search-toggler > i,
+  .wj-layout-header.wj-layout-header-dark-mobile .wj-brand > .wj-search-toggler > svg,
   .wj-layout-header.wj-layout-header-dark-mobile .wj-brand > .wj-cart-toggler > i {
     color: #e6e6e6;
   }
