@@ -6,13 +6,7 @@
           <h3 class="wj-font-uppercase wj-font-sbold">Blogs</h3>
         </div>
 
-        <ul class="wj-page-breadcrumbs wj-theme-nav wj-pull-right wj-fonts-regular">
-          <li><a href="#">Home</a></li>
-          <li>/</li>
-          <li><a href="blogs.html">Blogs</a></li>
-          <li>/</li>
-          <li class="wj-state_active">Blog View</li>
-        </ul>
+        <breadcrumbs></breadcrumbs>
       </div>
     </div>
 
@@ -25,12 +19,17 @@
 </template>
 
 <script>
+import breadcrumbs from '@/components/breadcrumbs'
+
 export default {
   name: 'content',
   data () {
     return {
       msg: 'vue-project测试'
     }
+  },
+  components: {
+    breadcrumbs
   }
 }
 </script>
