@@ -9,7 +9,7 @@
                 <div class="wj-overlay-wrapper">
                   <div class="wj-overlay-content">
                     <a href="#"><i class="fa fa-link"></i></a>
-                    <a href="/static/global/images/logo.png" data-lightbox="fancybox" data-fancybox-group="gallery">
+                    <a href="/static/global/images/wj-logo.svg">
                       <i class="fa fa-search"></i>
                     </a>
                   </div>
@@ -17,10 +17,12 @@
 
                 <img class="wj-overlay-object img-responsive" src="/static/global/images/wj-logo.svg" alt="">
               </div>
+
               <div class="wj-body">
                 <div class="wj-title wj-font-bold wj-font-uppercase">
                   <a :href="item.url">{{ item.title }}</a>
                 </div>
+
                 <div class="wj-author">
                   By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a>
                   on <span class="wj-font-uppercase">{{ item.date }}</span>
@@ -28,12 +30,11 @@
 
                 <div class="wj-panel">
                   <ul class="wj-tags wj-theme-ul-bg">
-                    <li>ux</li>
-                    <li>web</li>
-                    <li>events</li>
+                    <li v-for="(tag, index) in item.tags" v-text="tag"></li>
                   </ul>
                   <div class="wj-comments"><a href="#"><i class="fa fa-speech"></i> 30 comments</a></div>
                 </div>
+
                 <p>{{ item.description }}</p>
               </div>
             </div>
@@ -50,6 +51,7 @@
             <li class="wj-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
           </ul>
         </div>
+
       </div>
     </div>
 
@@ -59,8 +61,8 @@
         <div class="input-group">
           <input type="text" class="form-control wj-square wj-theme-border" placeholder="Search blog...">
           <span class="input-group-btn">
-        <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">Go!</button>
-      </span>
+            <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">Go!</button>
+          </span>
         </div>
       </form>
 
@@ -73,8 +75,7 @@
           <li><a href="#">Web Development(2)</a></li>
           <li><a href="#">UX Design(12)</a></li>
           <li><a href="#">Mobile Development(5)</a></li>
-          <li><a href="#">Internet Marketing(7)</a></li>
-          <li><a href="#">Social Networks(11)</a></li>
+          <li><a href="#">JavaScript(11)</a></li>
           <li><a href="#">Web Design(18)</a></li>
         </ul>
       </div>
@@ -90,7 +91,7 @@
               <ul class="wj-content-recent-posts-1">
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -101,7 +102,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -112,7 +113,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -123,7 +124,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" alt="" class="img-responsive">
+                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -138,7 +139,7 @@
               <ul class="wj-content-recent-posts-1">
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -149,7 +150,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -160,7 +161,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -171,7 +172,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/logo.png" class="img-responsive" alt="">
+                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -192,13 +193,9 @@
           <div class="wj-line-left wj-theme-bg"></div>
         </div>
         <ul class="wj-menu wj-arrow-dot wj-theme">
-          <li><a href="#">Fasion &amp; Arts</a></li>
-          <li><a href="#">UX &amp; Web Design</a></li>
-          <li><a href="#">Mobile Development</a></li>
-          <li><a href="#">Internet Marketing</a></li>
-          <li><a href="#">Frontend Development</a></li>
+          <li v-for="item in searchLists"><a :href="item.url" v-text="item.title"></a></li>
         </ul>
-      </div><!-- END: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
+      </div>
     </div>
   </div>
 </template>

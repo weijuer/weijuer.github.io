@@ -10723,11 +10723,10 @@ h1 {
   content: "\f105";
   font-family: FontAwesome;
   font-weight: 100;
-  width: 12px;
-  height: 12px;
-  font-size: 14px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
   float: left;
-  margin: 2px 5px 0 0;
 }
 
 .wj-content-ver-nav .wj-menu.wj-arrow-dot > li:before {
