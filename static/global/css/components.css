@@ -5454,8 +5454,8 @@ h1 {
 
 .wj-layout-header .wj-topbar .wj-top-menu > .wj-ext > li > a > i {
   font-size: 15px;
-  position: relative;
-  top: 3px;
+/*  position: relative;
+  top: 3px;*/
 }
 
 .wj-layout-header .wj-topbar .wj-top-menu > .wj-ext > li.wj-lang {
