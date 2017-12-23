@@ -3,7 +3,7 @@
     <div class="wj-layout-breadcrumbs-1 wj-fonts-uppercase wj-fonts-bold wj-bordered wj-bordered-both">
       <div class="container">
         <div class="wj-page-title wj-pull-left">
-          <h3 class="wj-font-uppercase wj-font-sbold">Blogs</h3>
+          <h3 class="wj-font-uppercase wj-font-sbold">{{ subTitle }}</h3>
         </div>
 
         <breadcrumbs></breadcrumbs>
@@ -11,9 +11,7 @@
     </div>
 
     <div class="wj-content-box wj-size-md">
-      <div class="container">
         <router-view class="app-content-view" keep-alive transition transition-mode="out-in"></router-view>
-      </div>
     </div>
   </div>
 </template>
@@ -25,7 +23,7 @@ export default {
   name: 'content',
   data () {
     return {
-      msg: 'vue-project测试'
+      subTitle: 'index'
     }
   },
   components: {
@@ -33,6 +31,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>

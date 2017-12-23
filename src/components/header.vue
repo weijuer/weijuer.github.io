@@ -5,9 +5,9 @@
         <!-- BEGIN: INLINE NAV -->
         <nav class="wj-top-menu wj-pull-left">
           <ul class="wj-icons wj-theme-ul">
-            <li><a href="#"><i class="fa fa-weibo"></i></a></li>
-            <li><a href="#"><i class="fa fa-wechat"></i></a></li>
-            <li><a href="https://weijuer.github.io/"><i class="fa fa-github"></i></a></li>
+            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" data-tooltip="微博"><i class="fa fa-weibo"></i></a></li>
+            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" data-tooltip="微信"><i class="fa fa-wechat"></i></a></li>
+            <li><a href="https://weijuer.github.io/" class="wj-tooltip wj-tooltip-bottom" data-tooltip="github"><i class="fa fa-github"></i></a></li>
           </ul>
         </nav>
 
@@ -22,10 +22,13 @@
           </ul>
           <ul class="wj-ext wj-theme-ul">
             <li class="wj-lang dropdown wj-last">
-              <a href="#">en</a>
+              <a href="#">
+                en
+                <i class="fa fa-angle-down"></i>
+              </a>
               <ul class="dropdown-menu pull-right" role="menu">
-                <li class="active"><a href="#">中文</a></li>
-                <li><a href="#">English</a></li>
+                <li class="active"><a href="#">English</a></li>
+                <li><a href="#">中文</a></li>
               </ul>
             </li>
             <li class="wj-search hide">
@@ -69,10 +72,14 @@
           <nav class="wj-mega-menu wj-pull-right wj-mega-menu-dark wj-mega-menu-dark-mobile wj-fonts-uppercase wj-fonts-bold">
             <ul class="nav navbar-nav wj-theme-nav">
               <li>
-                <a href="javascript:;" class="wj-link dropdown-toggle">Home<span class="wj-arrow wj-toggler"></span></a>
+                <router-link :to="{name:'index'}" class="wj-link dropdown-toggle">Home<span class="wj-arrow wj-toggler"></span></router-link>
+                <!--<a href="/" class="wj-link dropdown-toggle">Home<span class="wj-arrow wj-toggler"></span></a>-->
               </li>
-              <li class="wj-active wj-menu-type-classic">
-                <a href="javascript:;" class="wj-link dropdown-toggle">Blogs<span class="wj-arrow wj-toggler"></span></a>
+              <li>
+                <router-link :to="{name:'blog'}" class="wj-link dropdown-toggle">Blog<span class="wj-arrow wj-toggler"></span></router-link>
+              </li>
+              <!--<li>
+                <a href="javascript:;" class="wj-link dropdown-toggle">Pages<span class="wj-arrow wj-toggler"></span></a>
                 <ul class="dropdown-menu wj-menu-type-classic wj-pull-left">
                   <li>
                     <a href="component-smooth-scroll.html">Smooth Scroll Links</a>
@@ -89,13 +96,9 @@
                     </ul>
                   </li>
                 </ul>
-              </li>
+              </li>-->
               <li>
-                <a href="javascript:;" class="wj-link dropdown-toggle">Pages<span
-                  class="wj-arrow wj-toggler"></span></a>
-              </li>
-              <li>
-                <a href="javascript:;" class="wj-link dropdown-toggle">Me<span class="wj-arrow wj-toggler"></span></a>
+                <router-link :to="{name:'about'}" class="wj-link dropdown-toggle">About<span class="wj-arrow wj-toggler"></span></router-link>
               </li>
 
               <li class="wj-search-toggler-wrapper">
@@ -152,3 +155,6 @@
   }
 </style>
 
+<style lang="less" scoped>
+  @import "../assets/global/less/style";
+</style>

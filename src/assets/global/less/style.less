@@ -152,3 +152,106 @@ body a:focus {
   }
 }
 
+
+/*1.wj-wj-tooltip*/
+html {
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+*,*:before,*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.wj-tooltip {
+  position: relative;
+}
+
+.wj-tooltip:after,
+.wj-tooltip:before {
+  position: absolute;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 10000;
+  pointer-events: none;
+  -webkit-transition: .3s ease;
+  -moz-transition: .3s ease;
+  transition: .3s ease;
+  -webkit-transition-delay: 0ms;
+  -moz-transition-delay: 0ms;
+  transition-delay: 0ms;
+}
+.wj-tooltip:after,
+.wj-tooltip:before {
+  top: 100%;
+  left: 50%;
+}
+.wj-tooltip:before {
+  content: '';
+  position: absolute;
+  background: 0 0;
+  border: 8px solid transparent;
+  z-index: 10001;
+}
+.wj-tooltip:after, [data-wj-tooltip]:after {
+  content: attr(data-tooltip);
+}
+.wj-tooltip:after {
+  background: #383838;
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 12px;
+  white-space: nowrap;
+  text-shadow: 0 -1px 0 #000;
+  box-shadow: 4px 4px 8px rgba(0,0,0,.3);
+}
+.wj-tooltip:hover:after,
+.wj-tooltip:hover:before {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: 100ms;
+  -moz-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+
+/*wj-tooltip-top*/
+.wj-tooltip-top:before {
+  margin-bottom: -11px;
+  left: calc(50% - 6px);
+  border-top-color: #383838;
+}
+
+.wj-tooltip-top:hover:before {
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  transform: translateY(-8px);
+}
+
+/*wj-tooltip-bottom*/
+.wj-tooltip-bottom:before {
+  margin-top: -15px;
+  //left: calc(50% - 8px);
+  left: 0;
+  border-bottom-color: #383838;
+}
+.wj-tooltip-bottom:after {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.wj-tooltip-bottom:hover:before {
+  -webkit-transform: translateY(8px);
+  -moz-transform: translateY(8px);
+  transform: translateY(8px);
+}
+.wj-tooltip-bottom:hover:after {
+  -webkit-transform: translateX(-50%) translateY(8px);
+  -moz-transform: translateX(-50%) translateY(8px);
+  transform: translateX(-50%) translateY(8px);
+}

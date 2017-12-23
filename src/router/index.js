@@ -5,6 +5,8 @@ import Router from 'vue-router'
 
 // 引用子页面模板
 import index from '@/pages/index'
+import blog from '@/pages/blog'
+import about from '@/pages/about'
 
 // 使用路由
 Vue.use(Router)
@@ -22,13 +24,21 @@ const scrollBehavior = (to, from, savedPosition) => {
 export default new Router({
   mode: 'hash', // hash路由以#号分割，history则为常规url
   base: __dirname,
-  linkActiveClass: 'link-active',
+  linkActiveClass: 'wj-active',
   scrollBehavior,
   routes: [
     {
       path: '/',
       name: 'index',
       component: index
+    },{
+      path: '/blog',
+      name: 'blog',
+      component: blog
+    },{
+      path: '/about',
+      name: 'about',
+      component: about
     }
   ]
 })

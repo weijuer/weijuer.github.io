@@ -41,6 +41,14 @@ a:active, a:hover, a:focus {
   color: #32c5d2 !important;
 }
 
+.wj-theme-nav li >a.wj-active {
+  color: #32c5d2 !important;
+}
+
+.wj-theme-nav li >a.wj-active:not(.btn) {
+  color: #32c5d2 !important;
+}
+
 .wj-theme-nav li.wj-active > .wj-quick-sidebar-toggler > .wj-line {
   background: #32c5d2 !important;
 }
