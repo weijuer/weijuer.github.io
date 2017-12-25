@@ -22,8 +22,8 @@ const scrollBehavior = (to, from, savedPosition) => {
 
 // 创建 router 实例，然后传 `routes` 配置
 export default new Router({
-  mode: 'hash', // hash路由以#号分割，history则为常规url
-  base: __dirname,
+  mode: 'history', // hash路由以#号分割，history则为常规url
+  base: '/',
   linkActiveClass: 'wj-active',
   scrollBehavior,
   routes: [
@@ -31,11 +31,11 @@ export default new Router({
       path: '/',
       name: 'index',
       component: index
-    },{
+    }, {
       path: '/blog',
       name: 'blog',
       component: blog
-    },{
+    }, {
       path: '/about',
       name: 'about',
       component: about

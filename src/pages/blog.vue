@@ -1,54 +1,55 @@
 <template>
-  <div class="row">
-    <div class="col-md-9">
-      <div class="wj-content-blog-post-1-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="wj-content-blog-post-1-list">
 
-        <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchLists">
-          <div class="wj-media wj-content-overlay">
-            <div class="wj-overlay-wrapper">
-              <div class="wj-overlay-content">
-                <a href="#"><i class="fa fa-link"></i></a>
-                <a href="/static/global/images/wj-logo.svg">
-                  <i class="fa fa-search"></i>
-                </a>
+          <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchLists">
+            <div class="wj-media wj-content-overlay">
+              <div class="wj-overlay-wrapper">
+                <div class="wj-overlay-content">
+                  <a href="#"><i class="fa fa-link"></i></a>
+                  <a href="/static/global/images/wj-logo.svg">
+                    <i class="fa fa-search"></i>
+                  </a>
+                </div>
               </div>
+
+              <img class="wj-overlay-object img-responsive" src="/static/global/images/blog/bg-blog.jpg" alt="">
             </div>
 
-            <img class="wj-overlay-object img-responsive" src="/static/global/images/wj-logo.svg" alt="">
+            <div class="wj-title wj-font-uppercase">
+              <a :href="item.url">{{ item.title }}</a>
+            </div>
+
+            <div class="wj-panel">
+              <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+              <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
+              <ul class="wj-tags wj-theme-ul-bg">
+                <li v-for="(tag, index) in item.tags" v-text="tag"></li>
+              </ul>
+              <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
+            </div>
+
+            <div class="wj-desc">
+              {{ item.description }}
+              <a :href="item.url">read more...</a>
+            </div>
           </div>
 
-          <div class="wj-title wj-font-uppercase">
-            <a :href="item.url">{{ item.title }}</a>
-          </div>
-
-          <div class="wj-panel">
-            <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
-            <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
-            <ul class="wj-tags wj-theme-ul-bg">
-              <li v-for="(tag, index) in item.tags" v-text="tag"></li>
+          <div class="wj-pagination">
+            <ul class="wj-content-pagination wj-theme">
+              <li class="wj-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+              <li class="wj-active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li class="wj-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
             </ul>
-            <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
           </div>
 
-          <div class="wj-desc">
-            {{ item.description }}
-            <a :href="item.url">read more...</a>
-          </div>
         </div>
-
-        <div class="wj-pagination">
-          <ul class="wj-content-pagination wj-theme">
-            <li class="wj-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-            <li class="wj-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li class="wj-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-          </ul>
-        </div>
-
       </div>
-    </div>
 
     <div class="col-md-3">
       <!-- BEGIN: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
@@ -192,6 +193,7 @@
         </ul>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
