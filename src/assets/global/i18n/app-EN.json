@@ -1,0 +1,17 @@
+{
+  "header": {
+    "weibo":"weibo",
+    "wechat":"wechat",
+    "github":"github",
+    "help":"Help",
+    "contact":"Contact",
+    "faq":"FAQ"
+  },
+  "nav":{
+    "home":"Home",
+    "blog":"Blog",
+    "about":"About"
+  },
+  "login": "Sign In",
+  "week":["Sun","Mon","Tues","Wed","Thur","Fri","Sat"]
+}

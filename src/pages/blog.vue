@@ -9,13 +9,13 @@
               <div class="wj-overlay-wrapper">
                 <div class="wj-overlay-content">
                   <a href="#"><i class="fa fa-link"></i></a>
-                  <a href="/static/global/images/wj-logo.svg">
+                  <a :href="subLogo">
                     <i class="fa fa-search"></i>
                   </a>
                 </div>
               </div>
 
-              <img class="wj-overlay-object img-responsive" src="/static/global/images/blog/bg-blog.jpg" alt="">
+              <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
             </div>
 
             <div class="wj-title wj-font-uppercase">
@@ -87,7 +87,7 @@
               <ul class="wj-content-recent-posts-1">
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
+                    <img :src="subLogo" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -98,7 +98,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
+                    <img :src="subLogo" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -109,7 +109,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
+                    <img :src="subLogo" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -120,7 +120,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" alt="" class="img-responsive">
+                    <img :src="subLogo" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -135,7 +135,7 @@
               <ul class="wj-content-recent-posts-1">
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
+                    <img :src="subLogo" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -146,7 +146,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
+                    <img :src="subLogo" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -157,7 +157,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
+                    <img :src="subLogo" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -168,7 +168,7 @@
                 </li>
                 <li>
                   <div class="wj-image">
-                    <img src="/static/global/images/wj-logo.svg" class="img-responsive" alt="">
+                    <img :src="subLogo" class="img-responsive" alt="">
                   </div>
                   <div class="wj-post">
                     <a href="" class="wj-title">
@@ -185,7 +185,7 @@
 
       <div class="wj-content-ver-nav">
         <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
-          <h3 class="wj-font-bold wj-font-uppercase">Blogs</h3>
+          <h3 class="wj-font-bold wj-font-uppercase">Blog</h3>
           <div class="wj-line-left wj-theme-bg"></div>
         </div>
         <ul class="wj-menu wj-arrow-dot wj-theme">
@@ -202,7 +202,9 @@
     name: 'blog',
     data () {
       return {
-        searchLists: []
+        searchLists: [],
+        subLogo: './static/global/images/wj-logo.svg',
+        blogHeader: './static/global/images/blog/bg-blog-2.png'
       }
     },
     mounted () {

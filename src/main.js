@@ -6,11 +6,23 @@ import Vue from 'vue'
 import App from './App'
 // 引入路由配置文件
 import router from './router'
-
+// 引入Vue-i18n国际化
+import VueI18n from 'vue-i18n'
 // 引入HTTP工具axios
 import axios from 'axios'
 // 将axios改写为Vue的原型属性$ajax，绑定到全局
 Vue.prototype.$ajax = axios
+
+// 使用语言包
+Vue.use(VueI18n)
+// 定义默认语言及语言包路径
+const i18n = new VueI18n({
+  locale: 'CN',    // 语言标识
+  messages: {
+    'CN': require('./assets/global/i18n/app-zh_CN'),   // 中文语言包
+    'EN': require('./assets/global/i18n/app-EN')    // 英文语言包
+  }
+})
 
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false
@@ -19,6 +31,7 @@ Vue.config.productionTip = false
 // 创建一个 Vue 的根实例
 new Vue({
   el: '#app',
+  i18n, // 国际化语言包
   router, // 注入路由配置
   template: '<App/>', // 配置根模板 即打开页面显示那个组件
   components: { App }

@@ -5,42 +5,33 @@
         <!-- BEGIN: INLINE NAV -->
         <nav class="wj-top-menu wj-pull-left">
           <ul class="wj-icons wj-theme-ul">
-            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" data-tooltip="微博"><i class="fa fa-weibo"></i></a></li>
-            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" data-tooltip="微信"><i class="fa fa-wechat"></i></a></li>
-            <li><a href="https://weijuer.github.io/" class="wj-tooltip wj-tooltip-bottom" data-tooltip="github"><i class="fa fa-github"></i></a></li>
+            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.weibo')"><i class="fa fa-weibo"></i></a></li>
+            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.wechat')"><i class="fa fa-wechat"></i></a></li>
+            <li><a href="https://weijuer.github.io/" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.github')"><i class="fa fa-github"></i></a></li>
           </ul>
         </nav>
 
         <!-- BEGIN: INLINE NAV -->
         <nav class="wj-top-menu wj-pull-right">
           <ul class="wj-links wj-theme-ul">
-            <li><a href="#">Help</a></li>
+            <li><a href="#">{{ $t('header.help') }}</a></li>
             <li class="wj-divider">|</li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">{{ $t('header.contact') }}</a></li>
             <li class="wj-divider">|</li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="#">{{ $t('header.faq') }}</a></li>
           </ul>
           <ul class="wj-ext wj-theme-ul">
             <li class="wj-lang dropdown wj-last">
               <a href="#">
-                en
+                {{ lang.active }}
                 <i class="fa fa-angle-down"></i>
               </a>
               <ul class="dropdown-menu pull-right" role="menu">
-                <li class="active"><a href="#">English</a></li>
-                <li><a href="#">中文</a></li>
+                <li :class="{'active': item.name === lang.active}" v-for="(item, index) in lang.langList" @click="changeLang(index)" :data-tag="item.tag"><a href="javascript:;">{{ item.name }}</a></li>
               </ul>
-            </li>
-            <li class="wj-search hide">
-              <!-- BEGIN: QUICK SEARCH -->
-              <form action="#">
-                <input type="text" name="query" placeholder="search..." value="" class="form-control" autocomplete="off">
-                <i class="fa fa-search"></i>
-              </form>
             </li>
           </ul>
         </nav>
-        <!-- END: INLINE NAV -->
       </div>
     </div>
 
@@ -49,7 +40,7 @@
         <div class="wj-navbar-wrapper clearfix">
           <div class="wj-brand wj-pull-left">
             <a href="index.html" class="wj-logo">
-              <img src="/static/global/images/logo-white.svg" alt="WEIJUER" class="wj-desktop-logo">
+              <img :src="logo" alt="WEIJUER" class="wj-desktop-logo">
             </a>
             <button class="wj-hor-nav-toggler" type="button" data-target=".wj-mega-menu">
               <span class="wj-line"></span>
@@ -72,11 +63,11 @@
           <nav class="wj-mega-menu wj-pull-right wj-mega-menu-dark wj-mega-menu-dark-mobile wj-fonts-uppercase wj-fonts-bold">
             <ul class="nav navbar-nav wj-theme-nav">
               <li>
-                <router-link :to="{name:'index'}" class="wj-link dropdown-toggle">Home<span class="wj-arrow wj-toggler"></span></router-link>
+                <router-link :to="{name:'index'}" class="wj-link dropdown-toggle">{{ $t('nav.home') }}<span class="wj-arrow wj-toggler"></span></router-link>
                 <!--<a href="/" class="wj-link dropdown-toggle">Home<span class="wj-arrow wj-toggler"></span></a>-->
               </li>
               <li>
-                <router-link :to="{name:'blog'}" class="wj-link dropdown-toggle">Blog<span class="wj-arrow wj-toggler"></span></router-link>
+                <router-link :to="{name:'blog'}" class="wj-link dropdown-toggle">{{ $t('nav.blog') }}<span class="wj-arrow wj-toggler"></span></router-link>
               </li>
               <!--<li>
                 <a href="javascript:;" class="wj-link dropdown-toggle">Pages<span class="wj-arrow wj-toggler"></span></a>
@@ -98,7 +89,7 @@
                 </ul>
               </li>-->
               <li>
-                <router-link :to="{name:'about'}" class="wj-link dropdown-toggle">About<span class="wj-arrow wj-toggler"></span></router-link>
+                <router-link :to="{name:'about'}" class="wj-link dropdown-toggle">{{ $t('nav.about') }}<span class="wj-arrow wj-toggler"></span></router-link>
               </li>
 
               <li class="wj-search-toggler-wrapper">
@@ -110,15 +101,13 @@
               <li>
                 <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="wj-btn btn btn-sm btn-no-focus wj-btn-header wj-btn-white wj-btn-reg">
                   <svg class="icon" style="width: 1.25em; height: 1.25em;vertical-align: top;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19024"><path d="M937.217874 992.009265A438.305425 438.305425 0 0 0 628.561873 764.688291a393.119299 393.119299 0 1 0-248.176109 3.823442 441.433696 441.433696 0 0 0-295.447749 228.363731 18.422036 18.422036 0 1 0 34.758559 15.988937 382.344146 382.344146 0 0 1 173.792793-173.792794l208.551352 178.311406a18.422036 18.422036 0 0 0 12.165496 4.518613h6.604126a18.422036 18.422036 0 0 0 12.165496-4.518613l205.770667-176.921064A382.344146 382.344146 0 0 1 903.849658 1007.998202a18.422036 18.422036 0 0 0 34.758559-16.684108zM142.984808 393.466884A356.275227 356.275227 0 0 1 847.888378 320.126326a356.275227 356.275227 0 1 1-704.90357 73.340558z m371.568992 590.895498L328.943097 823.777841a499.132903 499.132903 0 0 1 369.483479 0z" p-id="19025"></path></svg>
-                  Sign In
+                  {{ $t('login') }}
                 </a>
               </li>
 
             </ul>
           </nav>
-
         </div>
-
       </div>
     </div>
   </header>
@@ -133,7 +122,28 @@
           {name: '首页', path: '/', active: true},
           {name: '学术', path: '/', active: false},
           {name: '关于', path: '/', active: false}
-        ]
+        ],
+        logo: './static/global/images/logo-white.svg',
+        lang: {
+          langList: [
+            {name: '中文', tag: 'zh_CN'},
+            {name: 'English', tag: 'EN'}
+          ],
+          active: '中文'
+        }
+      }
+    },
+    mounted () {
+      console.log('this.$i18n.locale ===========>' + this.$i18n.locale)
+    },
+    methods: {
+      // 1.语言切换
+      changeLang (index) {
+        // 1.1 切换语言名称
+        this.lang.active = this.lang.langList[index].name
+        // 1.2 切换语言
+        this.$i18n.locale = this.lang.langList[index].tag
+        console.log('locale ===========>' + this.$i18n.locale)
       }
     }
   }
@@ -156,5 +166,5 @@
 </style>
 
 <style lang="less" scoped>
-  @import "../assets/global/less/style";
+  @import "../assets/global/less/app";
 </style>
