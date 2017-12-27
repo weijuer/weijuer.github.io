@@ -53,20 +53,23 @@
 
 <style scoped>
   .wj-go-top {
+    /*display: none;*/
+    opacity: 0;
+    padding-top: 9px;
     width: 40px;
     height: 40px;
     position: fixed;
-    bottom: 40px;
+    bottom: -100%;
     right: 20px;
+    z-index: 110;
     cursor: pointer;
     text-align: center;
     vertical-align: middle;
-    display: none;
-    padding-top: 9px;
-    z-index: 110;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
   }
 
   .wj-go-top {
@@ -77,6 +80,8 @@
   }
 
   .wj-go-top.active {
-    display: block;
+    /*display: block;*/
+    opacity: .8;
+    bottom: 8%;
   }
 </style>

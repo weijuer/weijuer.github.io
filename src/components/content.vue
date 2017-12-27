@@ -11,7 +11,7 @@
     </div>
 
     <div class="wj-content-box wj-size-md">
-        <router-view class="app-content-view" keep-alive transition transition-mode="out-in"></router-view>
+        <router-view class="app-content-view" keep-alive transition transition-mode="slide"></router-view>
     </div>
   </div>
 </template>

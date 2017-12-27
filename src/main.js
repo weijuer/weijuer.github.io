@@ -13,14 +13,14 @@ import axios from 'axios'
 // 将axios改写为Vue的原型属性$ajax，绑定到全局
 Vue.prototype.$ajax = axios
 
-// 使用语言包
+// 通过插件的形式挂载VueI18n
 Vue.use(VueI18n)
 // 定义默认语言及语言包路径
 const i18n = new VueI18n({
-  locale: 'CN',    // 语言标识
+  locale: 'zh-CN',    // 语言标识
   messages: {
-    'CN': require('./assets/global/i18n/app-zh_CN'),   // 中文语言包
-    'EN': require('./assets/global/i18n/app-EN')    // 英文语言包
+    'zh-CN': require('./assets/global/i18n/app-zh-CN'),   // 中文语言包
+    'en-US': require('./assets/global/i18n/app-en-US')    // 英文语言包
   }
 })
 

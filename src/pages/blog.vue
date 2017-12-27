@@ -8,7 +8,7 @@
             <div class="wj-media wj-content-overlay">
               <div class="wj-overlay-wrapper">
                 <div class="wj-overlay-content">
-                  <a href="#"><i class="fa fa-link"></i></a>
+                  <a :href="item.url"><i class="fa fa-link"></i></a>
                   <a :href="subLogo">
                     <i class="fa fa-search"></i>
                   </a>

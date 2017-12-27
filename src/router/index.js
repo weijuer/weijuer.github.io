@@ -4,7 +4,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 引用子页面模板
-import index from '@/pages/index'
+import home from '@/pages/home'
 import blog from '@/pages/blog'
 import about from '@/pages/about'
 
@@ -29,8 +29,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: index
+      redirect: '/home',
+    }, {
+      path: '/home',
+      name: 'home',
+      component: home
     }, {
       path: '/blog',
       name: 'blog',
