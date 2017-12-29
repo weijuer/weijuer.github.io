@@ -1,26 +1,41 @@
 <template>
-  <ul class="wj-page-breadcrumbs wj-theme-nav wj-pull-right wj-fonts-regular">
-    <li v-for="(item, index) in breadcrumbs" :class="{'wj-state_active': item.isActive}">
-      <a class="wj-page-breadcrumbs-item" :href="item.url" v-if="!item.isActive" v-text="item.name"></a>
-      <span v-else v-text="item.name"></span>
-    </li>
-  </ul>
+  <div class="container">
+    <div class="wj-page-title wj-pull-left">
+      <h3 class="wj-font-uppercase wj-font-sbold">{{ subTitle }}</h3>
+    </div>
+
+    <ul class="wj-page-breadcrumbs wj-theme-nav wj-pull-right wj-fonts-regular">
+      <li v-for="(item, index) in breadcrumbs" :class="{'wj-state_active': item.isActive}" :key="index">
+        <router-link :to="item.path">{{ $t('nav.' + item.name) }}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
   export default {
     name: 'breadcrumbs',
+    created () {
+      this.getBreadcrumb()
+    },
     data () {
       return {
-        breadcrumbs: [
-          {name: 'Home', url: 'javascript:;', isActive: false},
-          {name: 'Blog', url: 'blog', isActive: false},
-          {name: 'Blog View', url: 'javascript:;', isActive: true}
-        ]
+        subTitle: '', // 页面标题
+        breadcrumbs: [] // 路由集合
       }
     },
     methods: {
-
+      getBreadcrumb () {
+        this.breadcrumbs = this.$route.matched
+        this.$route.matched.forEach((item, index) => {
+          item.name === 'home' ? item.path = '/' : this.$route.path === item.path ? this.subTitle = item.name : ''
+        })
+      }
+    },
+    watch: {
+      $route () {
+        this.getBreadcrumb()
+      }
     }
   }
 </script>

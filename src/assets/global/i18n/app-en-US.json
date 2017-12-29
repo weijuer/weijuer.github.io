@@ -5,13 +5,27 @@
     "github":"github",
     "help":"Help",
     "contact":"Contact",
-    "faq":"FAQ"
+    "faq":"FAQ",
+    "quickSearch": "Type to search...",
+    "login": "Sign In",
+    "music": "Music"
   },
-  "nav":{
+  "nav": {
     "home":"Home",
     "blog":"Blog",
     "about":"About"
   },
-  "login": "Sign In",
+  "common": {
+    "search": "search"
+  },
+  "home": {
+  },
+  "blog": {
+    "sideSearch": "Search blog...",
+    "categories": "categories",
+    "recent": "recent",
+    "popular": "popular",
+    "relative": "relative"
+  },
   "week":["Sun","Mon","Tues","Wed","Thur","Fri","Sat"]
 }

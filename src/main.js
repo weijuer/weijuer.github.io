@@ -27,6 +27,11 @@ const i18n = new VueI18n({
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false
 
+// 关键在这里，设置afterEach钩子函数
+router.afterEach((to, from, next) => {
+  document.title = to.name
+})
+
 /* eslint-disable no-new */
 // 创建一个 Vue 的根实例
 new Vue({

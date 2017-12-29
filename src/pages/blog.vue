@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9">
+
         <div class="wj-content-blog-post-1-list">
 
           <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchLists">
@@ -55,16 +56,16 @@
       <!-- BEGIN: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
       <form action="#" method="post">
         <div class="input-group">
-          <input type="text" class="form-control wj-square wj-theme-border" placeholder="Search blog...">
+          <input type="text" class="form-control wj-square wj-theme-border" :placeholder="$t('blog.sideSearch')">
           <span class="input-group-btn">
-            <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">Go!</button>
+            <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">{{ $t('common.search') }}</button>
           </span>
         </div>
       </form>
 
       <div class="wj-content-ver-nav">
         <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
-          <h3 class="wj-font-bold wj-font-uppercase">Categories</h3>
+          <h3 class="wj-font-bold wj-font-uppercase">{{ $t('blog.categories') }}</h3>
           <div class="wj-line-left wj-theme-bg"></div>
         </div>
         <ul class="wj-menu wj-arrow-dot1 wj-theme">
@@ -79,8 +80,8 @@
       <div class="wj-content-tab-1 wj-theme wj-margin-t-30">
         <div class="nav-justified">
           <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a href="#blog_recent_posts" data-toggle="tab">Recent</a></li>
-            <li><a href="#blog_popular_posts" data-toggle="tab">Popular</a></li>
+            <li class="active"><a href="#blog_recent_posts" data-toggle="tab">{{ $t('blog.recent') }}</a></li>
+            <li><a href="#blog_popular_posts" data-toggle="tab">{{ $t('blog.popular') }}</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="blog_recent_posts">
@@ -185,7 +186,7 @@
 
       <div class="wj-content-ver-nav">
         <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
-          <h3 class="wj-font-bold wj-font-uppercase">Blog</h3>
+          <h3 class="wj-font-bold wj-font-uppercase">{{ $t('blog.relative') }}</h3>
           <div class="wj-line-left wj-theme-bg"></div>
         </div>
         <ul class="wj-menu wj-arrow-dot wj-theme">

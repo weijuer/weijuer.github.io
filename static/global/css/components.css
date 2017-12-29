@@ -5480,10 +5480,10 @@ h1 {
 }
 
 .wj-layout-header .wj-topbar .wj-top-menu > .wj-ext > li.wj-lang > .dropdown-menu {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  min-width: 155px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  min-width: 120px;
   padding: 0;
   margin: 0;
 }
@@ -7612,19 +7612,16 @@ h1 {
 }
 
 .wj-layout-header .wj-topbar-light .wj-top-menu > .wj-ext > li.wj-lang > .dropdown-menu {
-  background: #f6f8fa;
-}
-
-.wj-layout-header .wj-topbar-light .wj-top-menu > .wj-ext > li.wj-lang > .dropdown-menu > li.active > a {
-  background: #e9eef3;
+  background: #fff;
 }
 
 .wj-layout-header .wj-topbar-light .wj-top-menu > .wj-ext > li.wj-lang > .dropdown-menu > li > a {
   color: #6285a8;
 }
 
+.wj-layout-header .wj-topbar-light .wj-top-menu > .wj-ext > li.wj-lang > .dropdown-menu > li.active > a,
 .wj-layout-header .wj-topbar-light .wj-top-menu > .wj-ext > li.wj-lang > .dropdown-menu > li > a:hover {
-  background: #e9eef3;
+  background: #ececec;
 }
 
 .wj-layout-header .wj-topbar-light .wj-top-menu > .wj-ext > li.wj-lang:hover > .dropdown-menu {
@@ -11275,7 +11272,7 @@ h1 {
   width: 30px;
   height: 3px;
   background-color: #32c5d2;
-  margin: 0 0 30px 0;
+  margin: 0 0 20px 0;
 }
 
 .wj-content-title-1 > .wj-line-right {
@@ -14774,11 +14771,13 @@ h1 {
 }
 
 .wj-content-feature-5 .wj-text {
-  position: relative;
-  background-color: #ffffff;
+  margin-bottom: 10px;
   width: 40%;
   padding: 25px;
+  position: relative;
   z-index: 1;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px 0px #000;
 }
 
 .wj-content-feature-5 .wj-photo {
