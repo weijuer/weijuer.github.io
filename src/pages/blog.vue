@@ -53,7 +53,7 @@
       </div>
 
     <div class="col-md-3">
-      <!-- BEGIN: CONTENT/BLOG/BLOG-SIDEBAR-1 -->
+
       <form action="#" method="post">
         <div class="input-group">
           <input type="text" class="form-control wj-square wj-theme-border" :placeholder="$t('blog.sideSearch')">
@@ -86,96 +86,28 @@
           <div class="tab-content">
             <div class="tab-pane active" id="blog_recent_posts">
               <ul class="wj-content-recent-posts-1">
-                <li>
+                <li v-for="item in searchLists">
                   <div class="wj-image">
                     <img :src="subLogo" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
-                  </div>
-                </li>
-                <li>
-                  <div class="wj-image">
-                    <img :src="subLogo" alt="" class="img-responsive">
-                  </div>
-                  <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
-                  </div>
-                </li>
-                <li>
-                  <div class="wj-image">
-                    <img :src="subLogo" alt="" class="img-responsive">
-                  </div>
-                  <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
-                  </div>
-                </li>
-                <li>
-                  <div class="wj-image">
-                    <img :src="subLogo" alt="" class="img-responsive">
-                  </div>
-                  <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
+                    <a class="wj-title" :href="item.url" :title="item.title" v-text="item.title"></a>
+                    <div class="wj-author">By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+                    <div class="wj-date">{{ item.date }}</div>
                   </div>
                 </li>
               </ul>
             </div>
             <div class="tab-pane" id="blog_popular_posts">
               <ul class="wj-content-recent-posts-1">
-                <li>
+                <li v-for="item in searchLists">
                   <div class="wj-image">
-                    <img :src="subLogo" class="img-responsive" alt="">
+                    <img :src="subLogo" alt="" class="img-responsive">
                   </div>
                   <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
-                  </div>
-                </li>
-                <li>
-                  <div class="wj-image">
-                    <img :src="subLogo" class="img-responsive" alt="">
-                  </div>
-                  <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
-                  </div>
-                </li>
-                <li>
-                  <div class="wj-image">
-                    <img :src="subLogo" class="img-responsive" alt="">
-                  </div>
-                  <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
-                  </div>
-                </li>
-                <li>
-                  <div class="wj-image">
-                    <img :src="subLogo" class="img-responsive" alt="">
-                  </div>
-                  <div class="wj-post">
-                    <a href="" class="wj-title">
-                      UX Design Expo 2015...
-                    </a>
-                    <div class="wj-date">27 Jan 2015</div>
+                    <a class="wj-title" :href="item.url" :title="item.title" v-text="item.title"></a>
+                    <div class="wj-author">By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+                    <div class="wj-date">{{ item.date }}</div>
                   </div>
                 </li>
               </ul>

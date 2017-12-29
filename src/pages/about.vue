@@ -1,20 +1,56 @@
 <template>
 
   <div class="container">
+
     <div class="row">
-      <div class="col-sm-12 wow animate fadeInUp" style="visibility: visible; animation-name: fadeInUp; opacity: 1;">
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed elit diam nonummy nibh euismod tincidunt ut
-          laoreet dolore magna aluam erat volutpat. Ut wisi enim ad minim veniam quis nostrud exerci et tation diam nisl
-          ut aliquip ex ea commodo consequat euismod tincidunt ut laoreet dolore magna aluam. </p>
-        <p>Lorem ipsum dolor sit amet, consectetuer euismod tincidunt ut
-          laoreet dolore magna aluam erat volutpat. Ut wisi enim ad minim veniam quis nostrud exerci et tation diam nisl
-          ut aliquip ex ea commodo consequat euismod tincidunt ut laoreet dolore magna aluam. </p>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed elit diam nonummy nibh euismod tincidunt ut laoreet dolore.</p>
+      <div class="col-sm-12 wow animate fadeInUp">
+        <p>本小站将着眼于开源的思想，本厮会将自己在实际工作和学习新技术同时，利用闲暇时间记录本厮成长的点滴，尽量还原开发实践当中遇到的常见问题以及解决途径或者思路分享给大家。同时会将不定时更新小案例代码，以便小白们学习，大神们请绕道，谢谢！</p>
       </div>
     </div>
 
     <div class="wj-content-title-1 wj-center wj-margin-t-40">
-      <h3 class="wj-font-uppercase wj-font-bold">Services We Do</h3>
+      <h3 class="wj-font-uppercase wj-font-bold">我</h3>
+      <div class="wj-line-center"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-7">
+        <div class="wj-content-feature-5">
+          <div class="wj-content-title-1 wow amimate fadeInDown">
+            <h3 class="wj-left wj-font-dark wj-font-uppercase wj-font-bold">Why<br/>Me?</h3>
+            <div class="wj-line-left wj-bg-blue-3 wj-theme-bg"></div>
+          </div>
+          <div class="wj-text wow animate fadeInLeft">
+            “Weijuer”不仅仅是一个名字，更是一种代码精神，追求新、尝试奇，喜欢被追逐的快感，“我只是比你来坑的早，相信我你也可以！”
+          </div>
+          <a class="btn wj-btn-uppercase btn-md wj-btn-bold wj-btn-square wj-theme-btn" href="http://www.weijuer.com/">详情</a>
+          <img class="wj-photo img-responsive" width="520" alt="" src="/static/global/images/blog/bg-blog-1.jpg">
+        </div>
+      </div>
+      <div class="col-md-5">
+
+        <div class="animate fadeInLeft">
+          <div class="wj-content-title-1">
+            <h3 class="wj-font-uppercase wj-font-bold">愿景</h3>
+            <div class="wj-line-left wj-theme-bg"></div>
+          </div>
+
+          <p>这里是本厮的小破站，尚待完善，敬请谅解哦！</p>
+          <ul class="wj-content-list-1 wj-theme  wj-font-uppercase">
+            <li>手机端，输入框聚焦，软键盘遮蔽输入框问题；</li>
+            <li>手机端自适应样式框架构建，weijuer.m.css库搭建；</li>
+            <li>PC端自适应样式框架构建，weijuer.d.css库搭建；</li>
+            <li>vue学习脚手架框架构建，常见组件库搭建；</li>
+            <li>待续…</li>
+          </ul>
+          <p>万事开头难，这个想法已经在我脑海中不知回荡了多少次，一直苦于没有太多时间和精力，也没有额外的动力，借助挤牙膏的时间，我会慢慢完善小站，敬请期待！</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="wj-content-title-1 wj-center wj-margin-t-40">
+      <h3 class="wj-font-uppercase wj-font-bold">我能</h3>
       <div class="wj-line-center"></div>
     </div>
 
@@ -27,7 +63,7 @@
             </div>
           </div>
           <h3 class="wj-font-uppercase wj-font-bold wj-title">Web Design</h3>
-          <p>Lorem ipsum consectetuer dolore elit diam</p>
+          <p>网页设计，html、js、css页面布局及美化</p>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
@@ -38,7 +74,7 @@
             </div>
           </div>
           <h3 class="wj-font-uppercase wj-font-bold wj-title">Mobile Apps</h3>
-          <p>Lorem ipsum consectetuer dolore elit diam</p>
+          <p>移动端H5、Web APP开发</p>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
@@ -49,7 +85,7 @@
             </div>
           </div>
           <h3 class="wj-font-uppercase wj-font-bold wj-title">Consulting</h3>
-          <p>Lorem ipsum consectetuer dolore elit diam</p>
+          <p>开设微信订阅号、微博等多方咨询通道</p>
         </div>
       </div>
       <div class="col-md-4 col-sm-6">
@@ -60,7 +96,7 @@
             </div>
           </div>
           <h3 class="wj-font-uppercase wj-font-bold wj-title">Campaigns</h3>
-          <p>Lorem ipsum consectetuer dolore elit diam</p>
+          <p>保姆式脚手架教程，从零开始</p>
         </div>
       </div>
 
@@ -71,8 +107,8 @@
               <svg class="icon" style="width: 3.75em;height: 3.75em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5201"><path d="M512 1024C229.12 1024 0 794.88 0 512S229.12 0 512 0s512 229.12 512 512-229.12 512-512 512z m294.4-729.6c0-28.16-23.04-51.2-51.2-51.2H268.8c-28.16 0-51.2 23.04-51.2 51.2v435.2c0 28.16 23.04 51.2 51.2 51.2h486.4c28.16 0 51.2-23.04 51.2-51.2V294.4z m-537.6 0h486.4v435.2H268.8V294.4z m296.96 312.32l26.88 26.88 107.52-107.52-107.52-134.4-26.88 26.88 80.64 107.52-80.64 80.64zM512 660.48l53.76-295.68H512l-53.76 295.68H512z m-80.64-26.88l26.88-26.88-80.64-80.64 80.64-107.52-26.88-26.88-107.52 134.4 107.52 107.52z" fill="#25C28F" p-id="5202"></path></svg>
             </div>
           </div>
-          <h3 class="wj-font-uppercase wj-font-bold wj-title">Js</h3>
-          <p>Lorem ipsum consectetuer dolore elit diam</p>
+          <h3 class="wj-font-uppercase wj-font-bold wj-title">Code</h3>
+          <p>全方位注释，傻瓜式代码说明</p>
         </div>
       </div>
 
@@ -84,7 +120,7 @@
             </div>
           </div>
           <h3 class="wj-font-uppercase wj-font-bold wj-title">Hosting</h3>
-          <p>Lorem ipsum consectetuer dolore elit diam</p>
+          <p>渐进式学习，摆脱“我还不会”的困惑，迅速上手</p>
         </div>
       </div>
     </div>
