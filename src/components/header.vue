@@ -5,7 +5,7 @@
         <!-- BEGIN: INLINE NAV -->
         <nav class="wj-top-menu wj-pull-left">
           <ul class="wj-icons wj-theme-ul">
-            <li><a href="#" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.weibo')"><i class="fa fa-weibo"></i></a></li>
+            <li><a href="https://weibo.com/u/5927106363" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.weibo')"><i class="fa fa-weibo"></i></a></li>
             <li><a href="#" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.wechat')"><i class="fa fa-wechat"></i></a></li>
             <li><a href="https://weijuer.github.io/" class="wj-tooltip wj-tooltip-bottom" :data-tooltip="$t('header.github')"><i class="fa fa-github"></i></a></li>
           </ul>
