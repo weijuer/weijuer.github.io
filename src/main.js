@@ -24,7 +24,7 @@ const i18n = new VueI18n({
   }
 })
 
-//开启debug模式
+// 开启debug模式
 Vue.config.debug = true
 
 // 关闭生产模式下给出的提示
