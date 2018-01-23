@@ -56,7 +56,7 @@
           </div>
 
           <form class="wj-quick-search" action="#">
-            <input type="text" name="query" :placeholder="$t('header.quickSearch')" value="" class="form-control" autocomplete="off">
+            <input type="text" name="query" :placeholder="$t('header.quickSearch')" value="" @change="searchChange" v-model="search" class="form-control" autocomplete="off">
             <span class="wj-theme-link" @click="searchToggle">×</span>
           </form>
 
@@ -120,6 +120,7 @@
     name: 'header',
     data () {
       return {
+        search: '',
         logo: './static/global/images/logo-white.svg',
         lang: {
           langList: [
@@ -159,6 +160,11 @@
         } else {
           bodyClassList.remove('wj-layout-quick-search-shown')
         }
+      },
+      // 3.搜索
+      searchChange () {
+        console.log('asdsss')
+        this.$root.Bus.$emit('searchChange', this.search)
       }
     }
   }

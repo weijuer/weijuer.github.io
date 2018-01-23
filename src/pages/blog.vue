@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-9">
 
-        <div class="wj-content-blog-post-1-list">
+        <div class="wj-content-blog-post-1-list" v-if="searchData.length > 0">
 
-          <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchLists">
+          <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchData">
             <div class="wj-media wj-content-overlay">
               <div class="wj-overlay-wrapper">
                 <div class="wj-overlay-content">
@@ -50,13 +50,14 @@
           </div>
 
         </div>
+        <div class="wj-content-blog-post-1-list" v-else>暂无数据</div>
       </div>
 
     <div class="col-md-3">
 
       <form action="#" method="post">
         <div class="input-group">
-          <input type="text" class="form-control wj-square wj-theme-border" :placeholder="$t('blog.sideSearch')">
+          <input type="text" class="form-control wj-square wj-theme-border" v-model="search" :placeholder="$t('blog.sideSearch')">
           <span class="input-group-btn">
             <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">{{ $t('common.search') }}</button>
           </span>
@@ -86,7 +87,7 @@
           <div class="tab-content">
             <div class="tab-pane active" id="blog_recent_posts">
               <ul class="wj-content-recent-posts-1">
-                <li v-for="item in searchLists">
+                <li v-for="item in blogLists">
                   <div class="wj-image">
                     <img :src="subLogo" alt="" class="img-responsive">
                   </div>
@@ -100,7 +101,7 @@
             </div>
             <div class="tab-pane" id="blog_popular_posts">
               <ul class="wj-content-recent-posts-1">
-                <li v-for="item in searchLists">
+                <li v-for="item in blogLists">
                   <div class="wj-image">
                     <img :src="subLogo" alt="" class="img-responsive">
                   </div>
@@ -122,7 +123,7 @@
           <div class="wj-line-left wj-theme-bg"></div>
         </div>
         <ul class="wj-menu wj-arrow-dot wj-theme">
-          <li v-for="item in searchLists"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
+          <li v-for="item in blogLists"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
         </ul>
       </div>
     </div>
@@ -135,31 +136,56 @@
     name: 'blog',
     data () {
       return {
-        searchLists: [],
+        search: '',
+        blogLists: [],
         subLogo: './static/global/images/wj-logo.svg',
         blogHeader: './static/global/images/blog/bg-blog-2.png'
       }
+    },
+    // 当前实例创建完成就监听这个事件
+    created () {
+      this.$root.Bus.$on('searchChange', (value) => {
+        console.log('searchChange:==========>' + value)
+        this.search = value
+      })
     },
     mounted () {
       console.log('-----mounted')
       // 请求本地的数据
       this.get_local_data()
     },
+    computed: {
+      searchData: function () {
+        let search = this.search
+
+        if (search) {
+          return this.blogLists.filter(function (blog) {
+            return Object.keys(blog).some(function (key) {
+              return String(blog[key]).toLowerCase().indexOf(search) > -1
+            })
+          })
+        }
+        return this.blogLists
+      }
+    },
     methods: {
       // 1.请求本地数据
       get_local_data: function (params) {
-        let v = this
         if (!params) params = {}
-        v.$ajax.get('/static/global/data/pages.json', {params})
+        this.$ajax.get('/api/blogList', {params})
           .then((response) => {
             console.log(response.data)
-            v.searchLists = response.data.searchList
-            console.log(v.searchLists)
+            this.blogLists = response.data.data
+            console.log(this.blogLists)
           })
           .catch((error) => {
             console.log(error)
           })
       }
+    },
+    // 在组件销毁时别忘了解除事件绑定
+    beforeDestroy () {
+      this.$root.Bus.$off('searchChange')
     }
   }
 </script>

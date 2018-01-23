@@ -48,7 +48,7 @@
 
         if (!params) params = {}
         // 1.获取数据
-        v.$ajax.get('/static/global/data/pages.json', {params})
+        v.$ajax.get('/api/blogList', {params})
           .then((response) => {
             v.loading = false
             console.log(response.data)

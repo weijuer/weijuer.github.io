@@ -42,5 +42,9 @@ new Vue({
   i18n, // 国际化语言包
   router, // 注入路由配置
   template: '<App/>', // 配置根模板 即打开页面显示那个组件
-  components: { App }
+  components: { App },
+  data: {
+    // 空的实例放到根组件下，所有的子组件都能调用
+    Bus: new Vue()
+  }
 })

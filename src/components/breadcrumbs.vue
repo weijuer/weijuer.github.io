@@ -28,7 +28,7 @@
       getBreadcrumb () {
         this.breadcrumbs = this.$route.matched
         this.$route.matched.forEach((item, index) => {
-          item.name === 'home' ? item.path = '/' : this.$route.path === item.path ? this.subTitle = item.name : ''
+          // (item.name === 'home') ? item.path = '/' : (this.$route.path === item.path) ? this.subTitle = item.name : ''
         })
       }
     },
