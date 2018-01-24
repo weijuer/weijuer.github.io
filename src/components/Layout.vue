@@ -1,6 +1,6 @@
 <template>
   <div class="wj-layout-page">
-    <pageHeader></pageHeader>
+    <pageHeader>header</pageHeader>
     <router-view class="app-content-view" keep-alive transition transition-mode="out-in" />
   </div>
 </template>

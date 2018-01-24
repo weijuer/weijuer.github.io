@@ -18,8 +18,8 @@ let apiRoutes = express.Router()
 app.use('/api', apiRoutes)
 
 // 加载本地数据文件
-let appData = require('../static/global/data/blog.json');
-let blogList = appData.blogList // 获取对应的本地数据
+let blogJson = require('../static/global/data/blog.json');
+let blogList = blogJson.blogList // 获取对应的本地数据
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)

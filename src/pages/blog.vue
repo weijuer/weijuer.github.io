@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-9">
 
-        <div class="wj-content-blog-post-1-list" v-if="searchData.length > 0">
+        <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
 
-          <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchData">
+          <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchBlog">
             <div class="wj-media wj-content-overlay">
               <div class="wj-overlay-wrapper">
                 <div class="wj-overlay-content">
@@ -38,16 +38,13 @@
             </div>
           </div>
 
-          <div class="wj-pagination">
-            <ul class="wj-content-pagination wj-theme">
-              <li class="wj-prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-              <li class="wj-active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li class="wj-next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
-          </div>
+          <!--分页组件-->
+          <pagination
+            :page-index="currentPage"
+            :page-size="pageSize"
+            :total="count"
+            @change="pageChange">
+          </pagination>
 
         </div>
         <div class="wj-content-blog-post-1-list" v-else>暂无数据</div>
@@ -132,12 +129,20 @@
 </template>
 
 <script>
+  import Pagination from '../components/pagination'
+
   export default {
     name: 'blog',
+    components: {
+      Pagination
+    },
     data () {
       return {
         search: '',
-        blogLists: [],
+        pageSize: 4, // 每页显示4条数据
+        currentPage: 1, // 当前页码
+        count: 0, // 总记录数
+        blogLists: [], // 日志记录
         subLogo: './static/global/images/wj-logo.svg',
         blogHeader: './static/global/images/blog/bg-blog-2.png'
       }
@@ -151,11 +156,11 @@
     },
     mounted () {
       console.log('-----mounted')
-      // 请求本地的数据
+      // 请求本地第一页的数据
       this.get_local_data()
     },
     computed: {
-      searchData: function () {
+      searchBlog: function () {
         let search = this.search
 
         if (search) {
@@ -171,17 +176,34 @@
     methods: {
       // 1.请求本地数据
       get_local_data: function (params) {
-        if (!params) params = {}
+        // 1.1 分页参数
+        if (!params) {
+          params = {
+            currentPage: this.currentPage,
+            pageSize: this.pageSize
+          }
+        }
+        // 1.2 获取后台模拟数据
         this.$ajax.get('/api/blogList', {params})
           .then((response) => {
-            console.log(response.data)
-            this.blogLists = response.data.data
-            console.log(this.blogLists)
+            let res = response.data.data
+            this.blogLists = res
+
+            // 子组件监听到count变化会自动更新DOM
+            this.count = res.length
           })
           .catch((error) => {
             console.log(error)
           })
+      },
+
+      // 2.从page组件传递过来的当前page
+      pageChange (page) {
+        console.log('page:=====>' + page)
+        this.currentPage = page
+        this.get_local_data()
       }
+
     },
     // 在组件销毁时别忘了解除事件绑定
     beforeDestroy () {
