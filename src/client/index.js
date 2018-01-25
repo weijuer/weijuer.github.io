@@ -5,11 +5,16 @@ import Vue from 'vue'
 // 入口文件为 src/App.vue 文件
 import App from './App'
 // 引入路由配置文件
-import router from './router'
+import router from './router/index'
 // 引入Vue-i18n国际化
 import VueI18n from 'vue-i18n'
 // 引入HTTP工具axios
 import axios from 'axios'
+
+// 开启debug模式
+Vue.config.debug = true
+// 关闭生产模式下给出的提示
+Vue.config.productionTip = false
 // 将axios改写为Vue的原型属性$ajax，绑定到全局
 Vue.prototype.$ajax = axios
 
@@ -19,16 +24,10 @@ Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'zh-CN',    // 语言标识
   messages: {
-    'zh-CN': require('./assets/global/i18n/app-zh-CN'),   // 中文语言包
-    'en-US': require('./assets/global/i18n/app-en-US')    // 英文语言包
+    'zh-CN': require('./static/assets/global/i18n/app-zh-CN'),   // 中文语言包
+    'en-US': require('./static/assets/global/i18n/app-en-US')    // 英文语言包
   }
 })
-
-// 开启debug模式
-Vue.config.debug = true
-
-// 关闭生产模式下给出的提示
-Vue.config.productionTip = false
 
 // 关键在这里，设置afterEach钩子函数
 router.afterEach((to, from, next) => {

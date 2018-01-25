@@ -1,7 +1,7 @@
 <template>
-  <div class="wj-go-top" :data-tips="top" :class="{ 'active': pageOnScroll}" @click="backToTop">
+  <a class="wj-go-top" :data-tips="top" :class="{ 'active': pageOnScroll}" @click="backToTop">
     <i class="fa fa-arrow-up"></i>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -52,24 +52,26 @@
 </script>
 
 <style scoped>
+  /* tools: 2.wj-go-top*/
   .wj-go-top {
-    /*display: none;*/
+    display: inline-block;
     opacity: 0;
-    padding-top: 9px;
+    padding: 10px;
     width: 40px;
     height: 40px;
     position: fixed;
-    bottom: -100%;
+    bottom: 0;
     right: 20px;
     z-index: 110;
+    color: #24292e;
     cursor: pointer;
     text-align: center;
     vertical-align: middle;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    -webkit-transition: all .36s ease-in-out;
+    transition: all .36s ease-in-out;
   }
 
   .wj-go-top {
@@ -80,8 +82,9 @@
   }
 
   .wj-go-top.active {
-    /*display: block;*/
     opacity: .8;
-    bottom: 8%;
+    bottom: 4%;
+    -webkit-transform: scale(1) rotate(-1turn) translate(0);
+    transform: scale(1) rotate(-1turn) translate(0);
   }
 </style>

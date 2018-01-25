@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="wj-layout-header-fixed wj-layout-header-mobile-fixed wj-layout-header-topbar wj-layout-header-topbar-collapse" :class="{'wj-page-on-scroll': isPageScroll}">
-    <pageHeader></pageHeader>
-    <pageContent></pageContent>
-    <go2Top :isScroll="isPageScroll" @pageScroll="pageScrolled"></go2Top>
+  <div id="app" :class="['wj-app-page', {'wj-app-page-header-fixed': isPageScroll}]">
+    <pageHeader />
+    <pageContent />
+    <go2Top :isScroll="isPageScroll" @pageScroll="pageScrolled" />
   </div>
 </template>
 
@@ -35,3 +35,7 @@
   }
 </script>
 
+<style lang="less" scoped>
+  @import "static/assets/global/less/app";
+  @import "static/assets/global/less/components";
+</style>

@@ -187,5 +187,5 @@
 </style>
 
 <style lang="less" scoped>
-  @import "../assets/global/less/app";
+  @import "../static/assets/global/less/app";
 </style>

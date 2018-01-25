@@ -6,18 +6,6 @@
         <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
 
           <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchBlog">
-            <div class="wj-media wj-content-overlay">
-              <div class="wj-overlay-wrapper">
-                <div class="wj-overlay-content">
-                  <a :href="item.url"><i class="fa fa-link"></i></a>
-                  <a :href="subLogo">
-                    <i class="fa fa-search"></i>
-                  </a>
-                </div>
-              </div>
-
-              <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
-            </div>
 
             <div class="wj-title wj-font-uppercase">
               <a :href="item.url">{{ item.title }}</a>
@@ -33,6 +21,19 @@
             </div>
 
             <div class="wj-desc">
+              <!--<div class="wj-media wj-content-overlay">
+                <div class="wj-overlay-wrapper">
+                  <div class="wj-overlay-content">
+                    <a :href="item.url"><i class="fa fa-link"></i></a>
+                    <a :href="subLogo">
+                      <i class="fa fa-search"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
+              </div>-->
+              <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
               {{ item.description }}
               <a :href="item.url">read more...</a>
             </div>
@@ -213,6 +214,6 @@
 </script>
 
 <style lang="less" scoped>
-  @import "../assets/global/less/blog";
+  @import "../static/assets/global/less/page/blog";
 </style>
 

@@ -8,21 +8,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-// 1.静态路由数据模拟配置
-// 1.1 后端代理
-const express = require('express')
-// 请求server
-const app = express()
-// 通过路由请求数据
-let apiRoutes = express.Router()
-app.use('/api', apiRoutes)
-
-// 加载本地数据文件
-let blogJson = require('../static/global/data/blog.json');
-let blogList = blogJson.blogList // 获取对应的本地数据
-
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+
+// add hot-reload related code to entry chunks
+Object.keys(baseWebpackConfig.entry).forEach(function (name) {
+  baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
+})
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -48,24 +40,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
-    },
-    // 1.2 添加数据引用
-    before(app) {
-      // 接口返回json数据，上面配置的数据seller就赋值给data请求后调用
-      app.get('/api/blogList', (req, res) => {
-        res.json({
-          errno: 0,
-          data: blogList
-        })
-      });
-      app.get('/api/ratings', (req, res) => {
-        res.json({
-          errno: 0,
-          data: ratings
-        })
-      })
     }
-
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -77,7 +52,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: 'src/server/views/index.html',
       inject: true
     }),
   ]
