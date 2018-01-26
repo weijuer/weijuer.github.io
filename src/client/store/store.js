@@ -5,14 +5,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-
+    isToggle: false,
+    searchText: ''
   },
   mutations: {
-
+    searchToggle (state) {
+      state.isToggle = !state.isToggle
+    }
   },
-  actions: {
-    
-  }
+  actions: {}
 })
 
 export default store

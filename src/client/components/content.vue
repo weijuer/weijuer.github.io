@@ -5,16 +5,16 @@
     </div>-->
 
     <div class="wj-content-box wj-size-md">
-        <router-view class="app-content-view" keep-alive transition transition-mode="slide"></router-view>
+        <router-view class="app-content-view" keep-alive transition transition-mode="slide" />
     </div>
   </div>
 </template>
 
 <script>
-import breadcrumbs from '@/components/breadcrumbs'
+import breadcrumbs from './breadcrumbs'
 
 export default {
-  name: 'content',
+  name: 'page-content',
   components: {
     breadcrumbs
   }

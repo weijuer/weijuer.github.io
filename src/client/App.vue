@@ -8,9 +8,9 @@
 
 <script>
   // 引入公共布局组件
-  import pageHeader from '@/components/header'
-  import pageContent from '@/components/Content'
-  import go2Top from '@/components/go2Top'
+  import pageHeader from './components/header'
+  import pageContent from './components/Content'
+  import go2Top from './components/go2Top'
 
   export default {
     name: 'app',
@@ -35,7 +35,8 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @import "static/assets/global/less/app";
   @import "static/assets/global/less/components";
+  @import "static/assets/global/less/theme/default";
 </style>

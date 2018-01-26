@@ -144,8 +144,8 @@
         currentPage: 1, // 当前页码
         count: 0, // 总记录数
         blogLists: [], // 日志记录
-        subLogo: './static/global/images/wj-logo.svg',
-        blogHeader: './static/global/images/blog/bg-blog-2.png'
+        subLogo: './asserts/global/images/wj-logo.svg',
+        blogHeader: './asserts/global/images/blog/bg-blog-2.png'
       }
     },
     // 当前实例创建完成就监听这个事件

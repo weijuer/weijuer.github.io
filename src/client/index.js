@@ -10,6 +10,8 @@ import router from './router/index'
 import VueI18n from 'vue-i18n'
 // 引入HTTP工具axios
 import axios from 'axios'
+// 引入状态管理配置文件
+import store from './store/store'
 
 // 开启debug模式
 Vue.config.debug = true
@@ -40,6 +42,7 @@ new Vue({
   el: '#app',
   i18n, // 国际化语言包
   router, // 注入路由配置
+  store, // 注入状态管理配置
   template: '<App/>', // 配置根模板 即打开页面显示那个组件
   components: { App },
   data: {

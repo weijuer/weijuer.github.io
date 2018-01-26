@@ -1,5 +1,5 @@
 <template>
-  <header class="wj-layout-header wj-layout-header-2 wj-layout-header-dark-mobile">
+  <header :class="['wj-layout-header', 'wj-layout-header-2', 'wj-layout-header-dark-mobile', {'wj-layout-header-search-show': $store.state.isToggle}]">
     <div class="wj-topbar wj-topbar-light wj-solid-bg">
       <div class="container">
         <!-- BEGIN: INLINE NAV -->
@@ -57,7 +57,7 @@
 
           <form class="wj-quick-search" action="#">
             <input type="text" name="query" :placeholder="$t('header.quickSearch')" value="" @keyup="searchChange" v-model="search" class="form-control" autocomplete="off">
-            <span class="wj-theme-link" @click="searchToggle">×</span>
+            <span class="wj-theme-link" @click="$store.commit('searchToggle')">×</span>
           </form>
 
           <nav class="wj-mega-menu wj-pull-right wj-mega-menu-dark wj-mega-menu-dark-mobile wj-fonts-uppercase wj-fonts-bold">
@@ -88,7 +88,7 @@
               </li>-->
 
               <li class="wj-search-toggler-wrapper">
-                <a href="javascript:;" class="wj-btn-icon wj-search-toggler" @click="searchToggle">
+                <a href="javascript:;" class="wj-btn-icon wj-search-toggler" @click="$store.commit('searchToggle')">
                   <svg class="icon" style="width: 1.25em; height: 1.25em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="29744"><path d="M949.217812 877.584326 728.039535 656.473439c-0.823795-0.826831-1.687501-1.592264-2.574744-2.320858 47.224446-61.931514 75.272371-139.271974 75.272371-223.165686 0-203.455785-164.941204-368.390231-368.405326-368.390231-203.465145 0-368.405326 164.934446-368.405326 368.390231 0 203.456808 164.940181 368.390231 368.405326 368.390231 84.056792 0 161.536525-28.152177 223.529931-75.538417 0.711227 0.86674 1.457248 1.713015 2.261599 2.51938l221.238655 221.140563c16.054285 16.142655 44.891212 13.5936 64.173138-5.716188C962.816062 922.473699 965.334522 893.756657 949.217812 877.584326zM104.860436 430.987918c0-180.849928 146.614063-327.457983 327.471401-327.457983 180.856315 0 327.471401 146.608056 327.471401 327.457983 0 88.709391-35.291184 169.164794-92.582305 228.134861-1.14308 0.980327-2.265693 2.006703-3.353512 3.092431-1.111356 1.111311-2.160288 2.257413-3.161122 3.427052-58.992949 57.419757-139.545797 92.802616-228.374461 92.802616C251.474499 758.445902 104.860436 611.838869 104.860436 430.987918z" p-id="29745"></path></svg>
                 </a>
               </li>
@@ -116,12 +116,14 @@
 </template>
 
 <script>
+  import store from '../store/store'
   export default {
-    name: 'header',
+    name: 'page-header',
+    store,
     data () {
       return {
         search: '',
-        logo: './static/global/images/logo-white.svg',
+        logo: './asserts/global/images/logo-white.svg',
         lang: {
           langList: [
             {name: '中文', tag: 'zh-CN'},
@@ -133,8 +135,7 @@
           {name: 'home', path: '/home', active: true},
           {name: 'blog', path: '/blog', active: false},
           {name: 'about', path: '/about', active: false}
-        ],
-        isSearchToggle: false
+        ]
       }
     },
     mounted () {
@@ -148,18 +149,6 @@
         // 1.2 设置$i18n.locale属性值
         this.$i18n.locale = this.lang.langList[index].tag
         console.log('locale ===========>' + this.$i18n.locale)
-      },
-      // 2.搜索切换
-      searchToggle () {
-        // 2.1 快速搜索栏状态
-        this.isSearchToggle = !this.isSearchToggle
-        let bodyClassList = document.getElementById('app').classList
-        if (this.isSearchToggle) {
-          bodyClassList.add('wj-layout-quick-search-shown')
-          document.getElementsByName('query')[0].focus()
-        } else {
-          bodyClassList.remove('wj-layout-quick-search-shown')
-        }
       },
       // 3.搜索
       searchChange () {
@@ -184,8 +173,4 @@
     border: 1px solid #fff;
     background: #fff;
   }
-</style>
-
-<style lang="less" scoped>
-  @import "../static/assets/global/less/app";
 </style>

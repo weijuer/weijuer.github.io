@@ -52,7 +52,6 @@
 </script>
 
 <style scoped>
-  /* tools: 2.wj-go-top*/
   .wj-go-top {
     display: inline-block;
     opacity: 0;
