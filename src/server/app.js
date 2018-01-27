@@ -16,12 +16,15 @@ const cookieParser = require('cookie-parser')
 // 打包设置
 const webpack = require('webpack')
 // 获取后端路由.我设置在根目录下的server文件,读取下面的index.js
-const routes = require('./routes/router')
+// const routes = require('./routes/router')
 // 用于管理配置的插件.统一管理后端服务端口和数据库连接地址等,默认配置在config目录下的default.js中
 // const config = require('config-lite')
 // compression 中间件用于压缩和处理静态内容
 // 例子:app.use(express.static(path.join(__dirname, 'public')))
 const compression = require('compression')
+
+// hello 路由
+const hello = require('./routes/hello')
 
 // 引入history模块
 const history = require('connect-history-api-fallback')
@@ -30,9 +33,10 @@ const history = require('connect-history-api-fallback')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 
+// 编译前端client页面-配置文件
 const config = require('../../build/webpack.dev.conf')
 
-const index = require('./routes/index');
+// const index = require('./routes/index');
 
 // 实例化express对象,用于连接中间件
 const app = express()
@@ -46,7 +50,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-// 编译
+// 编译前端页面
 const compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
@@ -65,12 +69,14 @@ app.use(express.static(path.join(__dirname, 'views')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // 使用路由
-app.use('/api', routes)
+app.use('/hello', hello)
 // app.use('*', index);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found')
+  let err = new Error('Not Found')
   err.status = 404
   next(err)
 })
@@ -88,8 +94,12 @@ app.use(function (err, req, res, next) {
 
 // 监听端口
 let port = process.env.PORT || 4000;
-app.listen(port, function() {
-  console.log('Server listening at ===> %d', port)
+let server = app.listen(port, function() {
+  let protocol = server.address().protocol
+  let host = server.address().address
+  let port = server.address().port
+
+  console.log('Server listening at ====> %s://%s:%d', protocol, host, port);
 })
 
 export default app
