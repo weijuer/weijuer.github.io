@@ -7,7 +7,7 @@ let blogList = appData.blogList // 获取对应的本地数据
 
 /* api */
 // 接口返回json数据，上面配置的数据seller就赋值给data请求后调用
-router.get('/api', (req, res) => {
+router.get('/', (req, res) => {
   console.log('Time:', Date.now());
   res.json({
     errno: 0,

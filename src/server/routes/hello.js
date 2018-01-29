@@ -12,11 +12,4 @@ router.get('/', function (req, res) {
   res.send('Hello GET');
 })
 
-// 主页输出 "Hello World"
-router.get('/hello', function (req, res) {
-  console.log("主页 GET 请求");
-  res.send('Hello GET');
-  next();
-})
-
 module.exports = router;

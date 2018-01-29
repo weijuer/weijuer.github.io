@@ -24,10 +24,10 @@ Vue.prototype.$ajax = axios
 Vue.use(VueI18n)
 // 定义默认语言及语言包路径
 const i18n = new VueI18n({
-  locale: 'zh-CN',    // 语言标识
+  locale: 'zh-CN', // 语言标识
   messages: {
-    'zh-CN': require('./static/assets/global/i18n/app-zh-CN'),   // 中文语言包
-    'en-US': require('./static/assets/global/i18n/app-en-US')    // 英文语言包
+    'zh-CN': require('./static/assets/global/i18n/app-zh-CN'), // 中文语言包
+    'en-US': require('./static/assets/global/i18n/app-en-US') // 英文语言包
   }
 })
 
