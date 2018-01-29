@@ -1,8 +1,8 @@
-const models = require('../db');
+const models = require('../config/db');
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-const $sql = require('../sqlMap');
+const $sql = require('../dao/sqlMap');
 
 // 连接数据库
 const conn = mysql.createConnection(models.mysql);

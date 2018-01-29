@@ -1,8 +1,7 @@
 {
+  "restartable": "rs",
   "verbose": true,
   "ignore": [
-    ".git",
-    "node_modules/**/node_modules",
     "src/server/public/"
   ],
   "events": {
@@ -12,7 +11,8 @@
     "src/server/"
   ],
   "env": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "PORT": "3000"
   },
   "ext": "js jade json",
   "legacy-watch": false

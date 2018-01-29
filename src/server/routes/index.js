@@ -7,4 +7,4 @@ router.get('*', function (req, res) {
   res.sendFile('./views/index.html')
 })
 
-// module.exports = router;
+module.exports = router;
