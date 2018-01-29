@@ -33,9 +33,9 @@ const api = require('./routes/api')
 // const index = require('./routes/index');
 
 // 引入history模块
-const history = require('connect-history-api-fallback')
+// const history = require('connect-history-api-fallback')
 // 引入history模式让浏览器支持,
-app.use(history())
+// app.use(history())
 
 // 环境变量判断
 if(app.get('env') === 'development') {
@@ -74,7 +74,11 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // 使用路由
 app.use('/hello', hello)
-app.use('/api', api)
+app.use('/api/*', api)
+
+app.get('/api/hello', function (req, res) {
+  res.send('Hello World!');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -95,7 +99,7 @@ app.use(function (err, req, res, next) {
 })
 
 // 监听端口
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 4000;
 let server = app.listen(port, function() {
   let protocol = server.address().protocol
   let host = server.address().address
