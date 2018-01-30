@@ -24,7 +24,7 @@
             “Weijuer”不仅仅是一个名字，更是一种代码精神，追求新、尝试奇，喜欢被追逐的快感，“我只是比你来坑的早，相信我你也可以！”
           </div>
           <a class="btn wj-btn-uppercase btn-md wj-btn-bold wj-btn-square wj-theme-btn" href="http://www.weijuer.com/">详情</a>
-          <img class="wj-photo img-responsive" width="520" alt="" src="/static/global/images/blog/bg-blog-1.jpg">
+          <img class="wj-photo img-responsive" width="520" alt="" :src="aboutMe">
         </div>
       </div>
       <div class="col-md-5">
@@ -133,7 +133,7 @@
     name: 'about',
     data () {
       return {
-        searchLists: []
+        aboutMe: './asserts/global/images/blog/bg-blog-1.jpg'
       }
     },
     mounted () {

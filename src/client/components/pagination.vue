@@ -177,7 +177,7 @@
     font-weight: 400;
     padding: 7px 4px 6px 4px;
     border-radius: 40px;
-    border: 1px solid #5c6873;
+    border: 1px solid #a5a5a5;
   }
 
   .wj-content-pagination > .wj-pager-space > span {

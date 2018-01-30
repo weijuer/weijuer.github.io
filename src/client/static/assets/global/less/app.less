@@ -141,6 +141,10 @@ h1 {
 }
 
 /* page: 2.wj-layout-page */
+.wj-layout-page {
+  background: #f2f2f2;
+}
+
 .wj-layout-page:before, .wj-layout-page:after {
   content: " ";
   display: table;
@@ -160,6 +164,10 @@ h1 {
   position: fixed;
   top: 50%;
   left: 50%;
+}
+
+.wj-content-box.wj-size-md {
+  padding: 60px 0;
 }
 
 @media (min-width: 992px) {
@@ -813,16 +821,16 @@ h1 {
   }
 
   .wj-layout-header-fixed .wj-layout-page {
-    margin-top: 100px;
+    padding-top: 100px;
   }
 
   .wj-layout-header-fixed.wj-layout-header-topbar .wj-layout-page {
-    margin-top: 145px;
+    padding-top: 145px;
   }
 
   .wj-layout-header-fullscreen .wj-layout-page,
   .wj-layout-header-fullscreen.wj-layout-header-fixed.wj-layout-header-topbar .wj-layout-page {
-    margin-top: 0;
+    padding-top: 0;
   }
 
   .wj-page-on-scroll.wj-layout-header-static .wj-layout-header {
@@ -1740,4 +1748,72 @@ h1 {
   transition: all 0.2s;
 }
 
+.wj-content-panel {
+  padding: 0;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 30px;
+}
 
+.wj-content-panel .wj-label {
+  display: inline-block;
+  position: absolute;
+  background: #eee;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #565d66;
+}
+
+.wj-content-panel .wj-body {
+  padding: 40px 20px 20px 20px;
+}
+
+.wj-content-ver-nav .wj-menu {
+  margin: 0;
+  padding: 0;
+}
+
+.wj-content-ver-nav .wj-menu > li {
+  list-style: none;
+  padding: 7px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.wj-content-ver-nav .wj-menu > li > a {
+  width: calc(100% - 20px);
+  display: inline-block;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wj-content-ver-nav .wj-menu > li > a > .badge {
+  float: right;
+}
+
+.wj-content-ver-nav .wj-menu > li:before {
+  color: #5c6873;
+  content: "\f105";
+  font-family: FontAwesome;
+  font-weight: 100;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  float: left;
+}
+
+.wj-content-ver-nav .wj-menu.wj-arrow-dot > li:before {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  margin: 9px 12px 0 0;
+  content: '';
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  background: #5c6873;
+}
+
+.wj-content-ver-nav .wj-menu.wj-arrow-dot.wj-square > li:before {
+  border-radius: 0;
+}

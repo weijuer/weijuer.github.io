@@ -3,6 +3,31 @@
     <div class="row">
       <div class="col-md-9">
 
+
+        <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
+          <div class="wj-portlet" v-for="item in searchBlog">
+            <div class="wj-portlet--head">
+              <div class="wj-portlet--head-caption">
+                <div class="wj-portlet--head-text">{{ item.title }}</div>
+              </div>
+            </div>
+            <div class="wj-portlet--body">
+              <div class="wj-panel">
+                <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+                <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
+                <ul class="wj-tags wj-theme-ul-bg">
+                  <li v-for="(tag, index) in item.tags" v-text="tag"></li>
+                </ul>
+                <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
+              </div>
+
+              <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
+              {{ item.description }}
+              <a :href="item.url">read more...</a>
+            </div>
+          </div>
+        </div>
+
         <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
 
           <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchBlog">
@@ -33,7 +58,7 @@
 
                 <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
               </div>-->
-              <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
+              <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
               {{ item.description }}
               <a :href="item.url">read more...</a>
             </div>
@@ -145,7 +170,8 @@
         count: 0, // 总记录数
         blogLists: [], // 日志记录
         subLogo: './asserts/global/images/wj-logo.svg',
-        blogHeader: './asserts/global/images/blog/bg-blog-2.png'
+        blogHeader1: './asserts/global/images/blog/bg-blog-2.png',
+        blogHeader2: './asserts/global/images/blog/bg-blog-3.jpg'
       }
     },
     // 当前实例创建完成就监听这个事件
@@ -185,9 +211,9 @@
           }
         }
         // 1.2 获取后台模拟数据
-        this.$ajax.get('/api/blogList', {params})
+        this.$ajax.post('/api/blogList', {params})
           .then((response) => {
-            let res = response.data.data
+            let res = response.data.blog
             this.blogLists = res
 
             // 子组件监听到count变化会自动更新DOM

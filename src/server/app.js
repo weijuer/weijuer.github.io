@@ -27,7 +27,7 @@ const debug = require('debug')('app4');
 // 实例化express对象,用于连接中间件
 const app = express()
 
-// hello 测试路由
+// 引入路由配置文件
 const hello = require('./routes/hello')
 const api = require('./routes/api')
 // const index = require('./routes/index');
@@ -74,11 +74,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // 使用路由
 app.use('/hello', hello)
-app.use('/api/*', api)
-
-app.get('/api/hello', function (req, res) {
-  res.send('Hello World!');
-});
+app.use('/api', api)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

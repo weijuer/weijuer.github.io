@@ -55,7 +55,7 @@
   .wj-go-top {
     display: inline-block;
     opacity: 0;
-    padding: 10px;
+    padding: 8px;
     width: 40px;
     height: 40px;
     position: fixed;

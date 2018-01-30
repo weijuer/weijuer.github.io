@@ -1,3 +1,6 @@
+@fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+@fontSize: 16px;
+
 /* tools: 1.wj-wj-tooltip*/
 .wj-tooltip {
   position: relative;
@@ -102,3 +105,69 @@
   transform: translateX(-50%) translateY(8px);
 }
 
+/*wj-portlet*/
+.wj-portlet {
+  -webkit-box-shadow: 0 1px 15px 1px rgba(69, 65, 78, 0.08);
+  -moz-box-shadow: 0 1px 15px 1px rgba(69, 65, 78, 0.08);
+  box-shadow: 0 1px 15px 1px rgba(69, 65, 78, 0.08);
+  background-color: #fff;
+  margin-bottom: 2.2rem;
+
+  .wj-portlet--head {
+    display: table;
+    width: 100%;
+    padding: 0 2.2rem;
+    height: 5.1rem;
+
+    .wj-portlet--head-caption {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: left;
+
+      .wj-portlet--head-title {
+        display: table;
+        table-layout: fixed;
+        height: 100%;
+
+        .wj-portlet--head-text {
+          display: table-cell;
+          vertical-align: middle;
+          font-size: 1.3rem;
+          font-weight: 500;
+          font-family: @fontFamily;
+
+          small {
+            display: inline-block;
+            padding-left: 5px;
+            font-size: 1rem;
+            font-weight: 300;
+            font-family: @fontFamily;
+          }
+        }
+      }
+    }
+  }
+
+  .wj-portlet--body {
+    padding: 2.2rem 2.2rem;
+  }
+
+  .wj-portlet--head {
+    border-bottom: 1px solid #ebedf2;
+
+    .wj-portlet--head-caption {
+      .wj-portlet--head-title {
+        .wj-portlet--head-text {
+          color: #575962;
+          small {
+            color: #afb2c1;
+          }
+        }
+      }
+    }
+  }
+
+  .wj-portlet--body {
+    color: #575962;
+  }
+}
