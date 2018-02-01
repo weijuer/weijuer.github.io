@@ -17,6 +17,9 @@ router.post('/blogList', (req, res) => {
   console.log('BlogList Time:', Date.now());
   console.log('get请求参数对象 :', req.query);
   console.log('post请求参数对象 :', req.body);
+  // 分页条件组装
+  let currentPage = req.body.currentPage;
+  let pageSize = req.body.pageSize;
 
   res.json({blog: blogList})
 });
@@ -47,7 +50,7 @@ router.get('/blog', function (req, res, next) {
   res.send('blog name:' + req.query.name); // blog name:xiaoming
 });
 
-// 匹配/api/blog?name=xiao ming， 获取post请求参数对象
+// 匹配/api/blog， 获取post请求参数对象
 router.post('/blog', function (req, res, next) {
   console.log('url参数对象 :', req.params);
   console.log('get请求参数对象 :', req.query);

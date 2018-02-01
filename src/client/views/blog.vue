@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-md-9">
 
-
         <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
           <div class="wj-portlet" v-for="item in searchBlog">
             <div class="wj-portlet--head">
