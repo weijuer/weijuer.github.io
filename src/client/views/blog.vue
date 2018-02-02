@@ -155,6 +155,8 @@
 
 <script>
   import Pagination from '../components/pagination'
+  // 加载模拟本地数据库数据
+  import webSQL from '../../server/config/websql'
 
   export default {
     name: 'blog',
@@ -175,6 +177,9 @@
     },
     // 当前实例创建完成就监听这个事件
     created () {
+      // 初始化本地数据库数据
+      webSQL.init()
+
       this.$root.Bus.$on('searchChange', (value) => {
         console.log('searchChange:==========>' + value)
         this.search = value
@@ -183,7 +188,10 @@
     mounted () {
       console.log('-----mounted')
       // 请求本地第一页的数据
-      this.get_local_data()
+      // this.get_local_data()
+
+      // 获取webSQL数据
+      this.get_webSQL_data()
     },
     computed: {
       searchBlog: function () {
@@ -223,11 +231,25 @@
           })
       },
 
+      // 1.2 请求本地webSQL数据
+      get_webSQL_data: function (params) {
+        // 1.1 分页参数
+        if (!params) {
+          params = {
+            currentPage: this.currentPage,
+            pageSize: this.pageSize
+          }
+        }
+        // 1.2 获取webSQL模拟数据
+        this.blogLists = webSQL.getBlogList()
+      },
+
       // 2.从page组件传递过来的当前page
       pageChange (page) {
         console.log('page:=====>' + page)
         this.currentPage = page
-        this.get_local_data()
+        // this.get_local_data()
+        this.get_webSQL_data()
       }
 
     },

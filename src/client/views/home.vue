@@ -10,8 +10,10 @@
         searchLists: []
       }
     },
+    created () {
+      console.log('-----created')
+    },
     methods: {
-
     }
   }
 </script>
