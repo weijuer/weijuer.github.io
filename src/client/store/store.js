@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     isToggle: false,
-    searchText: ''
+    searchText: '',
+    indexedDb: null
   },
   mutations: {
     searchToggle (state) {

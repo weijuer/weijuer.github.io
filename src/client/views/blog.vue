@@ -157,9 +157,14 @@
   import Pagination from '../components/pagination'
   // 加载模拟本地数据库数据
   import webSQL from '../../server/config/websql'
+  // 加载模拟indexedDB数据
+  import indexedDB from '../static/assets/global/data/indexDB'
+
+  import store from '../store/store'
 
   export default {
     name: 'blog',
+    store,
     components: {
       Pagination
     },
@@ -178,7 +183,9 @@
     // 当前实例创建完成就监听这个事件
     created () {
       // 初始化本地数据库数据
-      webSQL.init()
+      // webSQL.init()
+
+      indexedDB.init()
 
       this.$root.Bus.$on('searchChange', (value) => {
         console.log('searchChange:==========>' + value)
@@ -191,7 +198,10 @@
       // this.get_local_data()
 
       // 获取webSQL数据
-      this.get_webSQL_data()
+      // this.get_webSQL_data()
+
+      // 获取indexedDB数据
+      this.get_indexedDB_data()
     },
     computed: {
       searchBlog: function () {
@@ -242,6 +252,21 @@
         }
         // 1.2 获取webSQL模拟数据
         this.blogLists = webSQL.getBlogList()
+      },
+
+      // 1.3 请求本地indexedDB数据
+      get_indexedDB_data: function (params) {
+        // 1.1 分页参数
+        if (!params) {
+          params = {
+            currentPage: this.currentPage,
+            pageSize: this.pageSize
+          }
+        }
+
+        // 1.2 获取indexedDB模拟数据
+        this.blogLists = indexedDB.getAllData(this.$store.state.indexedDb, 'blog')
+        console.log(this.blogLists)
       },
 
       // 2.从page组件传递过来的当前page
