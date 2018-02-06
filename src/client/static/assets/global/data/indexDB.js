@@ -5,7 +5,7 @@ const blog = appData.blogList
 
 // 2.获取window.indexedDB对象
 const IndexedDB = {
-  _db: {
+  dataBase: {
     name: 'weijuer_db',
     version: 1,
     db: null,
@@ -16,41 +16,27 @@ const IndexedDB = {
   },
   indexedDB: window.indexedDB || window.webkitindexedDB,
   IDBKeyRange: window.IDBKeyRange || window.webkitIDBKeyRange, // 键范围
-  init: function (option) {
-    if (!option) {
-      option = IndexedDB._db
-    }
-
-    IndexedDB.openDB(option.name, option.version)
-
-    setTimeout(function () {
-      console.log('****************添加数据****************************')
-      IndexedDB.addData(option.db, option.objStore.name, blog)
-      // console.log('*******************获取数据1*************************')
-      // let temp = IndexedDB.getAllData(IndexedDB._db.db, IndexedDB._db.objStore.name)
-    }, 800)
-  },
   openDB: function (dbName, dbVersion, callback) {
-    // 建立或打开数据库，建立对象存储空间(ObjectStore)
+    // 1.建立或打开数据库，建立对象存储空间(ObjectStore)
     let self = this
     let version = dbVersion || 1
     let request = self.indexedDB.open(dbName, version)
     request.onerror = function (e) {
-      console.log(e.currentTarget.error.message)
+      console.log('建立并打开数据库出错:error===>' + e.currentTarget.error.message)
     }
     request.onsuccess = function (e) {
-      IndexedDB._db.db = e.target.result
-      console.log('成功建立并打开数据库:' + IndexedDB._db.name + ' version' + dbVersion)
+      IndexedDB.dataBase.db = e.target.result
+      console.log('成功建立并打开数据库:name===>' + IndexedDB.dataBase.name + ', version:' + dbVersion)
     }
     request.onupgradeneeded = function (e) {
       let db, transaction, store
       db = e.target.result
       transaction = e.target.transaction
 
-      if (!db.objectStoreNames.contains(IndexedDB._db.objStore.name)) {
+      if (!db.objectStoreNames.contains(IndexedDB.dataBase.objStore.name)) {
         // 没有该对象空间时创建该对象空间
-        store = db.createObjectStore(IndexedDB._db.objStore.name, {keyPath: IndexedDB._db.objStore.keypath})
-        console.log('成功建立对象存储空间：' + IndexedDB._db.objStore.name)
+        store = db.createObjectStore(IndexedDB.dataBase.objStore.name, {keyPath: IndexedDB.dataBase.objStore.keypath})
+        console.log('成功建立对象存储空间：' + IndexedDB.dataBase.objStore.name)
       }
     }
   },
@@ -77,7 +63,6 @@ const IndexedDB = {
       request = store.add(data[i])
       request.onerror = function () {
         console.error('add添加数据库中已有该数据')
-        return true
       }
       request.onsuccess = function () {
         console.log('add添加数据已存入数据库')
@@ -105,8 +90,8 @@ const IndexedDB = {
     // 根据存储空间的键找到对应数据
     let store = db.transaction(storeName, 'readwrite').objectStore(storeName)
     let request = store.get(key)
-    request.onerror = function () {
-      console.error('getDataByKey error')
+    request.onerror = function (e) {
+      console.error('getDataByKey error' + e.currentTarget.error.message)
     }
 
     request.onsuccess = function (e) {
@@ -116,23 +101,19 @@ const IndexedDB = {
     }
   },
 
-  getAllData: function (db, storeName) {
+  getAllData: function (db, storeName, callback) {
     // 根据存储空间的键找到对应数据
     let store = db.transaction(storeName, 'readwrite').objectStore(storeName)
     let request = store.getAll()
-    let result
-
-    request.onerror = function () {
-      console.error('getAllData error')
+    request.onerror = function (e) {
+      console.error('getAllData error' + e.currentTarget.error.message)
     }
 
     request.onsuccess = function (e) {
-      result = e.target.result
-      console.log('查找数据成功')
-      console.log(result)
+      let result = e.target.result
+      console.log('查找所有数据成功！result===>' + result)
+      callback(result)
     }
-
-    return result
   },
 
   deleteData: function (db, storeName, key) {

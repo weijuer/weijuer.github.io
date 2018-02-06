@@ -154,11 +154,12 @@
 </template>
 
 <script>
+  // 分页模块
   import Pagination from '../components/pagination'
   // 加载模拟本地数据库数据
   import webSQL from '../../server/config/websql'
   // 加载模拟indexedDB数据
-  import indexedDB from '../static/assets/global/data/indexDB'
+  import indexedDB from '../config/indexedDB'
 
   import store from '../store/store'
 
@@ -184,8 +185,6 @@
     created () {
       // 初始化本地数据库数据
       // webSQL.init()
-
-      indexedDB.init()
 
       this.$root.Bus.$on('searchChange', (value) => {
         console.log('searchChange:==========>' + value)
@@ -256,6 +255,8 @@
 
       // 1.3 请求本地indexedDB数据
       get_indexedDB_data: function (params) {
+        let self = this
+
         // 1.1 分页参数
         if (!params) {
           params = {
@@ -265,8 +266,10 @@
         }
 
         // 1.2 获取indexedDB模拟数据
-        this.blogLists = indexedDB.getAllData(this.$store.state.indexedDb, 'blog')
-        console.log(this.blogLists)
+        indexedDB.getAll(function (res) {
+          self.blogLists = res
+          console.log(self.blogLists)
+        })
       },
 
       // 2.从page组件传递过来的当前page

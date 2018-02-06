@@ -11,7 +11,7 @@
       }
     },
     created () {
-      console.log('-----created')
+      console.log('-----home created')
     },
     methods: {
     }
