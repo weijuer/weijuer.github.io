@@ -2,9 +2,11 @@
 import IndexedDB from '../static/assets/global/plugins/IndexedDB'
 
 // 2.加载本地数据blog.json文件
-const appData = require('../static/assets/global/data/blog.json')
+const blogData = require('../static/assets/global/data/blog.json')
+const timelineData = require('../static/assets/global/data/timeline.json')
 // 2.1 获取日志数据集合
-const blog = appData.blogList
+const blog = blogData.blogList
+const timeline = timelineData.timeline
 
 const addData = () => {
   // 4.插入数据
