@@ -159,7 +159,7 @@
   // 加载模拟本地数据库数据
   import webSQL from '../../server/config/websql'
   // 加载模拟indexedDB数据
-  import indexedDB from '../config/indexedDB'
+  import blogDB from '../config/indexedDB'
 
   import store from '../store/store'
 
@@ -266,7 +266,7 @@
         }
 
         // 1.2 获取indexedDB模拟数据
-        indexedDB.getAll(function (res) {
+        blogDB.getAll(function (res) {
           self.blogLists = res
           console.log(self.blogLists)
         })

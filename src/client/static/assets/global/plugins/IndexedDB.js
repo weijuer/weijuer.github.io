@@ -1,28 +1,40 @@
 class IndexedDB {
+
   /**
    * IndexedDB构造器
    * @param option 参数
+   * @param callback
    */
   constructor (option, callback) {
-    this.storeName = option.storeName
+    const _this = this
+    _this.storeName = option.storeName
     const indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB
-    const request = indexedDB.open(option.dbName, option.version)
 
-    request.onsuccess = e => {
-      this.db = e.target.result
-      console.log('Init indexedDB successfully')
-      callback(this.db)
-    }
-    request.onupgradeneeded = e => {
-      this.db = e.target.result
-      if (!this.db.objectStoreNames.contains(option.storeName)) {
-        this.store = this.db.createObjectStore(option.storeName)
+    // 返回Promise实例对象
+    return new Promise( (resolve, reject) => {
+
+      const request = indexedDB.open(option.dbName, option.version)
+
+      request.onsuccess = e => {
+        _this.db = e.target.result
+        console.log('Init indexedDB successfully')
+        //callback(this.db)
+        resolve(_this)
       }
-      console.log('DB version changed, db version: ', this.db.version)
-    }
-    request.onerror = e => {
-      console.info('Can not open indexedDB', e)
-    }
+      request.onupgradeneeded = e => {
+        _this.db = e.target.result
+        if (!_this.db.objectStoreNames.contains(option.storeName)) {
+          _this.store = _this.db.createObjectStore(option.storeName)
+        }
+        console.log('DB version changed, db version: ', _this.db.version)
+      }
+      request.onerror = e => {
+        console.info('Can not open indexedDB', e)
+        reject(e)
+      }
+
+    })
+
   }
 
   /**
@@ -84,6 +96,16 @@ class IndexedDB {
       request.onerror = e => {
         console.info('Can not add value', e)
       }
+    }
+  }
+
+  /**
+   * 根据文件数据添加多条记录
+   * @param dataArr
+   */
+  insertFileData (dataArr) {
+    for (let i = 0; i < dataArr.length; i++) {
+      this.set(dataArr[i], i + 1)
     }
   }
 

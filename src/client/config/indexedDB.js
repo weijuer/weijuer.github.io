@@ -8,18 +8,23 @@ const timelineData = require('../static/assets/global/data/timeline.json')
 const blog = blogData.blogList
 const timeline = timelineData.timeline
 
-const addData = () => {
-  // 4.插入数据
-  for (let i = 0; i < blog.length; i++) {
-    indexedDB.set(blog[i], i + 1)
+// 2.2 插入数据
+const addData = (dataArr) => {
+  for (let i = 0; i < dataArr.length; i++) {
+    this.set(dataArr[i], i + 1)
   }
 }
 
-// 3.实例化IndexedDB对象
-const indexedDB = new IndexedDB({
+// 3.实例化blogDB对象
+export const blogDB = new IndexedDB({
   dbName: 'weijuer_db',
   storeName: 'blog',
   version: 1
-}, addData)
+}, addData(blog))
 
-export default indexedDB
+// 4.实例化timelineDB对象
+export const timelineDB = new IndexedDB({
+  dbName: 'weijuer_db',
+  storeName: 'blog',
+  version: 1
+}, addData(timeline))
