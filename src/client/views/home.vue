@@ -1,47 +1,14 @@
 <template>
   <div class="wj-timeline wj-timeline--fixed">
     <div class="wj-timeline__items">
-      <div class="wj-timeline__item">
-        <div class="wj-timeline__item-time">11:35 AM</div>
+      <div class="wj-timeline__item" v-for="item in timeline">
+        <div class="wj-timeline__item-time">{{ item.date }}</div>
         <div class="wj-timeline__item-content">
           <div class="wj-timeline__item-title">
-            Users Joined Today
+            {{ item.title }}
           </div>
           <div class="wj-timeline__item-body">
-            <p>测试</p>
-          </div>
-        </div>
-      </div>
-      <div class="wj-timeline__item">
-        <div class="wj-timeline__item-time">11:35 AM</div>
-        <div class="wj-timeline__item-content">
-          <div class="wj-timeline__item-title">
-            Users Joined Today
-          </div>
-          <div class="wj-timeline__item-body">
-            <p>测试</p>
-          </div>
-        </div>
-      </div>
-      <div class="wj-timeline__item">
-        <div class="wj-timeline__item-time">11:35 AM</div>
-        <div class="wj-timeline__item-content">
-          <div class="wj-timeline__item-title">
-            Users Joined Today
-          </div>
-          <div class="wj-timeline__item-body">
-            <p>测试</p>
-          </div>
-        </div>
-      </div>
-      <div class="wj-timeline__item">
-        <div class="wj-timeline__item-time">11:35 AM</div>
-        <div class="wj-timeline__item-content">
-          <div class="wj-timeline__item-title">
-            Users Joined Today
-          </div>
-          <div class="wj-timeline__item-body">
-            <p>测试</p>
+            <p>{{ item.description }}</p>
           </div>
         </div>
       </div>
@@ -56,13 +23,6 @@
   // 2.加载本地数据blog.json文件
   const timelineData = require('../static/assets/global/data/timeline.json')
 
-  // 2.初始化timelineDB
-  const timeline = new IndexedDB({
-    dbName: 'weijuer_db',
-    storeName: 'timeline',
-    version: 1
-  }).then((db)=>{db.insertFileData(timelineData.timeline)})
-
   export default {
     name: 'index',
     data () {
@@ -71,8 +31,7 @@
       }
     },
     beforeCreate () {
-
-      console.log('beforeCreate=====>');
+      console.log('beforeCreate=====>')
     },
     created () {
       console.log('-----home created')
@@ -95,12 +54,23 @@
           }
         }
 
-        // 1.2 获取indexedDB模拟数据
-        timeline.getAll(function (res) {
-          self.timeline = res
-          console.log(self.timeline)
+        // 2.初始化timelineDB
+        new IndexedDB({
+          dbName: 'weijuer_db',
+          storeName: 'timeline',
+          dbVersion: 1
+        }).then((db) => {
+          // 2.1 注入数据库
+          db.insertFileData(timelineData.timeline)
+
+          // 2.2 获取indexedDB模拟数据
+          db.getAll().then((res) => {
+            self.timeline = res
+          })
+        }).catch((error) => {
+          console.info('Can not open indexedDB', error)
         })
-      },
+      }
     }
   }
 </script>
