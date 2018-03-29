@@ -169,7 +169,7 @@
     components: {
       Pagination
     },
-    data () {
+    data() {
       return {
         search: '',
         pageSize: 4, // 每页显示4条数据
@@ -182,7 +182,7 @@
       }
     },
     // 当前实例创建完成就监听这个事件
-    created () {
+    created() {
       // 初始化本地数据库数据
       // webSQL.init()
 
@@ -191,7 +191,7 @@
         this.search = value
       })
     },
-    mounted () {
+    mounted() {
       console.log('-----mounted')
       // 请求本地第一页的数据
       // this.get_local_data()
@@ -273,7 +273,7 @@
       },
 
       // 2.从page组件传递过来的当前page
-      pageChange (page) {
+      pageChange(page) {
         console.log('page:=====>' + page)
         this.currentPage = page
         // this.get_local_data()
@@ -282,7 +282,7 @@
 
     },
     // 在组件销毁时别忘了解除事件绑定
-    beforeDestroy () {
+    beforeDestroy() {
       this.$root.Bus.$off('searchChange')
     }
   }

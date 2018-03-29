@@ -131,14 +131,13 @@
 <script>
   export default {
     name: 'about',
-    data () {
+    data() {
       return {
         aboutMe: './asserts/global/images/blog/bg-blog-1.jpg'
       }
     },
-    mounted () {
+    mounted() {
     },
-    methods: {
-    }
+    methods: {}
   }
 </script>

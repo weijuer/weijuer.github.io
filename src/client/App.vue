@@ -14,7 +14,7 @@
 
   export default {
     name: 'app',
-    data () {
+    data() {
       return {
         isPageScroll: false
       }
@@ -26,7 +26,7 @@
       go2Top
     },
     methods: {
-      pageScrolled () {
+      pageScrolled() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         let offsetTop = document.querySelector('.wj-navbar').offsetTop
         this.isPageScroll = scrollTop > offsetTop

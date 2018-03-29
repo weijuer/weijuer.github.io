@@ -18,6 +18,8 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // 关闭语句强制分号结尾
+    "semi": [0],
     // 去除function空格校验
     "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
   }

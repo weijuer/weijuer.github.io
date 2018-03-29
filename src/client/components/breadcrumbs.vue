@@ -15,17 +15,17 @@
 <script>
   export default {
     name: 'breadcrumbs',
-    created () {
+    created() {
       this.getBreadcrumb()
     },
-    data () {
+    data() {
       return {
         subTitle: '', // 页面标题
         breadcrumbs: [] // 路由集合
       }
     },
     methods: {
-      getBreadcrumb () {
+      getBreadcrumb() {
         this.breadcrumbs = this.$route.matched
         this.$route.matched.forEach((item, index) => {
           // (item.name === 'home') ? item.path = '/' : (this.$route.path === item.path) ? this.subTitle = item.name : ''
@@ -33,7 +33,7 @@
       }
     },
     watch: {
-      $route () {
+      $route() {
         this.getBreadcrumb()
       }
     }

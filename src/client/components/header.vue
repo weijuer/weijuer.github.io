@@ -117,10 +117,11 @@
 
 <script>
   import store from '../store/store'
+
   export default {
     name: 'page-header',
     store,
-    data () {
+    data() {
       return {
         search: '',
         logo: './asserts/global/images/logo-white.svg',
@@ -138,12 +139,12 @@
         ]
       }
     },
-    mounted () {
+    mounted() {
       console.log('this.$i18n.locale ===========>' + this.$i18n.locale)
     },
     methods: {
       // 1.语言切换
-      changeLang (index) {
+      changeLang(index) {
         // 1.1 切换语言名称
         this.lang.active = this.lang.langList[index].name
         // 1.2 设置$i18n.locale属性值
@@ -151,7 +152,7 @@
         console.log('locale ===========>' + this.$i18n.locale)
       },
       // 3.搜索
-      searchChange () {
+      searchChange() {
         this.$root.Bus.$emit('searchChange', this.search)
       }
     }

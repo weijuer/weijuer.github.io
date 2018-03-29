@@ -7,7 +7,7 @@
 <script>
   export default {
     name: 'go-top',
-    data () {
+    data() {
       return {
         top: '去顶部',
         pageOnScroll: false,
@@ -15,13 +15,13 @@
       }
     },
     props: ['isScroll'],
-    mounted () {
+    mounted() {
       // 1.绑定页面监听滚动事件
       window.addEventListener('scroll', this.pageScroll)
     },
     methods: {
       // 2.滚动事件处理
-      pageScroll () {
+      pageScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         let offsetTop = document.querySelector('.wj-navbar').offsetTop
         this.pageOnScroll = scrollTop > offsetTop
@@ -30,7 +30,7 @@
         this.$emit('pageScroll')
       },
       // 4.回到顶部
-      backToTop () {
+      backToTop() {
         // 4.1 scrollTo方法
         // window.scrollTo(0,0)
 
@@ -44,7 +44,7 @@
         // window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0
       }
     },
-    destroyed () {
+    destroyed() {
       // 3.去除页面监听事件
       window.removeEventListener('scroll', this.handleScroll)
     }

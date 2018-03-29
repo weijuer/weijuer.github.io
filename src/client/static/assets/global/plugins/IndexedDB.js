@@ -18,14 +18,12 @@ export default class IndexedDB {
     this._iDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
   }
 
-
   /**
    * 浏览器是否支持indexedDB,IDBTransaction,IDBKeyRange,Promise
    */
   static isSuport() {
     return !!(this._iDB && this._iDBTrans && this._iDBKeyRange && Promise);
   }
-
 
   /**
    * 获得事务对象
@@ -54,7 +52,7 @@ export default class IndexedDB {
         // 游标
         if (['openCursor', 'openKeyCursor'].indexOf(method) >= 0 && suc) {
           req.onsuccess = function (event) {
-            suc(event)
+            //suc(event)
           };
           trans.oncomplete = function () {
             return resolve()
