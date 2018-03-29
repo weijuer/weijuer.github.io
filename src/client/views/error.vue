@@ -5,7 +5,7 @@
 <script>
   export default {
     name: 'error',
-    data () {
+    data() {
       return {
         message: '404'
       }

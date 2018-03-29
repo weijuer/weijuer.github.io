@@ -1,42 +1,38 @@
-const _indexedDB_ = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB
-const _dBTransaction_ = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction
-const _dBKeyRange_ = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange
-
-class IndexedDB {
+export default class IndexedDB {
   /**
    * IndexedDB构造器
-   * @param option 参数
+   * @param dbName 数据库名称
    */
-  constructor (option) {
-
-    // 实例
-    this._instance = null
-    // DB
-    this._db = null
-    // dbName
-    this._dbName = option.dbName
-    // store
-    this._store = null
+  constructor(dbName) {
+    // iDB 实例
+    this._db = null;
+    // dbName-（iDB数据库名）
+    this._dbName = dbName;
     // storeName
-    this._storeName = option.storeName
-    // 初始化
-    return this._dbInit(option)
+    this._storeName = null;
+    // 数据库对象
+    this._iDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+    // 事务对象
+    this._iDBTrans = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+    // 游标范围
+    this._iDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
   }
+
+
+  /**
+   * 浏览器是否支持indexedDB,IDBTransaction,IDBKeyRange,Promise
+   */
+  static isSuport() {
+    return !!(this._iDB && this._iDBTrans && this._iDBKeyRange && Promise);
+  }
+
 
   /**
    * 获得事务对象
    * @returns {*|void|IDBTransaction}
    */
-  get transaction () {
-    return this._db.transaction([this._storeName], _dBTransaction_.READ_WRITE || 'readwrite')
-  }
-
-  /**
-   * 获得事务对象
-   * @returns {*|void|IDBTransaction}
-   */
-  get request () {
-    return this.transaction.objectStore(this._storeName)[method](...args)
+  get transaction() {
+    return this._db.transaction([this._storeName], this._iDBTrans.READ_WRITE || 'readwrite');
   }
 
   /**
@@ -48,291 +44,121 @@ class IndexedDB {
    */
   _toPromise(method, ...args) {
     try {
+
       return new Promise((resolve, reject) => {
         // 获得事务
-        let trans = this.transaction
+        let trans = this.transaction;
         // 获得请求
-        let req = trans.objectStore(this._storeName)[method](...args)
-        // 请求成功
-        req.onsuccess = event => resolve(event.target.result)
+        let req = trans.objectStore(this._storeName)[method](...args);
+
+        // 游标
+        if (['openCursor', 'openKeyCursor'].indexOf(method) >= 0 && suc) {
+          req.onsuccess = function (event) {
+            suc(event)
+          };
+          trans.oncomplete = function () {
+            return resolve()
+          };
+          trans.onsuccess = function () {
+            return resolve()
+          };
+        } else {
+          // 如果是onsuccess 就返回，只表示请求成功，当大文件存储的时候，并不是已经写入完毕才返回
+          // req.onsuccess = event => resolve(event.target.result)
+          trans.oncomplete = function () {
+            return resolve(req.result)
+          };
+          trans.onsuccess = function () {
+            return resolve(req.result)
+          };
+        }
+
+        // 请求阻塞
+        req.onblocked = () => reject(req.error);
         // 请求失败
-        req.onerror = event => reject(req.error)
+        req.onerror = () => reject(req.error);
         // 事务失败
-        trans.onerror = event => reject(trans.error)
-      })
+        trans.onerror = () => reject(trans.error);
+      });
     } catch (err) {
-      Promise.reject(err)
+      return Promise.reject(err);
     }
   }
 
   /**
-   * 初始化
-   * @param option
+   * 打开数据库
+   * @param storeName
    * @returns {Promise<any>}
-   * @private
    */
-  _dbInit (option) {
-    return this.getInstance(option).then( (db) => {
-      this._db = db
-      return this
-    })
+  open(storeName) {
+    return new Promise((resolve, reject) => {
+      // A.关闭数据库连接
+      this.close();
+      // B.打开新的数据库连接
+      const request = this._iDB.open(this._dbName, Date.now());
+
+      request.onerror = () => {
+        this._db = null;
+        reject(request.error);
+      };
+
+      request.onsuccess = () => {
+        if (storeName && !request.result.objectStoreNames.contains(storeName)) {
+          reject(`IndexedDB's objectStore '${storeName}' isn't existed.`);
+        } else {
+          this._db = request.result;
+          resolve(request.result);
+        }
+      };
+
+      request.onupgradeneeded = event => {
+        event.target.result.createObjectStore(storeName)
+      }
+    });
   }
 
   /**
-   * 获取实例
-   * @param option
-   * @returns {Promise<any>}
+   * 关闭数据库
    */
-  getInstance (option) {
-    if (this._instance) {
-      Promise.resolve(this._instance)
+  close() {
+    if (this._db) {
+      this._db.close();
+      this._db = null;
     }
+  }
+
+  insert(storeName, data) {
+    if (!data || data.length === 0) {
+      return Promise.resolve();
+    }
+
+    let transaction = this.db.transaction(storeName, 'readwrite');
+    let store = transaction.objectStore(storeName);
 
     return new Promise((resolve, reject) => {
-      let request = _indexedDB_.open(this._dbName, option.dbVersion)
 
-      // 执行成功
-      request.onsuccess = event => {
-        this._db = request.result
-        console.log('Init indexedDB successfully')
-        return resolve(this._db)
-      }
+      // 插入
+      data.forEach(row => {
+        store.add(row);
+      });
 
-      // 设置升级操作
-      request.onupgradeneeded = event => {
-        this._db = request.result || event.target.result
-        if (!this._db.objectStoreNames.contains(option.storeName)) {
-          this._store = this._db.createObjectStore(option.storeName)
-        }
-        console.log('DB version changed, db version: ', this._db.version)
-      }
+      transaction.oncomplete = resolve;
+      transaction.onerror = reject;
+    }).catch((error) => {
+      console.error('添加' + storeName + '表数据失败', error);
+      return Promise.reject(error);
+    });
 
-      // 执行失败
-      request.onerror = event => {
-        console.info('Can not open indexedDB', event)
-        return reject(event)
-      }
-
-    })
   }
 
   /**
    * 获取文件
    * @param path 路径
    */
-  getFile (path) {
-    return this._toPromise('get', path)
+  getFile(path) {
+    return this._toPromise('get', path);
   }
 
-  /**
-   * 写入文件
-   * @param {*String} path 路径
-   * @param {*String|Blob} content 内容
-   * @param {*String} type
-   * @param {*String} append 暂无用
-   */
-  async writeToFile(path, content, type = null, append = false) {
-    let data = content
-    // 不是blob，转为blob
-    if (content instanceof ArrayBuffer) {
-      data = new Blob([new Uint8Array(content)], { type })
-    } else if (typeof content === 'string') {
-      data = new Blob([content], { type: 'text/plain' })
-    } else {
-      data = new Blob([content])
-    }
-    await this._toPromise('put', data, path)
-    return this.getFile(path)
-
-  }
-
-  readEntries (path = '') {
-    if (!path) {
-      return this.readAllEntries()
-    }
-    return this._toPromise('getAllKeys', IDBKeyRange.lowerBound(path)).then(r => r.filter(p => {
-      // 以当前路径开头 && （截断当前为空字符串，或者截断后以/开头）
-      return p.indexOf(path) === 0 && (p.substring(path.length) === '' || p.substring(path.length).indexOf('/') === 0)
-    }))
-  }
-
-  readAllEntries () {
-    return this._toPromise('getAllKeys')
-  }
-
-  ensureDirectory (directory = '') {
-    return Promise.resolve(directory)
-  }
-
-  clear() {
-    return this._toPromise('clear').then(r => true)
-  }
-
-  /**
-   * 加工处理path，比如特殊字符，比如以/开头等等
-   * @param {*String} path
-   */
-  _handlePath (path) {
-    return path
-  }
-
-  _open (option) {
-
-    const _this = this
-
-    // 返回Promise实例对象
-    return new Promise((resolve, reject) => {
-      const request = _indexedDB_.open(option.dbName, option.version)
-
-      // indexedDB执行成功
-      request.onsuccess = e => {
-        _this.db = e.target.result
-        console.log('Init indexedDB successfully')
-        resolve(e.target.result)
-      }
-
-      // 设置升级操作
-      request.onupgradeneeded = e => {
-        _this.db = e.target.result
-        if (!_this.db.objectStoreNames.contains(option.storeName)) {
-          _this.store = _this.db.createObjectStore(option.storeName)
-        }
-        console.log('DB version changed, db version: ', _this.db.version)
-      }
-
-      // indexedDB执行失败
-      request.onerror = e => {
-        console.info('Can not open indexedDB', e)
-        reject(e)
-      }
-    })
-  }
-
-  /**
-   * 根据key获取单条记录信息
-   * @param key
-   * @param callback
-   */
-  get (key) {
-    const transaction = this.transaction
-    const objectStore = transaction.objectStore(this._storeName)
-    const request = objectStore.get(key)
-
-    // 返回Promise实例对象
-    return new Promise((resolve, reject) => {
-
-      request.onsuccess = event => {
-        resolve(event.target.result)
-      }
-      request.onerror = event => {
-        console.info('Can not get value', event)
-        reject(event)
-      }
-    })
-  }
-
-  /**
-   * 获取当前实例存储对象的所有数据集合
-   * @param callback
-   */
-  getAll () {
-    const transaction = this.transaction
-    const objectStore = transaction.objectStore(this._storeName)
-
-    // 返回Promise实例对象
-    return new Promise((resolve, reject) => {
-
-      const request = objectStore.getAll()
-
-      request.onerror = e => {
-        console.info('Can not get all data', e)
-        reject(e)
-      }
-      request.onsuccess = e => {
-        console.info('Get all data success! dataList.length:===>', e.target.result.length)
-        resolve(e.target.result)
-      }
-    })
-  }
-
-  /**
-   * 插入数据
-   * @param value
-   * @param key
-   */
-  set (value, key) {
-    let oldValue
-
-    if (key) {
-      this.get(key).then((res) =>{
-        oldValue = res
-
-        if (oldValue) {
-          console.info('You should use function update')
-        } else {
-          const transaction = this.transaction
-          const objectStore = transaction.objectStore(this._storeName)
-          const request = objectStore.add(value, key)
-
-          request.onerror = e => {
-            console.info('Can not add value', e)
-          }
-        }
-
-      }).catch((error)=>{
-
-      })
-    }
-  }
-
-  /**
-   * 根据文件数据添加多条记录
-   * @param dataArr
-   */
-  insertFileData (dataArr) {
-    for (let i = 0; i < dataArr.length; i++) {
-      this.set(dataArr[i], i + 1)
-    }
-  }
-
-  /**
-   * 根据key更新单条记录
-   * @param newValue
-   * @param key
-   */
-  update (newValue, key) {
-    const oldValue = this.get(key)
-
-    if (!oldValue) {
-      console.info('You should use function set')
-    } else {
-      const transaction = this.transaction
-      const objectStore = transaction.objectStore(this._storeName)
-      const request = objectStore.put(newValue, key)
-
-      request.onerror = e => {
-        console.info('Can not update value', e)
-      }
-    }
-  }
-
-  /**
-   * 根据key删除某条记录
-   * @param key
-   */
-  remove (key) {
-    const request = this.transaction.objectStore(this._storeName).delete(key)
-    request.onerror = e => {
-      console.info('Can not remove value', e)
-    }
-  }
-
-  /**
-   * 关闭数据库
-   */
-  close () {
-    this._db.close()
-  }
 }
 
-export default IndexedDB
+

@@ -25,7 +25,7 @@
 
   export default {
     name: 'index',
-    data () {
+    data() {
       return {
         timeline: []
       }
@@ -33,10 +33,10 @@
     beforeCreate () {
       console.log('beforeCreate=====>')
     },
-    created () {
+    created() {
       console.log('-----home created')
     },
-    mounted () {
+    mounted() {
       console.log('-----mounted')
 
       // 获取indexedDB数据
@@ -55,21 +55,10 @@
         }
 
         // 2.初始化timelineDB
-        new IndexedDB({
-          dbName: 'weijuer_db',
-          storeName: 'timeline',
-          dbVersion: 1
-        }).then((db) => {
-          // 2.1 注入数据库
-          db.insertFileData(timelineData.timeline)
+        const db = new IndexedDB('weijuer_db');
+        db.open('timeline');
+        console.log(db);
 
-          // 2.2 获取indexedDB模拟数据
-          db.getAll().then((res) => {
-            self.timeline = res
-          })
-        }).catch((error) => {
-          console.info('Can not open indexedDB', error)
-        })
       }
     }
   }

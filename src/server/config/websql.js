@@ -21,7 +21,8 @@ const webSQL = {
     })
   },
   transaction: function (fn) {
-    webSQL.db.transaction(function (tx) {})
+    webSQL.db.transaction(function (tx) {
+    })
   },
   mockData: function () {
     webSQL.db.transaction(function (tx) {
