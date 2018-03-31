@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    dbInit: false,
     isToggle: false,
     searchText: '',
     indexedDb: null

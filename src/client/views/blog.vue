@@ -4,6 +4,7 @@
       <div class="col-md-9">
 
         <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
+
           <div class="wj-portlet" v-for="item in searchBlog">
             <div class="wj-portlet--head">
               <div class="wj-portlet--head-caption">
@@ -25,9 +26,18 @@
               <a :href="item.url">read more...</a>
             </div>
           </div>
+
+          <!--分页组件-->
+          <pagination
+            :page-index="currentPage"
+            :page-size="pageSize"
+            :total="count"
+            @change="pageChange">
+          </pagination>
+
         </div>
 
-        <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
+        <div class="wj-content-blog-post-1-list wj-hide" v-if="searchBlog.length > 0">
 
           <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchBlog">
 
@@ -159,7 +169,7 @@
   // 加载模拟本地数据库数据
   import webSQL from '../../server/config/websql'
   // 加载模拟indexedDB数据
-  import blogDB from '../config/indexedDB'
+  import db from '../config/indexedDB'
 
   import store from '../store/store'
 
@@ -187,12 +197,12 @@
       // webSQL.init()
 
       this.$root.Bus.$on('searchChange', (value) => {
-        console.log('searchChange:==========>' + value)
+        console.log('searchChange:==========>' + value);
         this.search = value
       })
     },
     mounted() {
-      console.log('-----mounted')
+      console.log('-----mounted');
       // 请求本地第一页的数据
       // this.get_local_data()
 
@@ -255,29 +265,25 @@
 
       // 1.3 请求本地indexedDB数据
       get_indexedDB_data: function (params) {
-        let self = this
-
         // 1.1 分页参数
         if (!params) {
-          params = {
-            currentPage: this.currentPage,
-            pageSize: this.pageSize
-          }
+          params = {storeName: 'blog', index: 'title', page: this.currentPage, num: this.pageSize}
         }
 
         // 1.2 获取indexedDB模拟数据
-        blogDB.getAll(function (res) {
-          self.blogLists = res
-          console.log(self.blogLists)
-        })
+        db.findPage(params).then((res) => {
+          this.blogLists = res.list;
+          this.count = res.total;
+          console.log(res);
+        });
       },
 
       // 2.从page组件传递过来的当前page
       pageChange(page) {
         console.log('page:=====>' + page)
-        this.currentPage = page
+        this.currentPage = page;
         // this.get_local_data()
-        this.get_webSQL_data()
+        this.get_indexedDB_data()
       }
 
     },

@@ -163,7 +163,9 @@
 
   .wj-content-pagination > .wj-pager-item {
     display: inline-block;
+    margin-right: 6px;
     list-style: none;
+    float: left;
   }
 
   .wj-content-pagination > .wj-pager-item > span,

@@ -19,18 +19,17 @@
 
 <script>
   // 1.加载插件
-  import IndexedDB from '../static/assets/global/plugins/IndexedDB'
-  // 2.加载本地数据blog.json文件
-  const timelineData = require('../static/assets/global/data/timeline.json')
+  import db from '../config/indexedDB'
 
   export default {
     name: 'index',
     data() {
       return {
-        timeline: []
+        timeline: [],
+        dbInit: false
       }
     },
-    beforeCreate () {
+    beforeCreate() {
       console.log('beforeCreate=====>')
     },
     created() {
@@ -44,8 +43,6 @@
     },
     methods: {
       get_indexedDB_data: function (params) {
-        let self = this
-
         // 1.1 分页参数
         if (!params) {
           params = {
@@ -55,10 +52,10 @@
         }
 
         // 2.初始化timelineDB
-        const db = new IndexedDB('weijuer_db');
-        db.open('timeline');
-        console.log(db);
-
+        db.find('timeline', 'title').then((res) => {
+          this.timeline = res;
+          console.log(res);
+        });
       }
     }
   }
