@@ -5,7 +5,9 @@
     </div>-->
 
     <div class="wj-content-box wj-size-md">
-        <router-view class="app-content-view" keep-alive transition transition-mode="slide" />
+      <transition name="slide-fade" mode="out-in">
+        <router-view class="app-content-view" />
+      </transition>
     </div>
   </div>
 </template>
@@ -20,3 +22,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  /* 可以设置不同的进入和离开动画 */
+  .slide-fade-enter-active {
+    transition: all .2s ease-in;
+  }
+  .slide-fade-leave-active {
+    transition: all .2s ease-out;
+  }
+  .slide-fade-enter, .slide-fade-leave-to  {
+    transform: translateX(6px);
+    opacity: 0;
+  }
+</style>

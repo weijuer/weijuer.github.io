@@ -105,7 +105,8 @@ export default class IndexedDB {
 
       request.onsuccess = () => {
         if (storeName && !request.result.objectStoreNames.contains(storeName)) {
-          reject(`IndexedDB's objectStore '${storeName}' isn't existed.`);
+          // reject(`IndexedDB's objectStore '${storeName}' isn't existed.`);
+          reject(new WError({code: 1001, message: `IndexedDB's objectStore '${storeName}' isn't existed.`}));
         } else {
           this._db = request.result;
           console.log('连接数据库成功');
@@ -174,7 +175,8 @@ export default class IndexedDB {
   addStore(storeName, index, replace = false, keyPath) {
     return new Promise(async (resolve, reject) => {
       if (!storeName) {
-        reject(`The first param can't be empty!`)
+        // reject(`The first param can't be empty!`)
+        reject(new WError({code: 1002, message: `The first param can't be empty!`}));
       }
       // 关闭上次连接
       this.close();
@@ -332,7 +334,8 @@ export default class IndexedDB {
         page = parseInt(page);
         num = parseInt(num);
         if (isNaN(page) || isNaN(num) || page < 1 || num < 1) {
-          reject('The page and num parameters must be number and greater than 0');
+          // reject('The page and num parameters must be number and greater than 0');
+          reject(new WError({code: 1002, message: 'The page and num parameters must be number and greater than 0'}));
         }
         const db = await this._open(storeName);
         const transaction = db.transaction([storeName], 'readonly');
@@ -394,7 +397,8 @@ export default class IndexedDB {
         if (Object.prototype.toString.call(val) === '[object Object]' && Reflect.has(val, objectStore.keyPath)) {
           request = objectStore.put(val);
         } else {
-          reject(`The object store uses in-line keys and the key parameter was provided`);
+          // reject(`The object store uses in-line keys and the key parameter was provided`);
+          reject(new WError({code: 1003, message: `The object store uses in-line keys and the key parameter was provided`}));
         }
       }
       request.onsuccess = (e) => {

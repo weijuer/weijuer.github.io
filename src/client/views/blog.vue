@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container blog">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-9 blog-content">
 
-        <div class="wj-content-blog-post-1-list" v-if="searchBlog.length > 0">
+        <div class="blog-list" v-if="searchBlog.length > 0">
 
           <div class="wj-portlet" v-for="item in searchBlog">
             <div class="wj-portlet--head">
@@ -85,9 +85,9 @@
         <div class="wj-content-blog-post-1-list" v-else>暂无数据</div>
       </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 blog-side">
 
-      <form action="#" method="post">
+      <form class="blog-side-form" action="#" method="post">
         <div class="input-group">
           <input type="text" class="form-control wj-square wj-theme-border" v-model="search" :placeholder="$t('blog.sideSearch')">
           <span class="input-group-btn">
@@ -96,18 +96,19 @@
         </div>
       </form>
 
-      <div class="wj-content-ver-nav">
-        <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
-          <h3 class="wj-font-bold wj-font-uppercase">{{ $t('blog.categories') }}</h3>
-          <div class="wj-line-left wj-theme-bg"></div>
+      <div class="wj-panel">
+        <div class="wj-panel-header">
+          <h3 class="wj-font-bold">{{ $t('blog.categories') }}</h3>
         </div>
-        <ul class="wj-menu wj-arrow-dot1 wj-theme">
-          <li><a href="#">Web Development(2)</a></li>
-          <li><a href="#">UX Design(12)</a></li>
-          <li><a href="#">Mobile Development(5)</a></li>
-          <li><a href="#">JavaScript(11)</a></li>
-          <li><a href="#">Web Design(18)</a></li>
-        </ul>
+        <div class="wj-panel-body">
+          <ul class="wj-menu">
+            <li><a href="#">Web Development(2)</a></li>
+            <li><a href="#">UX Design(12)</a></li>
+            <li><a href="#">Mobile Development(5)</a></li>
+            <li><a href="#">JavaScript(11)</a></li>
+            <li><a href="#">Web Design(18)</a></li>
+          </ul>
+        </div>
       </div>
 
       <div class="wj-content-tab-1 wj-theme wj-margin-t-30">

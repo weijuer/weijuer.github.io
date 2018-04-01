@@ -9,7 +9,7 @@
 <script>
   // 引入公共布局组件
   import pageHeader from './components/header'
-  import pageContent from './components/Content'
+  import pageContent from './components/content'
   import go2Top from './components/go2Top'
 
   export default {
