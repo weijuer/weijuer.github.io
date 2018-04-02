@@ -1,11 +1,9 @@
 export class WError {
-  constructor({ code = 999, message = '未知错误' } = { code: 999, message: '未知错误' }) {
+  constructor({ code = 999, message = '未知错误' }) {
     this.code = code;
     this.message = message;
   }
 }
-
-export const NOT_SUPPORTED = new Error('So Low, So Young!')
 
 export default class IndexedDB {
   /**
@@ -53,7 +51,7 @@ export default class IndexedDB {
   _toPromise(storeName, method, ...args) {
     try {
       // A.浏览器是否支持
-      if (this.isSupported) return Promise.reject(NOT_SUPPORTED);
+      if (this.isSupported) return Promise.reject(new WError({code: 998, message: 'So Low, So Young!'}));
 
       return new Promise(async (resolve, reject) => {
         // B.获取数据库实例
