@@ -85,82 +85,82 @@
         <div class="wj-content-blog-post-1-list" v-else>暂无数据</div>
       </div>
 
-    <div class="col-md-3 blog-side">
+      <div class="col-md-3 blog-side">
 
-      <form class="blog-side-form" action="#" method="post">
-        <div class="input-group">
-          <input type="text" class="form-control wj-square wj-theme-border" v-model="search" :placeholder="$t('blog.sideSearch')">
-          <span class="input-group-btn">
-            <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">{{ $t('common.search') }}</button>
-          </span>
-        </div>
-      </form>
+        <form class="blog-side-form" action="#" method="post">
+          <div class="input-group">
+            <input type="text" class="form-control wj-square wj-theme-border" v-model="search" :placeholder="$t('blog.sideSearch')">
+            <span class="input-group-btn">
+              <button class="btn wj-theme-btn wj-theme-border wj-btn-square" type="button">{{ $t('common.search') }}</button>
+            </span>
+          </div>
+        </form>
 
-      <div class="wj-panel">
-        <div class="wj-panel-header">
-          <h3 class="wj-font-bold">{{ $t('blog.categories') }}</h3>
+        <div class="wj-panel">
+          <div class="wj-panel-header">
+            <h3 class="wj-font-bold">{{ $t('blog.categories') }}</h3>
+          </div>
+          <div class="wj-panel-body">
+            <ul class="wj-menu">
+              <li><a href="#">Web Development(2)</a></li>
+              <li><a href="#">UX Design(12)</a></li>
+              <li><a href="#">Mobile Development(5)</a></li>
+              <li><a href="#">JavaScript(11)</a></li>
+              <li><a href="#">Web Design(18)</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="wj-panel-body">
-          <ul class="wj-menu">
-            <li><a href="#">Web Development(2)</a></li>
-            <li><a href="#">UX Design(12)</a></li>
-            <li><a href="#">Mobile Development(5)</a></li>
-            <li><a href="#">JavaScript(11)</a></li>
-            <li><a href="#">Web Design(18)</a></li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="wj-content-tab-1 wj-theme wj-margin-t-30">
-        <div class="nav-justified">
-          <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a href="#blog_recent_posts" data-toggle="tab">{{ $t('blog.recent') }}</a></li>
-            <li><a href="#blog_popular_posts" data-toggle="tab">{{ $t('blog.popular') }}</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="blog_recent_posts">
-              <ul class="wj-content-recent-posts-1">
-                <li v-for="item in blogLists">
-                  <div class="wj-image">
-                    <img :src="subLogo" alt="" class="img-responsive">
-                  </div>
-                  <div class="wj-post">
-                    <a class="wj-title" :href="item.url" :title="item.title" v-text="item.title"></a>
-                    <div class="wj-author">By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a></div>
-                    <div class="wj-date">{{ item.date }}</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="tab-pane" id="blog_popular_posts">
-              <ul class="wj-content-recent-posts-1">
-                <li v-for="item in blogLists">
-                  <div class="wj-image">
-                    <img :src="subLogo" alt="" class="img-responsive">
-                  </div>
-                  <div class="wj-post">
-                    <a class="wj-title" :href="item.url" :title="item.title" v-text="item.title"></a>
-                    <div class="wj-author">By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a></div>
-                    <div class="wj-date">{{ item.date }}</div>
-                  </div>
-                </li>
-              </ul>
+        <div class="wj-content-tab-1 wj-theme wj-margin-t-30">
+          <div class="nav-justified">
+            <ul class="nav nav-tabs nav-justified">
+              <li class="active"><a href="#blog_recent_posts" data-toggle="tab">{{ $t('blog.recent') }}</a></li>
+              <li><a href="#blog_popular_posts" data-toggle="tab">{{ $t('blog.popular') }}</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="blog_recent_posts">
+                <ul class="wj-content-recent-posts-1">
+                  <li v-for="item in blogLists">
+                    <div class="wj-image">
+                      <img :src="subLogo" alt="" class="img-responsive">
+                    </div>
+                    <div class="wj-post">
+                      <a class="wj-title" :href="item.url" :title="item.title" v-text="item.title"></a>
+                      <div class="wj-author">By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+                      <div class="wj-date">{{ item.date }}</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-pane" id="blog_popular_posts">
+                <ul class="wj-content-recent-posts-1">
+                  <li v-for="item in blogLists">
+                    <div class="wj-image">
+                      <img :src="subLogo" alt="" class="img-responsive">
+                    </div>
+                    <div class="wj-post">
+                      <a class="wj-title" :href="item.url" :title="item.title" v-text="item.title"></a>
+                      <div class="wj-author">By <a href="#"><span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+                      <div class="wj-date">{{ item.date }}</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="wj-content-ver-nav">
-        <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
-          <h3 class="wj-font-bold wj-font-uppercase">{{ $t('blog.relative') }}</h3>
-          <div class="wj-line-left wj-theme-bg"></div>
+        <div class="wj-content-ver-nav">
+          <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
+            <h3 class="wj-font-bold wj-font-uppercase">{{ $t('blog.relative') }}</h3>
+            <div class="wj-line-left wj-theme-bg"></div>
+          </div>
+          <ul class="wj-menu wj-arrow-dot wj-theme">
+            <li v-for="item in blogLists"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
+          </ul>
         </div>
-        <ul class="wj-menu wj-arrow-dot wj-theme">
-          <li v-for="item in blogLists"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
-        </ul>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
