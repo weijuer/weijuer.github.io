@@ -96,9 +96,9 @@
           </div>
         </form>
 
-        <div class="wj-panel">
+        <div class="wj-panel default">
           <div class="wj-panel-header">
-            <h3 class="wj-font-bold">{{ $t('blog.categories') }}</h3>
+            <h3 class="wj-panel-title">{{ $t('blog.categories') }}</h3>
           </div>
           <div class="wj-panel-body">
             <ul class="wj-menu">
@@ -150,15 +150,17 @@
           </div>
         </div>
 
-        <div class="wj-content-ver-nav">
-          <div class="wj-content-title-1 wj-theme wj-title-md wj-margin-t-40">
-            <h3 class="wj-font-bold wj-font-uppercase">{{ $t('blog.relative') }}</h3>
-            <div class="wj-line-left wj-theme-bg"></div>
+        <div class="wj-panel default">
+          <div class="wj-panel-header">
+            <h3 class="wj-panel-title">{{ $t('blog.relative') }}</h3>
           </div>
-          <ul class="wj-menu wj-arrow-dot wj-theme">
-            <li v-for="item in blogLists"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
-          </ul>
+          <div class="wj-panel-body">
+            <ul class="wj-menu wj-dot">
+              <li v-for="item in blogLists"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
+            </ul>
+          </div>
         </div>
+
       </div>
     </div>
   </div>

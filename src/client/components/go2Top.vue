@@ -1,5 +1,5 @@
 <template>
-  <a class="wj-go-top" :data-tips="top" :class="{ 'active': pageOnScroll}" @click="backToTop">
+  <a class="wj-go-top" :data-tips="top" :class="{ 'active': $store.state.isPageScroll}" @click="backToTop">
     <i class="fa fa-arrow-up"></i>
   </a>
 </template>
@@ -10,7 +10,7 @@
     data() {
       return {
         top: '去顶部',
-        pageOnScroll: false,
+        //pageOnScroll: false,
         delay: 0
       }
     },
@@ -22,12 +22,12 @@
     methods: {
       // 2.滚动事件处理
       pageScroll() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        let offsetTop = document.querySelector('.wj-navbar').offsetTop
-        this.pageOnScroll = scrollTop > offsetTop
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        let offsetTop = document.querySelector('.wj-navbar').offsetTop;
+        this.$store.state.isPageScroll = scrollTop > offsetTop;
 
         // 5.通知外界，调用此方法
-        this.$emit('pageScroll')
+        // this.$emit('pageScroll');
       },
       // 4.回到顶部
       backToTop() {
@@ -35,8 +35,9 @@
         // window.scrollTo(0,0)
 
         // 4.2 scrollBy方法
-        window.scrollBy(0, -100) // Only for y vertical-axis
-        if (this.pageOnScroll) {
+        // Only for y vertical-axis
+        window.scrollBy(0, -100);
+        if (this.$store.state.isPageScroll) {
           this.delay = setTimeout(this.backToTop, 10)
         }
 
@@ -51,7 +52,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .wj-go-top {
     display: inline-block;
     opacity: 0;
@@ -71,6 +72,13 @@
     border-radius: 100%;
     -webkit-transition: all .36s ease-in-out;
     transition: all .36s ease-in-out;
+
+    &.active {
+      opacity: .8;
+      bottom: 4%;
+      -webkit-transform: scale(1) rotate(-1turn) translate(0);
+      transform: scale(1) rotate(-1turn) translate(0);
+    }
   }
 
   .wj-go-top {
@@ -78,12 +86,5 @@
     -webkit-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.8);
-  }
-
-  .wj-go-top.active {
-    opacity: .8;
-    bottom: 4%;
-    -webkit-transform: scale(1) rotate(-1turn) translate(0);
-    transform: scale(1) rotate(-1turn) translate(0);
   }
 </style>

@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     dbInit: false,
     isToggle: false,
+    isPageScroll: false,
     searchText: '',
     indexedDb: null
   },

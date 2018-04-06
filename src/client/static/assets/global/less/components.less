@@ -105,7 +105,7 @@
   transform: translateX(-50%) translateY(8px);
 }
 
-/*wj-portlet*/
+/*components: 1.wj-portlet*/
 .wj-portlet {
   -webkit-box-shadow: 0 1px 15px 1px rgba(69, 65, 78, 0.08);
   -moz-box-shadow: 0 1px 15px 1px rgba(69, 65, 78, 0.08);
@@ -172,7 +172,7 @@
   }
 }
 
-/* tools: 2.wj-timeline*/
+/* components: 2.wj-timeline*/
 .wj-timeline {
   position: relative;
 
@@ -300,5 +300,74 @@
   }
 }
 
+/* components: 3.wj-panel*/
+.wj-panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
 
+  .wj-panel-header {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+
+    .wj-panel-title {
+      margin: 0;
+    }
+  }
+
+  .wj-panel-body {
+    padding: 15px;
+
+    &:before, &:after {
+      display: table;
+      content: "";
+    }
+
+    &:after {
+      clear: both;
+    }
+  }
+
+}
+
+/* components: 4.wj-menu*/
+.wj-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  > li:before {
+    color: @fontColor;
+    content: "\f105";
+    font-family: FontAwesome;
+    font-weight: 100;
+    width: 16px;
+    height: 16px;
+    font-size: @fontSize;
+    float: left;
+  }
+
+  &.wj-dot > li:before {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    margin: 9px 12px 0 0;
+    content: '';
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    background: #5c6873;
+  }
+
+  > li > a {
+    width: calc(80%);
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+}
 
