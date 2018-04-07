@@ -306,8 +306,12 @@
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
-  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+  &.inner {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .wj-panel-header {
     padding: 10px 15px;
@@ -371,3 +375,7 @@
 
 }
 
+.wj-inline {
+  display: flex;
+  justify-content: space-around;
+}

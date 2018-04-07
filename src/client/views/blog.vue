@@ -5,18 +5,18 @@
 
         <div class="blog-list" v-if="searchBlog.length > 0">
 
-          <div class="wj-portlet" v-for="item in searchBlog">
-            <div class="wj-portlet--head">
-              <div class="wj-portlet--head-caption">
-                <div class="wj-portlet--head-text">{{ item.title }}</div>
+          <div class="blog-item default" v-for="item in searchBlog">
+            <div class="blog-item--header">
+              <div class="blog-item--header-caption">
+                <a :href="item.url" class="blog-item--header-text">{{ item.title }}</a>
               </div>
             </div>
-            <div class="wj-portlet--body">
-              <div class="wj-panel">
+            <div class="blog-item--body">
+              <div class="wj-panel inner">
                 <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
                 <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
-                <ul class="wj-tags wj-theme-ul-bg">
-                  <li v-for="(tag, index) in item.tags" v-text="tag"></li>
+                <ul class="wj-inline wj-tags">
+                  <li class="wj-tag" v-for="(tag, index) in item.tags.split(',')" v-text="tag"></li>
                 </ul>
                 <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
               </div>
@@ -49,7 +49,7 @@
               <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
               <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
               <ul class="wj-tags wj-theme-ul-bg">
-                <li v-for="(tag, index) in item.tags" v-text="tag"></li>
+                <li v-for="(tag, index) in item.tags.split(',')" v-text="tag"></li>
               </ul>
               <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
             </div>
@@ -217,7 +217,7 @@
     },
     computed: {
       searchBlog: function () {
-        let search = this.search
+        let search = this.search;
 
         if (search) {
           return this.blogLists.filter(function (blog) {
@@ -226,7 +226,12 @@
             })
           })
         }
-        return this.blogLists
+        return this.blogLists;
+      },
+      tag2Array(blogLists) {
+        blogLists.map((blog) => {
+          return blog.tags.split(',');
+        });
       }
     },
     methods: {
@@ -243,7 +248,7 @@
         this.$ajax.post('/api/blogList', {params})
           .then((response) => {
             let res = response.data.blog
-            this.blogLists = res
+            this.blogLists = res;
 
             // 子组件监听到count变化会自动更新DOM
             this.count = res.length
