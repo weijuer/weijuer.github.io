@@ -31,16 +31,18 @@
 }
 
 .wj-tags {
+  margin: 0;
+  padding: 0;
   list-style: none;
 
   .wj-tag {
-    display: inline-block;
+    display: flex;
     position: relative;
     padding: 0 10px;
     background: #ccc;
     color: @fontColor;
     line-height: 1.5;
-    margin-left: 1em;
+    margin-left: 1.5rem;
     border-radius: 0;
 
     &:before {
@@ -63,7 +65,7 @@
       position: absolute;
       top: 0.5em;
       left: -0.125em;
-      background: white;
+      background: #fff;
       border-radius: 0.25em;
     }
   }
