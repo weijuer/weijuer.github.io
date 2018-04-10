@@ -12,6 +12,9 @@
               </div>
             </div>
             <div class="blog-item--body">
+              <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
+              <p>{{ item.description }}</p>
+              <a :href="item.url">read more...</a>
               <div class="wj-panel inner">
                 <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
                 <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
@@ -20,10 +23,6 @@
                 </ul>
                 <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
               </div>
-
-              <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
-              {{ item.description }}
-              <a :href="item.url">read more...</a>
             </div>
           </div>
 
@@ -302,7 +301,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @import "../static/assets/global/less/page/blog";
 </style>
 
