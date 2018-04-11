@@ -155,6 +155,10 @@
 </script>
 
 <style scoped>
+  .wj-pagination {
+    margin: 0 auto;
+    text-align: center;
+  }
   .wj-content-pagination {
     display: inline-block;
     padding: 0;

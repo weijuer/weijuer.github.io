@@ -26,10 +26,10 @@ export default {
 <style scoped>
   /* 可以设置不同的进入和离开动画 */
   .slide-fade-enter-active {
-    transition: all .2s ease-in;
+    transition: all .5s ease-in;
   }
   .slide-fade-leave-active {
-    transition: all .2s ease-out;
+    transition: all .5s ease-out;
   }
   .slide-fade-enter, .slide-fade-leave-to  {
     transform: translateX(6px);

@@ -1,5 +1,6 @@
 @fontColor: #29bd87;
 @fontSize: 16px;
+@bgColor: #fff;
 
 .blog-list .blog-item {
   display: flex;
@@ -29,7 +30,7 @@
     padding: 1.5rem;
 
     .wj-panel.inner {
-      padding-top: .5rem;
+      margin-bottom: 0;
       border-top: 1px dashed #ccc;
       box-shadow: none;
     }
@@ -44,12 +45,15 @@
   .wj-tag {
     display: flex;
     position: relative;
+    top: -6px;
     padding: 0 10px;
-    background: #ccc;
-    color: @fontColor;
+    background: @fontColor;
+    color: @bgColor;
     line-height: 1.5;
     margin-left: 1.5rem;
     border-radius: 0;
+    transform-style: preserve-3d;
+    transform: rotate(15deg);
 
     &:before {
       display: flex;
@@ -60,7 +64,7 @@
       top: 0;
       left: -1.5em;
       border: transparent 0.75em solid;
-      border-right-color: #ccc;
+      border-right-color: @fontColor;
     }
 
     &:after {
@@ -71,7 +75,7 @@
       position: absolute;
       top: 0.5em;
       left: -0.125em;
-      background: #fff;
+      background: @bgColor;
       border-radius: 0.25em;
     }
   }

@@ -110,6 +110,9 @@
           </div>
         </div>
 
+        <!--tabs组件-->
+        <tabs :tab-list="blogLists"></tabs>
+
         <div class="wj-content-tab-1 wj-theme wj-margin-t-30">
           <div class="nav-justified">
             <ul class="nav nav-tabs nav-justified">
@@ -168,6 +171,8 @@
 <script>
   // 分页模块
   import Pagination from '../components/pagination'
+  // tabs
+  import Tabs from '../components/tabs'
   // 加载模拟本地数据库数据
   import webSQL from '../../server/config/websql'
   // 加载模拟indexedDB数据
@@ -179,7 +184,8 @@
     name: 'blog',
     store,
     components: {
-      Pagination
+      Pagination,
+      Tabs
     },
     data() {
       return {
