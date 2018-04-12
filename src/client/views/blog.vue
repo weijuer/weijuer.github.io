@@ -77,8 +77,7 @@
             :page-index="currentPage"
             :page-size="pageSize"
             :total="count"
-            @change="pageChange">
-          </pagination>
+            @change="pageChange" />
 
         </div>
         <div class="wj-content-blog-post-1-list" v-else>暂无数据</div>
@@ -111,9 +110,18 @@
         </div>
 
         <!--tabs组件-->
-        <tabs :tab-list="blogLists"></tabs>
+        <tabs :tab-list="tabList">
+          <ul slot="tab-bar">
+            <li>
+              <a href="javascript:;" data-tabName="tab" name="tab1">{{ $t('blog.recent') }}</a>
+            </li>
+            <li>
+              <a href="javascript:;" data-tabName="tab" name="tab1">{{ $t('blog.popular') }}</a>
+            </li>
+          </ul>
+        </tabs>
 
-        <div class="wj-content-tab-1 wj-theme wj-margin-t-30">
+        <div class="wj-content-tab-1 wj-theme wj-margin-t-30 wj-hide">
           <div class="nav-justified">
             <ul class="nav nav-tabs nav-justified">
               <li class="active"><a href="#blog_recent_posts" data-toggle="tab">{{ $t('blog.recent') }}</a></li>
@@ -194,6 +202,7 @@
         currentPage: 1, // 当前页码
         count: 0, // 总记录数
         blogLists: [], // 日志记录
+        tabList: [{name: '热门', content: 1}, {name: '最新', content: 2}],
         subLogo: './asserts/global/images/wj-logo.svg',
         blogHeader1: './asserts/global/images/blog/bg-blog-2.png',
         blogHeader2: './asserts/global/images/blog/bg-blog-3.jpg'

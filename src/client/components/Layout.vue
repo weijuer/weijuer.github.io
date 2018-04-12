@@ -1,5 +1,15 @@
 <template>
   <div class="wj-layout-page">
+    <header>
+      <slot name="header"></slot>
+    </header>
+    <main>
+      <slot></slot>
+    </main>
+    <footer>
+      <slot name="footer"></slot>
+    </footer>
+
     <pageHeader>header</pageHeader>
     <router-view class="app-content-view" keep-alive transition transition-mode="out-in" />
   </div>
