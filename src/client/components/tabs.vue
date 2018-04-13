@@ -1,15 +1,17 @@
 <template>
-  <div class="tabs tabs-linemove">
+  <div :class="['tabs', localType]">
     <div class="tab-bar">
-      <slot name="tab-bar"/>
       <!--<ul>
-        <li :index="index" :class="{'active': index === activeTab}" v-for="(tab, index) in tabList">
-          <a href="javascript:;" data-tabName="tab" @click="tabClick(index)">{{ tab.name }}</a>
-        </li>
+        <slot name="tab-bar-item" :index="index" :activeTab="activeTab" :tab="item" v-for="(item, index) in tabList" />
       </ul>-->
+      <ul>
+        <li :index="index" :class="{'active': index === activeTab}" v-for="(item, index) in tabList">
+          <a href="javascript:;" data-tabName="tab" @click="tabClick(index)">{{ item.name }}</a>
+        </li>
+      </ul>
     </div>
     <div class="tab-content">
-      <slot name="tab-pane"/>
+      <slot name="tab-pane" :tab="{item, activeTab, index}" v-for="(item, index) in tabList" />
       <!--<div :index="index" :class="['tab-pane', {'active': index === activeTab }]" v-for="(tab, index) in tabList">
         {{tab.content}}
       </div>-->
@@ -25,12 +27,21 @@
       tabList: {
         type: Array,
         default: []
+      },
+      tabType: {
+        type: String,
+        default: 'linemove'
       }
     },
     data() {
       return {
         activeTab: 0
       };
+    },
+    computed: {
+      localType() {
+        return 'tabs-' + this.tabType;
+      }
     },
     methods: {
       tabClick(index) {
@@ -42,6 +53,7 @@
 
 <style lang="less">
   @fontColor: #29bd87;
+  @bgColor: #fff;
 
   .tabs {
     position: relative;
@@ -50,6 +62,7 @@
     width: 100%;
     font-weight: 300;
     font-size: 1rem;
+    background: @bgColor;
 
     .tab-bar {
       text-align: center;
@@ -92,6 +105,22 @@
         }
       }
     }
+
+    .tab-content {
+      position: relative;
+
+      .tab-pane {
+        display: none;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 1em;
+        text-align: center;
+
+        &.active {
+          display: flex;
+        }
+      }
+    }
   }
 
 
@@ -100,7 +129,8 @@
   /*****************************/
 
   .tabs-linemove .tab-bar {
-    background: #fff;
+    background: @bgColor;
+    border-bottom: 1px solid @fontColor;
   }
 
   .tabs-linemove .tab-bar li:last-child:before {
@@ -117,13 +147,13 @@
 
   /* Move the line */
   .tabs-linemove .tab-bar li:first-child.active ~ li:last-child:before {
-    -webkit-transform: translate3d(-100%,0,0);
-    transform: translate3d(-100%,0,0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 
   .tabs-linemove .tab-bar li:nth-child(2).active ~ li:last-child:before {
-    -webkit-transform: translate3d(-100%,0,0);
-    transform: translate3d(-100%,0,0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 
   .tabs-linemove .tab-bar a {

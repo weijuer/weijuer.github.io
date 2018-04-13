@@ -13,7 +13,7 @@
   import go2Top from './components/go2Top'
 
   export default {
-    name: 'app',
+    name: 'app-flex',
     components: {
       pageHeader,
       pageContent,

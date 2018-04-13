@@ -2,7 +2,6 @@
   <div class="container blog">
     <div class="row">
       <div class="col-md-9 blog-content">
-
         <div class="blog-list" v-if="searchBlog.length > 0">
 
           <div class="blog-item default" v-for="item in searchBlog">
@@ -35,52 +34,7 @@
           </pagination>
 
         </div>
-
-        <div class="wj-content-blog-post-1-list wj-hide" v-if="searchBlog.length > 0">
-
-          <div class="wj-content-blog-post-1 wj-bordered" v-for="item in searchBlog">
-
-            <div class="wj-title wj-font-uppercase">
-              <a :href="item.url">{{ item.title }}</a>
-            </div>
-
-            <div class="wj-panel">
-              <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
-              <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
-              <ul class="wj-tags wj-theme-ul-bg">
-                <li v-for="(tag, index) in item.tags.split(',')" v-text="tag"></li>
-              </ul>
-              <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
-            </div>
-
-            <div class="wj-desc">
-              <!--<div class="wj-media wj-content-overlay">
-                <div class="wj-overlay-wrapper">
-                  <div class="wj-overlay-content">
-                    <a :href="item.url"><i class="fa fa-link"></i></a>
-                    <a :href="subLogo">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <img class="wj-overlay-object img-responsive" :src="blogHeader" alt="">
-              </div>-->
-              <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
-              {{ item.description }}
-              <a :href="item.url">read more...</a>
-            </div>
-          </div>
-
-          <!--分页组件-->
-          <pagination
-            :page-index="currentPage"
-            :page-size="pageSize"
-            :total="count"
-            @change="pageChange" />
-
-        </div>
-        <div class="wj-content-blog-post-1-list" v-else>暂无数据</div>
+        <div class="blog-list" v-else>暂无数据</div>
       </div>
 
       <div class="col-md-3 blog-side">
@@ -110,15 +64,8 @@
         </div>
 
         <!--tabs组件-->
-        <tabs :tab-list="tabList">
-          <ul slot="tab-bar">
-            <li>
-              <a href="javascript:;" data-tabName="tab" name="tab1">{{ $t('blog.recent') }}</a>
-            </li>
-            <li>
-              <a href="javascript:;" data-tabName="tab" name="tab1">{{ $t('blog.popular') }}</a>
-            </li>
-          </ul>
+        <tabs :tab-list="tabList" tab-type="linemove">
+          <div slot="tab-pane" slot-scope="pane" :class="['tab-pane', {'active': pane.tab.index === pane.tab.activeTab}]">{{ pane.tab.item }}</div>
         </tabs>
 
         <div class="wj-content-tab-1 wj-theme wj-margin-t-30 wj-hide">
