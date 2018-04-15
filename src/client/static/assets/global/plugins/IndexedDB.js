@@ -107,7 +107,7 @@ export default class IndexedDB {
           reject(new WError({code: 1001, message: `IndexedDB's objectStore '${storeName}' isn't existed.`}));
         } else {
           this._db = request.result;
-          console.log('连接数据库成功');
+          console.log(`连接数据库 '${this._dbName}' 成功`);
           resolve(request.result);
         }
       };
