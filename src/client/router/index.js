@@ -47,19 +47,19 @@ const routes = [
   }, {
     path: '/home',
     name: 'home',
-    component: resolve => require(['../views/home'], resolve) // 懒加载
+    component: resolve => require(['../views/base/home'], resolve) // 懒加载
   }, {
     path: '/blog',
     name: 'blog',
-    component: resolve => require(['../views/blog'], resolve)
+    component: resolve => require(['../views/base/blog'], resolve)
   }, {
     path: '/about',
     name: 'about',
-    component: resolve => require(['../views/about'], resolve)
+    component: resolve => require(['../views/base/about'], resolve)
   }, {
     path: '*',
     name: 'error',
-    component: resolve => require(['../views/error'], resolve)
+    component: resolve => require(['../views/base/error'], resolve)
   }
 ]
 

@@ -125,15 +125,15 @@
 
 <script>
   // 分页模块
-  import Pagination from '../components/pagination'
+  import Pagination from '@comps/pagination'
   // tabs
-  import Tabs from '../components/tabs'
+  import Tabs from '@comps/tabs'
   // 加载模拟本地数据库数据
-  import webSQL from '../../server/config/websql'
+  import webSQL from '@server/config/websql'
   // 加载模拟indexedDB数据
-  import db from '../config/indexedDB'
+  import db from '@client/config/indexedDB'
 
-  import store from '../store/store'
+  import store from '@client/store/store'
 
   export default {
     name: 'blog',
@@ -264,6 +264,6 @@
 </script>
 
 <style lang="less">
-  @import "../static/assets/global/less/page/blog";
+  @import "~@static/assets/global/less/page/blog";
 </style>
 

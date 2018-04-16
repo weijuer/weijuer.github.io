@@ -24,14 +24,14 @@
 <script>
   export default {
     name: 'blog-detail',
-    data () {
+    data() {
       return {
         loading: false,
         post: null,
         error: null
       }
     },
-    created () {
+    created() {
       // 组件创建完后获取数据，
       // 此时 data 已经被 observed 了
       this.fetchData()
@@ -41,7 +41,7 @@
       '$route': 'fetchData'
     },
     methods: {
-      fetchData (params) {
+      fetchData(params) {
         let v = this
         v.error = v.post = null
         v.loading = true

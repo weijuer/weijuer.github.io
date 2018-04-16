@@ -18,7 +18,7 @@
 
 <script>
   // 1.加载插件
-  import db from '../config/indexedDB'
+  import db from '@client/config/indexedDB'
 
   export default {
     name: 'index',
