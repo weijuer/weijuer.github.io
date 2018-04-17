@@ -6,7 +6,7 @@
 
     <div class="wj-content-box wj-size-md">
       <transition name="slide-fade" mode="out-in">
-        <router-view keep-alive class="app-content-view" />
+        <router-view keep-alive :key="$route.fullpath" class="app-content-view" />
       </transition>
     </div>
   </div>

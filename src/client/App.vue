@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="['wj-app-page', 'wj-layout-header-fixed', 'wj-layout-header-topbar', {'wj-page-on-scroll': $store.state.isPageScroll}]">
+  <div id="app" :class="['wj-app-page', themeBg,'wj-layout-header-fixed', 'wj-layout-header-topbar', {'wj-page-on-scroll': $store.state.isPageScroll}]">
     <pageHeader />
     <pageContent />
     <go2Top />
@@ -14,6 +14,11 @@
 
   export default {
     name: 'app',
+    data() {
+      return {
+        themeBg: 'default'
+      }
+    },
     components: {
       pageHeader,
       pageContent,

@@ -51,22 +51,25 @@ export default class IndexedDB {
   _toPromise(storeName, method, ...args) {
     try {
       // A.浏览器是否支持
-      if (this.isSupported) return Promise.reject(new WError({code: 998, message: 'So Low, So Young!'}));
+      if (!this.isSupported) return Promise.reject(new WError({code: 998, message: 'So Low, So Young!'}));
 
+      if (args.length >= 1 && typeof args[args.length - 1] === 'function') {
+        args = args.slice(0, args.length - 1);
+      }
       return new Promise(async (resolve, reject) => {
         // B.获取数据库实例
         const db = await this._open(storeName);
         // C.获取事务
         const trans = db.transaction([storeName], this._iDBTrans.READ_WRITE || 'readwrite');
-        // D.获取对象仓库
-        const objectStore = trans.objectStore(storeName);
-        // E.获得请求
-        const request = objectStore[method](...args);
+        // D.获取索引
+        // const index = objStore.index('email');
+        // D.获得请求
+        const request = trans.objectStore(storeName)[method](...args);
 
         // 请求成功
         request.onsuccess = () => {
-          this.close();
           resolve(request.result);
+          this.close();
         };
         // 请求阻塞
         request.onblocked = () => reject(request.error);

@@ -28,7 +28,7 @@ const About = resolve => {
 } */
 
 // 使用路由
-Vue.use(Router)
+Vue.use(Router);
 
 // 页面滚动配置
 const scrollBehavior = (to, from, savedPosition) => {
@@ -37,7 +37,7 @@ const scrollBehavior = (to, from, savedPosition) => {
   } else {
     return {x: 0, y: 0}
   }
-}
+};
 
 // 懒加载路由
 const routes = [
@@ -51,7 +51,25 @@ const routes = [
   }, {
     path: '/blog',
     name: 'blog',
-    component: resolve => require(['../views/base/blog'], resolve)
+    component: resolve => require(['../views/base/blog'], resolve),
+    children: [
+      {
+        // 当 /blog/recent 匹配成功，
+        path: 'recent',
+        name: 'blog-detail',
+        component: resolve => require(['../views/base/blog-detail'], resolve)
+      }, {
+        // 当 /blog/popular 匹配成功，
+        path: 'popular',
+        name: 'blog-detail',
+        component: resolve => require(['../views/base/blog-detail'], resolve)
+      }
+    ]
+  }, {
+    // 当 /blog-detail/:id 匹配成功，
+    path: '/blog-detail/:id',
+    name: 'blog-detail',
+    component: resolve => require(['../views/base/blog-detail'], resolve)
   }, {
     path: '/about',
     name: 'about',
@@ -61,7 +79,7 @@ const routes = [
     name: 'error',
     component: resolve => require(['../views/base/error'], resolve)
   }
-]
+];
 
 // 创建 router 实例，然后传 `routes` 配置
 export default new Router({
