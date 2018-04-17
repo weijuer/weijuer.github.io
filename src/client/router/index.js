@@ -56,12 +56,12 @@ const routes = [
       {
         // 当 /blog/recent 匹配成功，
         path: 'recent',
-        name: 'blog-detail',
+        name: 'blog-recent',
         component: resolve => require(['../views/base/blog-detail'], resolve)
       }, {
         // 当 /blog/popular 匹配成功，
         path: 'popular',
-        name: 'blog-detail',
+        name: 'blog-popular',
         component: resolve => require(['../views/base/blog-detail'], resolve)
       }
     ]

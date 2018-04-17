@@ -1,22 +1,19 @@
 <template>
   <div class="container blog-detail">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 blog-list">
 
-        <div class="loading" v-if="loading">
-          Loading...
+        <div class="blog-item default">
+          <div class="blog-item--header">
+            <div class="blog-item--header-caption">
+              <h3 class="blog-item--header-text">{{ blog.title }}</h3>
+            </div>
+          </div>
+          <div class="blog-item--body">
+            <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
+            <p>{{ blog.description }}</p>
+          </div>
         </div>
-
-        <div v-if="error" class="error">
-          {{ error }}
-        </div>
-
-        <div v-if="post" class="content">
-          <h2>{{ post.title }}</h2>
-          <p>{{ post.body }}</p>
-        </div>
-
-        <p>{{ blog }}</p>
 
       </div>
     </div>
@@ -31,10 +28,8 @@
     name: 'blog-detail',
     data() {
       return {
-        loading: false,
-        post: null,
         blog: null,
-        error: null
+        blogHeader2: './asserts/global/images/blog/bg-blog-3.jpg'
       }
     },
     created() {
@@ -51,11 +46,11 @@
       get_blog_detail: function (params) {
         // 1.1 分页参数
         if (!params) {
-          params = {storeName: 'blog', id: this.$route.params.id}
+          let id = Number(this.$route.params.id);
+          params = ['blog', id]
         }
-        let id = this.$route.params.id;
         // 1.2 获取indexedDB模拟数据
-        db.find('blog', 'id', ).then((res) => {
+        db.get(...params).then((res) => {
           this.blog = res;
           console.log(res);
         });
@@ -82,3 +77,7 @@
     }
   }
 </script>
+
+<style lang="less">
+  @import "~@static/assets/global/less/page/blog";
+</style>

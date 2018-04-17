@@ -7,8 +7,7 @@
           <div class="blog-item default" v-for="item in searchBlog">
             <div class="blog-item--header">
               <div class="blog-item--header-caption">
-                <router-link :to="{name: 'blog-detail'}">{{ item.title }}</router-link>
-                <a :href="item.url" class="blog-item--header-text">{{ item.title }}</a>
+                <router-link :to="{name: 'blog-detail', params:{id: item.id}}" class="blog-item--header-text">{{ item.title }}</router-link>
               </div>
             </div>
             <div class="blog-item--body">

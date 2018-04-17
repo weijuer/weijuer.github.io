@@ -18,8 +18,7 @@ router.post('/blogList', (req, res) => {
   console.log('get请求参数对象 :', req.query);
   console.log('post请求参数对象 :', req.body);
   // 分页条件组装
-  let currentPage = req.body.currentPage;
-  let pageSize = req.body.pageSize;
+  let {currentPage, pageSize} = req.body;
 
   res.json({blog: blogList})
 });
