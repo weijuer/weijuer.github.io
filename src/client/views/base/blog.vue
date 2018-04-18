@@ -13,7 +13,7 @@
             <div class="blog-item--body">
               <img class="wj-overlay-object img-responsive" :src="blogHeader2" alt="">
               <p>{{ item.description }}</p>
-              <a :href="item.url">read more...</a>
+              <router-link :to="{name: 'blog-detail', params:{id: item.id}}" class="blog-item--header-text">{{ $t('blog.read-more') }}</router-link>
               <div class="wj-panel inner">
                 <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
                 <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
@@ -65,7 +65,11 @@
 
         <!--tabs组件-->
         <tabs :tab-list="tabList" tab-type="linemove">
-          <div slot="tab-pane" slot-scope="pane" :class="['tab-pane', {'active': pane.tab.index === pane.tab.activeTab}]">{{ pane.tab.item }}</div>
+          <div slot="tab-pane" slot-scope="pane" :class="['tab-pane', {'active': pane.tab.index === pane.tab.activeTab}]">
+            <ul class="wj-menu wj-dot">
+              <li v-for="item in pane.tab.item.content"><a :href="item.url" :title="item.title" v-text="item.title"></a></li>
+            </ul>
+          </div>
         </tabs>
 
         <div class="wj-content-tab-1 wj-theme wj-margin-t-30 wj-hide">
@@ -149,7 +153,7 @@
         currentPage: 1, // 当前页码
         count: 0, // 总记录数
         blogLists: [], // 日志记录
-        tabList: [{name: '热门', content: 1}, {name: '最新', content: 2}],
+        tabList: [],
         subLogo: './asserts/global/images/wj-logo.svg',
         blogHeader1: './asserts/global/images/blog/bg-blog-2.png',
         blogHeader2: './asserts/global/images/blog/bg-blog-3.jpg'
@@ -243,6 +247,8 @@
         db.findPage(params).then((res) => {
           this.blogLists = res.list;
           this.count = res.total;
+          // tab
+          this.tabList = [{name: '热门', content: res.list}, {name: '最新', content: res.list}];
           console.log(res);
         });
       },

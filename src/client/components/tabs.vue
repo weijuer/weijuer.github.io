@@ -111,10 +111,8 @@
 
       .tab-pane {
         display: none;
-        justify-content: center;
         margin: 0 auto;
         padding: 1em;
-        text-align: center;
 
         &.active {
           display: flex;

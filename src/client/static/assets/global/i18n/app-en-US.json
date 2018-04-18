@@ -25,7 +25,8 @@
     "categories": "categories",
     "recent": "recent",
     "popular": "popular",
-    "relative": "relative"
+    "relative": "relative",
+    "read-more": "read more..."
   },
   "week":["Sun","Mon","Tues","Wed","Thur","Fri","Sat"]
 }
