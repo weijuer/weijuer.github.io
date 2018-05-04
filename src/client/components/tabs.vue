@@ -115,7 +115,7 @@
         padding: 1em;
 
         &.active {
-          display: flex;
+          display: block;
         }
       }
     }

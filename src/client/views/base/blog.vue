@@ -15,11 +15,11 @@
               <p>{{ item.description }}</p>
               <router-link :to="{name: 'blog-detail', params:{id: item.id}}" class="blog-item--header-text">{{ $t('blog.read-more') }}</router-link>
               <div class="wj-panel inner">
-                <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
-                <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
                 <ul class="wj-inline wj-tags">
                   <li class="wj-tag" v-for="(tag, index) in item.tags.split(',')" v-text="tag"></li>
                 </ul>
+                <div class="wj-author"><a href="#">By <span class="wj-font-uppercase">{{ item.author }}</span></a></div>
+                <div class="wj-date">on <span class="wj-font-uppercase">{{ item.date }}</span></div>
                 <div class="wj-comments"><a href="#"><i class="icon-speech"></i> 30 comments</a></div>
               </div>
             </div>
