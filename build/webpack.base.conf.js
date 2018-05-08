@@ -8,21 +8,12 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const createLintingRule = () => ({
-  test: /\.(js|vue)$/,
-  loader: 'eslint-loader',
-  enforce: 'pre',
-  include: [resolve('src'), resolve('test')],
-  options: {
-    formatter: require('eslint-friendly-formatter'),
-    emitWarning: !config.dev.showEslintErrorsInOverlay
-  }
-})
+
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/client/index.js'
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -32,22 +23,14 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    // 自动补全的扩展名
     extensions: ['.js', '.vue', '.json'],
-    // 默认路径代理
-    // 例如 import Vue from 'vue'，会自动到 'vue/dist/vue.common.js'中寻找
     alias: {
-      '@': resolve('src'),
-      '@client': resolve('src/client'),
-      '@server': resolve('src/server'),
-      '@static': resolve('src/client/static'),
-      '@comps': resolve('src/client/components'),
       'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
     }
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
