@@ -1,0 +1,79 @@
+@fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+@fontSize: 16px;
+@fontColor: #24292e;
+@bgColor: #fff;
+@bdColor: #383838;
+
+html {
+  background-color: #eee;
+  box-sizing: border-box;
+  color: @fontColor;
+  font-size: 16px;
+  height: 100%
+}
+
+html, body, h1, h2, p {
+  margin: 0;
+  padding: 0
+}
+
+*, *:before, *:after {
+  box-sizing: inherit
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  min-height: 100%;
+  height: 100%;
+  overflow: auto
+}
+
+a {
+  outline: none !important;
+  transition: all .5s ease-in-out;
+}
+
+a:focus,
+a:hover,
+a:active {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+/* vue [v-cloak] */
+[v-cloak] {
+  display: none;
+}
+
+.app-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  background-color: #fff;
+  box-shadow: 0 0 2.25rem #9da5ab;
+  flex-shrink: 0;
+  padding: 0.8rem 0;
+  position: relative;
+  z-index: 2
+}
+
+header .container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between
+}
+
+.app-content {
+  background-color: #fff;
+  display: flex;
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%
+}
