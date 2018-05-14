@@ -59,14 +59,36 @@ header {
   flex-shrink: 0;
   padding: 0.8rem 0;
   position: relative;
-  z-index: 2
-}
+  z-index: 2;
 
-header .container {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between
+  .container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .header-section {
+    display: flex;
+    margin: .8rem 1.6rem;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+
+    &.logo-section {
+      flex: 3 1 auto;
+      justify-content: flex-start;
+
+      .logo {
+        margin-right: 1.6rem;
+        padding: 0 1.6rem 0 0;
+        width: 80px;
+        height: 80px;
+        flex-shrink: 1;
+        border-right: 2px solid @bdColor;
+      }
+    }
+  }
 }
 
 .app-content {
