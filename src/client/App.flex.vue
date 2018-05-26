@@ -1,7 +1,6 @@
 <template>
   <div id="app" :class="['wj-app-page', {'wj-page-on-scroll': $store.state.isPageScroll}]">
     <flex-layout />
-
   </div>
 </template>
 

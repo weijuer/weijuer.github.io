@@ -4,6 +4,10 @@
 @bgColor: #fff;
 @bdColor: #383838;
 
+.px2rem(@fontSize: 16) {
+    font-size: @fontSize / 16rem;
+}
+
 html {
   background-color: #eee;
   box-sizing: border-box;
@@ -12,7 +16,7 @@ html {
   height: 100%
 }
 
-html, body, h1, h2, p {
+html, body, h1, h2, p, ul {
   margin: 0;
   padding: 0
 }
@@ -22,7 +26,7 @@ html, body, h1, h2, p {
 }
 
 body {
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: @fontFamily;
   font-size: 1.6rem;
   line-height: 1.5;
   min-height: 100%;
@@ -57,7 +61,7 @@ header {
   background-color: #fff;
   box-shadow: 0 0 2.25rem #9da5ab;
   flex-shrink: 0;
-  padding: 0.8rem 0;
+  padding: 0;
   position: relative;
   z-index: 2;
 
@@ -68,12 +72,29 @@ header {
     justify-content: space-between;
   }
 
-  .header-section {
+  .app-header-topBar {
+    height: 45px;
+    .px2rem(14);
+
+    .app-header-section {
+      margin: 0;
+    }
+  }
+
+  .app-header-section {
     display: flex;
-    margin: .8rem 1.6rem;
+    margin: .6rem 1.6rem;
     flex: 1 1 auto;
     justify-content: center;
     align-items: center;
+
+    &.social-section {
+      justify-content: flex-start;
+    }
+
+    &.help-section {
+      justify-content: flex-end;
+    }
 
     &.logo-section {
       flex: 3 1 auto;
@@ -88,14 +109,36 @@ header {
         border-right: 2px solid @bdColor;
       }
     }
+
   }
 }
 
-.app-content {
+.app-main {
   background-color: #fff;
   display: flex;
   flex: 1 1 auto;
   overflow: hidden;
   position: relative;
   width: 100%
+}
+
+.app-nav {
+  display: flex;
+
+  > ul {
+    display: flex;
+    list-style: none;
+
+    > li {
+      padding: .75rem 1rem;
+    }
+  }
+}
+
+
+@media all and (max-width: 960px) {
+  .app-main { flex-flow: column; }
+  .app-main > article, .app-main > nav, .app-main > aside {
+    order: 0; width: auto;
+  }
 }

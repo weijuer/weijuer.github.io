@@ -1,17 +1,22 @@
 <template>
-  <div id="app" class="app-page">
+  <div id="app" class="app-page default">
     <pageHeader />
-    <router-view class="app-content" keep-alive transition transition-mode="out-in" />
+    <pageMain />
+    <pageFooter />
   </div>
 </template>
 
 <script>
   import pageHeader from './components/flex/Header'
+  import pageMain from './components/flex/Main'
+  import pageFooter from './components/flex/Footer'
 
   export default {
     name: 'app',
     components: {
-      pageHeader
+      pageHeader,
+      pageMain,
+      pageFooter
     }
   }
 </script>
