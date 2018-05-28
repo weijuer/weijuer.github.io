@@ -4,8 +4,11 @@
 @bgColor: #fff;
 @bdColor: #383838;
 
-.px2rem(@fontSize: 16) {
-    font-size: @fontSize / 16rem;
+// 定义一个变量, 注：移动端基于视觉稿横屏尺寸/100得出基准font-size
+@baseFontSize: 16;
+// rem转换函数
+.px2rem(@name, @px) {
+    @{name}: @px / @baseFontSize * 1rem;
 }
 
 html {
@@ -36,6 +39,7 @@ body {
 
 a {
   outline: none !important;
+  text-decoration: none;
   transition: all .5s ease-in-out;
 }
 
@@ -74,7 +78,7 @@ header {
 
   .app-header-topBar {
     height: 45px;
-    .px2rem(14);
+    .px2rem(font-size, 14);
 
     .app-header-section {
       margin: 0;
@@ -83,7 +87,7 @@ header {
 
   .app-header-section {
     display: flex;
-    margin: .6rem 1.6rem;
+    margin: .625rem 1.5rem;
     flex: 1 1 auto;
     justify-content: center;
     align-items: center;
@@ -130,7 +134,28 @@ header {
     list-style: none;
 
     > li {
-      padding: .75rem 1rem;
+      display: inline-flex;
+      margin: .75rem auto;
+
+      > a {
+        display: inline-flex;
+        padding: 0 .75rem;
+      }
+    }
+
+    &.nav-divider > li {
+      position: relative;
+
+      &:after {
+        content: '|';
+        position: absolute;
+        left: calc(100% - 2px);
+      }
+
+      &:last-child:after {
+        content: '';
+      }
+
     }
   }
 }
