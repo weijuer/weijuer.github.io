@@ -1,27 +1,14 @@
 <template>
-  <div id="app" class="app-page default">
-    <pageHeader />
-    <pageMain />
-    <pageFooter />
-  </div>
+  <appLayout />
 </template>
 
 <script>
-  import pageHeader from './components/flex/Header'
-  import pageMain from './components/flex/Main'
-  import pageFooter from './components/flex/Footer'
+  import appLayout from './components/layout/Layout'
 
   export default {
     name: 'app',
     components: {
-      pageHeader,
-      pageMain,
-      pageFooter
+      appLayout
     }
   }
 </script>
-
-<style lang="less">
-  @import "~@assets/global/less/app-flex";
-  @import "~@assets/global/less/theme/default";
-</style>
