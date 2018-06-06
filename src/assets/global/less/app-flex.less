@@ -4,11 +4,44 @@
 @bgColor: #fff;
 @bdColor: #383838;
 
-// 定义一个变量, 注：移动端基于视觉稿横屏尺寸/100得出基准font-size
+// ------------ A.px2rem转换 ------------
+// 1.定义一个变量, 注：移动端基于视觉稿横屏尺寸/100得出基准font-size
 @baseFontSize: 16;
-// rem转换函数
+// 2.rem转换函数
 .px2rem(@name, @px) {
     @{name}: @px / @baseFontSize * 1rem;
+}
+
+// ------------ B.css4语法 全局变量语法 ------------
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #5867dd;
+  --secondary: #ebedf2;
+  --success: #34bfa3;
+  --info: #36a3f7;
+  --warning: #ffb822;
+  --danger: #f4516c;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
 }
 
 html {
@@ -17,6 +50,19 @@ html {
   color: @fontColor;
   font-size: 16px;
   height: 100%
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block
 }
 
 html, body, h1, h2, p, ul {
@@ -29,10 +75,11 @@ html, body, h1, h2, p, ul {
 }
 
 body {
-  font-family: @fontFamily;
-  font-size: 1.6rem;
+  margin: 0;
   line-height: 1.5;
   min-height: 100%;
+  font-family: @fontFamily;
+  font-size: 1rem;
   height: 100%;
   overflow: auto
 }
@@ -55,10 +102,25 @@ a:active {
   display: none;
 }
 
+// ------------ C.app ------------
 .app-page {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   height: 100%;
+}
+
+.app-main {
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: center;
 }
 
 header {
@@ -74,11 +136,11 @@ header {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding: 0 1rem;
   }
 
   .app-header-topBar {
-    height: 45px;
     .px2rem(font-size, 14);
 
     .app-header-section {
@@ -118,53 +180,117 @@ header {
   }
 }
 
-.app-main {
-  background-color: #fff;
+.nav {
   display: flex;
-  flex: 1 1 auto;
-  overflow: hidden;
-  position: relative;
-  width: 100%
-}
+  list-style: none;
 
-.app-nav {
-  display: flex;
+  &.nav-row {
+    flex-direction: row;
+  }
 
-  > ul {
-    display: flex;
-    list-style: none;
+  &.nav-column {
+    flex-direction: column;
+  }
 
-    > li {
-      display: inline-flex;
-      margin: .75rem auto;
+  .nav-dropdown {
+    display: none;
+    flex-flow: column;
+    position: absolute;
+    top: 100%;
+    margin-top: .5rem;
+    padding: 1rem;
+    right: 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 6px 0 #000;
 
-      > a {
-        display: inline-flex;
-        padding: 0 .75rem;
-      }
-    }
-
-    &.nav-divider > li {
+    li {
       position: relative;
 
       &:after {
         content: '|';
-        position: absolute;
-        left: calc(100% - 2px);
       }
 
       &:last-child:after {
         content: '';
       }
+    }
 
+    &:before {
+      content: '';
+      position: absolute;
+      background: 0 0;
+      border: 8px solid transparent;
+      z-index: 10001;
+    }
+
+    &:before {
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-color: #fff;
     }
   }
+
+  &.nav-divider > li {
+    position: relative;
+
+    &:after {
+      content: '|';
+    }
+
+    &:last-child:after {
+      content: '';
+    }
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    &.dropdown {
+
+      .nav-link {
+        position: relative;
+        align-items: center;
+
+        &:after {
+          content: '';
+          display: inline-flex;
+          vertical-align: middle;
+          margin-left: 2px;
+          border: 4px solid transparent;
+          border-top-color: @bdColor;
+        }
+      }
+
+      &:hover,
+      &.open {
+        .nav-dropdown {
+          display: flex;
+        }
+      }
+
+    }
+
+    a {
+      flex: 1;
+      padding: 0 .75rem;
+    }
+  }
+
 }
 
+@media all and (max-width: 768px) {
+  .app-main {
+    flex-flow: column;
+  }
 
-@media all and (max-width: 960px) {
-  .app-main { flex-flow: column; }
-  .app-main > article, .app-main > nav, .app-main > aside {
-    order: 0; width: auto;
+  .app-main > article,
+  .app-main > nav,
+  .app-main > aside {
+    order: 0;
+    width: auto;
+    flex: auto;
   }
 }

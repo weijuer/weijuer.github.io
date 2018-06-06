@@ -2,9 +2,9 @@
   <header class="app-header">
     <div class="app-header-topBar">
       <div class="container">
-        <div class="app-header-section social-section">
+        <section class="app-header-section social-section">
           <nav class="app-nav">
-            <ul>
+            <ul class="nav">
               <li>
                 <a href="">
                   <svg class="icon" style="width: 1.3125rem; height: 1.3125rem;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3756"><path d="M958.828 614.546c0-120.659-111.006-218.796-250.973-223.622-16.090-141.573-152.836-252.582-318.542-252.582-176.967 0-320.15 123.879-320.15 278.321 0 91.7 51.483 172.142 130.311 223.622 9.653 4.827-28.959 85.266-19.305 90.094 16.090 9.653 80.441-59.525 98.137-53.090 35.394 11.263 72.396 17.696 112.617 17.696 19.305 0 38.61-1.609 57.917-4.827 37.003 85.266 133.531 146.399 246.146 146.399 30.567 0 61.134-4.827 88.485-12.87 8.043-3.219 70.787 51.483 78.831 48.265 14.478-4.827-25.741-69.178-12.87-77.222 65.962-40.22 109.398-106.181 109.398-180.186zM598.457 558.236c-14.478 0-27.348-12.87-27.348-27.348s11.263-27.348 27.348-27.348c14.478 0 27.348 12.87 27.348 27.348 0 14.478-11.263 27.348-27.348 27.348zM432.75 614.546c0 6.434 0 14.478 1.609 22.523-14.478 1.609-28.959 3.219-43.437 3.219-37.003 0-72.396-6.434-104.571-17.696-3.219-1.609-14.478-4.827-20.914 0-14.478 9.653-32.174 32.174-32.174 32.174s6.434-16.090 9.653-38.61c1.609-9.653-14.478-17.696-17.696-19.305-59.525-40.22-98.137-109.398-98.137-178.578 0-123.879 117.441-223.622 263.841-223.622 136.749 0 247.756 86.874 262.234 199.489-125.486 17.696-220.405 109.398-220.405 220.405zM765.771 558.236c-14.478 0-27.348-12.87-27.348-27.348s11.263-27.348 27.348-27.348c14.478 0 27.348 12.87 27.348 27.348 0 14.478-11.263 27.348-27.348 27.348z" fill="" p-id="3757"></path><path d="M501.93 360.356c22.523 0 41.828-19.305 41.828-41.828s-19.305-41.828-41.828-41.828c-22.523 0-41.828 19.305-41.828 41.828 0 24.132 19.305 41.828 41.828 41.828zM279.915 360.356c22.523 0 41.828-19.305 41.828-41.828s-19.305-41.828-41.828-41.828c-22.523 0-41.828 19.305-41.828 41.828 0 24.132 17.696 41.828 41.828 41.828z" fill="" p-id="3758"></path></svg>
@@ -22,28 +22,41 @@
               </li>
             </ul>
           </nav>
-        </div>
-        <div class="app-header-section help-section">
+        </section>
+        <section class="app-header-section help-section">
           <nav class="app-nav">
-            <ul class="nav-divider">
-              <li><a href="">联系</a></li>
-              <li><a href="">反馈</a></li>
+            <ul class="nav nav-row nav-divider">
+              <li><a href="" class="nav-link">联系</a></li>
+              <li><a href="" class="nav-link">反馈</a></li>
+              <li class="dropdown">
+                <a href="javascript:;" class="nav-link">
+                  中文
+                </a>
+                <ul class="nav nav-column nav-dropdown">
+                  <li>
+                    <a href="">中文</a>
+                  </li>
+                  <li>
+                    <a href="">English</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </nav>
-        </div>
+        </section>
       </div>
     </div>
 
     <div class="app-header-nav-bar">
       <div class="container">
-        <div class="app-header-section logo-section">
+        <section class="app-header-section logo-section">
           <div class="logo">
             <a href="/" title="Weijuer">
               <img src="../../assets/global/images/logo-white.svg" alt="WEIJUER" />
             </a>
           </div>
-        </div>
-        <div class="app-header-section"></div>
+        </section>
+        <section class="app-header-section"></section>
       </div>
     </div>
   </header>
