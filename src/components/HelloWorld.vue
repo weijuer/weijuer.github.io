@@ -1,33 +1,55 @@
 <template>
   <div class="box-container">
-    <ul class="box menu">
-      <li v-for="menu of menus" class="item"><a href="javascript:;" v-text="menu"></a></li>
-    </ul>
+    <article>
+      <h2></h2>
+    </article>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'index',
-  data () {
-    return {
-      menus: ['主页','博文','关于']
+  export default {
+    name: 'index',
+    data() {
+      return {
+        menus: ['主页', '博文', '关于']
+      }
     }
   }
-}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.menu {
-  height: 2rem;
-}
-.item {
+  * {
+    padding: 0;
+    margin: 0;
+  }
 
-}
+  ul, li {
+    list-style: none;
+  }
+
+  ul {
+    width: 500px;
+    height: 300px;
+    border: 2px solid black;
+  }
+
+  li {
+    width: 80px;
+    height: 50px;
+    border: 1px solid black;
+    background-color: red;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  article {
+    align-self: center;
+  }
+  .box {
+    display: flex;
+  }
+
+  .item {
+
+  }
 </style>
