@@ -22,7 +22,7 @@
 </script>
 
 <style lang="less">
-  @import "~@assets/global/less/app-flex";
+  @import "~@assets/global/less/app";
   @import "~@assets/global/less/theme/default";
 </style>
 
