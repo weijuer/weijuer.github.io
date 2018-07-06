@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import appLayout from './components/layout/Layout'
+  import appLayout from './views/layout/Layout'
 
   export default {
     name: 'app',

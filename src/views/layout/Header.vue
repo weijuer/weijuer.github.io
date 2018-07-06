@@ -51,9 +51,11 @@
       <div class="container">
         <section class="app-header-section logo-section">
           <div class="logo">
-            <a href="/" title="Weijuer">
-              <img src="../../assets/global/images/logo-white.svg" alt="WEIJUER" />
-            </a>
+            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <a xlink:href="/" target="_blank">
+                <text x="0" y="15" fill="#fff">W</text>
+              </a>
+            </svg>
           </div>
         </section>
         <section class="app-header-section"></section>
