@@ -52,13 +52,38 @@
         <section class="app-header-section logo-section">
           <div class="logo">
             <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <a xlink:href="/" target="_blank">
-                <text x="0" y="15" fill="#fff">W</text>
-              </a>
+              <defs>
+                <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:rgb(150,255,19);" />
+                  <stop offset="100%" style="stop-color:#01c790;" />
+                </linearGradient>
+              </defs>
+              <g font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
+                <path stroke="#ff6600" d="m 0 25, l 40 0"/>
+
+                <a xlink:href="/" target="_blank">
+                  <text x="16" y="25" fill="url(#bg)">W</text>
+                  <text x="30" y="38" fill="url(#bg)">J</text>
+                  <circle cx="32" cy="16" r="2" style="fill:#ff6600">
+                    <animateMotion path="M 0 0, l 0 -8, z" dur="3s" fill="freeze" repeatCount="indefinite" />
+                    <animate attributeName="fill-opacity" attributeType="CSS" values="1;0.6;1" begin="0s" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                </a>
+              </g>
+
             </svg>
           </div>
         </section>
-        <section class="app-header-section"></section>
+        <section class="app-header-section menu-section">
+          <nav class="app-nav">
+            <ul class="nav nav-row">
+              <li><a href="" class="nav-link">首页</a></li>
+              <li><a href="" class="nav-link">博客</a></li>
+              <li><a href="" class="nav-link">音乐</a></li>
+              <li><a href="" class="nav-link">关于我</a></li>
+            </ul>
+          </nav>
+        </section>
       </div>
     </div>
   </header>
