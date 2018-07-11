@@ -1,7 +1,7 @@
 <template>
   <div class="box-container">
     <article>
-      <h2></h2>
+      <h2>weijuer</h2>
     </article>
   </div>
 </template>
