@@ -51,7 +51,7 @@
       <div class="container">
         <section class="app-header-section logo-section">
           <div class="logo">
-            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
               <defs>
                 <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" style="stop-color:rgb(150,255,19);"></stop>
@@ -60,8 +60,8 @@
                 </linearGradient>
               </defs>
               <g font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
-                <path stroke="#ff6600" d="m 0 25, l 40 0"></path>
-                <path stroke="#ff6600" d="m 39 0, l 0 40"></path>
+                <path stroke="#fff" d="m 0 25, l 38 0"></path>
+                <path stroke="#fff" d="m 39 0, l 0 40"></path>
 
                 <a xlink:href="/" target="_blank">
                   <text x="16" y="25" fill="url(#bg)">W</text>
@@ -80,7 +80,7 @@
           <nav class="app-nav">
             <ul class="nav nav-row">
               <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
-                <a class="nav-link">{{ menu.name }}</a>
+                <a class="nav-link">{{ $t('nav.' + menu.name) }}</a>
               </router-link>
             </ul>
           </nav>
