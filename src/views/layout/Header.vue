@@ -1,5 +1,13 @@
 <template>
   <header class="app-header">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="filters hidden">
+      <defs>
+        <filter id="blur" x="-20%" y="0" width="140%" height="100%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0,0" />
+        </filter>
+      </defs>
+    </svg>
+
     <!--<div class="app-header-topBar">
       <div class="container">
         <section class="app-header-section social-section">
@@ -51,34 +59,49 @@
       <div class="container">
         <section class="app-header-section logo-section">
           <div class="logo">
-            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
               <defs>
                 <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" style="stop-color:rgb(150,255,19);"></stop>
-                  <stop offset="50%" style="stop-color:rgb(0,255,235);"></stop>
+                  <stop offset="0%" style="stop-color:#01c790;"></stop>
+                  <stop offset="50%" style="stop-color:rgb(93,255,178);"></stop>
                   <stop offset="100%" style="stop-color:#01c790;"></stop>
                 </linearGradient>
               </defs>
               <g font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
-                <path stroke="#fff" d="m 0 25, l 38 0"></path>
-                <path stroke="#fff" d="m 39 0, l 0 40"></path>
+                <path stroke="#fff" d="m 0 25, l 88 0"></path>
+                <path stroke="#fff" d="m 0 0, l 0 40">
+                  <animateMotion path="M 0 0, l 88 0, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
+                </path>
 
                 <a xlink:href="/" target="_blank">
-                  <text x="16" y="25" fill="url(#bg)">W</text>
+                  <!--<text x="16" y="25" fill="url(#bg)">W</text>
                   <text x="30" y="38" fill="url(#bg)">J</text>
                   <circle cx="32" cy="16" r="2" style="fill:#ff6600">
                     <animateMotion path="M 0 0, l 0 -8, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
                     <animate attributeName="fill-opacity" attributeType="CSS" values="1;0.6;1" begin="0s" dur="3s" repeatCount="indefinite"></animate>
-                  </circle>
+                  </circle>-->
+                  <text x="45" y="24" fill="url(#bg)">Weijuer
+                    <animate attributeName="fill-opacity" attributeType="CSS" values="1;0.4;1" begin="0s" dur="3s" repeatCount="indefinite"></animate>
+                  </text>
                 </a>
               </g>
 
             </svg>
           </div>
+          <a class="menu-toggle" href="javascript:;" @click="menuToggle">
+            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
+                <path stroke="#fff" d="M 2 8, l 36 0"></path>
+                <path stroke="#fff" d="M 2 16, l 36 0"></path>
+                <path stroke="#fff" d="M 2 24, l 36 0"></path>
+                <path stroke="#fff" d="M 2 32, l 36 0"></path>
+              </g>
+            </svg>
+          </a>
         </section>
-        <section class="app-header-section menu-section">
+        <section :class="['app-header-section', 'menu-section', isToggle ? 'active' : ''] ">
           <nav class="app-nav">
-            <ul class="nav nav-row">
+            <ul class="nav">
               <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
                 <a class="nav-link">{{ $t('nav.' + menu.name) }}</a>
               </router-link>
@@ -100,10 +123,15 @@
           {name: 'blog', path: '/blog', active: false},
           {name: 'music', path: '/music', active: false},
           {name: 'about', path: '/about', active: false}
-        ]
+        ],
+        isToggle: false
       }
     },
-    components: {
+    methods: {
+      menuToggle() {
+        console.log("menu-open");
+        this.isToggle = !this.isToggle;
+      }
     }
   }
 </script>

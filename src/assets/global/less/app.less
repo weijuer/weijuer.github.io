@@ -102,6 +102,13 @@ a:active {
   display: none;
 }
 
+.hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
 // ------------ flex layout ------------
 .flex {
   display: flex;
@@ -177,11 +184,22 @@ header {
       justify-content: flex-end;
     }
 
-    &.logo-section {
+    &.menu-section {
       flex: 3 1 auto;
-      justify-content: flex-start;
+    }
+
+    &.logo-section {
+      flex: 1 1 auto;
+      justify-content: space-between;
 
       .logo {
+        width: 80px;
+        height: 40px;
+        flex-shrink: 1;
+      }
+
+      .menu-toggle {
+        display: none;
         width: 40px;
         height: 40px;
         flex-shrink: 1;
@@ -299,5 +317,35 @@ header {
     order: 0;
     width: auto;
     flex: auto;
+  }
+  header {
+    .app-header-section {
+      &.menu-section {
+        position: fixed;
+        top: 60px;
+        left: -280px;
+        bottom: 24px;
+        margin: 0;
+        width: 280px;
+        -webkit-filter: url("#blur");
+        transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
+
+        &.active {
+          // transform: matrix(1, 0, 0, 1, 280, 0);
+          left: 0;
+
+          .nav {
+
+          }
+        }
+
+      }
+
+      &.logo-section {
+        .menu-toggle {
+          display: flex;
+        }
+      }
+    }
   }
 }
