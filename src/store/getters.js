@@ -1,1 +1,5 @@
-export const msg = state => state.msg;
+const getters = {
+  isPageScroll: (state) => state.isPageScroll
+};
+
+export default getters;

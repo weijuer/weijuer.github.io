@@ -3,6 +3,7 @@
     <pageHeader />
     <pageMain />
     <pageFooter />
+    <backToTop />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
   import pageHeader from './Header';
   import pageMain from './Main';
   import pageFooter from './Footer';
+  import backToTop from '@comps/backToTop';
 
   export default {
     name: 'app-layout',
     components: {
       pageHeader,
       pageMain,
-      pageFooter
+      pageFooter,
+      backToTop
     }
   }
 </script>

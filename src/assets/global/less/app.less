@@ -123,7 +123,6 @@ a:active {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  height: 100%;
 }
 
 .app-main {
@@ -322,12 +321,12 @@ header {
     .app-header-section {
       &.menu-section {
         position: fixed;
-        top: 60px;
+        top: 0;
         left: -280px;
-        bottom: 24px;
+        bottom: 0;
         margin: 0;
+        z-index: 2018;
         width: 280px;
-        -webkit-filter: url("#blur");
         transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
 
         &.active {
@@ -335,7 +334,24 @@ header {
           left: 0;
 
           .nav {
+            flex-direction: column;
 
+            li {
+              display: flex;
+            }
+          }
+
+          &:before {
+            content: '';
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            z-index: -2018;
+            background: rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
           }
         }
 

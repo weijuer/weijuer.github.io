@@ -1,3 +1,10 @@
-export const getMsg = (state, payload) => {
-  state.msg = payload.msg;
-}
+import type from './mutations-types'
+
+const mutations = {
+  [type.PAGE_ON_SCROLL] (state) {
+    state.isPageScroll = !state.isPageScroll;
+  }
+};
+
+export default mutations;
+
