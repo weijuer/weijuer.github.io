@@ -1,9 +1,9 @@
 <template>
-  <header class="app-header">
+  <header :class="['app-header', {'app-header-fixed': isPageScroll}]">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="filters hidden">
       <defs>
         <filter id="blur" x="-20%" y="0" width="140%" height="100%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="0,0" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0,0"></feGaussianBlur>
         </filter>
       </defs>
     </svg>
@@ -114,6 +114,7 @@
 </template>
 
 <script>
+  import {mapState, mapMutations} from 'vuex'
   export default {
     name: 'page-header',
     data() {
@@ -126,6 +127,11 @@
         ],
         isToggle: false
       }
+    },
+    computed: {
+      ...mapState([
+        'isPageScroll'
+      ])
     },
     methods: {
       menuToggle() {
