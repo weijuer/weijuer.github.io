@@ -122,6 +122,7 @@
         menus: [
           {name: 'home', path: '/home', active: true},
           {name: 'blog', path: '/blog', active: false},
+          {name: 'show-box', path: '/show-box', active: false},
           {name: 'music', path: '/music', active: false},
           {name: 'about', path: '/about', active: false}
         ],

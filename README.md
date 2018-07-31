@@ -10,12 +10,20 @@
 ```
 node: v8.10.0
 npm: 6.1.0
-axios: "^0.18.0",
-vue: "^2.5.16",
-vue-router: "^3.0.1",
-vuex: "^3.0.1",
 webpack: "^4.12.1",
 webpack-cli: "^3.0.8",
+
++
+
+"dependencies": {
+  "axios": "^0.18.0",
+  "koa": "^2.5.2",
+  "vue": "^2.5.16",
+  "vue-cli": "^2.9.6",
+  "vue-i18n": "^8.0.0",
+  "vue-router": "^3.0.1",
+  "vuex": "^3.0.1"
+}
 .
 .
 .
@@ -63,11 +71,16 @@ webpack-cli: "^3.0.8",
 │   ├── components      // 单文件组件
 │   ├── router          // 前端router路由配置
 │   └── store           // vuex相关模块配置
+│       ├── modules     // 接口模块
 │       ├── actions.js
 │       ├── getters.js
-│       ├── mutations.js
 │       ├── index.js
+│       ├── mutations.js
+│       ├── mutations-types.js
 │       └── states.js
+│   └── views           // 页面模板
+│       ├── layout      // 框架模板
+│       └── pages       // 其他页面
 │   ├── App.vue         // 入口vue文件
 │   └── main.js         // 前端主函数
 ├── static
