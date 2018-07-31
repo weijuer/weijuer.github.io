@@ -10,9 +10,19 @@ const mutations = {
     let offsetTop = document.querySelector('.app-header').offsetTop;
     state.isPageScroll = scrollTop > offsetTop;
   },
-  [type.SCROLL_TO](state){
+  /**
+   * 回到顶部定时
+   * @param state
+   */
+  [type.BACK_TO_TOP](state){
     // 1.scrollBy方法
     window.scrollBy(0, -100);
+    // 2.定时滚动
+    if (state.isPageScroll) {
+      state.delay = setTimeout(() => {
+        this.commit(type.BACK_TO_TOP)
+      }, 10)
+    }
   }
 };
 

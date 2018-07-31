@@ -45,7 +45,7 @@
     width: 40px;
     height: 40px;
     position: fixed;
-    bottom: 0;
+    bottom: -10%;
     right: 20px;
     z-index: 110;
     color: #24292e;
