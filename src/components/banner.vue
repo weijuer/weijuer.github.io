@@ -3,7 +3,7 @@
     <!--轮播图区-->
     <div class="banner-content">
       <ul class="banner">
-        <li v-for="(item, index) of 6" :style="bannerStyle(index)" :class="['banner-item', {'active': index === active}]"><a :href="item" v-text="item"></a></li>
+        <li v-for="(item, index) of items" :style="itemStyle(index)" :class="['banner-item', {'active': index === active}]"><slot name="item" v-text="item"></slot></li>
       </ul>
     </div>
 
@@ -20,7 +20,7 @@
       <!--分页按钮-->
       <section class="bullet-wrapper">
         <ul class="bullet">
-          <li v-for="(item, index) of 6" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index + 1" @click="setPage(index)"></a></li>
+          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index + 1" @click="go(index)"></a></li>
         </ul>
       </section>
     </div>
@@ -33,12 +33,15 @@
     name: 'banner',
     data() {
       return {
-        active: 0,
-        bannerList: []
+        itemWidth: 0,
+        duration: 300,
+        container: null,
+        active: 0
       }
     },
+    props: ['items'],
     mounted() {
-
+      this.init();
     },
     computed: {
 
@@ -47,28 +50,60 @@
       console.log('active:===>' + this.active);
     },
     methods: {
-      next() {
-        if(this.active < this.bannerList.length - 1) {
-          this.active += 1;
-        } else {
-          this.active = 0;
-        }
+      init() {
+        this.updateWidth();
       },
-      prev() {
-        if(this.active > 0) {
-          this.active -= 1;
-        } else {
-          this.active = this.bannerList.length - 1;
-        }
+      updateWidth() {
+        this.itemWidth = document.querySelector('.app').offsetWidth || document.documentElement.offsetWidth;
       },
-      setPage(number) {
-        this.active = number;
-      },
-      bannerStyle(index) {
+      itemStyle(index) {
         return {
           background: this.randomColor(),
-          transform: this.getTransform(index)
+          transform: this.setTransform(0, index)
         }
+      },
+      // 根据当前活动子项的下标计算各个子项的X轴位置
+      // 计算公式(子项的下标 - 当前活动下标) * 子项宽度 + 偏移(手指移动距离)；
+      setTransform(offset, index) {
+        offset = offset || 0;
+        let distance;
+        let transform;
+        if(index === this.active) {
+          distance = this.itemWidth * 0.25;
+          transform = `translateX(${distance}px) scale(1)`;
+        } else if(this.active > index) {
+          distance = (this.active - index) * this.itemWidth + offset - 100;
+          transform = `translateX(${distance}px) scale(.8)`;
+        } else {
+          distance = (index - this.active) * this.itemWidth + offset - 100;
+          transform = `translateX(${distance}px) scale(.8)`;
+        }
+        return transform;
+      },
+      // 给每一个子项添加transition过度动画
+      setTransition (duration) {
+        duration = duration || this.duration;
+        duration = typeof duration === 'number' ? (duration + 'ms') : duration;
+        return duration;
+      },
+      next() {
+        let index = this.active + 1;
+        this.go(index);
+      },
+      prev() {
+        let index = this.active - 1;
+        this.go(index);
+      },
+      go(index) {
+        this.active = index;
+        if(this.active < 0) {
+          this.active = this.items.length - 1
+        } else if(this.active > this.items.length - 1) {
+          this.active = 0;
+        }
+        this.$emit('change', this.active);
+        /*this.setTransition();
+        this.setTransform();*/
       },
       randomColor() {
         let color = "#";
@@ -79,14 +114,11 @@
       },
       getTransform(index) {
         let transform = '';
-        //let offsetWidth = document.querySelector('#app').offsetWidth;
-        //let itemWidth = offsetWidth * .5;
         if(index === this.active) {
           transform = 'translateX(' + index +'px)' +  'scale(1)';
         } else {
           transform = 'translateX(' + index +'px)' +  'scale(.8)';
         }
-
         return transform;
       }
     }
@@ -112,6 +144,9 @@
         position: relative;
 
         .banner-item {
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 50%;
           height: 100%;
           display: inline-flex;
@@ -120,11 +155,6 @@
           background: #fff;
           border: 1px solid #000;
           transition: all 0.3s linear;
-          transform: translateX(0px) scale(0);
-
-          &.active {
-            transform: translateX(0px) scale(0);
-          }
         }
 
       }

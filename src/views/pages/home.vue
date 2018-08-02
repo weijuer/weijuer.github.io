@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <banner />
+    <banner :items="banners" />
   </div>
 </template>
 
@@ -10,7 +10,7 @@
     name: 'home',
     data() {
       return {
-        timeline: [],
+        banners: [1,2,3,4,5,6],
         dbInit: false
       }
     },
