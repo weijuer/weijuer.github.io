@@ -59,27 +59,34 @@
       <div class="container">
         <section class="app-header-section logo-section">
           <div class="logo">
-            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
               <defs>
                 <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" style="stop-color:#01c790;"></stop>
                   <stop offset="50%" style="stop-color:rgb(93,255,178);"></stop>
                   <stop offset="100%" style="stop-color:#01c790;"></stop>
                 </linearGradient>
-              </defs>
-              <g font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
-                <path stroke="#fff" d="m 0 25, l 88 0"></path>
-                <path stroke="#fff" d="m 0 0, l 0 40">
-                  <animateMotion path="M 0 0, l 88 0, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
-                </path>
 
+                <radialGradient id="gr-radial" cx="50%" cy="50%" r="70%">
+                  <animate attributeName="r" values="0%;150%;100%;0%" dur="3s" repeatCount="indefinite"></animate>
+                  <stop stop-color="#fff" offset="0">
+                    <animate attributeName="stop-color" values="#000;#f00;#f00;#000" dur="3s" repeatCount="indefinite"></animate>
+                  </stop>
+                  <stop offset="100%" style="stop-color:rgba(255,0,0,0);"></stop>
+                </radialGradient>
+              </defs>
+
+              <g id="arm" style="stroke:#fff;stroke-width:1px;stroke-miterlimit:10;" fill="url(#gr-radial)">
+                <circle id="inner-circle" cx="0" cy="25" r="4"></circle>
+                <circle id="midlle-circle" cx="0" cy="25" r="6"></circle>
+                <circle id="outer-circle" cx="0" cy="25" r="10"></circle>
+                <path stroke="#fff" d="m 0 0, l 0 40"></path>
+                <animateMotion xlink:href="#arm" path="M 0 0, l 88 0, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
+              </g>
+
+              <g id="logo-text" font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
+                <path stroke="#fff" d="m 0 25, l 88 0"></path>
                 <a xlink:href="/" target="_blank">
-                  <!--<text x="16" y="25" fill="url(#bg)">W</text>
-                  <text x="30" y="38" fill="url(#bg)">J</text>
-                  <circle cx="32" cy="16" r="2" style="fill:#ff6600">
-                    <animateMotion path="M 0 0, l 0 -8, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
-                    <animate attributeName="fill-opacity" attributeType="CSS" values="1;0.6;1" begin="0s" dur="3s" repeatCount="indefinite"></animate>
-                  </circle>-->
                   <text x="45" y="24" fill="url(#bg)">Weijuer
                     <animate attributeName="fill-opacity" attributeType="CSS" values="1;0.4;1" begin="0s" dur="3s" repeatCount="indefinite"></animate>
                   </text>

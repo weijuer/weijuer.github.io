@@ -26,6 +26,10 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: resolve => require(['../views/pages/blog'], resolve)
+  } , {
+    path: '/show-box',
+    name: 'show-box',
+    component: resolve => require(['../views/pages/showBox'], resolve)
   }, {
     path: '/music',
     name: 'music',

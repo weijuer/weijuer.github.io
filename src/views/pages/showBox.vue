@@ -7,7 +7,7 @@
 <script>
   import banner from '@/components/banner'
   export default {
-    name: 'home',
+    name: 'show-box',
     data() {
       return {
         timeline: [],
