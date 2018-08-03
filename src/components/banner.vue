@@ -69,13 +69,13 @@
         let distance;
         let transform;
         if(index === this.active) {
-          distance = this.itemWidth * 0.25;
+          distance = this.itemWidth * 0.25 + offset;
           transform = `translateX(${distance}px) scale(1)`;
-        } else if(this.active > index) {
-          distance = (this.active - index) * this.itemWidth + offset - 100;
+        } else if(index < this.active) {
+          distance = (index - this.active) * this.itemWidth * 0.25 + offset;
           transform = `translateX(${distance}px) scale(.8)`;
         } else {
-          distance = (index - this.active) * this.itemWidth + offset - 100;
+          distance = (index - this.active) * this.itemWidth * 0.25 * 3 + offset;
           transform = `translateX(${distance}px) scale(.8)`;
         }
         return transform;

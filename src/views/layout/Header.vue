@@ -67,19 +67,18 @@
                   <stop offset="100%" style="stop-color:#01c790;"></stop>
                 </linearGradient>
 
-                <radialGradient id="gr-radial" cx="50%" cy="50%" r="70%">
-                  <animate attributeName="r" values="0%;150%;100%;0%" dur="3s" repeatCount="indefinite"></animate>
-                  <stop stop-color="#fff" offset="0">
-                    <animate attributeName="stop-color" values="#000;#f00;#f00;#000" dur="3s" repeatCount="indefinite"></animate>
-                  </stop>
-                  <stop offset="100%" style="stop-color:rgba(255,0,0,0);"></stop>
+                <radialGradient id="gr-radial" cx="50%" cy="50%" r="100%">
+                  <animate attributeName="r" values="0%;90%;90%;0%" dur="3s" repeatCount="indefinite"></animate>
+                  <stop stop-color="#000" offset="0"></stop>
+                  <stop stop-color="#000" offset="60%"></stop>
+                  <stop offset="100%" style="stop-color:rgba(255,0,0,0.8);"></stop>
                 </radialGradient>
               </defs>
 
-              <g id="arm" style="stroke:#fff;stroke-width:1px;stroke-miterlimit:10;" fill="url(#gr-radial)">
+              <g id="arm" style="stroke:#fff;stroke-width:1px;stroke-miterlimit:10;" fill="none">
                 <circle id="inner-circle" cx="0" cy="25" r="4"></circle>
                 <circle id="midlle-circle" cx="0" cy="25" r="6"></circle>
-                <circle id="outer-circle" cx="0" cy="25" r="10"></circle>
+                <circle id="outer-circle" cx="0" cy="25" r="10" fill="url(#gr-radial)"></circle>
                 <path stroke="#fff" d="m 0 0, l 0 40"></path>
                 <animateMotion xlink:href="#arm" path="M 0 0, l 88 0, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
               </g>
