@@ -1,5 +1,5 @@
 <template>
-  <div class="banner-container">
+  <div class="banner-container" :style="{height: _height}">
     <!--轮播图区-->
     <div class="banner-content">
       <ul class="banner">
@@ -20,7 +20,7 @@
       <!--分页按钮-->
       <section class="bullet-wrapper">
         <ul class="bullet">
-          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index + 1" @click="go(index)"></a></li>
+          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index" @click="go(index)"></a></li>
         </ul>
       </section>
     </div>
@@ -39,7 +39,16 @@
         active: 0
       }
     },
-    props: ['items'],
+    props: {
+      items: {
+        type: Array,
+        default: []
+      },
+      height: {
+        type: [Number, String],
+        default: 'auto'
+      }
+    },
     mounted() {
       this.init();
     },
@@ -59,24 +68,18 @@
       itemStyle(index) {
         return {
           background: this.randomColor(),
-          transform: this.setTransform(0, index)
+          transform: this.setTransform(index)
         }
       },
       // 根据当前活动子项的下标计算各个子项的X轴位置
       // 计算公式(子项的下标 - 当前活动下标) * 子项宽度 + 偏移(手指移动距离)；
-      setTransform(offset, index) {
-        offset = offset || 0;
-        let distance;
+      setTransform(index) {
+        let distance = ((index - this.active) + 0.5) * 100;
         let transform;
         if(index === this.active) {
-          distance = this.itemWidth * 0.25 + offset;
-          transform = `translateX(${distance}px) scale(1)`;
-        } else if(index < this.active) {
-          distance = (index - this.active) * this.itemWidth * 0.25 + offset;
-          transform = `translateX(${distance}px) scale(.8)`;
+          transform = `translateX(${distance}%) scale(1)`;
         } else {
-          distance = (index - this.active) * this.itemWidth * 0.25 * 3 + offset;
-          transform = `translateX(${distance}px) scale(.8)`;
+          transform = `translateX(${distance}%) scale(.8)`;
         }
         return transform;
       },
@@ -97,13 +100,13 @@
       go(index) {
         this.active = index;
         if(this.active < 0) {
-          this.active = this.items.length - 1
+          this.active = this.items.length - 1;
+          this.itemStyle(this.active);
         } else if(this.active > this.items.length - 1) {
           this.active = 0;
+          this.itemStyle(this.active);
         }
         this.$emit('change', this.active);
-        /*this.setTransition();
-        this.setTransform();*/
       },
       randomColor() {
         let color = "#";
@@ -140,8 +143,6 @@
     .banner-content {
 
       .banner {
-        height: 350px;
-        position: relative;
 
         .banner-item {
           position: absolute;
@@ -154,7 +155,7 @@
           align-items: center;
           background: #fff;
           border: 1px solid #000;
-          transition: all 0.3s linear;
+          transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);;
         }
 
       }
