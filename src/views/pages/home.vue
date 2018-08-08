@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <banner :items="banners" />
+    <banner :items="banners" :height="height" />
   </div>
 </template>
 
@@ -11,6 +11,7 @@
     data() {
       return {
         banners: [1,2,3,4,5,6],
+        height: '400px',
         dbInit: false
       }
     },

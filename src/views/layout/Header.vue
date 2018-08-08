@@ -105,7 +105,7 @@
             </svg>
           </a>
         </section>
-        <section :class="['app-header-section', 'menu-section', isToggle ? 'active' : ''] ">
+        <section :class="['app-header-section', 'menu-section', isToggle ? 'active' : '']" @click.self="shadowToggle($event)">
           <nav class="app-nav">
             <ul class="nav">
               <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
@@ -144,6 +144,15 @@
       menuToggle() {
         console.log("menu-open");
         this.isToggle = !this.isToggle;
+      },
+      shadowToggle(event) {
+        event = event || window.event;
+        let target = event.target || event.srcElement;
+        if(target.nodeName.toLowerCase() === 'section') {
+          this.isToggle = !this.isToggle;
+        }
+        // 阻止事件冒泡
+        event.stopPropagation();
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="banner-container" :style="{height: _height}">
+  <div class="banner-container" :style="{height: height}">
     <!--轮播图区-->
     <div class="banner-content">
       <ul class="banner">
@@ -217,8 +217,6 @@
       }
 
     }
-
-
   }
 
 </style>
