@@ -143,6 +143,7 @@
     .banner-content {
 
       .banner {
+        counter-reset: item;
 
         .banner-item {
           position: absolute;
@@ -150,12 +151,21 @@
           left: 0;
           width: 50%;
           height: 100%;
-          display: inline-flex;
+          display: flex;
           justify-items: center;
           align-items: center;
           background: #fff;
           border: 1px solid #000;
-          transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);;
+          transition: all 0.3s cubic-bezier(0.8, 0, 0.1, 1);
+
+          &:before {
+            flex: 1;
+            counter-increment: item;
+            content: counter(item);
+            font-size: 40px;
+            text-align: center;
+            color: #fff;
+          }
         }
 
       }
