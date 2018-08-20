@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-page default">
+  <div id="app" :class="['app-page', 'default', isSideMenuActive ? 'app-side-menu-active' : '']">
     <pageHeader />
     <pageMain />
     <pageFooter />
@@ -12,9 +12,15 @@
   import pageMain from './Main';
   import pageFooter from './Footer';
   import backToTop from '@comps/backToTop';
+  import {mapState} from 'vuex'
 
   export default {
     name: 'app-layout',
+    computed: {
+      ...mapState([
+        'isSideMenuActive'
+      ])
+    },
     components: {
       pageHeader,
       pageMain,

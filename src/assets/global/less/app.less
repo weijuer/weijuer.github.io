@@ -192,6 +192,7 @@ header {
 
     &.menu-section {
       flex: 3 1 auto;
+      justify-content: flex-end;
     }
 
     &.logo-section {
@@ -199,8 +200,8 @@ header {
       justify-content: space-between;
 
       .logo {
-        width: 80px;
-        height: 40px;
+        width: 120px;
+        height: 60px;
         flex-shrink: 1;
       }
 
@@ -313,6 +314,14 @@ header {
 }
 
 @media all and (max-width: 768px) {
+  .app-page {
+    transition: all 0.3s cubic-bezier(0.815, 1.65, 0.4, 0.68);
+
+    &.app-side-menu-active {
+      transform: translateX(-280px);
+    }
+  }
+
   .app-main {
     flex-flow: column;
   }
@@ -329,7 +338,7 @@ header {
       &.menu-section {
         position: fixed;
         top: 0;
-        left: -280px;
+        right: -280px;
         bottom: 0;
         margin: 0;
         z-index: 2018;
@@ -337,14 +346,22 @@ header {
         transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
 
         &.active {
+          align-items: flex-start;
+
           // transform: matrix(1, 0, 0, 1, 280, 0);
-          left: 0;
+          // right: 0;
 
-          .nav {
-            flex-direction: column;
+          .app-nav {
+            flex: 1;
 
-            li {
-              display: flex;
+            .nav {
+              flex-direction: column;
+
+              li>a {
+                display: flex;
+                padding: .75rem .75rem;
+                border-bottom: 1px solid #ddd;
+              }
             }
           }
 
@@ -365,6 +382,12 @@ header {
       }
 
       &.logo-section {
+
+        .logo {
+          width: 80px;
+          height: 40px;
+        }
+
         .menu-toggle {
           display: flex;
         }

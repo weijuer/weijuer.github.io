@@ -59,7 +59,7 @@
       <div class="container">
         <section class="app-header-section logo-section">
           <div class="logo">
-            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+            <svg class="icon-logo" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
               <defs>
                 <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" style="stop-color:#01c790;"></stop>
@@ -76,17 +76,17 @@
               </defs>
 
               <g id="arm" style="stroke:#fff;stroke-width:1px;stroke-miterlimit:10;" fill="none">
-                <circle id="inner-circle" cx="0" cy="25" r="4"></circle>
-                <circle id="midlle-circle" cx="0" cy="25" r="6"></circle>
-                <circle id="outer-circle" cx="0" cy="25" r="10" fill="url(#gr-radial)"></circle>
-                <path stroke="#fff" d="m 0 0, l 0 40"></path>
-                <animateMotion xlink:href="#arm" path="M 0 0, l 88 0, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
+                <circle id="inner-circle" cx="0" cy="40" r="4"></circle>
+                <circle id="midlle-circle" cx="0" cy="40" r="8"></circle>
+                <circle id="outer-circle" cx="0" cy="40" r="12"></circle>
+                <path stroke="#fff" d="m 0 0, l 0 60"></path>
+                <animateMotion xlink:href="#arm" path="M 0 0, l 120 0, z" dur="3s" fill="freeze" repeatCount="indefinite"></animateMotion>
               </g>
 
-              <g id="logo-text" font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
-                <path stroke="#fff" d="m 0 25, l 88 0"></path>
+              <g id="logo-text" font-size="36" stroke-width="1" text-anchor="middle">
+                <path stroke="#fff" d="m 0 40, l 120 0"></path>
                 <a xlink:href="/" target="_blank">
-                  <text x="45" y="24" fill="url(#bg)">Weijuer
+                  <text x="60" y="39" fill="url(#bg)">Weijuer
                     <animate attributeName="fill-opacity" attributeType="CSS" values="1;0.4;1" begin="0s" dur="3s" repeatCount="indefinite"></animate>
                   </text>
                 </a>
@@ -94,18 +94,17 @@
 
             </svg>
           </div>
-          <a class="menu-toggle" href="javascript:;" @click="menuToggle">
+          <a :class="['menu-toggle', isSideMenuActive ? 'active' : '']" href="javascript:;" @click="menuToggle">
             <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g font-size="26" font="Gabriola" stroke-width="1" text-anchor="middle">
+              <g font-size="26" stroke-width="1" text-anchor="middle">
                 <path stroke="#fff" d="M 2 8, l 36 0"></path>
-                <path stroke="#fff" d="M 2 16, l 36 0"></path>
-                <path stroke="#fff" d="M 2 24, l 36 0"></path>
+                <path stroke="#fff" d="M 2 20, l 36 0"></path>
                 <path stroke="#fff" d="M 2 32, l 36 0"></path>
               </g>
             </svg>
           </a>
         </section>
-        <section :class="['app-header-section', 'menu-section', isToggle ? 'active' : '']" @click.self="shadowToggle($event)">
+        <section :class="['app-header-section', 'menu-section', isSideMenuActive ? 'active' : '']" @click.self="shadowToggle($event)">
           <nav class="app-nav">
             <ul class="nav">
               <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
@@ -137,19 +136,19 @@
     },
     computed: {
       ...mapState([
-        'isPageScroll'
+        'isPageScroll',
+        'isSideMenuActive'
       ])
     },
     methods: {
-      menuToggle() {
-        console.log("menu-open");
-        this.isToggle = !this.isToggle;
-      },
+      ...mapMutations({
+          menuToggle: 'SIDE_MENU_ACTIVE'
+      }),
       shadowToggle(event) {
         event = event || window.event;
         let target = event.target || event.srcElement;
         if(target.nodeName.toLowerCase() === 'section') {
-          this.isToggle = !this.isToggle;
+          this.menuToggle();
         }
         // 阻止事件冒泡
         event.stopPropagation();
@@ -157,5 +156,3 @@
     }
   }
 </script>
-
-

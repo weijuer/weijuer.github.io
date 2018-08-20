@@ -23,6 +23,9 @@ const mutations = {
         this.commit(type.BACK_TO_TOP)
       }, 10)
     }
+  },
+  [type.SIDE_MENU_ACTIVE](state){
+    state.isSideMenuActive = !state.isSideMenuActive;
   }
 };
 
