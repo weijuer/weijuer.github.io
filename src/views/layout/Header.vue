@@ -59,7 +59,22 @@
       <div class="container">
         <section class="app-header-section logo-section">
           <div class="logo">
-            <svg class="icon-logo" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+            <svg version="1.1" id="weijuer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               viewBox="0 0 240 120" xml:space="preserve">
+              <path id="line" class="logo-line" d="M27.2,48.3C24.6,54.4,13,53,13,53c-15.8-7.3-5.6-25.5,1.8-26c6.6-2.5,14.3,0.3,14.8,0.7
+                c7.6,5.5,7.7,10.3,7.7,10.3s2.4,10.5,0,24.6l-2.3,14c-0.2,1,0.9,1.5,1.4,0.8c5.7-8.6,21.3-32,21.6-30.5c0.4,1.9-4.9,32.9-2.4,34.2
+                c5.2,1,22.4-43.3,29.6-45.9C87.8,36.8,92,65.2,93,66c1.8,0,12.7-8,13.6-14.4c-0.8-3.6-3.7-4-5.3-2.7c-1.7,1.2-5.3,4.6-5.9,10.3
+                s1.3,13.5,4.7,13.7c5.3,0.3,16.9-19.7,18.4-18.5c1.8,3.6-7,21.4-1.2,21.6c5-3.9,15.3-24.2,17.8-25.7c2.7,0.3-8.5,41.1-10.4,44.1
+                c-3,4.9-9.5,8.1-4.4-4.4c4.2-10.3,24.8-36.5,26.7-33.5c-1.3,5.3-3.4,14-1.2,16.4s3.4,1.9,5.3,0.7c1.9,0.1,6.4-9.6,7.5-17.9
+                c0.1-0.7,0.9-0.8,1.1-0.1c1.1,4.9-3.2,17.2,1.2,15.9c1.7-0.5,19.2-15.9,19.9-19.2c0.7-3.3-1.3-4.8-3-4.8c-1.7,0-7.5,6.8-8.3,13
+                c-0.5,4.8-1,10.1,4.1,11.6c5.5,1,15.5-16.9,16-17.1c3.4,0.8,7.1,6.2,7.1,6.2s-8.9,14.5-8.3,13.7c0.6-0.8,23.1-7.2,28.1-5.8
+                c4.9,1.3,4.9,6.2,2.4,7.2c-6.8,2.7-146.1,11.3-153.2,6.2c-1.7-1.2,16.1-3.2,17.2-3.4c1.1-0.2,79-2.7,81.2-2.7
+                c14.2,0,74.7,7.2,71.7,6.2"></path>
+              <path id="dot_first" class="logo-dot" d="M116.8,40.2l3.7,3.5"></path>
+              <path id="dot_second" class="logo-dot" d="M133.4,39.4l4.2,2.8"></path>
+            </svg>
+
+            <svg class="icon-logo hidden" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
               <defs>
                 <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" style="stop-color:#01c790;"></stop>
@@ -109,6 +124,9 @@
             <ul class="nav">
               <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
                 <a class="nav-link">{{ $t('nav.' + menu.name) }}</a>
+                <svg class="shape-container" viewBox="0 0 60 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="shape"></rect>
+                </svg>
               </router-link>
             </ul>
           </nav>
@@ -152,7 +170,62 @@
         }
         // 阻止事件冒泡
         event.stopPropagation();
+      },
+      getPathLength() {
+        let path = document.getElementById('line');
+        //获取路径总长度
+        let length = path.getTotalLength();
+        console.log('length:===>' + length);
       }
     }
   }
 </script>
+
+<style lang="less" scoped>
+  .logo {
+    position: relative;
+
+    .logo-line {
+      fill: transparent;
+      stroke: #fff;
+      stroke-width: 4px;
+      stroke-miterlimit: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 1060, 0;
+      stroke-dashoffset: 1061px;
+    }
+
+    .logo-dot {
+      fill: transparent;
+      stroke: #fff;
+      stroke-width: 4px;
+      stroke-miterlimit: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 20, 0;
+      stroke-dashoffset: 20px;
+    }
+
+    &:hover .logo-line {
+      animation: draw 1s linear forwards;
+    }
+
+    &:hover .logo-dot {
+      animation: draw .3s .2s linear forwards;
+    }
+
+  }
+
+  @keyframes draw {
+    0% {
+      stroke-width: 4px;
+      stroke-dasharray: 5, 1060;
+      stroke-dashoffset: 1061px;
+    }
+    100% {
+      stroke: #01c790;
+      stroke-width: 4px;
+      stroke-dasharray: 1060, 0;
+      stroke-dashoffset: 1061px;
+    }
+  }
+</style>

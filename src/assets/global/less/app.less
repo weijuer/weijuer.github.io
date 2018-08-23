@@ -281,6 +281,28 @@ header {
   }
 
   li {
+    position: relative;
+
+    .shape-container {
+      position: absolute;
+      top: -6px;
+      left: 0;
+    }
+
+    .shape {
+      fill: transparent;
+      width: 60px;
+      height: 40px;
+      stroke-width: 2px;
+      stroke: #fff;
+      stroke-linecap: round;
+      stroke-dasharray: 0, 240;
+      stroke-dashoffset: 241px;
+    }
+
+    &:hover .shape {
+      animation: draw .5s linear forwards;
+    }
 
     &.dropdown {
 
@@ -363,6 +385,10 @@ header {
                 border-bottom: 1px solid #ddd;
               }
             }
+
+            .shape-container {
+              display: none;
+            }
           }
 
           &:before {
@@ -393,5 +419,21 @@ header {
         }
       }
     }
+  }
+}
+
+
+@keyframes draw {
+  0% {
+    stroke: #fff;
+    stroke-width: 2px;
+    stroke-dasharray: 0, 240;
+    stroke-dashoffset: 240px;
+  }
+  100% {
+    stroke: #01c790;
+    stroke-width: 2px;
+    stroke-dasharray: 240, 0;
+    stroke-dashoffset: 240px;
   }
 }
