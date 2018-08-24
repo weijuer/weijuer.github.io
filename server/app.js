@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const app = new Koa();
 
-/*// koa-router
+// koa-router
 const Router = require('koa-router');
 // 父路由
 const router = new Router();
@@ -10,7 +10,7 @@ const router = new Router();
 const BodyParser = require('koa-bodyparser');
 const bodyParser = new BodyParser();
 
-app.use(bodyParser);*/
+app.use(bodyParser);
 
 // x-response-time
 app.use(async (ctx, next) => {

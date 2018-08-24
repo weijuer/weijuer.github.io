@@ -1,10 +1,10 @@
 <template>
-  <div class="banner-container" :style="{height: height}">
+  <div class="banner-container" :style="{height: height}" :class="{'enter': isMouseEnter}" @mouseenter="enter" @mouseleave="leave">
     <!--轮播图区-->
     <div class="banner-content">
-      <ul class="banner">
-        <li v-for="(item, index) of items" :style="itemStyle(index)" :class="['banner-item', {'active': index === active}]"><slot name="item" v-text="item"></slot></li>
-      </ul>
+      <transition-group tag="ul" class="banner" name="banner" enter-active-class="animated lightSpeedIn" leave-active-class="animated lightSpeedOut">
+        <li v-for="(item, index) of items" :style="itemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index"><slot name="item" v-text="item"></slot></li>
+      </transition-group>
     </div>
 
     <!--控制区-->
@@ -36,7 +36,9 @@
         itemWidth: 0,
         duration: 300,
         container: null,
-        active: 0
+        active: 0,
+        time: 0,
+        isMouseEnter: false
       }
     },
     props: {
@@ -48,6 +50,9 @@
         type: [Number, String],
         default: 'auto'
       }
+    },
+    created() {
+      // this.play();
     },
     mounted() {
       this.init();
@@ -61,13 +66,14 @@
     methods: {
       init() {
         this.updateWidth();
+        this.play();
       },
       updateWidth() {
         this.itemWidth = document.querySelector('.app').offsetWidth || document.documentElement.offsetWidth;
       },
       itemStyle(index) {
         return {
-          background: this.randomColor(),
+          //background: this.randomColor(),
           transform: this.setTransform(index)
         }
       },
@@ -75,10 +81,15 @@
       // 计算公式(子项的下标 - 当前活动下标) * 子项宽度 + 偏移(手指移动距离)；
       setTransform(index) {
         let distance = ((index - this.active) + 0.5) * 100;
+        let len = this.items.length;
         let transform;
+
+        //
         if(index === this.active) {
           transform = `translateX(${distance}%) scale(1)`;
-        } else {
+        } else if (index > this.active -1 ) {
+          transform = `translateX(${distance}%) scale(.8)`;
+        } else if (index < this.active -1 ) {
           transform = `translateX(${distance}%) scale(.8)`;
         }
         return transform;
@@ -97,6 +108,23 @@
         let index = this.active - 1;
         this.go(index);
       },
+      autoPlay() {
+        let index = this.active + 1;
+        this.go(index);
+      },
+      play() {
+        this.time = setInterval(this.autoPlay, 3000);
+      },
+      enter() {
+        console.log('enter');
+        this.isMouseEnter = true;
+        clearInterval(this.time);
+      },
+      leave() {
+        console.log('leave');
+        this.isMouseEnter = false;
+        this.play();
+      },
       go(index) {
         this.active = index;
         if(this.active < 0) {
@@ -106,7 +134,7 @@
           this.active = 0;
           this.itemStyle(this.active);
         }
-        this.$emit('change', this.active);
+        //this.$emit('change', this.active);
       },
       randomColor() {
         let color = "#";
@@ -114,15 +142,6 @@
           color += (Math.random() * 16 | 0).toString(16);
         }
         return color;
-      },
-      getTransform(index) {
-        let transform = '';
-        if(index === this.active) {
-          transform = 'translateX(' + index +'px)' +  'scale(1)';
-        } else {
-          transform = 'translateX(' + index +'px)' +  'scale(.8)';
-        }
-        return transform;
       }
     }
   }
@@ -164,7 +183,7 @@
             content: counter(item);
             font-size: 40px;
             text-align: center;
-            color: #fff;
+            color: #0da971;
           }
         }
 
