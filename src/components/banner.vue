@@ -1,9 +1,11 @@
 <template>
-  <div class="banner-container" :style="{height: height}" :class="{'enter': isMouseEnter}" @mouseenter="enter" @mouseleave="leave">
+  <div :class="['banner-container', {'mouse-enter': isMouseEnter}]" :style="{height: height}" @mouseenter="enter" @mouseleave="leave">
     <!--轮播图区-->
     <div class="banner-content">
-      <transition-group tag="ul" class="banner" name="banner" enter-active-class="animated lightSpeedIn" leave-active-class="animated lightSpeedOut">
-        <li v-for="(item, index) of items" :style="itemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index"><slot name="item" v-text="item"></slot></li>
+      <transition-group tag="ul" class="banner">
+        <li v-for="(item, index) of items" :style="itemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index">
+          <slot name="item" v-text="item"></slot>
+        </li>
       </transition-group>
     </div>
 
@@ -66,14 +68,14 @@
     methods: {
       init() {
         this.updateWidth();
-        this.play();
+        //this.play();
       },
       updateWidth() {
         this.itemWidth = document.querySelector('.app').offsetWidth || document.documentElement.offsetWidth;
       },
       itemStyle(index) {
         return {
-          //background: this.randomColor(),
+          // background: this.randomColor(),
           transform: this.setTransform(index)
         }
       },
@@ -87,9 +89,11 @@
         //
         if(index === this.active) {
           transform = `translateX(${distance}%) scale(1)`;
-        } else if (index > this.active -1 ) {
-          transform = `translateX(${distance}%) scale(.8)`;
-        } else if (index < this.active -1 ) {
+        } else if (index === len - 1 ) {
+          transform = `translateX(150%) scale(.8)`;
+        } else if (index === 0) {
+          transform = `translateX(-50%) scale(.8)`;
+        } else {
           transform = `translateX(${distance}%) scale(.8)`;
         }
         return transform;
@@ -118,21 +122,21 @@
       enter() {
         console.log('enter');
         this.isMouseEnter = true;
-        clearInterval(this.time);
+        //clearInterval(this.time);
       },
       leave() {
         console.log('leave');
         this.isMouseEnter = false;
-        this.play();
+        //this.play();
       },
       go(index) {
         this.active = index;
         if(this.active < 0) {
           this.active = this.items.length - 1;
-          this.itemStyle(this.active);
+          //this.itemStyle(this.active);
         } else if(this.active > this.items.length - 1) {
           this.active = 0;
-          this.itemStyle(this.active);
+          //this.itemStyle(this.active);
         }
         //this.$emit('change', this.active);
       },
@@ -185,6 +189,7 @@
             text-align: center;
             color: #0da971;
           }
+
         }
 
       }
@@ -206,8 +211,14 @@
 
         .pagination {
           flex: 1;
-          display: flex;
+          display: none;
           justify-content: space-between;
+
+          li > a {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.6rem;
+            color: #fff;
+          }
 
         }
       }
@@ -246,6 +257,26 @@
       }
 
     }
+
+    &.mouse-enter {
+
+      .banner-controls {
+        .pagination-wrapper {
+          .pagination {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+
+  .banner-item-enter, .banner-item-leave-to {
+    transform:translateX(0);
+    transition:all 1s ease;
+  }
+  .banner-item-leave-active {
+    transform:translateX(50%);
+    transition:all 1s ease;
   }
 
 </style>

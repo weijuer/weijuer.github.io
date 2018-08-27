@@ -1,8 +1,7 @@
 <template>
-  <div class="box-container">
-    <article>
-      <h2>weijuer</h2>
-    </article>
+  <div class="panel">
+    <h3>title</h3>
+    <div></div>
   </div>
 </template>
 

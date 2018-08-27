@@ -1,6 +1,7 @@
 <template>
-  <div class="app">
-
+  <div class="blog">
+    <h3 v-text="blog.title"></h3>
+    <div v-html="blog.content"></div>
   </div>
 </template>
 
@@ -9,10 +10,10 @@
     name: 'blog',
     data() {
       return {
-        timeline: [],
-        dbInit: false
+        timeline: []
       }
     },
+    props: ['blog'],
     beforeCreate() {
       console.log('beforeCreate=====>')
     },

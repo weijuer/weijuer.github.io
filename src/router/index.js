@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router);
 
 // 页面滚动配置
 const scrollBehavior = (to, from, savedPosition) => {
@@ -21,27 +21,27 @@ const routes = [
     path: '/home',
     name: 'home',
     // 懒加载component
-    component: resolve => require(['../views/pages/home'], resolve)
+    component: () => import('../views/pages/home')
   }, {
     path: '/blog',
     name: 'blog',
-    component: resolve => require(['../views/pages/blog'], resolve)
+    component: () => import('../views/pages/blog')
   } , {
     path: '/show-box',
     name: 'show-box',
-    component: resolve => require(['../views/pages/showBox'], resolve)
+    component: () => import('../views/pages/showBox')
   }, {
     path: '/music',
     name: 'music',
-    component: resolve => require(['../views/pages/music'], resolve)
+    component: () => import('../views/pages/music')
   }, {
     path: '/about',
     name: 'about',
-    component: resolve => require(['../views/pages/about'], resolve)
+    component: () => import('../views/pages/about')
   }, {
     path: '*',
     name: 'error',
-    component: resolve => require(['../views/pages/error'], resolve)
+    component: () => import('../views/pages/error')
   }
 ];
 
