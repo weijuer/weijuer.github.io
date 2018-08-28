@@ -1,5 +1,5 @@
 <template>
-  <div :class="['banner-container', {'mouse-enter': isMouseEnter}]" :style="{height: height}" @mouseenter="enter" @mouseleave="leave">
+  <div :class="['banner-container', type, {'mouse-enter': isMouseEnter}]" :style="{height: height}" @mouseenter="enter" @mouseleave="leave">
     <!--轮播图区-->
     <div class="banner-content">
       <transition-group tag="ul" class="banner">
@@ -22,7 +22,7 @@
       <!--分页按钮-->
       <section class="bullet-wrapper">
         <ul class="bullet">
-          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index" @click="go(index)"></a></li>
+          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index + 1" @click="go(index)"></a></li>
         </ul>
       </section>
     </div>
@@ -51,6 +51,10 @@
       height: {
         type: [Number, String],
         default: 'auto'
+      },
+      type: {
+        type: String,
+        default: 'card'
       }
     },
     created() {
@@ -86,13 +90,13 @@
         let len = this.items.length;
         let transform;
 
-        //
-        if(index === this.active) {
+        // 当前激活项
+        if(this.active === index) {
           transform = `translateX(${distance}%) scale(1)`;
-        } else if (index === len - 1 ) {
-          transform = `translateX(150%) scale(.8)`;
-        } else if (index === 0) {
-          transform = `translateX(-50%) scale(.8)`;
+        } else if (this.active === len - 1 ) {
+          transform = `translateX(${distance}%) scale(.8)`;
+        } else if (this.active === 0) {
+          transform = `translateX(${distance}%) scale(.8)`;
         } else {
           transform = `translateX(${distance}%) scale(.8)`;
         }

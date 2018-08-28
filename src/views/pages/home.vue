@@ -12,7 +12,7 @@
     data() {
       return {
         banners: [1, 2, 3, 4, 5, 6],
-        height: '400px',
+        height: '300px',
         dbInit: false
       }
     },
