@@ -3,7 +3,7 @@
     <!--轮播图区-->
     <div class="banner-content">
       <transition-group tag="ul" class="banner">
-        <li v-for="(item, index) of items" :style="itemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index">
+        <li v-for="(item, index) of items" :style="setItemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index">
           <slot name="item" v-text="item"></slot>
         </li>
       </transition-group>
@@ -80,27 +80,38 @@
       itemStyle(index) {
         return {
           // background: this.randomColor(),
-          transform: this.setTransform(index)
+          transform: this.setItemStyle(index)
         }
       },
       // 根据当前活动子项的下标计算各个子项的X轴位置
       // 计算公式(子项的下标 - 当前活动下标) * 子项宽度 + 偏移(手指移动距离)；
-      setTransform(index) {
+      setItemStyle(index) {
         let distance = ((index - this.active) + 0.5) * 100;
         let len = this.items.length;
+        let last = len - 1;
         let transform;
+        let zIndex;
 
         // 当前激活项
-        if(this.active === index) {
+        if(index === this.active) {
           transform = `translateX(${distance}%) scale(1)`;
-        } else if (this.active === len - 1 ) {
+          zIndex = 3;
+        } else if (this.active === 0 && index === last ) {
+          distance = ((last - len) + 0.5) * 100;
           transform = `translateX(${distance}%) scale(.8)`;
-        } else if (this.active === 0) {
+          zIndex = 1;
+        } else if (this.active === last && index === 0) {
+          distance = ((len - last) + 0.5) * 100;
           transform = `translateX(${distance}%) scale(.8)`;
+          zIndex = 1;
         } else {
           transform = `translateX(${distance}%) scale(.8)`;
+          zIndex = 1;
         }
-        return transform;
+        return {
+          transform: transform,
+          zIndex: zIndex
+        };
       },
       // 给每一个子项添加transition过度动画
       setTransition (duration) {
@@ -183,7 +194,7 @@
           align-items: center;
           background: #fff;
           border: 1px solid #000;
-          transition: all 0.3s cubic-bezier(0.8, 0, 0.1, 1);
+          transition: all 0.5s cubic-bezier(0.8, 0, 0.1, 1);
 
           &:before {
             flex: 1;
@@ -207,6 +218,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 3;
 
       .pagination-wrapper {
         flex: 1;
