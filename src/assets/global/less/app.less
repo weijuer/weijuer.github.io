@@ -1,7 +1,8 @@
 @fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 @fontSize: 16px;
-@fontColor: #24292e;
-@bgColor: #fff;
+@themeColor: #72af3a;
+@fontColor: #333;
+@bgColor: #bee897;
 @bdColor: #383838;
 
 // ------------ A.px2rem转换 ------------
@@ -287,6 +288,7 @@ header {
       position: absolute;
       top: -6px;
       left: 0;
+      z-index: 1;
     }
 
     .shape {
@@ -329,7 +331,9 @@ header {
     }
 
     a {
+      position: relative;
       padding: 0 .75rem;
+      z-index: 2;
     }
   }
 
@@ -431,7 +435,7 @@ header {
     stroke-dashoffset: 240px;
   }
   100% {
-    stroke: #01c790;
+    stroke: @themeColor;
     stroke-width: 2px;
     stroke-dasharray: 240, 0;
     stroke-dashoffset: 240px;

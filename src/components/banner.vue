@@ -167,6 +167,10 @@
 </script>
 
 <style lang="less" scoped>
+  @themeColor: #72af3a;
+  @fontColor: #333;
+  @bgColor: #bee897;
+
   ul {
     list-style: none;
   }
@@ -202,7 +206,7 @@
             content: counter(item);
             font-size: 40px;
             text-align: center;
-            color: #0da971;
+            color: @themeColor;
           }
 
         }
@@ -258,14 +262,14 @@
               height: 20px;
               line-height: 20px;
               font-size: 12px;
-              background: #00dfff;
+              background: @bgColor;
               color: #fff;
               border: 1px solid #000;
               border-radius: 100%;
             }
 
             &.active > a {
-              background: #0da971;
+              background: @themeColor;
             }
 
           }

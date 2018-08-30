@@ -107,6 +107,12 @@
                 </a>
               </g>
 
+               <text xml:space="preserve" id="text21859" x="60" y="39" fill="url(#bg)">
+                 <textPath xlink:href="#path21838" startOffset="50%" id="textPath21881">
+                   <tspan id="tspan21861">Marzo</tspan>
+                 </textPath>
+               </text>
+
             </svg>
           </div>
           <a :class="['menu-toggle', isSideMenuActive ? 'active' : '']" href="javascript:;" @click="menuToggle">
@@ -182,6 +188,10 @@
 </script>
 
 <style lang="less" scoped>
+  @themeColor: #72af3a;
+  @fontColor: #333;
+  @bgColor: #bee897;
+
   .logo {
     position: relative;
 
@@ -222,7 +232,7 @@
       stroke-dashoffset: 1061px;
     }
     100% {
-      stroke: #01c790;
+      stroke: @themeColor;
       stroke-width: 4px;
       stroke-dasharray: 1060, 0;
       stroke-dashoffset: 1061px;
