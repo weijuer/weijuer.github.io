@@ -96,7 +96,7 @@
         if(index === this.active) {
           transform = `translateX(${distance}%) scale(1)`;
           zIndex = 3;
-        } else if (this.active === 0 && index === last ) {
+        } else if (this.active === 1 && index === last ) {
           distance = ((last - len) + 0.5) * 100;
           transform = `translateX(${distance}%) scale(.8)`;
           zIndex = 1;
