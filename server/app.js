@@ -1,40 +1,33 @@
 const Koa = require('koa');
+const BodyParser = require('koa-bodyparser');
+const onerror = require('koa-onerror');
+const serve = require('koa-static');
+const mongoose = require('mongoose');
+const config = require('./config');
+const api = require('./router');
+
+// 防止Mongoose: mpromise 错误
+mongoose.Promise = Promise;
+// 连接mongodb
+mongoose.connect(config.dev.default.mongodb.url, config.dev.default.user);
+mongoose.connection.on('error', console.error);
+
+// 实例化
 const app = new Koa();
 
-// koa-router
-const Router = require('koa-router');
-// 父路由
-const router = new Router();
+onerror(app);
 
-// bodyparser: 该中间件用于post请求的数据
-const BodyParser = require('koa-bodyparser');
 const bodyParser = new BodyParser();
-
 app.use(bodyParser);
 
-// x-response-time
-app.use(async (ctx, next) => {
-  const start = Date.now();
-  await next();
-  const ms = Date.now() - start;
-  ctx.set('X-Response-Time', `${ms}ms`);
-});
+// 加载路由
+app.use(api());
 
-// logger
-app.use(async (ctx, next) => {
-  const start = Date.now();
-  await next();
-  const ms = Date.now() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}`);
-});
-
-// response
-app.use(async ctx => {
-  ctx.body = `你请求的地址为${ctx.request.url}`;
-});
+// 静态资源文件访问
+app.use(serve('./client/static'));
 
 // 监听端口
 let port = process.env.PORT || 3000;
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(`The server is running at http://localhost: ${port}!`);
 });

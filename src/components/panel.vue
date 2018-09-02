@@ -1,7 +1,14 @@
 <template>
   <div class="panel">
-    <h3>title</h3>
-    <div></div>
+    <header>
+      <slot name="header">title</slot>
+    </header>
+    <main>
+      <slot name="main"></slot>
+    </main>
+    <footer>
+      <slot name="footer">footer</slot>
+    </footer>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
     <div class="banner-content">
       <transition-group tag="ul" class="banner">
         <li v-for="(item, index) of items" :style="setItemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index">
-          <slot name="item" v-text="item"></slot>
+          <slot name="item" :item="item"></slot>
         </li>
       </transition-group>
     </div>
@@ -96,7 +96,7 @@
         if(index === this.active) {
           transform = `translateX(${distance}%) scale(1)`;
           zIndex = 3;
-        } else if (this.active === 1 && index === last ) {
+        } else if (this.active === 0 && index === last ) {
           distance = ((last - len) + 0.5) * 100;
           transform = `translateX(${distance}%) scale(.8)`;
           zIndex = 1;

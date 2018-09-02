@@ -1,6 +1,11 @@
 <template>
   <div class="app">
-    <banner :items="banners" :height="height"/>
+    <banner :items="banners" :height="height">
+      <div slot="item">
+        <img :src="item.imgSrc" alt="banner-img" />
+        <span v-text="item.text"></span>
+      </div>
+    </banner>
   </div>
 </template>
 
@@ -29,10 +34,11 @@
       console.log('-----mounted')
 
       // 获取indexedDB数据
-      // this.get_indexedDB_data()
+      // this.get_banner_list()
     },
     methods: {
-      get_indexedDB_data: function (params) {
+      // 1.请求本地数据
+      get_banner_list: function (params) {
         // 1.1 分页参数
         if (!params) {
           params = {
@@ -40,13 +46,19 @@
             pageSize: this.pageSize
           }
         }
+        // 1.2 获取后台模拟数据
+        this.$ajax.post('/api/blogList', {params})
+          .then((response) => {
+            let res = response.data.blog
+            this.blogLists = res;
 
-        // 2.初始化timelineDB
-        db.find('timeline', 'title').then((res) => {
-          this.timeline = res;
-          console.log(res);
-        });
-      }
+            // 子组件监听到count变化会自动更新DOM
+            this.count = res.length
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      },
     }
   }
 </script>

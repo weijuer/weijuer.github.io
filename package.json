@@ -10,8 +10,16 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@babel/register": "^7.0.0",
     "axios": "^0.18.0",
     "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "latest",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.2.12",
+    "require-dir": "^1.0.0",
     "vue": "^2.5.17",
     "vue-cli": "^2.9.6",
     "vue-i18n": "^8.0.0",
