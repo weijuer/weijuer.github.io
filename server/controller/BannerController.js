@@ -1,4 +1,4 @@
-const bannerService = require('../service/bannerService');
+const bannerService = require('../service/BannerService');
 
 class BannerController {
 

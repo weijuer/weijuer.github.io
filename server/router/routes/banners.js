@@ -1,4 +1,4 @@
-import * as $ from '../../controller/banners.js';
+import * as $ from '../../controller/BannerController.js';
 
 export default async (router) => {
   router.post('/bannerPage', $.getAllBannersByPage(ctx))
