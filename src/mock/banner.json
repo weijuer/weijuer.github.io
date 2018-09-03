@@ -1,0 +1,23 @@
+[
+  {
+    "title": "banner-02",
+    "author": "weijuer",
+    "imgSrc": "./images/banner-02.png",
+    "describe": "Hey Jing, want to give a Flux talk at ForwardJS?",
+    "timestamp": "2018-09-03 15:43:23"
+  },
+  {
+    "title": "banner-02",
+    "author": "weijuer",
+    "imgSrc": "./images/banner-02.png",
+    "describe": "Hey Jing, want to give a Flux talk at ForwardJS?",
+    "timestamp": "2018-09-03 15:43:23"
+  },
+  {
+    "title": "banner-03",
+    "author": "weijuer",
+    "imgSrc": "./images/banner-03.png",
+    "describe": "Hey Jing, want to give a Flux talk at ForwardJS?",
+    "timestamp": "2018-09-03 15:43:23"
+  }
+]

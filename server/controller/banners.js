@@ -36,14 +36,46 @@ const addBanner = async(ctx) =>{
 };
 
 /**
+ * 获取单条记录
+ * @param ctx
+ * @returns {Promise<void>}
+ */
+const getBanner = async(ctx) => {
+  const id = ctx.params.id;
+  console.log('id:===>' + id);
+  if (id === '') {
+    ctx.throw(400, 'id不能为空');
+  }
+
+  const banner = await Banner.findById(id).catch(err => {
+    if (err.name === 'CastError') {
+      ctx.throw(400, 'id不存在');
+    } else {
+      ctx.throw(500, '服务器内部错误');
+    }
+  });
+
+  console.log('banner' + banner);
+
+  ctx.body = {
+    success: true,
+    banner: banner,
+  };
+};
+
+/**
  * 获取bannerList
  * @param ctx
  * @returns {Promise<void>}
  */
 const getAllBanners = async (ctx) => {
+  console.log('ok');
   const bannerList = await Banner.find().catch(err => {
     ctx.throw(500, '服务器内部错误');
   });
+
+  console.log('bannerList' + bannerList);
+
   ctx.body = {
     success: true,
     bannerList,
@@ -94,6 +126,7 @@ const delBanner = async (ctx) => {
 
 module.exports = {
   addBanner,
+  getBanner,
   getAllBanners,
   editBanner,
   delBanner
