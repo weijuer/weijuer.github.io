@@ -1,133 +1,84 @@
-import Banner from '../models/Banner.js';
-const BodyParser = require('koa-bodyparser');
+const bannerService = require('../service/bannerService');
 
-/**
- * 添加banner
- * @param ctx
- * @returns {Promise<void>}
- */
-const addBanner = async(ctx) =>{
-  const tagName = ctx.request.body.name;
-  if (tagName === '') {
-    ctx.throw(400, '标签名不能为空');
-  }
-  const banner = await Banner.findOne({ name: tagName }).catch(err => {
-    ctx.throw(500, '服务器错误');
-  });
-  console.log(banner);
-  if (banner !== null) {
-    ctx.body = {
-      success: true,
-      banner: banner,
-    };
-    return;
-  }
+class BannerController {
 
-  const newBanner = new Banner({
-    name: tagName,
-  });
-  const result = await newBanner.save().catch(err => {
-    ctx.throw(500, '服务器错误');
-  });
-  ctx.body = {
-    success: true,
-    banner: result,
-  };
-};
-
-/**
- * 获取单条记录
- * @param ctx
- * @returns {Promise<void>}
- */
-const getBanner = async(ctx) => {
-  const id = ctx.params.id;
-  console.log('id:===>' + id);
-  if (id === '') {
-    ctx.throw(400, 'id不能为空');
-  }
-
-  const banner = await Banner.findById(id).catch(err => {
-    if (err.name === 'CastError') {
-      ctx.throw(400, 'id不存在');
-    } else {
-      ctx.throw(500, '服务器内部错误');
+  /**
+   * 获取单条记录
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async getBanner(ctx) {
+    const id = ctx.params.id;
+    console.log('id:===>' + id);
+    if (id === '') {
+      ctx.throw(400, 'id不能为空');
     }
-  });
 
-  console.log('banner' + banner);
+    const banner = await bannerService.findById(id).catch(err => {
+      if (err.name === 'CastError') {
+        ctx.throw(400, 'id不存在');
+      } else {
+        ctx.throw(500, '服务器内部错误');
+      }
+    });
 
-  ctx.body = {
-    success: true,
-    banner: banner,
-  };
-};
-
-/**
- * 获取bannerList
- * @param ctx
- * @returns {Promise<void>}
- */
-const getAllBanners = async (ctx) => {
-  console.log('ok');
-  const bannerList = await Banner.find().catch(err => {
-    ctx.throw(500, '服务器内部错误');
-  });
-
-  console.log('bannerList' + bannerList);
-
-  ctx.body = {
-    success: true,
-    bannerList,
-  };
-};
-
-/**
- * 编辑banner
- * @param ctx
- * @returns {Promise<void>}
- */
-const editBanner = async (ctx) => {
-  const id = ctx.params.id;
-  const name = ctx.request.body.name;
-  if (name === '') {
-    ctx.throw(400, '标签名不能为空');
+    console.log('banner' + banner);
+    ctx.success({banner});
   }
-  const banner = await Banner.findByIdAndUpdate(id, { $set: { name: name } }).catch(err => {
-    if (err.name === 'CastError') {
-      ctx.throw(400, 'id不存在');
-    } else {
-      ctx.throw(500, '服务器内部错误');
-    }
-  });
-  ctx.body = {
-    success: true,
-  };
-};
 
-/**
- * 删除banner
- * @param ctx
- * @returns {Promise<void>}
- */
-const delBanner = async (ctx) => {
-  const id = ctx.params.id;
-  const banner = await Banner.findByIdAndRemove(id).catch(err => {
-    if (err.name === 'CastError') {
-      ctx.throw(400, 'id不存在');
-    } else {
-      ctx.throw(500, '服务器内部错误');
-    }
-  });
-  ctx.body = {
-    success: true,
-  };
-};
+  /**
+   * 分页获取banner
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async getAllBannersByPage(ctx) {
+    let opt = ctx.request.query;
+    let {index = 1, limit = 10, ...condition} = opt;
 
-module.exports = {
-  addBanner,
-  getBanner,
-  getAllBanners,
-  editBanner,
-  delBanner
-};
+    let bannerPage = await bannerService.getAllByPage(condition, Number(index), Number(limit));
+    ctx.success({bannerPage});
+  }
+
+  /**
+   * 获取bannerList
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async getAllBanners(ctx) {
+    let bannerList = await bannerService.getAll();
+    ctx.success({bannerList});
+  }
+
+  /**
+   * 编辑banner
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async editBanner(ctx) {
+    let opt = ctx.request.query;
+    let {...banner} = opt;
+
+    await bannerService.update(banner);
+    ctx.success({success: true});
+  }
+
+  /**
+   * 删除banner
+   * @param ctx
+   * @returns {Promise<void>}
+   */
+  static async delBanner(ctx) {
+    const id = ctx.params.id;
+    const banner = await bannerService.remove(id).catch(err => {
+      if (err.name === 'CastError') {
+        ctx.throw(400, 'id不存在');
+      } else {
+        ctx.throw(500, '服务器内部错误');
+      }
+    });
+    ctx.success({success: true});
+  }
+
+}
+
+module.exports = BannerController;

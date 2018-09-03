@@ -1,9 +1,9 @@
 import * as $ from '../../controller/banners.js';
 
 export default async (router) => {
-  router.post('/banners', $.addBanner)
-    .get('/banners', $.getAllBanners)
-    .get('/getBanner/:id', $.getBanner)
-    .patch('/banners/:id', $.editBanner)
-    .delete('/banners/:id', $.delBanner);
+  router.post('/bannerPage', $.getAllBannersByPage(ctx))
+    .get('/banners', $.getAllBanners(ctx))
+    .get('/getBanner/:id', $.getBanner(ctx))
+    .patch('/banners/:id', $.editBanner(ctx))
+    .delete('/banners/:id', $.delBanner(ctx));
 };

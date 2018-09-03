@@ -1,17 +1,14 @@
-import mongoose from 'mongoose';
-
-// 声明Schema
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 const bannerSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   title: String,
   author: String,
   imgSrc: String,
   describe: String,
-  timestamp: String,
-}, {versionKey: false});
+  date: {type: Date, default: Date.now}
+});
 
-bannerSchema.set('toJSON', { getters: true, virtuals: true });
-bannerSchema.set('toObject', { getters: true, virtuals: true }); // 普通+虚拟
+const BannerModel = mongoose.model('banner', bannerSchema);
 
-module.exports = mongoose.model('banner', bannerSchema);
+module.exports = BannerModel;
