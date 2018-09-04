@@ -4,11 +4,13 @@ import { join } from 'path';
 const config = {
   env: 'development',
   mongodb: {
-    url: 'mongodb://127.0.0.1/weijuer'
-  },
-  user: {
-    user: '',
-    pass: ''
+    url: 'mongodb://127.0.0.1:27017/weijuer',
+    options: {
+      useNewUrlParser: true,
+      reconnectTries: Number.MAX_VALUE,
+      connectTimeoutMS: 10000,
+      socketTimeoutMS: 45000
+    }
   },
   allowOrigins: ["http://localhost:9102", "http://192.168.10.42:9102", "http://localhost:63342", "http://localhost:8080", "http://localhost:9020"],
   port: 3000,

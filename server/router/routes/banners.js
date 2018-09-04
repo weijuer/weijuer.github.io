@@ -1,9 +1,9 @@
-import * as $ from '../../controller/BannerController.js';
+const Banner = require('../../controller/BannerController');
 
 export default async (router) => {
-  router.post('/bannerPage', $.getAllBannersByPage(ctx))
-    .get('/banners', $.getAllBanners(ctx))
-    .get('/getBanner/:id', $.getBanner(ctx))
-    .patch('/banners/:id', $.editBanner(ctx))
-    .delete('/banners/:id', $.delBanner(ctx));
+  router.post('/bannerPage', Banner.getAllBannersByPage)
+    .get('/banners', Banner.getAllBanners)
+    .get('/getBanner/:id', Banner.getBanner)
+    .patch('/banners/:id', Banner.editBanner)
+    .delete('/banners/:id', Banner.delBanner);
 };

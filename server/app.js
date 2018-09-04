@@ -9,7 +9,7 @@ const api = require('./router');
 // 防止Mongoose: mpromise 错误
 mongoose.Promise = Promise;
 // 连接mongodb
-mongoose.connect(config.dev.default.mongodb.url, config.dev.default.user);
+mongoose.connect(config.dev.default.mongodb.url, config.dev.default.mongodb.options);
 mongoose.connection.on('error', console.error);
 
 // 实例化

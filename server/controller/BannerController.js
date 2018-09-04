@@ -36,6 +36,7 @@ class BannerController {
     let {index = 1, limit = 10, ...condition} = opt;
 
     let bannerPage = await bannerService.getAllByPage(condition, Number(index), Number(limit));
+    console.log(bannerPage);
     ctx.success({bannerPage});
   }
 
@@ -46,6 +47,7 @@ class BannerController {
    */
   static async getAllBanners(ctx) {
     let bannerList = await bannerService.getAll();
+    console.log(bannerList);
     ctx.success({bannerList});
   }
 
