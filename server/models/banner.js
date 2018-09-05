@@ -6,9 +6,10 @@ const bannerSchema = new Schema({
   author: String,
   imgSrc: String,
   describe: String,
-  date: {type: Date, default: Date.now}
+  timestamp: String
 });
 
-const BannerModel = mongoose.model('banner', bannerSchema);
+// 第三个参数指定表名
+const BannerModel = mongoose.model('banner', bannerSchema, 'banner');
 
 module.exports = BannerModel;

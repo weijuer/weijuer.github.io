@@ -12,7 +12,7 @@ class BannerService {
   }
 
   static async getAll() {
-    return await BannerModel.find()
+    return await BannerModel.find({})
   }
 
   static async getAllByPage(condition, index, limit) {
