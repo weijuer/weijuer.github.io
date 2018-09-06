@@ -20,4 +20,4 @@ const config = {
   apiTimeout: 60000
 };
 
-export default config;
+module.exports = config;
