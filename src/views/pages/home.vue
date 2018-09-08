@@ -1,9 +1,9 @@
 <template>
   <div class="app">
     <banner :items="banners" :height="height">
-      <div slot-scope="item">
-        <img :src="item.imgSrc" alt="banner-img" />
-        <span v-text="item.text"></span>
+      <div class="banner-media" slot-scope="{ item }">
+        <img class="banner-img" :src="item.imgSrc" alt="banner-img" />
+        <p class="banner-describe">{{ item.describe }}</p>
       </div>
     </banner>
 
@@ -59,3 +59,7 @@
     }
   }
 </script>
+
+<style lang="less" scoped>
+
+</style>

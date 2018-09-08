@@ -4,7 +4,7 @@
     <div class="banner-content">
       <transition-group tag="ul" class="banner">
         <li v-for="(item, index) of items" :style="setItemStyle(index)" :class="['banner-item', {'active': index === active}]" :key="index">
-          <slot name="item" :item="item"></slot>
+          <slot :item="item"></slot>
         </li>
       </transition-group>
     </div>
@@ -166,7 +166,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @themeColor: #72af3a;
   @fontColor: #333;
   @bgColor: #bee897;
@@ -196,17 +196,46 @@
           display: flex;
           justify-items: center;
           align-items: center;
+          overflow: hidden;
           background: #fff;
           border: 1px solid #000;
           transition: all 0.5s cubic-bezier(0.8, 0, 0.1, 1);
 
           &:before {
             flex: 1;
+            padding: 0 4rem;
+            position: absolute;
+            right: 0;
+            top: 8px;
             counter-increment: item;
             content: counter(item);
-            font-size: 40px;
+            font-size: 30px;
             text-align: center;
-            color: @themeColor;
+            color: #fff;
+            background: @themeColor;
+            transform: translateX(40px) rotate(45deg);
+          }
+
+          .banner-media {
+            display: flex;
+            height: 100%;
+
+            .banner-img {
+              max-width: 100%;
+            }
+
+            .banner-describe {
+              display: flex;
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+              height: 35px;
+              line-height: 35px;
+              color: #fff;
+              background: rgba(0, 0, 0, 0.6);
+              text-indent: 1rem;
+            }
           }
 
         }

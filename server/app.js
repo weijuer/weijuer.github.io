@@ -44,7 +44,7 @@ app.use(response);
 app.use(api());
 
 // 静态资源文件访问
-app.use(serve('./client/static'));
+app.use(serve('./static'));
 
 // 监听端口
 let port = process.env.PORT || config.dev.port || 3000;
