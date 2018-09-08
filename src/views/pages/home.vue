@@ -1,16 +1,23 @@
 <template>
   <div class="app">
     <banner :items="banners" :height="height">
-      <!--<div slot="item">
+      <div slot-scope="item">
         <img :src="item.imgSrc" alt="banner-img" />
         <span v-text="item.text"></span>
-      </div>-->
+      </div>
     </banner>
+
+    <panel>
+      <div slot="header">标题</div>
+      <div slot="main">内容</div>
+      <div slot="footer">底部</div>
+    </panel>
   </div>
 </template>
 
 <script>
   import banner from '@/components/banner'
+  import panel from '@/components/panel'
 
   export default {
     name: 'home',
@@ -22,7 +29,8 @@
       }
     },
     components: {
-      banner
+      banner,
+      panel
     },
     beforeCreate() {
       console.log('beforeCreate=====>')

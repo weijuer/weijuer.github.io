@@ -4,7 +4,7 @@
       <slot name="header">title</slot>
     </header>
     <main>
-      <slot name="main">main</slot>
+      <slot name="main"></slot>
     </main>
     <footer>
       <slot name="footer">footer</slot>
