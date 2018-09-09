@@ -182,7 +182,7 @@
     position: relative;
     overflow: hidden;
 
-    .banner-content {
+    &.card .banner-content {
 
       .banner {
         counter-reset: item;
@@ -251,7 +251,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 3;
 
       .pagination-wrapper {
         flex: 1;
@@ -275,6 +274,7 @@
       .bullet-wrapper {
         display: flex;
         align-self: center;
+        z-index: 3;
 
         .bullet {
           display: inline-flex;
@@ -313,17 +313,19 @@
         .pagination-wrapper {
           .pagination {
             display: flex;
+            z-index: 3;
           }
         }
       }
     }
+
   }
 
-  .banner-item-enter, .banner-item-leave-to {
+  .banner-enter, .banner-leave-to {
     transform:translateX(0);
     transition:all 1s ease;
   }
-  .banner-item-leave-active {
+  .banner-leave-active {
     transform:translateX(50%);
     transition:all 1s ease;
   }

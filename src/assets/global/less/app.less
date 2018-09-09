@@ -148,7 +148,6 @@ header {
   margin: 0;
   padding: 0;
   position: relative;
-  z-index: 2;
   flex-shrink: 0;
   background-color: #fff;
   box-shadow: 0 0 2.25rem #9da5ab;
@@ -158,6 +157,7 @@ header {
     position: fixed;
     left: 0;
     right: 0;
+    z-index: 2;
   }
 
   .container {
@@ -403,7 +403,7 @@ header {
             right: 0;
             bottom: 0;
             margin: 0;
-            z-index: -2018;
+            z-index: 2018;
             background: rgba(0, 0, 0, 0.5);
             transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
           }
