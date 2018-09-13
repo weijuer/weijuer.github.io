@@ -14,8 +14,8 @@
       <!--上下页按钮-->
       <section class="pagination-wrapper">
         <ul class="pagination">
-          <li><a href="javascript:;" class="btn" @click="prev">上一页</a></li>
-          <li><a href="javascript:;" class="btn" @click="next">下一页</a></li>
+          <li><a href="javascript:;" class="btn prev-btn" @click="prev">上一页</a></li>
+          <li><a href="javascript:;" class="btn next-btn" @click="next">下一页</a></li>
         </ul>
       </section>
 
@@ -75,7 +75,7 @@
         //this.play();
       },
       updateWidth() {
-        this.itemWidth = document.querySelector('.app').offsetWidth || document.documentElement.offsetWidth;
+        this.itemWidth = document.querySelector('.banner-container').offsetWidth || document.documentElement.offsetWidth;
       },
       itemStyle(index) {
         return {
@@ -259,15 +259,26 @@
 
         .pagination {
           flex: 1;
-          display: none;
+          display: flex;
           justify-content: space-between;
 
-          li > a {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.6rem;
-            color: #fff;
-          }
+          li {
+            transition: all 0.5s cubic-bezier(0.8, 0, 0.1, 1);
 
+            &:first-child {
+              transform: translateX(-100%);
+            }
+
+            &:last-child {
+              transform: translateX(100%);
+            }
+
+            .btn {
+              background: rgba(0, 0, 0, 0.5);
+              padding: 0.6rem;
+              color: #fff;
+            }
+          }
         }
       }
 
@@ -282,7 +293,7 @@
 
           .bullet-item {
 
-            >a {
+            > a {
               display: inline-flex;
               justify-content: center;
               align-items: center;
@@ -307,13 +318,26 @@
 
     }
 
-    &.mouse-enter {
+
+    &:hover {
 
       .banner-controls {
+
         .pagination-wrapper {
+
           .pagination {
-            display: flex;
             z-index: 3;
+
+            li {
+
+              &:first-child {
+                transform: translateX(0%);
+              }
+
+              &:last-child {
+                transform: translateX(0%);
+              }
+            }
           }
         }
       }
