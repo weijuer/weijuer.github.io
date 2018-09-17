@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <banner :items="banners" :height="height">
+    <banner v-if="banners.length > 0" :items="banners" :height="height">
       <div class="banner-media" slot-scope="{ item }">
         <img class="banner-img" :src="item.imgSrc" alt="banner-img" />
         <p class="banner-describe">{{ item.describe }}</p>

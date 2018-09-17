@@ -259,11 +259,13 @@
 
         .pagination {
           flex: 1;
+          margin: 0;
+          padding: 0;
           display: flex;
           justify-content: space-between;
 
           li {
-            transition: all 0.5s cubic-bezier(0.8, 0, 0.1, 1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
             &:first-child {
               transform: translateX(-100%);

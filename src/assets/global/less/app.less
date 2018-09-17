@@ -362,52 +362,133 @@ h6, .h6 {
   height: auto
 }
 
+// ------------ C.w.css ------------
+.w-flex {
+  display: flex;
+
+  .w-flex-item {
+    flex: auto;
+  }
+}
+
+.w-uppercase {
+  text-transform: uppercase;
+}
+.w-lowercase {
+  text-transform: lowercase;
+}
+.w-capitalize {
+  text-transform: capitalize;
+}
+
+.w-nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.w-nav {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.w-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 1.25rem;
+
+  &:before, &:after {
+    display: flex;
+    flex: 1;
+    content: '';
+    width: 100%;
+    height: 1px;
+    margin: 0 1rem;
+    background: @bdColor;
+  }
+
+}
+
+.w-widget--card {
+  display: flex;
+  margin-bottom: 1.5rem;
+
+  .w-icon-wrapper {
+    margin-right: 1.1rem;
+  }
+}
+
+
+
 /*col-system*/
-.container {
+.w-container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto
 }
 
+.w-container:before,.w-container:after {
+  content: " ";
+  display: table
+}
+
+.w-container:after {
+  clear: both
+}
+
+.w-container.w-container--fluid {
+  width: 100%
+}
+
+.w-container.w-container--full-height {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%
+}
+
 @media (min-width: 576px) {
-  .container {
-    max-width: 540px
+  .w-container {
+    width:576px
   }
 }
 
 @media (min-width: 768px) {
-  .container {
-    max-width: 720px
+  .w-container {
+    width:720px
   }
 }
 
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px
+@media (min-width: 1024px) {
+  .w-container {
+    width:940px
   }
 }
 
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1140px
+  .w-container {
+    width:1140px
   }
 }
 
-.container-fluid {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto
+@media (min-width: 1400px) {
+  .w-container {
+    width:1340px
+  }
+}
+
+@media (min-width: 1600px) {
+  .w-container {
+    width:1540px
+  }
 }
 
 .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px
@@ -1630,16 +1711,7 @@ h6, .h6 {
   }
 }
 
-// ------------ flex layout ------------
-.flex {
-  display: flex;
-}
-
-.inline-flex {
-  display: inline-flex;
-}
-
-// ------------ C.app ------------
+// ------------ D.app ------------
 .app-page {
   display: flex;
   flex-direction: column;
@@ -1650,6 +1722,7 @@ h6, .h6 {
   width: 100%;
   display: flex;
   flex: 1 1 auto;
+  padding-top: 80px;
   overflow: hidden;
   position: relative;
 }
@@ -1947,6 +2020,8 @@ header {
     }
   }
 }
+
+
 
 
 @keyframes draw {

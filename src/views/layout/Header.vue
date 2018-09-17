@@ -1,5 +1,5 @@
 <template>
-  <header :class="['app-header', {'app-header-fixed': isPageScroll}]">
+  <header class="app-header app-header-fixed">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="filters hidden">
       <defs>
         <filter id="blur" x="-20%" y="0" width="140%" height="100%">
@@ -56,10 +56,11 @@
     </div>-->
 
     <div class="app-header-nav-bar">
-      <div class="container">
-        <section class="app-header-section logo-section">
-          <div class="logo">
-            <svg version="1.1" id="weijuer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      <div class="w-container">
+        <div class="w-flex">
+          <section class="app-header-section logo-section">
+            <div class="logo">
+              <svg version="1.1" id="weijuer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                viewBox="0 0 240 120" xml:space="preserve">
               <path id="line" class="logo-line" d="M27.2,48.3C24.6,54.4,13,53,13,53c-15.8-7.3-5.6-25.5,1.8-26c6.6-2.5,14.3,0.3,14.8,0.7
                 c7.6,5.5,7.7,10.3,7.7,10.3s2.4,10.5,0,24.6l-2.3,14c-0.2,1,0.9,1.5,1.4,0.8c5.7-8.6,21.3-32,21.6-30.5c0.4,1.9-4.9,32.9-2.4,34.2
@@ -114,29 +115,30 @@
                </text>
 
             </svg>
-          </div>
-          <a :class="['menu-toggle', isSideMenuActive ? 'active' : '']" href="javascript:;" @click="menuToggle">
-            <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g font-size="26" stroke-width="1" text-anchor="middle">
-                <path stroke="#fff" d="M 2 8, l 36 0"></path>
-                <path stroke="#fff" d="M 2 20, l 36 0"></path>
-                <path stroke="#fff" d="M 2 32, l 36 0"></path>
-              </g>
-            </svg>
-          </a>
-        </section>
-        <section :class="['app-header-section', 'menu-section', isSideMenuActive ? 'active' : '']" @click.self="shadowToggle($event)">
-          <nav class="app-nav">
-            <ul class="nav">
-              <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
-                <a class="nav-link">{{ $t('nav.' + menu.name) }}</a>
-                <svg class="shape-container" viewBox="0 0 60 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                  <rect class="shape"></rect>
-                </svg>
-              </router-link>
-            </ul>
-          </nav>
-        </section>
+            </div>
+            <a :class="['menu-toggle', isSideMenuActive ? 'active' : '']" href="javascript:;" @click="menuToggle">
+              <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g font-size="26" stroke-width="1" text-anchor="middle">
+                  <path stroke="#fff" d="M 2 8, l 36 0"></path>
+                  <path stroke="#fff" d="M 2 20, l 36 0"></path>
+                  <path stroke="#fff" d="M 2 32, l 36 0"></path>
+                </g>
+              </svg>
+            </a>
+          </section>
+          <section :class="['app-header-section', 'menu-section', isSideMenuActive ? 'active' : '']" @click.self="shadowToggle($event)">
+            <nav class="app-nav">
+              <ul class="nav">
+                <router-link tag="li" v-for="(menu, index) in menus" :key="index" :to="{name: menu.name}" >
+                  <a class="nav-link">{{ $t('nav.' + menu.name) }}</a>
+                  <svg class="shape-container" viewBox="0 0 60 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape"></rect>
+                  </svg>
+                </router-link>
+              </ul>
+            </nav>
+          </section>
+        </div>
       </div>
     </div>
   </header>

@@ -1,58 +1,17 @@
 <template>
-  <div class="app">
-    <div class="row">
-      <div class="col-8">
-        <panel>
-          <div slot="header" class="panel-header">
-            <div class="caption">
-              <div class="panel-header--title">
-                <h3 class="panel-header--title-text">标题</h3>
-              </div>
-            </div>
-          </div>
-          <div slot="main" class="panel-body">内容</div>
-        </panel>
-
-        <panel>
-          <div slot="header" class="panel-header">
-            <div class="caption">
-              <div class="panel-header--title">
-                <h3 class="panel-header--title-text">标题</h3>
-              </div>
-            </div>
-          </div>
-          <div slot="main" class="panel-body">内容</div>
-        </panel>
-        <panel>
-          <div slot="header" class="panel-header">
-            <div class="caption">
-              <div class="panel-header--title">
-                <h3 class="panel-header--title-text">标题</h3>
-              </div>
-            </div>
-          </div>
-          <div slot="main" class="panel-body">内容</div>
-        </panel>
-      </div>
-      <div class="col-4">
-        <panel>
-          <div slot="header" class="panel-header">
-            <div class="caption">
-              <div class="panel-header--title">
-                <h3 class="panel-header--title-text">标题</h3>
-              </div>
-            </div>
-          </div>
-          <div slot="main" class="panel-body">内容</div>
-        </panel>
-      </div>
+  <div class="app home">
+    <div class="welcome">
+      <h3 class="w-capitalize">Less coding, More fun!</h3>
+      <h1 class="title">Weijuer's Blog</h1>
+      <h3 class="w-uppercase">weijuer.github.io - 2018</h3>
+      <canvas id="welcome-bg" class="welcome-bg"></canvas>
     </div>
-
   </div>
 </template>
 
 <script>
   import panel from '@/components/panel'
+  import welcome from '@/assets/global/js/plugins/welcome'
 
   export default {
     name: 'home',
@@ -72,11 +31,41 @@
     },
     mounted() {
       console.log('-----mounted')
+      this.getMouse();
     },
-    methods: {}
+    methods: {
+      getMouse() {
+        let canvas = document.getElementById('welcome-bg');
+        let mouse = welcome.getLocation(canvas);
+        console.log(mouse);
+      }
+    }
   }
 </script>
 
 <style lang="less">
+.welcome {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
 
+  .title {
+    font-size: 60px;
+    text-shadow: 0 0 30px #60c700;
+  }
+
+  .welcome-bg {
+    flex: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+}
 </style>

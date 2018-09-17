@@ -1,4 +1,4 @@
-import Vue from 'vue'
+ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router);
@@ -25,7 +25,7 @@ const routes = [
   }, {
     path: '/blog',
     name: 'blog',
-    component: () => import('../views/pages/blog')
+    component: () => import('../views/pages/blog/blog')
   } , {
     path: '/show-box',
     name: 'show-box',
@@ -33,7 +33,7 @@ const routes = [
   }, {
     path: '/music',
     name: 'music',
-    component: () => import('../views/pages/music')
+    component: () => import('../views/pages/music/music')
   }, {
     path: '/about',
     name: 'about',
