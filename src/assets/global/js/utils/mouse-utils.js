@@ -43,6 +43,19 @@ const mouse = {
     }
   },
 
+  /**
+   * 获取鼠标相对于元素的左边距与上边距的位置坐标
+   * @param event
+   * @returns {{x: number, y: number}}
+   */
+  getOffsetLocate(event) {
+    let e = event || window.event;
+    return {
+      x: e.offsetX,
+      y: e.offsetY
+    }
+  }
+
 };
 
-export default mouse
+module.exports = mouse

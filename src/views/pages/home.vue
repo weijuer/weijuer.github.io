@@ -11,7 +11,7 @@
 
 <script>
   import panel from '@/components/panel'
-  import welcome from '@/assets/global/js/plugins/welcome'
+  import Welcome from '@/assets/global/js/plugins/welcome'
 
   export default {
     name: 'home',
@@ -35,9 +35,29 @@
     },
     methods: {
       getMouse() {
-        let canvas = document.getElementById('welcome-bg');
-        let mouse = welcome.getLocation(canvas);
-        console.log(mouse);
+        // 1.获取画布
+        const canvas = document.getElementById('welcome-bg');
+
+        if(canvas.getContext) {
+          // 设置画布尺寸
+          canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
+          canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
+          // 设置画布背景色
+          canvas.style.backgroundColor = 'transparent';
+
+          // 2.监听鼠标移动
+          canvas.addEventListener('mousemove', (event) => {
+            let welcome = new Welcome(event.offsetX, event.offsetY, canvas);
+            console.log(`X:===>${event.offsetX},Y:===>${event.offsetY}`);
+
+            // 3.定时器
+            window.requestAnimationFrame(()=>{
+              welcome.draw();
+              //welcome.render();
+            });
+
+          });
+        }
       }
     }
   }
