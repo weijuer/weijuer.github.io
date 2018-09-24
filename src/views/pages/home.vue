@@ -11,7 +11,8 @@
 
 <script>
   import panel from '@/components/panel'
-  import Welcome from '@/assets/global/js/plugins/welcome'
+  import Arrow from '@/assets/global/js/plugins/Arrow'
+  import Clover from "../../assets/global/js/plugins/clover";
 
   export default {
     name: 'home',
@@ -30,11 +31,12 @@
       console.log('-----home created')
     },
     mounted() {
-      console.log('-----mounted')
-      this.getMouse();
+      console.log('-----mounted');
+      //this.getWelcome();
+      this.getClover();
     },
     methods: {
-      getMouse() {
+      getWelcome() {
         // 1.获取画布
         const canvas = document.getElementById('welcome-bg');
 
@@ -47,17 +49,41 @@
 
           // 2.监听鼠标移动
           canvas.addEventListener('mousemove', (event) => {
-            let welcome = new Welcome(event.offsetX, event.offsetY, canvas);
+            let arrow1 = new Arrow(100, 200, 'red', event, canvas);
+            let arrow2 = new Arrow(120, 60, 'green', event, canvas);
             console.log(`X:===>${event.offsetX},Y:===>${event.offsetY}`);
 
             // 3.定时器
-            window.requestAnimationFrame(()=>{
-              welcome.draw();
-              //welcome.render();
+            window.requestAnimationFrame(() => {
+              arrow1.drawArrow();
+              arrow2.drawArrow();
             });
 
           });
         }
+      },
+      getClover() {
+        // 1.获取画布
+        const canvas = document.getElementById('welcome-bg');
+        if(canvas.getContext) {
+          // 设置画布尺寸
+          canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
+          canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
+          // 设置画布背景色
+          canvas.style.backgroundColor = 'transparent';
+
+          let clover = new Clover(canvas);
+          clover.init();
+          //clover.draw_flower(100, 8, 0, canvas.width / 2, canvas.height / 2);
+
+          // 3.定时器
+          (function drawClover() {
+            window.requestAnimationFrame(drawClover);
+            clover.draw();
+         })();
+
+        }
+
       }
     }
   }
