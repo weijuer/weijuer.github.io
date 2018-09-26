@@ -74,13 +74,12 @@
 
           let clover = new Clover(canvas);
           clover.init();
-          //clover.draw_flower(100, 8, 0, canvas.width / 2, canvas.height / 2);
 
           // 3.定时器
           (function drawClover() {
-            window.requestAnimationFrame(drawClover);
             clover.draw();
-         })();
+            window.requestAnimationFrame(drawClover);
+          })();
 
         }
 
