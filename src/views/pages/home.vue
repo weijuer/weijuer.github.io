@@ -12,7 +12,8 @@
 <script>
   import panel from '@/components/panel'
   import Arrow from '@/assets/global/js/plugins/Arrow'
-  import Clover from "../../assets/global/js/plugins/clover";
+  import Clover from "../../assets/global/js/plugins/Clover";
+  import SadMan from "../../assets/global/js/plugins/SadMan";
 
   export default {
     name: 'home',
@@ -34,6 +35,9 @@
       console.log('-----mounted');
       //this.getWelcome();
       this.getClover();
+
+      // 1.绑定页面监听resize事件
+      window.addEventListener('resize', this.getClover);
     },
     methods: {
       getWelcome() {
@@ -73,11 +77,14 @@
           canvas.style.backgroundColor = 'transparent';
 
           let clover = new Clover(canvas);
-          clover.init();
+          let sadMan = new SadMan(canvas);
 
           // 3.定时器
+          let tick = 0;
           (function drawClover() {
-            clover.draw();
+            tick += 0.03;
+            clover.draw(tick);
+            sadMan.draw(tick);
             window.requestAnimationFrame(drawClover);
           })();
 

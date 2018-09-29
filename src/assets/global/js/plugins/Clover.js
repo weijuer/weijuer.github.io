@@ -22,13 +22,16 @@ class Clover {
     this.endPointY = [];
     // 花朵花瓣数目
     this.petals = [];
+    // 花朵大小
     this.size = [];
     this.amp = [];
-    this.beta = 0.0012;
     // 颜色
     this.color = (color === undefined) ? "#4a8644" : color;
     // 数量
     this.num = (num === undefined) ? 10 : num;
+
+    // 初始化
+    this.init();
   }
 
   /**
@@ -38,28 +41,25 @@ class Clover {
     for (let i = 0; i < this.num; i++) {
       this.startPoint[i] = (this.canvas.width / this.num) * i + utils.getRandNum(10, 80);
       this.endPointX[i] = this.startPoint[i];
-      this.endPointY[i] = (this.canvas.height / 1.5) - utils.getRandNum(10, 80);
+      this.endPointY[i] = (this.canvas.height / 1.15) - utils.getRandNum(40, 100);
       this.petals[i] = utils.getRandNum(4, 6);
-      this.size[i] = utils.getRandNum(40, 60);
+      this.size[i] = utils.getRandNum(20, 60);
       this.amp[i] = utils.getRandNum(30, 60);
     }
   }
 
   /**
    * 绘制四叶草Clover
+   * @param t
    */
-  draw() {
-    // 获得2D环境
-    const ctx = this.context;
-
+  draw(t) {
     // 清屏
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    ctx.save();
+    this.context.save();
 
     // Math.sin的应用-摇摆幅度
-    this.beta += 12 * 0.0012;
-    let loop = Math.sin(this.beta);
+    let loop = Math.sin(t);
 
     for (let i = 0; i < this.num; i++) {
 
@@ -73,7 +73,7 @@ class Clover {
       this.draw_flower(this.size[i], this.petals[i] * 2, this.endPointX[i], this.endPointY[i]);
     }
 
-    ctx.restore();
+    this.context.restore();
   }
 
   /**
@@ -84,26 +84,24 @@ class Clover {
    * @param y
    */
   draw_scape(startPointX, startPointY, x, y) {
+    this.context.lineWidth = 2;
+    this.context.lineCap = "round";
+    this.context.shadowColor = '#a5a431';
+    this.context.globalAlpha = 0.8;
+    this.context.strokeStyle = this.color;
 
-    // 获得2D环境
-    const ctx = this.context;
-
-    ctx.lineWidth = 2;
-    ctx.lineCap = "round";
-    ctx.shadowColor = '#a5a431';
-    ctx.globalAlpha = 0.8;
-    ctx.strokeStyle = this.color;
-
-    ctx.beginPath();
-    ctx.moveTo(startPointX, startPointY);
-    ctx.quadraticCurveTo(startPointX, startPointY - 100, x, y);
-    ctx.stroke();
-    ctx.closePath();
+    this.context.beginPath();
+    this.context.save();
+    this.context.moveTo(startPointX, startPointY);
+    this.context.quadraticCurveTo(startPointX, startPointY - 100, x, y);
+    this.context.stroke();
+    this.context.restore();
+    this.context.closePath();
   }
 
   /**
    * 绘制花朵
-   * @param rad 花朵大小
+   * @param rad 花瓣半径
    * @param petals 花瓣数量*2
    * @param x 花朵x轴位置
    * @param y 花朵y轴位置
@@ -113,11 +111,11 @@ class Clover {
     // 获得2D环境
     const ctx = this.context;
 
-    ctx.lineWidth = 2;
-    ctx.shadowColor = '#42a518';
-    ctx.shadowBlur = 50;
-    ctx.fillStyle = '#5eb146';
-    ctx.strokeStyle = '#4a8644';
+    this.context.lineWidth = 2;
+    this.context.shadowColor = '#42a518';
+    this.context.shadowBlur = 50;
+    this.context.fillStyle = '#5eb146';
+    this.context.strokeStyle = '#4a8644';
 
     let pts = [];
     for (let i = 0; i <= petals; i++) {
@@ -128,12 +126,14 @@ class Clover {
 
     for (let i = 1; i <= petals; i += 2) {
       let idx = i % petals;
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.bezierCurveTo(x + pts[i - 1].x, y + pts[i - 1].y, x + pts[idx + 1].x, y + pts[idx + 1].y, x, y);
-      ctx.stroke();
-      ctx.fill();
-      ctx.closePath();
+      this.context.beginPath();
+      this.context.save();
+      this.context.moveTo(x, y);
+      this.context.bezierCurveTo(x + pts[i - 1].x, y + pts[i - 1].y, x + pts[idx + 1].x, y + pts[idx + 1].y, x, y);
+      this.context.stroke();
+      this.context.fill();
+      this.context.restore();
+      this.context.closePath();
     }
   }
 

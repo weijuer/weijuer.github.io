@@ -68,7 +68,8 @@ const utils = {
 
 
   /**
-   * polar to linear coordinate transform
+   * 极坐标系转换
+   * 理论：弧度 = 角度 × π / 180
    * 三角函数，获取两条直角边
    * @param r 斜边
    * @param angle 角度
@@ -77,8 +78,9 @@ const utils = {
    */
   P2L(r, angle) {
     let ret = {x: 0, y: 0};
-    ret.x = Math.cos(angle * Math.PI / 180) * r;
-    ret.y = Math.sin(angle * Math.PI / 180) * r;
+    let radian = angle * (Math.PI / 180);
+    ret.x = Math.cos(radian) * r;
+    ret.y = Math.sin(radian) * r;
     return (ret);
   }
 
