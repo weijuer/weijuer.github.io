@@ -14,6 +14,9 @@ class Clover {
     // 获取2D环境
     this.context = canvas.getContext('2d');
 
+    // 全局合成操作
+    // this.context.globalCompositeOperation = "source-over";
+
     // 起点
     this.startPoint = [];
     // 花朵终点X轴
@@ -53,8 +56,6 @@ class Clover {
    * @param t
    */
   draw(t) {
-    // 清屏
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.context.save();
 
@@ -108,15 +109,13 @@ class Clover {
    */
   draw_flower(rad, petals, x, y) {
 
-    // 获得2D环境
-    const ctx = this.context;
-
     this.context.lineWidth = 2;
     this.context.shadowColor = '#42a518';
     this.context.shadowBlur = 50;
     this.context.fillStyle = '#5eb146';
     this.context.strokeStyle = '#4a8644';
 
+    // 极坐标
     let pts = [];
     for (let i = 0; i <= petals; i++) {
       let angle = (360 / petals) * i;
