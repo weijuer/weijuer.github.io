@@ -21,64 +21,141 @@ class Pig {
    * 绘制坐标系
    */
   drawAxis() {
-    let dX = 0, dY =0;
+    let dX = 0, dY = 0;
     let textX = 0, textY = 0;
-    const origin = {x:0, y:0};
+    const origin = {x: 0, y: 0};
     let width = this.canvas.width;
     let height = this.canvas.height;
 
     this.context.lineWidth = 2;
     this.context.strokeStyle = "green";
+    // 画布转换
+    this.context.translate(30, 30);
 
     // 绘制x轴
     this.context.beginPath();
     this.context.moveTo(origin.x, origin.y);
-    this.context.lineTo(width, origin.y);
+    this.context.lineTo(width, origin.y + 1);
     this.context.stroke();
+    this.context.closePath();
 
     // 绘制x轴刻度
     while (dX < width) {
-      this.context.font = '12pt Arial';
-      this.context.fillStyle = 'red';
-      this.context.fillText(textY, dX, 0);
+      this.context.font = '8pt Arial';
+      this.context.fillStyle = 'green';
+      this.context.textBaseline = 'middle';
+      this.context.textAlign = 'center';
+      this.context.fillText(textY.toString(), dX, -10);
+
+      // 绘制刻度线
+      this.context.beginPath();
+      this.context.fillStyle = "#000";
+      this.context.arc(dX, 0, 2, 0, 2 * Math.PI, true);
+      this.context.fill();
+      this.context.closePath();
+
       textY += 50;
       dX += 50;
     }
 
-    // 绘制y轴
-    this.context.moveTo(origin.x, origin.y);
-    this.context.lineTo(origin.x, height);
-    this.context.stroke();
+    // 保存当前绘制状态
+    this.context.save();
 
+    // 绘制y轴
+    this.context.beginPath();
+    this.context.moveTo(origin.x, origin.y);
+    this.context.lineTo(origin.x + 1, height);
+    this.context.stroke();
+    this.context.closePath();
+
+    // 获取上次绘制状态
+    this.context.restore();
     // 绘制y轴刻度
     while (dY < height) {
-      this.context.font = '12pt Arial';
-      this.context.fillStyle = 'red';
-      this.context.fillText(textX, -30, dY);
+      this.context.beginPath();
+      // 文字旋转待定
+      // this.context.rotate(-90 * Math.PI / 180);
+      this.context.fillText(textX.toString(), -16, dY);
+
+      // 绘制刻度线
+      this.context.fillStyle = "#000";
+      this.context.arc(0, dY, 2, 0, 2 * Math.PI, true);
+      this.context.fill();
+      this.context.closePath();
+
       textX += 50;
       dY += 50;
     }
+
+
   }
+
+  /**
+   * 绘制带箭头
+   * @param fromX 起点坐标（也可以换成p1，只不过它是一个数组）
+   * @param fromY
+   * @param toX 终点坐标 (也可以换成p2，只不过它是一个数组)
+   * @param toY
+   * @param theta 三角斜边一直线夹角
+   * @param headlen 三角斜边长度
+   * @param width 箭头长度
+   * @param color 箭头颜色
+   */
+  drawArray(fromX, fromY, toX, toY, theta = 30, headlen = 10, width = 1, color = '#000') {
+
+    // 计算各角度和对应的P2,P3坐标
+    let angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+      angle1 = (angle + theta) * Math.PI / 180,
+      angle2 = (angle - theta) * Math.PI / 180,
+      topX = headlen * Math.cos(angle1),
+      topY = headlen * Math.sin(angle1),
+      botX = headlen * Math.cos(angle2),
+      botY = headlen * Math.sin(angle2);
+
+    this.context.save();
+    this.context.beginPath();
+
+    let arrowX = fromX - topX,
+      arrowY = fromY - topY;
+
+    this.context.moveTo(arrowX, arrowY);
+    this.context.moveTo(fromX, fromY);
+    this.context.lineTo(toX, toY);
+
+    arrowX = toX + topX;
+    arrowY = toY + topY;
+    this.context.moveTo(arrowX, arrowY);
+    this.context.lineTo(toX, toY);
+
+    arrowX = toX + botX;
+    arrowY = toY + botY;
+    this.context.lineTo(arrowX, arrowY);
+    this.context.strokeStyle = color;
+    this.context.lineWidth = width;
+    this.context.stroke();
+    this.context.restore();
+  }
+
 
   /**
    * 头
    * @param t
    */
   drawHead(t) {
-    this.context.translate(0, Math.sin(t) * 4);
+    // this.context.translate(0, Math.sin(t) * 4);
 
     // 鼻子
     this.context.beginPath();
-    this.context.arc(0, 0, 20, 0, 2 * Math.PI, true);
+    this.context.arc(60, 60, 20, 0, 2 * Math.PI, true);
     this.context.stroke();
 
     // 鼻孔
     this.context.beginPath();
-    this.context.arc(0, 20, 6, 0, 2 * Math.PI);
+    this.context.arc(60, 70, 6, 0, 2 * Math.PI);
     this.context.stroke();
 
     this.context.beginPath();
-    this.context.arc(0, 80, 6, 0, 2 * Math.PI, true);
+    this.context.arc(60, 50, 6, 0, 2 * Math.PI, true);
     this.context.stroke();
 
     this.context.stroke();
@@ -180,7 +257,8 @@ class Pig {
     t = t % Math.PI * 2;
     this.context.fillStyle = this.color;
     this.context.save();
-    //this.context.translate(this.canvas.width / 2 - 300, this.canvas.height / 2 + 120);
+    // this.context.translate(this.canvas.width / 2 - 300, this.canvas.height / 2 + 120);
+    // this.context.translate(30, 30);
 
     this.drawAxis();
     this.drawHead(t);
