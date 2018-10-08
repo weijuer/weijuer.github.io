@@ -144,23 +144,51 @@ class Pig {
   drawHead(t) {
     // this.context.translate(0, Math.sin(t) * 4);
 
+    this.context.save();
+
+    this.context.lineWidth = 2;
+
     // 鼻子
     this.context.beginPath();
-    this.context.arc(60, 60, 20, 0, 2 * Math.PI, true);
+    this.context.fillStyle = '#ffbce4';
+    this.context.strokeStyle = '#eca1cf';
+    this.context.arc(120, 120, 20, 0, 2 * Math.PI, true);
     this.context.stroke();
-
-    // 鼻孔
-    this.context.beginPath();
-    this.context.arc(60, 70, 6, 0, 2 * Math.PI);
-    this.context.stroke();
-
-    this.context.beginPath();
-    this.context.arc(60, 50, 6, 0, 2 * Math.PI, true);
-    this.context.stroke();
-
-    this.context.stroke();
-    // this.context.fill();
+    this.context.fill();
     this.context.closePath();
+
+    this.context.strokeStyle = '#da7db4';
+    this.context.fillStyle = '#da7db4';
+
+    // 左鼻孔
+    this.context.beginPath();
+    this.context.arc(110, 120, 5, 0, 2 * Math.PI);
+    this.context.stroke();
+    this.context.fill();
+    this.context.closePath();
+
+    // 右鼻孔
+    this.context.beginPath();
+    this.context.arc(130, 120, 5, 0, 2 * Math.PI, true);
+    this.context.stroke();
+    this.context.fill();
+    this.context.closePath();
+
+
+    // 脸部
+    this.context.setLineDash([]);
+    this.context.beginPath();
+    // 倾斜45°角
+    this.context.ellipse(90, 165, 60, 80, 55 * Math.PI / 180, 0, 1.35 * Math.PI, false);
+    this.context.stroke();
+    this.context.closePath();
+
+    this.context.beginPath();
+    this.context.ellipse(75, 200, 40, 50, 45 * Math.PI / 180, 0, 1.5 * Math.PI, true);
+    this.context.stroke();
+    this.context.closePath();
+
+    this.context.restore();
   }
 
   /**
@@ -247,6 +275,32 @@ class Pig {
     this.context.fill();
     this.context.restore();
     this.context.closePath()
+  }
+
+  /**
+   * 绘制椭圆
+   * @param x
+   * @param y
+   * @param a
+   * @param b
+   */
+  drawEllipse(x, y, a, b) {
+    this.context.save();
+    // 选择a、b中的较大者作为arc方法的半径参数
+    let r = (a > b) ? a : b;
+    // 横轴缩放比率
+    let ratioX = a / r;
+    // 纵轴缩放比率
+    let ratioY = b / r;
+    // 进行缩放（均匀压缩）
+    this.context.scale(ratioX, ratioY);
+    this.context.beginPath();
+    // 从椭圆的左端点开始逆时针绘制
+    this.context.moveTo((x + a) / ratioX, y / ratioY);
+    this.context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI);
+    this.context.closePath();
+    this.context.stroke();
+    this.context.restore();
   }
 
   /**
