@@ -1,4 +1,4 @@
- import Vue from 'vue'
+import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router);
@@ -49,7 +49,7 @@ const routes = [
 export default new Router({
   // hash路由以#号分割，history则为常规url
   mode: 'hash',
-  base: '/',
+  base: process.env.BASE_URL,
   linkActiveClass: 'active',
   scrollBehavior,
   routes
