@@ -1,5 +1,3 @@
-import utils from "../utils/utils";
-
 class Pig {
 
   /**
@@ -146,49 +144,49 @@ class Pig {
   drawHead(t) {
     // this.context.translate(0, Math.sin(t) * 4);
 
-    /* this.context.beginPath();
-    this.context.arc(75,75,50,0,Math.PI*2,true); // 绘制
-    this.context.moveTo(110,75);
-    this.context.arc(75,75,35,0,Math.PI,false);   // 口(顺时针)
-    this.context.moveTo(65,65);
-    this.context.arc(60,65,5,0,Math.PI*2,true);  // 左眼
-    this.context.moveTo(95,65);
-    this.context.arc(90,65,5,0,Math.PI*2,true);  // 右眼
-    this.context.stroke(); */
-
-    // 吹风机
     this.context.beginPath();
-    this.context.moveTo(490, 305);
-    this.context.bezierCurveTo(360, 310, 350, 470, 470, 435);
-    this.context.quadraticCurveTo(520, 410, 484, 368);
-    this.context.quadraticCurveTo(510, 350, 514, 345);
-
-    // 鼻子
-    this.context.moveTo(502, 325);
-    this.context.ellipse(502, 325, 18, 23, -35 * Math.PI / 180, 0, 2 * Math.PI, true);
-
-    // 鼻孔
-    this.context.fillStyle = '#da7db4';
-    // 左鼻孔
-    this.context.moveTo(496, 325);
-    this.context.arc(496, 325, 5, 0, 2 * Math.PI);
-    // this.context.fill();
-
-    // 右鼻孔
-    this.context.arc(509, 320, 5, 0, 2 * Math.PI, true);
-    // this.context.fill();
-
-
-    // 耳朵
-    this.context.moveTo(424, 328);
-    this.context.quadraticCurveTo(406, 318, 418, 296);
-    this.context.quadraticCurveTo(60, 120, 410, 320);
-
+    this.context.moveTo(75,25);
+    this.context.quadraticCurveTo(25,25,25,62.5);
+    this.context.quadraticCurveTo(25,100,50,100);
+    //  this.context.quadraticCurveTo(50,120,30,125);
+    //  this.context.quadraticCurveTo(60,120,65,100);
     //  this.context.quadraticCurveTo(125,100,125,62.5);
     //  this.context.quadraticCurveTo(125,25,75,25);
-
     this.context.stroke();
-    
+
+    this.context.lineWidth = 4;
+    this.context.strokeStyle = '#da7db4';
+    this.context.fillStyle = '#ffbce4';
+    this.context.save();
+
+    // 吹风机
+    /* this.context.beginPath();
+    this.context.moveTo(100, 90);
+    this.context.bezierCurveTo(-260, 60, -10, 360, 55, 165);
+    this.context.quadraticCurveTo(95, 140, 118, 120);
+    this.context.stroke();
+    this.context.fill();
+    this.context.closePath(); */
+
+    // 鼻子
+    this.context.fillStyle = '#da7db4';
+    this.context.beginPath();
+    this.context.moveTo(100, 110);
+    this.context.arc(100, 110, 20, 0, 2 * Math.PI, true);
+    this.context.stroke();
+    this.context.closePath();
+    // 左鼻孔
+    this.context.beginPath();
+    this.context.arc(90, 110, 5, 0, 2 * Math.PI);
+    this.context.stroke();
+    this.context.fill();
+    this.context.closePath();
+    // 右鼻孔
+    this.context.beginPath();
+    this.context.arc(110, 110, 5, 0, 2 * Math.PI, true);
+    this.context.stroke();
+    this.context.fill();
+    this.context.closePath();
 
     // 眼眶
     this.context.lineWidth = 4;
@@ -196,13 +194,13 @@ class Pig {
     this.context.fillStyle = '#fff';
     // 左
     this.context.beginPath();
-    this.context.arc(433, 343, 8, 0, 2 * Math.PI);
+    this.context.arc(-30, 130, 10, 0, 2 * Math.PI);
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
     // 右
     this.context.beginPath();
-    this.context.arc(459, 329, 8, 0, 2 * Math.PI, true);
+    this.context.arc(10, 130, 10, 0, 2 * Math.PI, true);
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
@@ -212,21 +210,22 @@ class Pig {
     this.context.fillStyle = '#000';
     // 左
     this.context.beginPath();
-    this.context.arc(438, 340, 1, 0, 2 * Math.PI);
+    this.context.arc(-25, 130, 2, 0, 2 * Math.PI);
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
     // 右
     this.context.beginPath();
-    this.context.arc(464, 328, 1, 0, 2 * Math.PI, true);
+    this.context.arc(15, 130, 2, 0, 2 * Math.PI, true);
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
 
     // 腮红
+    this.context.restore();
     this.context.fillStyle = '#da7db4';
     this.context.beginPath();
-    this.context.ellipse(412, 390, 14, 16, -35 * Math.PI / 180, 0, 2 * Math.PI, true);
+    this.context.arc(-60, 170, 12, 0, 2 * Math.PI, true);
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
@@ -234,7 +233,7 @@ class Pig {
     // 嘴巴
     this.context.lineWidth = 4;
     this.context.beginPath();
-    this.context.arc(460, 400, 20, -45 * Math.PI / 180, 1 * Math.PI, false);
+    this.context.arc(-10, 180, 20, 0, 1 * Math.PI, false);
     this.context.stroke();
     this.context.closePath();
 
@@ -416,29 +415,6 @@ class Pig {
     this.context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI);
     this.context.closePath();
     this.context.stroke();
-    this.context.restore();
-  }
-
-  /**
-   * 绘制鼠标坐标
-   */
-  getMouseLocation() {
-
-    this.context.save();
-
-    // 设置字体
-    this.context.font = "18px 'Montserrat', sans-serif";
-
-    // 2.监听鼠标移动
-    this.canvas.addEventListener('mousemove', (event) => {
-      let mouse = utils.getOffsetLocate(event);
-      let message = `x: ${mouse.x}, y: ${mouse.y}`;
-      this.context.beginPath();
-      this.context.fillStyle = "red";
-      this.context.fillText(message, 100, 100);
-      this.context.closePath();
-    });
-    
     this.context.restore();
   }
 

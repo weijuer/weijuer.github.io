@@ -85,6 +85,8 @@
           let welcome = new Welcome(canvas);
           let pig = new Pig(canvas);
 
+          
+
           // 3.定时器
           let tick = 0;
           (function drawClover() {
