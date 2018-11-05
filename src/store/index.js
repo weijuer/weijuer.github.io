@@ -1,17 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import actions from './actions';
+
+import state from './states';
 import mutations from './mutations';
 import getters from './getters';
-import state from './states';
+import actions from './actions';
+import modules from './modules'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state,
-  getters,
   mutations,
-  actions
+  getters,
+  actions,
+  modules,
+  strict: process.env.NODE_ENV === 'development'
 });
 
 export default store;

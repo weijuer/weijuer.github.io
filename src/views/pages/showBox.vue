@@ -40,13 +40,13 @@
     components: {
     },
     beforeCreate() {
-      console.log('beforeCreate=====>')
+      // console.log('beforeCreate=====>')
     },
     created() {
-      console.log('-----home created')
+      // console.log('-----home created')
     },
     mounted() {
-      console.log('-----mounted')
+      // console.log('-----mounted')
 
       // 获取indexedDB数据
       // this.get_indexedDB_data()
@@ -62,10 +62,10 @@
         }
 
         // 2.初始化timelineDB
-        db.find('timeline', 'title').then((res) => {
+        /* db.find('timeline', 'title').then((res) => {
           this.timeline = res;
           console.log(res);
-        });
+        }); */
       }
     }
   }

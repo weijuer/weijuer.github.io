@@ -1,0 +1,54 @@
+@themeColor: #72af3a;
+@bgColor: #bee897;
+
+.default {
+  a {
+    color: #333;
+
+    &:hover {
+      color: @themeColor;
+    }
+  }
+
+  .app-main {
+    background: @bgColor;
+  }
+
+  .app-footer {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+  }
+
+  .app-header-nav-bar {
+    background: rgba(30, 36, 42, 0.8);
+
+    .menu-section .nav > li {
+
+      .nav-link {
+        color: #fff;
+
+        &:hover {
+          color: @themeColor;
+        }
+      }
+
+      &.active {
+        .nav-link {
+          color: @themeColor;
+        }
+      }
+    }
+
+  }
+
+}
+
+
+@media all and (max-width: 768px) {
+  .default {
+
+    .menu-section.active {
+      background: rgba(30, 36, 42, 0.8);
+    }
+  }
+}

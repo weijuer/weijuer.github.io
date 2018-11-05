@@ -48,7 +48,7 @@ const routes = [
 // 创建 router 实例，然后传 `routes` 配置
 export default new Router({
   // hash路由以#号分割，history则为常规url
-  mode: 'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   linkActiveClass: 'active',
   scrollBehavior,
