@@ -22,7 +22,7 @@
       <!--分页按钮-->
       <section class="bullet-wrapper">
         <ul class="bullet">
-          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]"><a href="javascript:;" v-text="index + 1" @click="go(index)"></a></li>
+          <li v-for="(item, index) of items" :class="['bullet-item', {'active': index === active}]" :key="index"><a href="javascript:;" v-text="index + 1" @click="go(index)"></a></li>
         </ul>
       </section>
     </div>
