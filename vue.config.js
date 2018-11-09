@@ -8,11 +8,14 @@ module.exports = {
     // 是否开启eslint保存检测
     lintOnSave: true, 
     configureWebpack: {
+        // 从bundle文件中排除的依赖 (资源名：全局方法名)
         externals: {
             vue: "Vue",
             vuex: "Vuex",
             "vue-router": "VueRouter",
-            "element-ui": "ELEMENT"
+            "vue-i18n": "VueI18n",
+            "axios": "axios",
+            "jquery": "$",
         }
     },
     devServer: {
