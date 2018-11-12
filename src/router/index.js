@@ -8,7 +8,7 @@ const scrollBehavior = (to, from, savedPosition) => {
   if (savedPosition) {
     return savedPosition
   } else {
-    return {x: 0, y: 0}
+    return { x: 0, y: 0 }
   }
 };
 
@@ -26,7 +26,7 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: () => import('../views/pages/blog/blog')
-  } , {
+  }, {
     path: '/show-box',
     name: 'show-box',
     component: () => import('../views/pages/showBox')
@@ -38,10 +38,14 @@ const routes = [
     path: '/about',
     name: 'about',
     component: () => import('../views/pages/about')
+  }, { 
+    path: '/404', 
+    component: () => import('@/views/pages/404'), 
+    hidden: true 
   }, {
     path: '*',
-    name: 'error',
-    component: () => import('../views/pages/error')
+    redirect: '/404',
+    hidden: true
   }
 ];
 

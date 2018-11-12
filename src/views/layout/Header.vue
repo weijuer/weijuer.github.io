@@ -161,10 +161,10 @@
       }
     },
     computed: {
-      ...mapState([
-        'isPageScroll',
-        'isSideMenuActive'
-      ])
+      ...mapState({
+        isPageScroll: state => state.app.isPageScroll,
+        isSideMenuActive: state => state.app.isSideMenuActive
+      })
     },
     methods: {
       ...mapMutations({
@@ -183,7 +183,7 @@
         let path = document.getElementById('line');
         //获取路径总长度
         let length = path.getTotalLength();
-        console.log('length:===>' + length);
+        // console.log('length:===>' + length);
       }
     }
   }

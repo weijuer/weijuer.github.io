@@ -18,9 +18,9 @@
       window.addEventListener('scroll', this.PAGE_ON_SCROLL)
     },
     computed: {
-      ...mapState([
-        'isPageScroll'
-      ])
+      ...mapState({
+        isPageScroll: state => state.app.isPageScroll
+      })
     },
     methods: {
       ...mapMutations([

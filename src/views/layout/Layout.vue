@@ -11,7 +11,7 @@
   import pageHeader from './Header';
   import pageMain from './Main';
   import pageFooter from './Footer';
-  import backToTop from '@comps/backToTop';
+  import backToTop from '@/components/backToTop';
   import {mapState} from 'vuex'
 
   export default {
@@ -30,8 +30,5 @@
   }
 </script>
 
-<style lang="less">
-  @import "~@assets/global/less/app";
-  @import "~@assets/global/less/theme/default";
-</style>
+<style lang="less" src="@/assets/global/less/index.less" />
 

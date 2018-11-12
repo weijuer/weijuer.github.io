@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  // @ is an alias to /src
   import panel from '@/components/panel'
   import Arrow from '@/assets/global/js/plugins/Arrow'
   import Clover from "../../assets/global/js/plugins/Clover";
