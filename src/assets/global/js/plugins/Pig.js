@@ -1,3 +1,5 @@
+import utils from "../utils/utils";
+
 class Pig {
 
   /**
@@ -11,7 +13,7 @@ class Pig {
     // 获取2D环境
     this.context = canvas.getContext('2d');
     // 全局合成操作
-    this.context.globalCompositeOperation = "source-over";
+    //this.context.globalCompositeOperation = "source-out";
 
     // 颜色
     this.color = (color === undefined) ? "#fff" : color;
@@ -143,51 +145,78 @@ class Pig {
    */
   drawHead(t) {
     // this.context.translate(0, Math.sin(t) * 4);
+    this.context.lineWidth = 3;
+    this.context.fillStyle = '#ffbce4';
+    this.context.strokeStyle = '#f39ecf';
 
-    this.context.save();
-
-    this.context.lineWidth = 2;
+    // 吹风机
+    this.context.beginPath();
+    this.context.moveTo(490, 305);
+    this.context.bezierCurveTo(360, 310, 350, 470, 470, 435);
+    this.context.quadraticCurveTo(520, 410, 484, 368);
+    this.context.quadraticCurveTo(510, 350, 514, 345);
 
     // 鼻子
-    this.context.beginPath();
-    this.context.fillStyle = '#ffbce4';
-    this.context.strokeStyle = '#eca1cf';
-    this.context.arc(120, 120, 20, 0, 2 * Math.PI, true);
-    this.context.stroke();
-    this.context.fill();
-    this.context.closePath();
-
-    this.context.strokeStyle = '#da7db4';
-    this.context.fillStyle = '#da7db4';
-
+    this.context.moveTo(518, 315);
+    this.context.ellipse(502, 325, 18, 23, -35 * Math.PI / 180, 0, 2 * Math.PI, true);
+    // 鼻孔
     // 左鼻孔
-    this.context.beginPath();
-    this.context.arc(110, 120, 5, 0, 2 * Math.PI);
-    this.context.stroke();
-    this.context.fill();
-    this.context.closePath();
-
+    this.context.moveTo(500, 325);
+    this.context.arc(496, 325, 5, 0, 2 * Math.PI);
     // 右鼻孔
+    this.context.moveTo(515, 320);
+    this.context.arc(509, 320, 5, 0, 2 * Math.PI, true);
+
+    // 耳朵
+    this.context.moveTo(428, 328);
+    this.context.bezierCurveTo(380, 300, 430, 260, 440, 323);
+    this.context.moveTo(406, 348);
+    this.context.bezierCurveTo(365, 345, 380, 285, 416, 338);
+    this.context.fill();
+    this.context.stroke();
+
+    // 眼眶
+    this.context.lineWidth = 4;
+    this.context.strokeStyle = '#da7db4';
+    this.context.fillStyle = '#fff';
+    // 左
     this.context.beginPath();
-    this.context.arc(130, 120, 5, 0, 2 * Math.PI, true);
+    this.context.arc(433, 343, 8, 0, 2 * Math.PI);
+    this.context.stroke();
+    this.context.fill();
+    this.context.closePath();
+    // 右
+    this.context.beginPath();
+    this.context.arc(459, 329, 8, 0, 2 * Math.PI, true);
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
 
-
-    // 脸部
-    this.context.setLineDash([]);
+    // 眼睛
+    this.context.fillStyle = '#000';
+    // 左
     this.context.beginPath();
-    // 倾斜45°角
-    this.context.ellipse(90, 165, 60, 80, 55 * Math.PI / 180, 0, 1.35 * Math.PI, false);
-    this.context.stroke();
+    this.context.arc(437, 342, 4, 0, 2 * Math.PI);
+    this.context.fill();
+    this.context.closePath();
+    // 右
+    this.context.beginPath();
+    this.context.arc(463, 328, 4, 0, 2 * Math.PI, true);
+    this.context.fill();
     this.context.closePath();
 
+    // 腮红
+    this.context.fillStyle = '#da7db4';
     this.context.beginPath();
-    this.context.ellipse(75, 200, 40, 50, 45 * Math.PI / 180, 0, 1.5 * Math.PI, true);
+    this.context.ellipse(412, 390, 14, 16, -35 * Math.PI / 180, 0, 2 * Math.PI, true);
+    this.context.fill();
+
+    // 嘴巴
+    this.context.lineWidth = 4;
+    this.context.beginPath();
+    this.context.arc(460, 400, 20, -45 * Math.PI / 180, 1 * Math.PI, false);
     this.context.stroke();
     this.context.closePath();
-
     this.context.restore();
   }
 
@@ -196,39 +225,89 @@ class Pig {
    * @param t
    */
   drawBody(t) {
-    this.context.beginPath();
-    this.context.save();
-    this.context.rotate(Math.sin(t) * Math.PI / 180 * -1);
-    this.context.translate(0, Math.sin(t) * 4);
-    this.context.scale(0.5, 0.5);
+    this.context.lineWidth = 4;
+    this.context.strokeStyle = '#e24650';
+    this.context.fillStyle = '#ee6971';
+
+    // this.context.rotate(Math.sin(t) * Math.PI / 180 * -1);
+    // this.context.translate(0, Math.sin(t) * 4);
+    // this.context.scale(0.5, 0.5);
+
     // Path2D路径写法
     // const body = new Path2D('M125,284 L1,284 C0.33333333,94.6666667 35,0 105,0 C115.666667,4 122.333333,20.6666667 125,50 L125,284 Z')
     // this.context.fill(body);
 
-    // 简单路径
-    // 新建一条path
+    // 裙子
     this.context.beginPath();
-    this.context.moveTo(125, 284);
-    this.context.lineTo(1, 284);
-    //this.context.quadraticCurveTo(100, 100, 105, 0);
-    //this.context.quadraticCurveTo(200, 200, 200, 200);
-
-    //this.context.bezierCurveTo(125, 160, 300, 60, 340, 300);
-    //this.context.closePath();
-
+    this.context.moveTo(432, 460);
+    this.context.quadraticCurveTo(418, 475, 410, 542);  
+    this.context.lineTo(542, 542);
+    this.context.quadraticCurveTo(545, 522, 518, 456);
     this.context.stroke();
-    this.context.fill();
-
+    //this.context.clip();
+    this.context.closePath();
     this.context.restore();
+  }
+
+  /**
+   * 上肢
+   * @param t
+   */
+  drawArms(t) {
+    // 双腿
+    this.context.lineWidth = 6;
+    this.context.strokeStyle = '#ffbce4';
+    // 左腿
+    this.context.beginPath();
+    this.context.moveTo(90, 480);
+    this.context.lineTo(90, 520);
+    this.context.stroke();
+    this.context.closePath();
+    // 右腿
+    this.context.beginPath();
+    this.context.moveTo(200, 480);
+    this.context.lineTo(200, 520);
+    this.context.stroke();
+    this.context.closePath();
+
 
   }
 
   /**
-   * 双腿
+   * 下肢
    * @param t
    */
   drawLegs(t) {
+    // 双腿
+    this.context.lineWidth = 5;
+    this.context.strokeStyle = '#ffbce4';
+    // 左腿
+    this.context.beginPath();
+    this.context.moveTo(441, 543);
+    this.context.lineTo(441, 570);
+    this.context.stroke();
+    this.context.closePath();
+    // 右腿
+    this.context.beginPath();
+    this.context.moveTo(499, 543);
+    this.context.lineTo(499, 570);
+    this.context.stroke();
+    this.context.closePath();
 
+    // 脚
+    this.context.lineWidth = 4;
+    this.context.strokeStyle = '#000';
+    this.context.fillStyle = '#000';
+    // 左
+    this.context.beginPath();
+    this.context.ellipse(448, 570, 2, 13, 90 * Math.PI / 180, 0, 2 * Math.PI, true);
+    this.context.stroke();
+    this.context.closePath();
+    // 右
+    this.context.beginPath();
+    this.context.ellipse(506, 570, 2, 13, 90 * Math.PI / 180, 0, 2 * Math.PI, true);
+    this.context.stroke();
+    this.context.closePath();
   }
 
   /**
@@ -268,10 +347,10 @@ class Pig {
   drawShadow(t) {
     this.context.beginPath();
     this.context.save();
-    this.context.scale(0.5, 0.5);
-    this.context.translate(45, 490);
+    // this.context.scale(0.5, 0.5);
+    this.context.translate(150, 550);
     this.context.fillStyle = 'rgba(0, 0, 0, 0.1)';
-    this.context.ellipse(0, 0, 120 + Math.sin(t) * 10, 8, 0, 0, 2 * Math.PI);
+    this.context.ellipse(0, 0, 100 + Math.sin(t) * 10, 14, 0, 0, 2 * Math.PI);
     this.context.fill();
     this.context.restore();
     this.context.closePath()
@@ -304,6 +383,29 @@ class Pig {
   }
 
   /**
+   * 绘制鼠标坐标
+   */
+  getMouseLocation() {
+
+    this.context.save();
+
+    // 设置字体
+    this.context.font = "18px 'Montserrat', sans-serif";
+
+    // 2.监听鼠标移动
+    this.canvas.addEventListener('mousemove', (event) => {
+      let mouse = utils.getOffsetLocate(event);
+      let message = `x: ${mouse.x}, y: ${mouse.y}`;
+      this.context.beginPath();
+      this.context.fillStyle = "red";
+      this.context.fillText(message, 100, 100);
+      this.context.closePath();
+    });
+    
+    this.context.restore();
+  }
+
+  /**
    * 绘制sad man
    * @param t
    */
@@ -311,14 +413,17 @@ class Pig {
     t = t % Math.PI * 2;
     this.context.fillStyle = this.color;
     this.context.save();
-    // this.context.translate(this.canvas.width / 2 - 300, this.canvas.height / 2 + 120);
-    // this.context.translate(30, 30);
-
     this.drawAxis();
+    // this.context.translate(this.canvas.width / 2 - 300, this.canvas.height / 2 + 120);
+    // this.context.translate(130, 130);
+
+    // this.drawAxis();
     this.drawHead(t);
-    //this.drawBody(t);
+    this.drawBody(t);
+    this.drawLegs(t);
+    // this.drawArms(t);
     //this.drawFeet(t);
-    //this.drawShadow(t);
+    this.drawShadow(t);
     this.context.restore();
   }
 }

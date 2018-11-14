@@ -21,18 +21,13 @@ const app = {
             state.isPageScroll = scrollTop > offsetTop;
         },
         /**
-         * 回到顶部定时
-         * @param state
+         * 返回顶部
          */
         BACK_TO_TOP: state => {
             // 1.scrollBy方法
             window.scrollBy(0, -100);
-            // 2.定时滚动
-            if (state.isPageScroll) {
-                state.delay = setTimeout(() => {
-                    this.commit('BACK_TO_TOP');
-                }, 10)
-            }
+
+            
         },
         SIDE_MENU_ACTIVE: state => {
             state.isSideMenuActive = !state.isSideMenuActive;
@@ -61,8 +56,13 @@ const app = {
          * @param commit
          * @param state
          */
-        BACK_TO_TOP: ({ commit }) => {
-            commit('BACK_TO_TOP')
+        BACK_TO_TOP: ({ commit, state }) => {
+            // 2.定时滚动
+            setTimeout(() => {
+                if (state.isPageScroll) {
+                    dispatch('BACK_TO_TOP');
+                }
+            }, 10);
         },
         ToggleSideBar: ({ commit }) => {
             commit('TOGGLE_SIDEBAR')
