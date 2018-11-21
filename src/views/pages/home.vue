@@ -11,7 +11,6 @@
 
 <script>
   // @ is an alias to /src
-  import panel from '@/components/panel'
   import Arrow from '@/assets/global/js/plugins/Arrow'
   import Clover from "../../assets/global/js/plugins/Clover";
   import SadMan from "../../assets/global/js/plugins/SadMan";
@@ -25,9 +24,7 @@
         dbInit: false
       }
     },
-    components: {
-      panel
-    },
+    components: {},
     beforeCreate() {
       console.log('beforeCreate=====>')
     },
@@ -37,10 +34,10 @@
     mounted() {
       console.log('-----mounted');
       //this.getWelcome();
-      this.getClover();
+      this.getPig();
 
       // 1.绑定页面监听resize事件
-      window.addEventListener('resize', this.getClover);
+      window.addEventListener('resize', this.getPig);
     },
     methods: {
       getWelcome() {
@@ -86,8 +83,11 @@
           let welcome = new Welcome(canvas);
           let pig = new Pig(canvas);
 
+
+          pig.getMouseLocation();
+
           // 3.定时器
-          let tick = 0;
+          /* let tick = 0;
           (function drawClover() {
             // 清屏
             context.clearRect(0, 0, canvas.width, canvas.height);
@@ -98,6 +98,34 @@
             //clover.draw(tick);
             //sadMan.draw(tick);
             //welcome.draw();
+            pig.draw(tick);
+            // 设置定时
+            window.requestAnimationFrame(drawClover);
+          })(); */
+
+        }
+
+      },
+      getPig() {
+        // 1.获取画布
+        const canvas = document.getElementById('welcome-bg');
+        const context = canvas.getContext('2d');
+
+        if(canvas.getContext) {
+          // 设置画布尺寸
+          canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
+          canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
+
+          let pig = new Pig(canvas);
+          // pig.getMouseLocation();
+          // let tick = 0;
+          // pig.draw(tick);
+
+          // 3.定时器
+          let tick = 0;
+          (function drawClover() {
+            // 设置振幅
+            tick += 0.05;
             pig.draw(tick);
             // 设置定时
             window.requestAnimationFrame(drawClover);
