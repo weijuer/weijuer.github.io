@@ -11,6 +11,11 @@ class Pig {
     // 获取2D环境
     this.context = canvas.getContext('2d');
     this.context.lineCap = 'round';
+    this.x = 0;
+    this.y = 0;
+    this.vx = 5;
+    this.vy = 1;
+    this.target;
   }
 
   /**
@@ -384,15 +389,54 @@ class Pig {
   }
 
   /**
+   * 获取鼠标点击位置
+   */
+  getTargetLocation() {
+    let _pig = this;
+    // 2.监听鼠标移动
+    this.canvas.addEventListener('click', (event) => {
+      let mouse = utils.getOffsetLocate(event);
+      let message = `Mouse:[x: ${mouse.x}, y: ${mouse.y}]`;
+      _pig.target = mouse;
+      console.log(message);
+
+      // 绘制位置信息
+      this.context.beginPath();
+      this.context.arc(mouse.x, mouse.y, 5, 0, 2 * Math.PI);
+      this.context.stroke();
+      this.context.closePath();
+    })
+  }
+
+  /**
+   * 小猪移动距离
+   */
+  getPigPosition() {
+    this.x += this.vx; 
+    this.y += this.vy; 
+    
+    if (this.y + this.vy > this.canvas.height || this.y + this.vy < 0) {
+      this.vy = -this.vy;
+    }
+    if (this.x + this.vx > this.canvas.width || this.x + this.vx < 0) {
+      this.vx = -this.vx;
+    }
+
+    this.context.translate(this.x, this.y);
+  }
+
+  /**
    * 绘制sad man
    * @param t
    */
   draw(t) {
     t = t % Math.PI * 2;
     // 清屏
-    this.context.fillStyle = 'rgba(255,255,255,0.3)';
-    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    // this.context.fillStyle = 'rgba(255,255,255,0.3)';
+    // this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    
 
     this.drawGround();
     this.drawBody(t);

@@ -110,6 +110,7 @@
         // 1.获取画布
         const canvas = document.getElementById('welcome-bg');
         const context = canvas.getContext('2d');
+        let raf;
 
         if(canvas.getContext) {
           // 设置画布尺寸
@@ -117,18 +118,18 @@
           canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
 
           let pig = new Pig(canvas);
-          // pig.getMouseLocation();
+          pig.getTargetLocation();
           // let tick = 0;
           // pig.draw(tick);
 
           // 3.定时器
           let tick = 0;
-          (function drawClover() {
+          (function drawPig() {
             // 设置振幅
             tick += 0.05;
             pig.draw(tick);
             // 设置定时
-            window.requestAnimationFrame(drawClover);
+            raf = window.requestAnimationFrame(drawPig);
           })();
 
         }
