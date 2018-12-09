@@ -76,7 +76,7 @@
           canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
           canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
           // 设置画布背景色
-          canvas.style.backgroundColor = 'transparent';
+          canvas.style.backgroundColor = '#99c4f8';
 
           let clover = new Clover(canvas);
           let sadMan = new SadMan(canvas);
