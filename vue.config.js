@@ -4,9 +4,11 @@ module.exports = {
     outputDir: 'dist', 
     // 静态资源目录 (js, css, img, fonts)
     assetsDir: 'assets', 
+    // 是否开启生产环境sourceMap
     productionSourceMap: false,
     // 是否开启eslint保存检测
     lintOnSave: true, 
+    // webpack配置
     configureWebpack: {
         // 从bundle文件中排除的依赖 (资源名：全局方法名)
         externals: {
@@ -26,15 +28,18 @@ module.exports = {
         https: false, 
         // 配置自动启动浏览器
         open: true, 
-        // proxy: 'http://localhost:4000' // 配置跨域处理,只有一个代理
+        // 配置跨域处理,只有一个代理
+        // proxy: 'http://localhost:4000' 
         proxy: {
             '/api': {
-                target: '<url>',
+                target: 'http://localhost:4000',
                 ws: true,
                 changeOrigin: true
             },
             '/foo': {
-                target: '<other_url>'
+                target: 'http://localhost:5000',
+                ws: true,
+                changeOrigin: true
             }
         }
     }
