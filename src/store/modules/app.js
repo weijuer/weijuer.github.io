@@ -1,3 +1,5 @@
+import {get_auth_user, logout} from "../../api/auth"
+
 const app = {
     state: {
         sidebar: {
@@ -72,7 +74,50 @@ const app = {
         },
         ToggleDevice({ commit }, device) {
             commit('TOGGLE_DEVICE', device)
-        }
+        },
+        /**
+         * 获取登录用户信息
+         * @param commit
+         * @param state
+         * @returns {Promise<void>}
+         * @constructor
+         */
+        async GET_USER({commit, state}) {
+            try {
+                // 调用获取登录用户信息接口
+                let res = await get_auth_user();
+                // 结果处理
+                if (res.success) {
+                    // 处理数据
+                    commit('GET_USER', res.data);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        },
+        /**
+         * 登出
+         * @param commit
+         * @param state
+         * @returns {Promise<void>}
+         * @constructor
+         */
+        async LOGOUT({commit, state}) {
+            try {
+                // 获取当前登录用户
+                let user = state.user;
+
+                // 调用server-sso登出接口
+                await logout({
+                    userId: user.userId
+                });
+
+                // 结果处理
+                commit('LOGOUT');
+            } catch (err) {
+                console.error(err);
+            }
+        },
     },
     getters: {
         isPageScroll: state => state.isPageScroll,

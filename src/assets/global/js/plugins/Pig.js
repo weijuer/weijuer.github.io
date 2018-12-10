@@ -137,7 +137,7 @@ class Pig {
 
     // 吹风机
     this.context.beginPath();
-    this.context.moveTo(513, 337);
+    this.context.moveTo(518, 336);
     this.context.bezierCurveTo(388, 342, 378, 502, 498, 467);
     this.context.quadraticCurveTo(548, 442, 512, 400);
     this.context.quadraticCurveTo(538, 382, 542, 377);
@@ -260,8 +260,10 @@ class Pig {
     this.context.strokeStyle = '#ffbce4';
     
     // 手臂摆动基数
-    var sin = Math.sin(Math.PI/6) * t;
-    var cos = Math.cos(Math.PI/6) * t;
+    var sin = 0 + Math.sin(t * 30 * (Math.PI/180)) * 12;
+    var cos = 0 - Math.cos(t * 30 * (Math.PI/180)) * 12;
+
+    // console.log(`${sin}---${cos}`);
 
     // 左边
     this.context.save();
