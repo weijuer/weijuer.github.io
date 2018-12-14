@@ -254,44 +254,48 @@ class Pig {
    */
   drawArms(t) {
     this.context.save();
-    
+    // 跟随身体上下动
+    this.context.translate(0, Math.sin(t) * 4);
+
     // 胳膊
     this.context.lineWidth = 4;
     this.context.strokeStyle = '#ffbce4';
     
-    // 手臂摆动基数
-    var sin = 0 + Math.sin(t * 30 * (Math.PI/180)) * 12;
-    var cos = 0 - Math.cos(t * 30 * (Math.PI/180)) * 12;
+    // 手臂摆动弧度
+    let rotation = Math.sin(t) * 30 * Math.PI / 180;
 
-    // console.log(`${sin}---${cos}`);
+    // 设置手臂坐标
+    let pointA = utils.P2L(40, 45);
+    let pointO = utils.P2L(28, 45);
+    let pointB = utils.P2L(8, 90 + 45 - 30);
+    let pointC = utils.P2L(8, 90 + 45 - 30);
 
     // 左边
     this.context.save();
-    
-    // 动画
+    // 动画-设置摆动
     this.context.translate(422, 473);
-    this.context.transform(cos, sin, -sin, cos, 0, 0);
+    this.context.rotate(rotation);
 
     this.context.beginPath();
-    this.context.moveTo(422, 473);
-    this.context.lineTo(384, 496);
-    this.context.moveTo(396, 487);
-    this.context.lineTo(386, 482);
-    this.context.moveTo(396, 487);
-    this.context.lineTo(396, 499);
+    this.context.moveTo(0, 0);
+    this.context.lineTo(-pointA.x, pointA.y);
+    this.context.moveTo(-pointO.x, pointO.y);
+    this.context.lineTo(pointB.x - pointO.x, pointB.y + pointO.y);
+    this.context.moveTo(-pointO.x, pointO.y);
+    this.context.lineTo(pointC.x + pointO.x, -pointC.y - pointO.y);
     this.context.stroke();
     this.context.closePath();
     this.context.restore();
 
     // 右边
     this.context.save();
-    // 动画
-    // this.context.translate(529, 472);
-    // this.context.transform(cos, sin, -sin, cos, 0, 0);
+    // 动画-设置摆动
+    this.context.translate(529, 472);
+    this.context.rotate(rotation);
 
     this.context.beginPath();
-    this.context.moveTo(529, 472);
-    this.context.lineTo(564, 502);
+    this.context.moveTo(0, 0);
+    this.context.lineTo(35, -30);
     this.context.moveTo(551, 491);
     this.context.lineTo(567, 489);
     this.context.moveTo(551, 491);
