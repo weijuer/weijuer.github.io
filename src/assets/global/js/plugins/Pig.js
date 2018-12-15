@@ -13,9 +13,12 @@ class Pig {
     this.context.lineCap = 'round';
     this.x = 0;
     this.y = 0;
-    this.vx = 5;
+    this.vx = 1;
     this.vy = 1;
-    this.target = {x: -10, y: -10};
+    this.target = {x: 0, y: 0};
+    this.mouse = {x: 0, y: 0};
+    // 地面小花
+    this.flowers = [];
   }
 
   /**
@@ -100,9 +103,33 @@ class Pig {
     this.context.beginPath();
     // 绘制矩形
     let rectangle = new Path2D();
-    rectangle.rect(0, this.canvas.height - 100, this.canvas.width,100);
+    let grounWidth = this.canvas.width;
+    let grounHeight = this.canvas.height - 100;
+    rectangle.rect(0, this.canvas.height - 100, this.canvas.width, 100);
     this.context.fillStyle = "rgba(115, 234, 120, 0.56)";
     this.context.fill(rectangle);
+    this.context.closePath();
+    this.context.restore();
+
+    // 绘制小花
+    this.context.save();
+    
+    let size = 3;
+    // 1.随机生成小花位置
+    for (let index = 0; index < size; index++) {
+      let flowers = {
+        x: utils.getRandNum(20, grounWidth),
+        y: utils.getRandNum(20, grounHeight)
+      };
+      
+      this.flowers.push(flowers);
+    }
+    // 2.绘制小花
+    this.context.beginPath();
+    for (let index = 0; index < size; index++) {
+      this.context.moveTo(this.flowers[index].x, this.flowers[index].y);
+      this.context.lineTo(this.flowers[index].x, this.flowers[index].y + 20);
+    }
     this.context.closePath();
     this.context.restore();
   }
@@ -120,8 +147,8 @@ class Pig {
 
     // 设置旋转角度
     let rotation = Math.atan2(dy, dx);
-    // 将坐标移到x 和y
-    // this.context.translate(28 , 32);
+    // 设置异次元原点
+    // this.context.translate(473 , 403);
     // 设置旋转角度
     // this.context.rotate(rotation);
 
@@ -132,10 +159,10 @@ class Pig {
     this.context.lineWidth = 4;
     this.context.fillStyle = '#ffbce4';
     this.context.strokeStyle = '#f39ecf';
-    // A处
-    this.context.save();
+
 
     // 吹风机
+    this.context.save();
     this.context.beginPath();
     this.context.moveTo(518, 336);
     this.context.bezierCurveTo(388, 342, 378, 502, 498, 467);
@@ -144,16 +171,22 @@ class Pig {
     this.context.fill();
     this.context.stroke();
     this.context.closePath();
+    this.context.restore();
+
 
     // 鼻子
+    this.context.save();
     this.context.beginPath();
     this.context.moveTo(546, 347);
     this.context.ellipse(530, 357, 18, 23, -35 * Math.PI / 180, 0, 2 * Math.PI, true);
     this.context.fill();
     this.context.stroke();
     this.context.closePath();
+    this.context.restore();
+
 
     // 鼻孔
+    this.context.save();
     this.context.beginPath();
     this.context.strokeStyle = 'transparent';
     this.context.fillStyle = '#d779b3';
@@ -165,10 +198,11 @@ class Pig {
     this.context.arc(537, 352, 5, 0, 2 * Math.PI, true);
     this.context.fill();
     this.context.closePath();
+    this.context.restore();
+
 
     // 耳朵
-    // 取A处存储的状态
-    this.context.restore();
+    this.context.save();
     this.context.beginPath();
     this.context.moveTo(456, 360);
     this.context.bezierCurveTo(408, 332, 458, 292, 468, 355);
@@ -177,8 +211,11 @@ class Pig {
     this.context.fill();
     this.context.stroke();
     this.context.closePath();
+    this.context.restore();
+
 
     // 眼眶
+    this.context.save();
     this.context.beginPath();
     this.context.strokeStyle = '#da7db4';
     this.context.fillStyle = '#fff';
@@ -191,32 +228,66 @@ class Pig {
     this.context.stroke();
     this.context.fill();
     this.context.closePath();
+    this.context.restore();
+
 
     // 眼睛
+    this.context.save();
+    // 设置异次元原点
+    this.context.translate(461, 375);
+
+    // 眼珠圆咕隆滴转, 获取的是斜边与X轴正方向的夹角
+    let leftEyeAngle = utils.getAngleToOrigin(this.mouse,  {x: 461, y:375});
+    let leftEyeX = 6 * Math.cos(leftEyeAngle);
+    let leftEyeY = 6 * Math.sin(leftEyeAngle);
+
+    // 左眼珠
     this.context.beginPath();
     this.context.fillStyle = '#000';
-    // 左
-    this.context.moveTo(491, 360);
-    this.context.arc(465, 374, 4, 0, 2 * Math.PI);
-    // 右
-    this.context.moveTo(491, 360);
-    this.context.arc(491, 360, 4, 0, 2 * Math.PI, true);
+    this.context.moveTo(0, 0);
+    this.context.arc(leftEyeX, leftEyeY, 4, 0, 2 * Math.PI);
     this.context.fill();
     this.context.closePath();
+    this.context.restore();
+
+
+    this.context.save();
+    this.context.fillStyle = '#000';
+    // 设置异次元原点
+    this.context.translate(487, 361);
+    // 眼珠圆咕隆滴转
+    let rightEyeAngle = utils.getAngleToOrigin(this.mouse, {x: 487, y:361});
+    let rightEyeX = 6 * Math.cos(rightEyeAngle);
+    let rightEyeY = 6 * Math.sin(rightEyeAngle);
+
+    // 右眼珠
+    this.context.beginPath();
+    this.context.moveTo(0, 0);
+    this.context.arc(rightEyeX, rightEyeY, 4, 0, 2 * Math.PI, true);
+    this.context.fill();
+    this.context.closePath();
+    this.context.restore();
+
 
     // 腮红
+    this.context.save();
     this.context.beginPath();
     this.context.fillStyle = '#da7db4';
     this.context.ellipse(440, 422, 14, 16, -35 * Math.PI / 180, 0, 2 * Math.PI, true);
     this.context.fill();
     this.context.closePath();
+    this.context.restore();
+
 
     // 嘴巴
+    this.context.save();
     this.context.beginPath();
     this.context.lineWidth = 4;
     this.context.arc(488, 432, 20, -45 * Math.PI / 180, 1 * Math.PI, false);
     this.context.stroke();
     this.context.closePath();
+    this.context.restore();
+
 
     this.context.restore();
   }
@@ -262,18 +333,19 @@ class Pig {
     this.context.strokeStyle = '#ffbce4';
     
     // 手臂摆动弧度
-    let rotation = Math.sin(t) * 30 * Math.PI / 180;
+    let rotation = Math.sin(t) * 25 * Math.PI / 180;
 
-    // 设置手臂坐标
+    // 设置手坐标
     let pointA = utils.P2L(40, 45);
     let pointO = utils.P2L(28, 45);
-    let pointB = utils.P2L(8, 90 + 45 - 30);
-    let pointC = utils.P2L(8, 90 + 45 - 30);
+    let pointB = utils.P2L(12, 90);
+    let pointC = utils.P2L(12, 0);
 
     // 左边
     this.context.save();
-    // 动画-设置摆动
+    // 设置异次元原点
     this.context.translate(422, 473);
+    // 动画-设置围绕异次元原点旋转特点角度
     this.context.rotate(rotation);
 
     this.context.beginPath();
@@ -282,24 +354,25 @@ class Pig {
     this.context.moveTo(-pointO.x, pointO.y);
     this.context.lineTo(pointB.x - pointO.x, pointB.y + pointO.y);
     this.context.moveTo(-pointO.x, pointO.y);
-    this.context.lineTo(pointC.x + pointO.x, -pointC.y - pointO.y);
+    this.context.lineTo(-pointC.x - pointO.x, pointC.y + pointO.y);
     this.context.stroke();
     this.context.closePath();
     this.context.restore();
 
     // 右边
     this.context.save();
-    // 动画-设置摆动
-    this.context.translate(529, 472);
+    // 设置异次元原点
+    this.context.translate(526, 468);
+    // 动画-设置围绕异次元原点旋转特点角度
     this.context.rotate(rotation);
 
     this.context.beginPath();
     this.context.moveTo(0, 0);
-    this.context.lineTo(35, -30);
-    this.context.moveTo(551, 491);
-    this.context.lineTo(567, 489);
-    this.context.moveTo(551, 491);
-    this.context.lineTo(551, 503);
+    this.context.lineTo(pointA.x, pointA.y);
+    this.context.moveTo(pointO.x, pointO.y);
+    this.context.lineTo(pointB.x + pointO.x, pointB.y + pointO.y);
+    this.context.moveTo(pointO.x, pointO.y);
+    this.context.lineTo(pointC.x + pointO.x, pointC.y + pointO.y);
     this.context.stroke();
     this.context.closePath();
     this.context.restore();
@@ -402,45 +475,27 @@ class Pig {
     this.context.restore();
   }
 
-  drawO() {
-    this.context.save();
-    var sin = Math.sin(Math.PI/6);
-    var cos = Math.cos(Math.PI/6);
-    this.context.translate(100, 100);
-    var c = 0;
-    for (var i=0; i <= 12; i++) {
-      c = Math.floor(255 / 12 * i);
-      this.context.fillStyle = "rgb(" + c + "," + c + "," + c + ")";
-      this.context.fillRect(0, 0, 100, 10);
-      this.context.transform(cos, sin, -sin, cos, 0, 0);
-    }
-
-    
-    this.context.fillRect(0, 0, 100, 10);
-    this.context.transform(cos, sin, -sin, cos, 10, 10);
-
-    // this.context.setTransform(-1, 0, 0, 1, 100, 100);
-    this.context.restore();
-  }
 
   /**
    * 绘制鼠标坐标
    */
-  drawMouseLocation() {
+  drawBoard() {
     this.context.save();
     // 路径开始
     this.context.beginPath();
     // 绘制黑板
-    let message = `Mouse:[x: ${this.target.x}, y: ${this.target.y}]`;
+    let message = `Mouse:[x: ${this.mouse.x}, y: ${this.mouse.y}]`;
     let rectangle = new Path2D();
-    rectangle.rect(this.canvas.width - 270, 10, 260, 60);
+    let boardWidth = 260;
+    let boardHeight = 60;
+    rectangle.rect(this.canvas.width - boardWidth - 10, 10, boardWidth, boardHeight);
     this.context.fillStyle = "rgba(0,0,0,0.6)";
     this.context.fill(rectangle);
 
     // 绘制鼠标位置
     this.context.font = "18px 'Montserrat', sans-serif";
     this.context.fillStyle = "#fff";
-    this.context.fillText(message, this.canvas.width - 230, 45);
+    this.context.fillText(message, this.canvas.width - boardWidth + 30, boardHeight - 15);
     this.context.closePath();
     this.context.restore();
   }
@@ -454,6 +509,11 @@ class Pig {
     this.canvas.addEventListener('click', (event) => {
       let mouse = utils.getOffsetLocate(event);
       let message = `Mouse:[x: ${mouse.x}, y: ${mouse.y}]`;
+      // 超过草地高度返回
+      let grounHeight = this.canvas.height - 100;
+      if(mouse.y < grounHeight) {
+         return false;
+      }
       _pig.target = mouse;
       console.log(message);
     });
@@ -462,8 +522,8 @@ class Pig {
     this.canvas.addEventListener('mousemove', (event) => {
       let mouse = utils.getOffsetLocate(event);
       let message = `Mouse:[x: ${mouse.x}, y: ${mouse.y}]`;
-      _pig.target = mouse;
-      console.log(message);
+      _pig.mouse = mouse;
+      // console.log(message);
     });
 
   }
@@ -472,17 +532,22 @@ class Pig {
    * 小猪移动距离
    */
   getPigPosition() {
+    let moveAngle = utils.getAngleToOrigin(this.target, {x: 475, y: 552});
+    
     this.x += this.vx; 
     this.y += this.vy; 
+
+    let moveX = this.x * Math.sin(moveAngle);
+    let moveY = this.y * Math.cos(moveAngle);
     
-    if (this.y + this.vy > this.canvas.height || this.y + this.vy < 0) {
-      this.vy = -this.vy;
-    }
-    if (this.x + this.vx > this.canvas.width || this.x + this.vx < 0) {
+    if (moveX + this.vx > this.canvas.width || moveX + this.vx < 0) {
       this.vx = -this.vx;
     }
+    if (moveY + this.vy > this.canvas.height || moveY + this.vy < 0) {
+      this.vy = -this.vy;
+    }
 
-    this.context.translate(this.x, this.y);
+    this.context.translate(moveX, moveY);
   }
 
   /**
@@ -498,15 +563,14 @@ class Pig {
     // this.context.fillStyle = 'rgba(255,255,255,0.3)';
     // this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    this.drawMouseLocation();
+    // 鼠标位置显示展板
+    this.drawBoard();
     // this.drawTarget(t);
+    // 草地
     this.drawGround();
 
-    // 将坐标移到x 和y
-    //this.context.translate(this.x , this.y);
-
-    this.drawO();
+    // 小猪移动
+    this.getPigPosition();
 
     // 绘制小猪
     this.drawBody(t);

@@ -82,9 +82,30 @@ const utils = {
     ret.x = Math.cos(radian) * r;
     ret.y = Math.sin(radian) * r;
     return (ret);
-  }
+  },
 
-  
+   /**
+    * 获取任意一点到原点与X轴的夹角
+    * @param {*} pointA 任意点
+    * @param {*} origin 原点
+    */
+  getAngleToOrigin(pointA, origin = { x: 0, y: 0 }) {
+    let dx = pointA.x - origin.x;
+    let dy = pointA.y - origin.y;
+    let angle = Math.atan2(dy, dx);
+    return angle;
+  },
+
+   /**
+    * 利用勾股定理获取任意两点间的距离
+    * @param {*} pointA 
+    * @param {*} pointB 
+    */
+  getTwoPointsDistance(pointA, pointB) {
+    let dx = Math.abs(pointA.x - pointB.x);
+    let dy = Math.abs(pointA.y - pointB.y);
+    return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+  }
 
 };
 
