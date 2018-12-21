@@ -13,8 +13,10 @@ class Pig {
     this.context.lineCap = 'round';
     this.x = 0;
     this.y = 0;
+    this.r = 0;
     this.vx = 1;
     this.vy = 1;
+    this.speed = 3;
     this.target = {x: 0, y: 0};
     this.mouse = {x: 0, y: 0};
     // 地面小花
@@ -98,39 +100,106 @@ class Pig {
   /**
    * 绘制地面
    */
-  drawGround() {
+  drawGround(t) {
     this.context.save();
     this.context.beginPath();
     // 绘制矩形
     let rectangle = new Path2D();
     let grounWidth = this.canvas.width;
     let grounHeight = this.canvas.height - 100;
-    rectangle.rect(0, this.canvas.height - 100, this.canvas.width, 100);
+    rectangle.rect(0, grounHeight, grounWidth, 100);
     this.context.fillStyle = "rgba(115, 234, 120, 0.56)";
     this.context.fill(rectangle);
     this.context.closePath();
-    this.context.restore();
+
+    // 摆动幅度
+    let loop = Math.sin(t) * 12;
 
     // 绘制小花
-    this.context.save();
-    
-    let size = 3;
+    let size = 5;
+
     // 1.随机生成小花位置
     for (let index = 0; index < size; index++) {
       let flowers = {
         x: utils.getRandNum(20, grounWidth),
-        y: utils.getRandNum(20, grounHeight)
+        y: utils.getRandNum(grounHeight, grounHeight + 40)
       };
       
       this.flowers.push(flowers);
     }
+
     // 2.绘制小花
-    this.context.beginPath();
     for (let index = 0; index < size; index++) {
-      this.context.moveTo(this.flowers[index].x, this.flowers[index].y);
-      this.context.lineTo(this.flowers[index].x, this.flowers[index].y + 20);
+      let flowerStartX = this.flowers[index].x;
+      // 周期性改变
+      let flowerEndX = this.flowers[index].x + loop;
+      let flowerY = this.flowers[index].y;
+
+      // 绘制花茎
+      this.draw_scape(flowerStartX, flowerY, flowerEndX, flowerY);
+      
+      // 绘制花朵
+      this.draw_flower(30, 8, flowerEndX, flowerY);
+
     }
+    this.context.restore();
+  }
+
+  /**
+   * 绘制花茎
+   * @param startPointX
+   * @param startPointY
+   * @param x
+   * @param y
+   */
+  draw_scape(startPointX, startPointY, x, y) {
+    this.context.save();
+    this.context.lineWidth = 2;
+    this.context.lineCap = "round";
+    this.context.strokeStyle = '#4a8644';
+
+    this.context.beginPath();
+    this.context.moveTo(startPointX, startPointY);
+    this.context.quadraticCurveTo(startPointX, startPointY + 100, x, y);
+    this.context.stroke();
     this.context.closePath();
+    this.context.restore();
+  }
+
+  /**
+   * 绘制花朵
+   * @param rad 花瓣半径
+   * @param petals 花瓣数量*2
+   * @param x 花朵x轴位置
+   * @param y 花朵y轴位置
+   */
+  draw_flower(rad, petals, x, y) {
+
+    this.context.save();
+    this.context.lineWidth = 2;
+    this.context.fillStyle = '#5eb146';
+    this.context.strokeStyle = '#4a8644';
+
+    // 极坐标
+    let pts = [];
+    for (let i = 0; i <= petals; i++) {
+      let angle = (360 / petals) * i;
+      let ret = utils.P2L(rad, angle);
+      pts.push({x: ret.x, y: ret.y});
+    }
+
+    for (let i = 1; i <= petals; i += 2) {
+      let idx = i % petals;
+      this.context.save();
+      this.context.beginPath();
+      this.context.moveTo(x, y);
+      this.context.bezierCurveTo(x + pts[i - 1].x, y + pts[i - 1].y, x + pts[idx + 1].x, y + pts[idx + 1].y, x, y);
+      this.context.stroke();
+      this.context.fill();
+      this.context.restore();
+      this.context.closePath();
+    }
+
     this.context.restore();
   }
 
@@ -465,10 +534,18 @@ class Pig {
     this.context.restore();
   }
 
-  drawTarget(t) {
+  /**
+   * 绘制点击目标
+   */
+  drawTarget() {
     this.context.save();
+    this.context.lineWidth = 2;
+    this.context.strokeStyle = '#ffbce4';
+
     // 绘制位置信息
     this.context.beginPath();
+    this.context.moveTo(this.x, this.y);
+    this.context.lineTo(this.target.x, this.target.y);
     this.context.arc(this.target.x, this.target.y, 5, 0, 2 * Math.PI);
     this.context.stroke();
     this.context.closePath();
@@ -509,13 +586,18 @@ class Pig {
     this.canvas.addEventListener('click', (event) => {
       let mouse = utils.getOffsetLocate(event);
       let message = `Mouse:[x: ${mouse.x}, y: ${mouse.y}]`;
+
+      console.log(message);
+
       // 超过草地高度返回
       let grounHeight = this.canvas.height - 100;
       if(mouse.y < grounHeight) {
          return false;
       }
       _pig.target = mouse;
-      console.log(message);
+      // console.log(message);
+      // 小猪移动
+      this.getPigPosition();
     });
 
     // 2.监听鼠标移动
@@ -532,22 +614,24 @@ class Pig {
    * 小猪移动距离
    */
   getPigPosition() {
-    let moveAngle = utils.getAngleToOrigin(this.target, {x: 475, y: 552});
-    
-    this.x += this.vx; 
-    this.y += this.vy; 
+    this.context.save();
 
-    let moveX = this.x * Math.sin(moveAngle);
-    let moveY = this.y * Math.cos(moveAngle);
-    
-    if (moveX + this.vx > this.canvas.width || moveX + this.vx < 0) {
-      this.vx = -this.vx;
-    }
-    if (moveY + this.vy > this.canvas.height || moveY + this.vy < 0) {
-      this.vy = -this.vy;
+    let length = utils.getTwoPointsDistance(this.target, {x: this.x, y: this.y});
+    let moveAngle = utils.getAngleToOrigin(this.target, {x: this.x, y: this.y});
+
+    this.r += this.speed; 
+
+    if (this.r > length) {
+      this.speed = 0;
     }
 
-    this.context.translate(moveX, moveY);
+    this.x = this.r * Math.cos(moveAngle);
+    this.y = this.r * Math.sin(moveAngle);
+
+    let message = `This:[x: ${this.x}, y: ${this.y}]`;
+    console.log(message);
+
+    this.context.restore();
   }
 
   /**
@@ -559,18 +643,17 @@ class Pig {
     // 动画频率
     t = t % Math.PI * 2;
 
+    // 设置异次元原点
+    // this.context.translate(this.x, this.y);
+
     // 清屏
-    // this.context.fillStyle = 'rgba(255,255,255,0.3)';
-    // this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     // 鼠标位置显示展板
     this.drawBoard();
-    // this.drawTarget(t);
     // 草地
-    this.drawGround();
-
-    // 小猪移动
-    this.getPigPosition();
+    this.drawGround(t);
+    // 点击位置
+    this.drawTarget(t);
 
     // 绘制小猪
     this.drawBody(t);
