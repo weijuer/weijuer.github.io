@@ -113,7 +113,7 @@ class Pig {
     this.context.closePath();
 
     // 摆动幅度
-    let loop = Math.sin(t) * 12;
+    let loop = Math.sin(t) * 6;
 
     // 绘制小花
     let size = 5;
@@ -122,7 +122,7 @@ class Pig {
     for (let index = 0; index < size; index++) {
       let flowers = {
         x: utils.getRandNum(20, grounWidth),
-        y: utils.getRandNum(grounHeight, grounHeight + 40)
+        y: utils.getRandNum(grounHeight, grounHeight + 80)
       };
       
       this.flowers.push(flowers);
@@ -136,10 +136,10 @@ class Pig {
       let flowerY = this.flowers[index].y;
 
       // 绘制花茎
-      this.draw_scape(flowerStartX, flowerY, flowerEndX, flowerY);
+      this.draw_scape(flowerStartX, flowerY, flowerEndX, flowerY - 30);
       
       // 绘制花朵
-      this.draw_flower(30, 8, flowerEndX, flowerY);
+      this.draw_flower(30, 8, flowerEndX, flowerY - 30);
 
     }
     this.context.restore();
@@ -160,7 +160,7 @@ class Pig {
 
     this.context.beginPath();
     this.context.moveTo(startPointX, startPointY);
-    this.context.quadraticCurveTo(startPointX, startPointY + 100, x, y);
+    this.context.quadraticCurveTo(startPointX, startPointY, x, y);
     this.context.stroke();
     this.context.closePath();
     this.context.restore();
@@ -202,6 +202,8 @@ class Pig {
 
     this.context.restore();
   }
+
+  drawButtfly
 
   /**
    * 头
@@ -402,7 +404,7 @@ class Pig {
     this.context.strokeStyle = '#ffbce4';
     
     // 手臂摆动弧度
-    let rotation = Math.sin(t) * 25 * Math.PI / 180;
+    let rotation = Math.sin(t) * 30 * Math.PI / 180;
 
     // 设置手坐标
     let pointA = utils.P2L(40, 45);
@@ -512,9 +514,9 @@ class Pig {
     this.context.strokeStyle = '#ffbce4';
     // 左腿
     this.context.beginPath();
-    this.context.moveTo(409, 520);
-    this.context.quadraticCurveTo(390, 514, 398, 506);
-    this.context.quadraticCurveTo(416, 530, 384, 514);
+    this.context.moveTo(412, 530);
+    this.context.bezierCurveTo(378, 548, 390, 500, 400, 524);
+    this.context.quadraticCurveTo(400, 545, 380, 530);
     this.context.stroke();
     this.context.closePath();
     this.context.restore();
