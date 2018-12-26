@@ -3,7 +3,7 @@
     <pageHeader />
     <pageMain />
     <pageFooter />
-    <backToTop />
+    <backTop />
   </div>
 </template>
 
@@ -11,7 +11,7 @@
   import pageHeader from './Header';
   import pageMain from './Main';
   import pageFooter from './Footer';
-  import backToTop from '@/components/backToTop';
+  import backTop from '@/components/backTop';
   import {mapState} from 'vuex'
 
   export default {
@@ -25,7 +25,7 @@
       pageHeader,
       pageMain,
       pageFooter,
-      backToTop
+      backTop
     }
   }
 </script>

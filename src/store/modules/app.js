@@ -28,8 +28,6 @@ const app = {
         BACK_TO_TOP: state => {
             // 1.scrollBy方法
             window.scrollBy(0, -100);
-
-            
         },
         SIDE_MENU_ACTIVE: state => {
             state.isSideMenuActive = !state.isSideMenuActive;
@@ -62,7 +60,7 @@ const app = {
             // 2.定时滚动
             setTimeout(() => {
                 if (state.isPageScroll) {
-                    dispatch('BACK_TO_TOP');
+                    commit('BACK_TO_TOP');
                 }
             }, 10);
         },

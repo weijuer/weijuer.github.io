@@ -7,7 +7,7 @@
 <script>
   import {mapState, mapMutations, mapActions} from 'vuex'
   export default {
-    name: 'back-to-top',
+    name: 'w-back-top',
     data() {
       return {
         top: '去顶部'

@@ -21,6 +21,38 @@ class Pig {
     this.mouse = {x: 0, y: 0};
     // 地面小花
     this.flowers = [];
+
+    // 初始化
+    this.init();
+  }
+
+
+  /**
+   * 初始化
+   */
+  init() {
+    let grounWidth = this.canvas.width;
+    let grounHeight = this.canvas.height - 100;
+
+    // 1.初始化小猪随机位置
+    this.x = utils.getRandNum(20, grounWidth);
+    this.y = utils.getRandNum(grounHeight, grounHeight + 80);
+
+    let message = `this:[x: ${this.x}, y: ${this.y}]`;
+    console.log(message);
+
+    // 2.绘制小花
+    let size = 5;
+
+    // 2.1.随机生成小花位置
+    for (let index = 0; index < size; index++) {
+      let flowers = {
+        x: utils.getRandNum(20, grounWidth),
+        y: utils.getRandNum(grounHeight, grounHeight + 80)
+      };
+      // 保存小花位置信息
+      this.flowers.push(flowers);
+    }
   }
 
   /**
@@ -115,21 +147,8 @@ class Pig {
     // 摆动幅度
     let loop = Math.sin(t) * 6;
 
-    // 绘制小花
-    let size = 5;
-
-    // 1.随机生成小花位置
-    for (let index = 0; index < size; index++) {
-      let flowers = {
-        x: utils.getRandNum(20, grounWidth),
-        y: utils.getRandNum(grounHeight, grounHeight + 80)
-      };
-      
-      this.flowers.push(flowers);
-    }
-
     // 2.绘制小花
-    for (let index = 0; index < size; index++) {
+    for (let index = 0; index < this.flowers.length; index++) {
       let flowerStartX = this.flowers[index].x;
       // 周期性改变
       let flowerEndX = this.flowers[index].x + loop;
@@ -140,8 +159,8 @@ class Pig {
       
       // 绘制花朵
       this.draw_flower(30, 8, flowerEndX, flowerY - 30);
-
     }
+
     this.context.restore();
   }
 
@@ -645,11 +664,9 @@ class Pig {
     // 动画频率
     t = t % Math.PI * 2;
 
-    // 设置异次元原点
-    // this.context.translate(this.x, this.y);
-
     // 清屏
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     // 鼠标位置显示展板
     this.drawBoard();
     // 草地
@@ -658,12 +675,17 @@ class Pig {
     this.drawTarget(t);
 
     // 绘制小猪
+    this.context.save();
+    // 设置异次元原点
+    this.context.translate(this.x, this.y);
     this.drawBody(t);
     this.drawHead(t);
     this.drawArms(t);
     this.drawLegs(t);
     this.drawTail(t);
     this.drawShadow(t);
+    this.context.restore();
+
     this.context.restore();
   }
 }
