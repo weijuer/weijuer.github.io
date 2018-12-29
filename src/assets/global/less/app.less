@@ -1967,27 +1967,27 @@ header {
         z-index: 2018;
         transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
 
-        &.active {
-          right: 0;
+        .app-nav {
+          flex: 1;
+          z-index: 2019;
 
-          .app-nav {
-            flex: 1;
-            z-index: 2019;
+          .nav {
+            flex-direction: column;
 
-            .nav {
-              flex-direction: column;
-
-              li>a {
-                display: flex;
-                padding: .75rem .75rem;
-                border-bottom: 1px solid #ddd;
-              }
-            }
-
-            .shape-container {
-              display: none;
+            li>a {
+              display: flex;
+              padding: .75rem .75rem;
+              border-bottom: 1px solid #ddd;
             }
           }
+
+          .shape-container {
+            display: none;
+          }
+        }
+
+        &.active {
+          right: 0;
 
           &:before {
             content: '';

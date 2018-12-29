@@ -10,14 +10,18 @@ class Pig {
     this.canvas = canvas;
     // 获取2D环境
     this.context = canvas.getContext('2d');
+    // 线接头类型
     this.context.lineCap = 'round';
-    this.x = 0;
-    this.y = 0;
     this.r = 0;
     this.vx = 1;
     this.vy = 1;
-    this.speed = 3;
+    // 当前位置
+    this.current = {x: 0, y: 0};
+    // 移动步数
+    this.step = 3;
+    // 鼠标点击位置
     this.target = {x: 0, y: 0};
+    // 鼠标移动位置
     this.mouse = {x: 0, y: 0};
     // 地面小花
     this.flowers = [];
@@ -607,7 +611,6 @@ class Pig {
     this.canvas.addEventListener('click', (event) => {
       let mouse = utils.getOffsetLocate(event);
       let message = `Mouse:[x: ${mouse.x}, y: ${mouse.y}]`;
-
       console.log(message);
 
       // 超过草地高度返回
@@ -616,9 +619,6 @@ class Pig {
          return false;
       }
       _pig.target = mouse;
-      // console.log(message);
-      // 小猪移动
-      this.getPigPosition();
     });
 
     // 2.监听鼠标移动
@@ -628,7 +628,6 @@ class Pig {
       _pig.mouse = mouse;
       // console.log(message);
     });
-
   }
 
   /**
@@ -637,19 +636,19 @@ class Pig {
   getPigPosition() {
     this.context.save();
 
-    let length = utils.getTwoPointsDistance(this.target, {x: this.x, y: this.y});
-    let moveAngle = utils.getAngleToOrigin(this.target, {x: this.x, y: this.y});
+    let length = utils.getTwoPointsDistance(this.target, this.current);
+    let moveAngle = utils.getAngleToOrigin(this.target, this.current);
 
-    this.r += this.speed; 
+    this.r += this.step; 
 
     if (this.r > length) {
-      this.speed = 0;
+      this.step = 0;
     }
 
-    this.x = this.r * Math.cos(moveAngle);
-    this.y = this.r * Math.sin(moveAngle);
+    this.current.x = this.r * Math.cos(moveAngle);
+    this.current.y = this.r * Math.sin(moveAngle);
 
-    let message = `This:[x: ${this.x}, y: ${this.y}]`;
+    let message = `This:[x: ${this.current.x}, y: ${this.current.y}]`;
     console.log(message);
 
     this.context.restore();
@@ -673,6 +672,8 @@ class Pig {
     this.drawGround(t);
     // 点击位置
     this.drawTarget(t);
+    // 小猪移动
+    this.getPigPosition();
 
     // 绘制小猪
     this.context.save();

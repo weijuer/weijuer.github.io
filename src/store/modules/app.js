@@ -47,18 +47,18 @@ const app = {
     actions: {
         /**
          * 回到顶部
-         * @param commit
+         * @param dispatch 分发action
          * @param state
          */
         BACK_TO_TOP: ({ dispatch, state }) => {
             // 1.scrollBy方法
-            window.scrollBy(0, -100);
+            window.scrollBy(0, -60);
             // 2.定时滚动
-            setTimeout(() => {
+            window.requestAnimationFrame(() => {
                 if (state.isPageScroll) {
                     dispatch('BACK_TO_TOP');
                 }
-            }, 10);
+            });
         },
         ToggleSideBar: ({ commit }) => {
             commit('TOGGLE_SIDEBAR')
