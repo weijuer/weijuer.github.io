@@ -13,21 +13,15 @@ const app = {
         isSideMenuActive: false // 侧边栏是否展开
     },
     mutations: {
+
         /**
          * 页面滚动事件
          * @param state
          */
-        PAGE_ON_SCROLL: state => {
+        PAGE_ON_SCROLL: (state) => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-            let offsetTop = document.querySelector('.app-header').offsetTop;
-            state.isPageScroll = scrollTop > offsetTop;
-        },
-        /**
-         * 返回顶部
-         */
-        BACK_TO_TOP: state => {
-            // 1.scrollBy方法
-            window.scrollBy(0, -100);
+            let offset = document.querySelector('.app-header').offsetTop;
+            state.isPageScroll = scrollTop > offset;
         },
         SIDE_MENU_ACTIVE: state => {
             state.isSideMenuActive = !state.isSideMenuActive;
@@ -56,11 +50,13 @@ const app = {
          * @param commit
          * @param state
          */
-        BACK_TO_TOP: ({ commit, state }) => {
+        BACK_TO_TOP: ({ dispatch, state }) => {
+            // 1.scrollBy方法
+            window.scrollBy(0, -100);
             // 2.定时滚动
             setTimeout(() => {
                 if (state.isPageScroll) {
-                    commit('BACK_TO_TOP');
+                    dispatch('BACK_TO_TOP');
                 }
             }, 10);
         },
