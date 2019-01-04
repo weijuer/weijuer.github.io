@@ -1,5 +1,5 @@
 // userAgent
-const userAgent = navigator.userAgent;
+const userAgent = typeof navigator !== 'undefined' && navigator.userAgent;
 // 浏览器语言
 const navigatorLang = (navigator.language || navigator.browserLanguage).toLowerCase().substr(0, 2);
 
@@ -9,6 +9,8 @@ const navigatorLang = (navigator.language || navigator.browserLanguage).toLowerC
  */
 const browser = {
     navigator: {
+        // 是否IE或Edge
+        isIEOrEdge: /(MSIE|Trident|Edge)/.test(userAgent),
         // 是否手机
         isMobile: !!userAgent.match(/AppleWebKit.*Mobile.*/),
 

@@ -55,12 +55,14 @@
 
 <script>
   import panel from '@/components/panel'
+  // 加载模拟indexedDB数据
+  import db from '@/utils/indexedDB'
 
   export default {
     name: 'blog',
     data() {
       return {
-        timeline: []
+        blogs: []
       }
     },
     components: {
@@ -77,7 +79,7 @@
       console.log('-----mounted')
 
       // 获取indexedDB数据
-      // this.get_indexedDB_data()
+      this.get_indexedDB_data()
     },
     methods: {
       get_indexedDB_data: function (params) {
@@ -90,10 +92,10 @@
         }
 
         // 2.初始化timelineDB
-        db.find('timeline', 'title').then((res) => {
-          this.timeline = res;
-          console.log(res);
-        });
+        // db.find('blog', 'title').then((res) => {
+        //   this.blogs = res;
+        //   console.log(res);
+        // });
       }
     }
   }
