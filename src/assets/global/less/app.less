@@ -1742,7 +1742,6 @@ header {
   padding: 0;
   position: relative;
   flex-shrink: 0;
-  background-color: #fff;
   box-shadow: 0 0 2.25rem #9da5ab;
   transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
 
@@ -1751,6 +1750,11 @@ header {
     left: 0;
     right: 0;
     z-index: 2;
+    transform: translateY(-100%);
+  }
+
+  &.app-scrollUp {
+    transform: translateY(0);
   }
 
   .container {

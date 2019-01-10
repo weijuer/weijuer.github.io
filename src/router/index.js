@@ -27,9 +27,9 @@ const routes = [
     name: 'blog',
     component: () => import('../views/pages/blog/blog')
   }, {
-    path: '/show-box',
-    name: 'show-box',
-    component: () => import('../views/pages/showBox')
+    path: '/example',
+    name: 'example',
+    component: () => import('../views/pages/example')
   }, {
     path: '/music',
     name: 'music',

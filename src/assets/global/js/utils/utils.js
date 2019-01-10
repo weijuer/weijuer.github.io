@@ -87,11 +87,10 @@ const utils = {
    /**
     * 获取任意一点到原点与X轴的夹角
     * @param {*} pointA 任意点
-    * @param {*} origin 原点
     */
-  getAngleToOrigin(pointA, origin = { x: 0, y: 0 }) {
-    let dx = pointA.x - origin.x;
-    let dy = pointA.y - origin.y;
+  getAngleToOrigin(pointA) {
+    let dx = pointA.x - 0;
+    let dy = pointA.y - 0;
     let angle = Math.atan2(dy, dx);
     return angle;
   },

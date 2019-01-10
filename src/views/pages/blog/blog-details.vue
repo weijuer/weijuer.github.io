@@ -7,19 +7,13 @@
 
 <script>
   export default {
-    name: 'blog',
+    name: 'blog-detail',
     data() {
       return {
-        timeline: []
+        blog: null
       }
     },
     props: ['blog'],
-    beforeCreate() {
-      console.log('beforeCreate=====>')
-    },
-    created() {
-      console.log('-----home created')
-    },
     mounted() {
       console.log('-----mounted')
 

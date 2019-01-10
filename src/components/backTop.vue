@@ -13,20 +13,20 @@
         top: '去顶部'
       }
     },
-    mounted() {
+    created() {
       // 1.绑定页面监听滚动事件
-      window.addEventListener('scroll', this.pageOnScroll);
+      document.addEventListener('scroll', this.pageOnScroll);
     },
     computed: {
-      ...mapState({
-        isPageScroll: state => state.app.isPageScroll
-      })
+      ...mapState('app', [
+        'isPageScroll'
+      ])
     },
     methods: {
-      ...mapMutations({
+      ...mapMutations('app', {
         pageOnScroll: 'PAGE_ON_SCROLL'
       }),
-      ...mapActions({
+      ...mapActions('app', {
         backTop: 'BACK_TO_TOP'
       }),
       backTop1() {
@@ -45,7 +45,7 @@
     },
     destroyed() {
       // 2.去除页面监听事件
-      window.removeEventListener('scroll', this.pageOnScroll);
+      document.removeEventListener('scroll', this.pageOnScroll);
     }
   }
 </script>

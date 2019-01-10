@@ -1,5 +1,7 @@
-import axios from 'axios'
+import auth from './auth'
+import github from './github'
 
-export function getContactsList () {
-  return axios.get('http://jsonplaceholder.typicode.com/users')
+export default {
+  auth,
+  github
 }

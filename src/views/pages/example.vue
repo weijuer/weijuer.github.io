@@ -30,7 +30,7 @@
 
 <script>
   export default {
-    name: 'show-box',
+    name: 'example',
     data() {
       return {
         timeline: [],
@@ -38,12 +38,6 @@
       }
     },
     components: {
-    },
-    beforeCreate() {
-      // console.log('beforeCreate=====>')
-    },
-    created() {
-      // console.log('-----home created')
     },
     mounted() {
       // console.log('-----mounted')

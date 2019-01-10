@@ -25,12 +25,6 @@
       }
     },
     components: {},
-    beforeCreate() {
-      console.log('beforeCreate=====>')
-    },
-    created() {
-      console.log('-----home created')
-    },
     mounted() {
       console.log('-----mounted');
       //this.getWelcome();

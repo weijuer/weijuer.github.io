@@ -3,39 +3,24 @@
     <div class="w-container">
 
       <div class="row">
-        <div class="col-8">
-          <panel>
+        <div class="col-8 blog-list">
+
+          <panel class="blog-item" v-for="(blog, index) in blogs" :key="index" v-cloak>
             <div slot="header" class="panel-header">
               <div class="caption">
                 <div class="panel-header--title">
-                  <h3 class="panel-header--title-text">标题</h3>
+                  <h3 class="panel-header--title-text">{{ blog.title }}</h3>
                 </div>
               </div>
             </div>
-            <div slot="main" class="panel-body">内容</div>
+            <div slot="main" class="panel-body">
+              <div class="blog-item-content">{{ blog.description }}</div>
+              <a :href="blog.url" target="_blank" rel="noopener noreferrer">{{ blog.title }}</a>
+            </div>
           </panel>
 
-          <panel>
-            <div slot="header" class="panel-header">
-              <div class="caption">
-                <div class="panel-header--title">
-                  <h3 class="panel-header--title-text">标题</h3>
-                </div>
-              </div>
-            </div>
-            <div slot="main" class="panel-body">内容</div>
-          </panel>
-          <panel>
-            <div slot="header" class="panel-header">
-              <div class="caption">
-                <div class="panel-header--title">
-                  <h3 class="panel-header--title-text">标题</h3>
-                </div>
-              </div>
-            </div>
-            <div slot="main" class="panel-body">内容</div>
-          </panel>
         </div>
+
         <div class="col-4">
           <panel>
             <div slot="header" class="panel-header">
@@ -48,6 +33,7 @@
             <div slot="main" class="panel-body">内容</div>
           </panel>
         </div>
+        
       </div>
     </div>
   </div>
@@ -55,8 +41,8 @@
 
 <script>
   import panel from '@/components/panel'
-  // 加载模拟indexedDB数据
-  import db from '@/utils/indexedDB'
+  // 加载blog
+  import blog from '@/api/blog'
 
   export default {
     name: 'blog',
@@ -69,33 +55,14 @@
       panel
     },
     props: ['blog'],
-    beforeCreate() {
-      console.log('beforeCreate=====>')
-    },
-    created() {
-      console.log('-----home created')
-    },
     mounted() {
-      console.log('-----mounted')
-
       // 获取indexedDB数据
-      this.get_indexedDB_data()
+      this.get_blogs()
     },
     methods: {
-      get_indexedDB_data: function (params) {
-        // 1.1 分页参数
-        if (!params) {
-          params = {
-            currentPage: this.currentPage,
-            pageSize: this.pageSize
-          }
-        }
-
-        // 2.初始化timelineDB
-        // db.find('blog', 'title').then((res) => {
-        //   this.blogs = res;
-        //   console.log(res);
-        // });
+      async get_blogs() {
+        // 获取日志数据
+        this.blogs = await blog.get_blogs();
       }
     }
   }

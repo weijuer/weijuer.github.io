@@ -39,10 +39,10 @@ class Pig {
     let grounHeight = this.canvas.height - 100;
 
     // 1.初始化小猪随机位置
-    this.x = utils.getRandNum(20, grounWidth);
-    this.y = utils.getRandNum(grounHeight, grounHeight + 80);
+    this.current.x = utils.getRandNum(20, grounWidth);
+    this.current.y = utils.getRandNum(grounHeight, grounHeight + 80);
 
-    let message = `this:[x: ${this.x}, y: ${this.y}]`;
+    let message = `this.current:[x: ${this.current.x}, y: ${this.current.y}]`;
     console.log(message);
 
     // 2.绘制小花
@@ -569,8 +569,9 @@ class Pig {
 
     // 绘制位置信息
     this.context.beginPath();
-    this.context.moveTo(this.x, this.y);
+    this.context.moveTo(this.current.x, this.current.y);
     this.context.lineTo(this.target.x, this.target.y);
+    this.context.moveTo(this.target.x + 5, this.target.y);
     this.context.arc(this.target.x, this.target.y, 5, 0, 2 * Math.PI);
     this.context.stroke();
     this.context.closePath();
@@ -615,9 +616,9 @@ class Pig {
 
       // 超过草地高度返回
       let grounHeight = this.canvas.height - 100;
-      if(mouse.y < grounHeight) {
-         return false;
-      }
+      // if(mouse.y < grounHeight) {
+      //    return false;
+      // }
       _pig.target = mouse;
     });
 
@@ -636,21 +637,42 @@ class Pig {
   getPigPosition() {
     this.context.save();
 
-    let length = utils.getTwoPointsDistance(this.target, this.current);
-    let moveAngle = utils.getAngleToOrigin(this.target, this.current);
+    // 设置异次元原点
+    this.context.translate(this.current.x, this.current.y);
+    // 异次元原点
+    let orginPoint = { x: 0, y: 0 };
+    let length = utils.getTwoPointsDistance(orginPoint, this.target);
+    let moveAngle = utils.getAngleToOrigin(this.target);
 
-    this.r += this.step; 
-
-    if (this.r > length) {
-      this.step = 0;
+    if(length > 0) {
+      // 运动步长
+      this.r += this.step; 
+    } else {
+      this.r = 0; 
     }
 
-    this.current.x = this.r * Math.cos(moveAngle);
-    this.current.y = this.r * Math.sin(moveAngle);
+    if(this.r < length) {
+      this.current.x = this.r * Math.cos(moveAngle);
+      this.current.y = this.r * Math.sin(moveAngle);
+      let message = `This:[x: ${this.current.x}, y: ${this.current.y}]`;
+      console.log(message);
+    }
 
-    let message = `This:[x: ${this.current.x}, y: ${this.current.y}]`;
-    console.log(message);
+    this.context.restore();
+  }
 
+  /**
+   * 绘制小球
+   */
+  drawBall() {
+    this.context.save();
+    this.context.lineWidth = 2;
+    this.context.fillStyle = '#4350ff';
+
+    this.context.beginPath();
+    this.context.arc(this.current.x, this.current.y, 20, 0, 2 * Math.PI, true);
+    this.context.fill();
+    this.context.closePath();
     this.context.restore();
   }
 
@@ -666,26 +688,30 @@ class Pig {
     // 清屏
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.getPigPosition();
+    // 绘制小球
+    this.drawBall();
+
     // 鼠标位置显示展板
     this.drawBoard();
     // 草地
     this.drawGround(t);
     // 点击位置
     this.drawTarget(t);
-    // 小猪移动
-    this.getPigPosition();
+    
 
     // 绘制小猪
-    this.context.save();
-    // 设置异次元原点
-    this.context.translate(this.x, this.y);
-    this.drawBody(t);
-    this.drawHead(t);
-    this.drawArms(t);
-    this.drawLegs(t);
-    this.drawTail(t);
-    this.drawShadow(t);
-    this.context.restore();
+    // this.context.save();
+    // // 小猪移动
+    // this.getPigPosition();
+
+    // this.drawBody(t);
+    // this.drawHead(t);
+    // this.drawArms(t);
+    // this.drawLegs(t);
+    // this.drawTail(t);
+    // this.drawShadow(t);
+    // this.context.restore();
 
     this.context.restore();
   }

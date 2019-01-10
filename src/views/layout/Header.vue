@@ -1,5 +1,5 @@
 <template>
-  <header class="app-header app-header-fixed">
+  <header :class="['app-header', 'app-header-fixed', {'app-scrollUp':isScrollUp}]">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="filters hidden">
       <defs>
         <filter id="blur" x="-20%" y="0" width="140%" height="100%">
@@ -116,6 +116,7 @@
 
             </svg>
             </div>
+
             <a :class="['menu-toggle', isSideMenuActive ? 'active' : '']" href="javascript:;" @click="menuToggle">
               <svg class="icon-logo" style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g font-size="26" stroke-width="1" text-anchor="middle">
@@ -153,7 +154,7 @@
         menus: [
           {name: 'home', path: '/home', active: true},
           {name: 'blog', path: '/blog', active: false},
-          {name: 'show-box', path: '/show-box', active: false},
+          {name: 'example', path: '/example', active: false},
           {name: 'music', path: '/music', active: false},
           {name: 'about', path: '/about', active: false}
         ],
@@ -161,13 +162,14 @@
       }
     },
     computed: {
-      ...mapState({
-        isPageScroll: state => state.app.isPageScroll,
-        isSideMenuActive: state => state.app.isSideMenuActive
+      ...mapState('app', {
+        isScrollUp: 'isScrollUp',
+        isPageScroll: 'isPageScroll',
+        isSideMenuActive: 'isSideMenuActive'
       })
     },
     methods: {
-      ...mapMutations({
+      ...mapMutations('app', {
           menuToggle: 'SIDE_MENU_ACTIVE'
       }),
       shadowToggle(event) {
