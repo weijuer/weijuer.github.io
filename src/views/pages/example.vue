@@ -65,7 +65,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @themeColor: #72af3a;
 
   .document {

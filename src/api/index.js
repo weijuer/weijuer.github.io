@@ -1,7 +1,7 @@
-import auth from './auth'
-import github from './github'
+import blog from './blog'
+import douban from './douban'
 
 export default {
-  auth,
-  github
+  blog,
+  douban
 }

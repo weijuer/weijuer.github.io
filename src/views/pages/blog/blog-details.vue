@@ -7,7 +7,7 @@
 
 <script>
   export default {
-    name: 'blog-detail',
+    name: 'blog-details',
     data() {
       return {
         blog: null

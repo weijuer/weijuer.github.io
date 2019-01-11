@@ -1,0 +1,50 @@
+/* 
+* componets v1.0
+* author: Weijuer
+* date: 2019-1-11
+*/
+
+.list {
+    margin: 20px 0;
+    padding: 0;
+
+    > li {
+        list-style: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #5c6873;
+        margin-bottom: 7px;
+        margin-left: 36px;
+
+        &:before {
+            content: '';
+            width: 21px;
+            height: 2px;
+            float: left;
+            margin: 9px 15px 0 -36px;
+            background: #ddd;
+        }
+    }
+
+    &.dot-list {
+
+        > li {
+            margin-left: 18px;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 20px;
+                background: #ddd;
+                margin-right: 10px;
+                margin-top: 8px;
+                margin-left: -18px;
+                opacity: 0.6;
+                filter: alpha(opacity=60);
+            }
+        }
+    }
+} 
+

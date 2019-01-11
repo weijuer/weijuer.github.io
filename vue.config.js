@@ -34,12 +34,29 @@ module.exports = {
             '/api': {
                 target: 'http://localhost:4000',
                 ws: true,
-                changeOrigin: true
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
             },
             '/foo': {
                 target: 'http://localhost:5000',
                 ws: true,
                 changeOrigin: true
+            },
+            '/github': {
+                target: 'https://api.github.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/github': ''
+                }
+            },
+            '/douban': {
+                target: "http://api.douban.com/v2",
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/douban': ''
+                }
             }
         }
     }

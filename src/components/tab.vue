@@ -55,7 +55,4 @@
     display: flex;
   }
 
-  .item {
-
-  }
 </style>

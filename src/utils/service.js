@@ -7,7 +7,7 @@ const service = axios.create({
     // 允许携带cookie
     withCredentials: true,
     // api的base_url
-    baseURL: process.env.NODE_ENV === 'production' ? 'http://193.112.153.155:3000' : 'http://localhost:3000',
+    baseURL: process.env.NODE_ENV === 'production' ? 'http://193.112.153.155:3000' : 'http://localhost:8081',
     // 请求超时时间
     timeout: 5000
 })
@@ -22,7 +22,7 @@ service.interceptors.request.use(
         // 2.请求头中添加token信息
         if (store.getters.token) {
             // 让每个请求携带自定义token
-            config.headers.Authorization = `Weijuer ${getToken()}`;
+            // config.headers.Authorization = `Weijuer ${getToken()}`;
         }
 
         // 3.请求参数处理

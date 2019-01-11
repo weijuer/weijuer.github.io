@@ -135,3 +135,5 @@
     methods: {}
   }
 </script>
+
+<style lang="less" src="@/assets/global/less/pages/about.less" />
