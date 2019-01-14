@@ -1,37 +1,11 @@
-@import "./app.less";
-// ------------ B.css4语法 全局变量语法 ------------
-/*:root {
-  --blue: #007bff;
-  --indigo: #6610f2;
-  --purple: #6f42c1;
-  --pink: #e83e8c;
-  --red: #dc3545;
-  --orange: #fd7e14;
-  --yellow: #ffc107;
-  --green: #28a745;
-  --teal: #20c997;
-  --cyan: #17a2b8;
-  --white: #fff;
-  --gray: #6c757d;
-  --gray-dark: #343a40;
-  --primary: #5867dd;
-  --secondary: #ebedf2;
-  --success: #34bfa3;
-  --info: #36a3f7;
-  --warning: #ffb822;
-  --danger: #f4516c;
-  --light: #f8f9fa;
-  --dark: #343a40;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
-}*/
+/* 
+* app v1.0
+* author: Weijuer
+* date: 2019-1-14
+*/
+@import "./base/vars.less";
 
-// ------------ D.app ------------
+// ------------ A.app ------------
 .app-page {
   display: flex;
   flex-direction: column;
@@ -63,7 +37,7 @@ header {
   position: relative;
   flex-shrink: 0;
   box-shadow: 0 0 2.25rem #9da5ab;
-  transition: all .5s .2s cubic-bezier(0.815, 1.650, 0.400, 0.680);
+  transition: all 0.5s 0.2s cubic-bezier(0.815, 1.65, 0.4, 0.68);
   &.app-header-fixed {
     position: fixed;
     left: 0;
@@ -74,14 +48,10 @@ header {
   &.app-scrollUp {
     transform: translateY(0);
   }
-  .container {
-    align-items: center;
+  .app-header-content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0 1rem;
   }
-  .app-header-topBar {
+  .app-header-bar--tool {
     .px2rem(font-size, 14);
     .app-header-section {
       margin: 0;
@@ -89,7 +59,7 @@ header {
   }
   .app-header-section {
     display: flex;
-    margin: .625rem 1.5rem;
+    margin: 0.625rem 1.5rem;
     flex: 1 1 auto;
     justify-content: center;
     align-items: center;
@@ -135,25 +105,18 @@ header {
   .nav-dropdown {
     display: none;
     flex-flow: column;
+    margin-top: 0.5rem;
+    padding: 1rem;
     position: absolute;
     top: 100%;
-    margin-top: .5rem;
-    padding: 1rem;
-    right: 0;
+    left: 50%;
+    z-index: 2019;
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 0 6px 0 #000;
-    li {
-      position: relative;
-      &:after {
-        content: '|';
-      }
-      &:last-child:after {
-        content: '';
-      }
-    }
+    transform: translateX(-50%);
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       background: 0 0;
       border: 8px solid transparent;
@@ -166,13 +129,13 @@ header {
       border-bottom-color: #fff;
     }
   }
-  &.nav-divider>li {
+  &.nav-divider > li {
     position: relative;
     &:after {
-      content: '|';
+      content: "|";
     }
     &:last-child:after {
-      content: '';
+      content: "";
     }
   }
   li {
@@ -194,13 +157,13 @@ header {
       stroke-dashoffset: 241px;
     }
     &:hover .shape {
-      animation: draw .5s linear forwards;
+      animation: draw 0.5s linear forwards;
     }
     &.dropdown {
       .nav-link {
         position: relative;
         &:after {
-          content: '';
+          content: "";
           display: inline-flex;
           vertical-align: middle;
           margin-left: 2px;
@@ -217,7 +180,7 @@ header {
     }
     a {
       position: relative;
-      padding: 0 .75rem;
+      padding: 0 0.75rem;
       z-index: 2;
     }
   }
@@ -233,9 +196,9 @@ header {
   .app-main {
     flex-flow: column;
   }
-  .app-main>article,
-  .app-main>nav,
-  .app-main>aside {
+  .app-main > article,
+  .app-main > nav,
+  .app-main > aside {
     order: 0;
     width: auto;
     flex: auto;
@@ -251,15 +214,15 @@ header {
         right: -280px;
         bottom: 0;
         z-index: 2018;
-        transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
+        transition: all 0.3s cubic-bezier(0.815, 1.65, 0.4, 0.68);
         .app-nav {
           flex: 1;
           z-index: 2019;
           .nav {
             flex-direction: column;
-            li>a {
+            li > a {
               display: flex;
-              padding: .75rem .75rem;
+              padding: 0.75rem 0.75rem;
               border-bottom: 1px solid #ddd;
             }
           }
@@ -270,7 +233,7 @@ header {
         &.active {
           right: 0;
           &:before {
-            content: '';
+            content: "";
             position: fixed;
             top: 60px;
             left: 0;
@@ -279,7 +242,7 @@ header {
             margin: 0;
             z-index: 2018;
             background: rgba(0, 0, 0, 0.5);
-            transition: all 0.3s cubic-bezier(0.815, 1.650, 0.400, 0.680);
+            transition: all 0.3s cubic-bezier(0.815, 1.65, 0.4, 0.68);
           }
         }
       }

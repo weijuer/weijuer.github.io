@@ -2,7 +2,7 @@
 
   <div class="app about">
 
-    <div class="w-container">
+    <div class="container">
 
       <div class="row">
         <div class="col-sm-12">

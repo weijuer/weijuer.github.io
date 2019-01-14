@@ -10,78 +10,84 @@
 </template>
 
 <script>
-  // @ is an alias to /src
-  import Arrow from '@/assets/global/js/plugins/Arrow'
-  import Clover from "../../assets/global/js/plugins/Clover";
-  import SadMan from "../../assets/global/js/plugins/SadMan";
-  import Welcome from "../../assets/global/js/plugins/Welcome";
-  import Pig from "../../assets/global/js/plugins/Pig";
+// @ is an alias to /src
+import Arrow from "@/assets/global/js/plugins/Arrow";
+import Clover from "../../assets/global/js/plugins/Clover";
+import SadMan from "../../assets/global/js/plugins/SadMan";
+import Welcome from "../../assets/global/js/plugins/Welcome";
+import Pig from "../../assets/global/js/plugins/Pig";
 
-  export default {
-    name: 'home',
-    data() {
-      return {
-        dbInit: false
-      }
-    },
-    components: {},
-    mounted() {
-      console.log('-----mounted');
-      //this.getWelcome();
-      this.getPig();
+export default {
+  name: "home",
+  data() {
+    return {
+      dbInit: false
+    };
+  },
+  components: {},
+  mounted() {
+    console.log("-----mounted");
+    //this.getWelcome();
+    this.getPig();
 
-      // 1.绑定页面监听resize事件
-      window.addEventListener('resize', this.getPig);
-    },
-    methods: {
-      getWelcome() {
-        // 1.获取画布
-        const canvas = document.getElementById('welcome-bg');
+    // 1.绑定页面监听resize事件
+    window.addEventListener("resize", this.getPig);
+  },
+  methods: {
+    getWelcome() {
+      // 1.获取画布
+      const canvas = document.getElementById("welcome-bg");
 
-        if(canvas.getContext) {
-          // 设置画布尺寸
-          canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
-          canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
-          // 设置画布背景色
-          canvas.style.backgroundColor = 'transparent';
+      if (canvas.getContext) {
+        // 设置画布尺寸
+        canvas.width =
+          document.querySelector(".welcome").offsetWidth ||
+          document.documentElement.offsetWidth;
+        canvas.height =
+          document.querySelector(".welcome").offsetHeight ||
+          document.documentElement.offsetHeight;
+        // 设置画布背景色
+        canvas.style.backgroundColor = "transparent";
 
-          // 2.监听鼠标移动
-          canvas.addEventListener('mousemove', (event) => {
-            let arrow1 = new Arrow(100, 200, 'red', event, canvas);
-            let arrow2 = new Arrow(120, 60, 'green', event, canvas);
-            console.log(`X:===>${event.offsetX},Y:===>${event.offsetY}`);
-
-            // 3.定时器
-            window.requestAnimationFrame(() => {
-              arrow1.drawArrow();
-              arrow2.drawArrow();
-            });
-
-          });
-        }
-      },
-      getClover() {
-        // 1.获取画布
-        const canvas = document.getElementById('welcome-bg');
-        const context = canvas.getContext('2d');
-
-        if(canvas.getContext) {
-          // 设置画布尺寸
-          canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
-          canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
-          // 设置画布背景色
-          canvas.style.backgroundColor = '#99c4f8';
-
-          let clover = new Clover(canvas);
-          let sadMan = new SadMan(canvas);
-          let welcome = new Welcome(canvas);
-          let pig = new Pig(canvas);
-
-
-          pig.getMouseLocation();
+        // 2.监听鼠标移动
+        canvas.addEventListener("mousemove", event => {
+          let arrow1 = new Arrow(100, 200, "red", event, canvas);
+          let arrow2 = new Arrow(120, 60, "green", event, canvas);
+          console.log(`X:===>${event.offsetX},Y:===>${event.offsetY}`);
 
           // 3.定时器
-          /* let tick = 0;
+          window.requestAnimationFrame(() => {
+            arrow1.drawArrow();
+            arrow2.drawArrow();
+          });
+        });
+      }
+    },
+    getClover() {
+      // 1.获取画布
+      const canvas = document.getElementById("welcome-bg");
+      const context = canvas.getContext("2d");
+
+      if (canvas.getContext) {
+        // 设置画布尺寸
+        canvas.width =
+          document.querySelector(".welcome").offsetWidth ||
+          document.documentElement.offsetWidth;
+        canvas.height =
+          document.querySelector(".welcome").offsetHeight ||
+          document.documentElement.offsetHeight;
+        // 设置画布背景色
+        canvas.style.backgroundColor = "#99c4f8";
+
+        let clover = new Clover(canvas);
+        let sadMan = new SadMan(canvas);
+        let welcome = new Welcome(canvas);
+        let pig = new Pig(canvas);
+
+        pig.getMouseLocation();
+
+        // 3.定时器
+        /* let tick = 0;
           (function drawClover() {
             // 清屏
             context.clearRect(0, 0, canvas.width, canvas.height);
@@ -96,41 +102,41 @@
             // 设置定时
             window.requestAnimationFrame(drawClover);
           })(); */
+      }
+    },
+    getPig() {
+      // 1.获取画布
+      const canvas = document.getElementById("welcome-bg");
+      const context = canvas.getContext("2d");
+      let raf;
 
-        }
+      if (canvas.getContext) {
+        // 设置画布尺寸
+        canvas.width =
+          document.querySelector(".welcome").offsetWidth ||
+          document.documentElement.offsetWidth;
+        canvas.height =
+          document.querySelector(".welcome").offsetHeight ||
+          document.documentElement.offsetHeight;
 
-      },
-      getPig() {
-        // 1.获取画布
-        const canvas = document.getElementById('welcome-bg');
-        const context = canvas.getContext('2d');
-        let raf;
+        let pig = new Pig(canvas);
+        pig.getTargetLocation();
+        // let tick = 0;
+        // pig.draw(tick);
 
-        if(canvas.getContext) {
-          // 设置画布尺寸
-          canvas.width = document.querySelector('.welcome').offsetWidth || document.documentElement.offsetWidth;
-          canvas.height = document.querySelector('.welcome').offsetHeight || document.documentElement.offsetHeight;
-
-          let pig = new Pig(canvas);
-          pig.getTargetLocation();
-          // let tick = 0;
-          // pig.draw(tick);
-
-          // 3.定时器
-          let tick = 0;
-          (function drawPig() {
-            // 设置振幅
-            tick += 0.05;
-            pig.draw(tick);
-            // 设置定时
-            raf = window.requestAnimationFrame(drawPig);
-          })();
-
-        }
-
+        // 3.定时器
+        let tick = 0;
+        (function drawPig() {
+          // 设置振幅
+          tick += 0.05;
+          pig.draw(tick);
+          // 设置定时
+          raf = window.requestAnimationFrame(drawPig);
+        })();
       }
     }
   }
+};
 </script>
 
 <style lang="less">
@@ -158,6 +164,5 @@
     // background: url("../../assets/global/images/bg/bg-family.png") center center no-repeat;
     // background-size: cover;
   }
-
 }
 </style>

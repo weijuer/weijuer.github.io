@@ -1,5 +1,4 @@
-@themeColor: #72af3a;
-@bgColor: #bee897;
+@import "../base/vars.less";
 
 .default {
   a {
@@ -19,11 +18,10 @@
     color: #fff;
   }
 
-  .app-header-nav-bar {
+  .app-header-bar.app-header-bar--menu {
     background: rgba(30, 36, 42, 0.8);
 
     .menu-section .nav > li {
-
       .nav-link {
         color: #fff;
 
@@ -38,15 +36,11 @@
         }
       }
     }
-
   }
-
 }
-
 
 @media all and (max-width: 768px) {
   .default {
-
     .menu-section.active {
       background: rgba(30, 36, 42, 0.8);
     }

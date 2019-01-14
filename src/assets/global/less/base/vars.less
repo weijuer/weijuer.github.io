@@ -5,15 +5,8 @@
 */
 
 // ------------ A.px2rem转换 ------------
-@fontFamily: -apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Helvetica,
-Arial,
-sans-serif,
-"Apple Color Emoji",
-"Segoe UI Emoji",
-"Segoe UI Symbol";
+@fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 @fontSize: 16px;
 @themeColor: #72af3a;
 @fontColor: #333;
@@ -24,5 +17,5 @@ sans-serif,
 @baseFontSize: 16;
 // 2.rem转换函数
 .px2rem(@name, @px) {
-    @{name}: @px / @baseFontSize * 1rem;
+  @{name}: @px / @baseFontSize * 1rem;
 }
