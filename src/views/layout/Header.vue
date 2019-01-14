@@ -125,6 +125,7 @@
                   <path stroke="#fff" d="M 2 32, l 36 0"></path>
                 </g>
               </svg>
+              
             </a>
           </section>
           <section :class="['app-header-section', 'menu-section', isSideMenuActive ? 'active' : '']" @click.self="shadowToggle($event)">
@@ -155,6 +156,7 @@
           {name: 'home', path: '/home', active: true},
           {name: 'blog', path: '/blog', active: false},
           {name: 'example', path: '/example', active: false},
+          {name: 'components', path: '/components', active: false},
           {name: 'music', path: '/music', active: false},
           {name: 'about', path: '/about', active: false}
         ],

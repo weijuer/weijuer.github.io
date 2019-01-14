@@ -31,6 +31,10 @@ const routes = [
     name: 'example',
     component: () => import('../views/pages/example')
   }, {
+    path: '/components',
+    name: 'components',
+    component: () => import('../views/pages/components')
+  }, {
     path: '/music',
     name: 'music',
     component: () => import('../views/pages/music/music')

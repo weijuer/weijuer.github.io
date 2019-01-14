@@ -129,19 +129,19 @@
   @themeColor: #72af3a;
 
   .document {
-    display: flex;
     width: 100%;
-    flex: auto;
-    min-height: 100vh;
     height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex: auto;
   }
 
   .aside,
   aside {
-    width: 420px;
-    flex: 1 1 auto;
-    position: relative;
+    width: 30%;
     margin: 1.2rem;
+    position: relative;
+    flex: 1 1 auto;
 
     .inner-title {
       font-size: 1.1rem;
@@ -150,8 +150,9 @@
 
   .article,
   article {
-    flex: 2 1 auto;
+    width: 70%;
     margin: 1.2rem;
+    flex: 2 1 auto;
   }
 
   .w-nav {
