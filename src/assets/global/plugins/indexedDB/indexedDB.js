@@ -269,7 +269,7 @@ export default class IndexedDB {
                 // 创建对象仓库
                 let objectStore = keyPath ? db.createObjectStore(storeName, {
                     keyPath
-                }) : db.createObjectStore(storeName);
+                }) : db.createObjectStore(storeName, {autoIncrement: true});
                 // 创建索引
                 if (Object.prototype.toString.call(index) === '[object Object]') {
                     for (let key in index) {
