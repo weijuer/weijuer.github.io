@@ -3,6 +3,7 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
+import highlight from './directives/highlight'
 
 import App from './App.vue'
 

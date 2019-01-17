@@ -8,6 +8,9 @@ const blog = {
     get_blog_by_page() {
         // 1.初始化timelineDB
         return db.findPage('blog', 'title');
+    },
+    add_blog(blog) {
+        return db.set('blog', blog, 'id');
     }
 }
 

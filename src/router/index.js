@@ -27,6 +27,10 @@ const routes = [
     name: 'blog',
     component: () => import('../views/pages/blog/blog')
   }, {
+    path: '/blog-add',
+    name: 'blog-add',
+    component: () => import('../views/pages/blog/blog-add')
+  }, {
     path: '/example',
     name: 'example',
     component: () => import('../views/pages/example')

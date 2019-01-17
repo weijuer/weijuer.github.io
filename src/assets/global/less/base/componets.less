@@ -5,6 +5,21 @@
 */
 @import "./vars.less";
 
+.flex {
+  display: flex;
+  .item {
+    flex: 1;
+  }
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.no-flex {
+  flex: none;
+}
+
 // 1.document
 .document {
   width: 100%;
@@ -33,7 +48,7 @@
 // 2.nav
 
 
-// 2.list
+// 3.list
 .list {
   margin: 0;
   padding: 0;
@@ -88,5 +103,30 @@
         filter: alpha(opacity=60);
       }
     }
+  }
+}
+
+// 4.btn
+.btn {
+  display: inline-flex;
+  margin: 0;
+  padding: .375rem 1rem;
+  flex: none;
+
+  &.btn-default {
+    background: @themeColor;
+  }
+  &.btn-primary {
+    background: @primary;
+  }
+  &.btn-warning {
+    background: @warning;
+  }
+  &.btn-danger {
+    background: @danger;
+  }
+
+  &.round-btn {
+    border-radius: 50%;
   }
 }

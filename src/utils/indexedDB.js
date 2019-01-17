@@ -10,14 +10,14 @@ const blogs = blogJSON.blogs;
 const db = new IndexedDB('weijuer_db');
 
 // 4.添加blog数据
-db.addStore('blog', {
+db.addObjectStore('blog', {
     title: false,
     date: true
 }, false, 'id').then((res) => {
-    
+
     db.set('blog', blogs, 'id').then((res) => {
         console.log(res);
-    }).catch((err)=>{
+    }).catch((err) => {
         console.error(err);
     });
 });

@@ -221,7 +221,7 @@ export default class IndexedDB {
      * @param storeName
      * @returns {Promise}
      */
-    hasStore(storeName) {
+    hasObjectStore(storeName) {
         return new Promise(async (resolve, reject) => {
             this.closeDB();
             const request = this._iDB.open(this._dbName, Date.now());
@@ -244,7 +244,7 @@ export default class IndexedDB {
      * @param keyPath  可选. 主键名, 如果有传入, 那么对应每条数据必须为包含keyPath属性的对象
      * @returns {Promise}
      */
-    addStore(storeName, index, replace = false, keyPath) {
+    addObjectStore(storeName, index, replace = false, keyPath) {
         return new Promise(async (resolve, reject) => {
             if (!storeName) {
                 reject(new WError({
@@ -412,8 +412,8 @@ export default class IndexedDB {
             try {
                 page = parseInt(page);
                 num = parseInt(num);
+                // 分页参数校验
                 if (isNaN(page) || isNaN(num) || page < 1 || num < 1) {
-                    // reject('The page and num parameters must be number and greater than 0');
                     reject(new WError({
                         code: 1002,
                         message: 'The page and num parameters must be number and greater than 0'
