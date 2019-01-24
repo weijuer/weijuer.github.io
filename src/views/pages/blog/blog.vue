@@ -90,7 +90,7 @@
                     </panel>
                 </aside>
 
-                <a class="btn btn-default btn-round add-blog-btn w-pulse" @click="add_blog" href="javascript:;">新增</a>
+                <a class="btn btn-default btn-round add-blog-btn w-pulse" href="/blog-add">新增</a>
             </section>
         </div>
     </div>
