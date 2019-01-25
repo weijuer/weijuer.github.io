@@ -90,14 +90,23 @@
                     </panel>
                 </aside>
 
-                <a class="btn btn-default btn-round add-blog-btn w-pulse" href="/blog-add">新增</a>
+                <a class="btn btn-default btn-round add-blog-btn w-pulse" @click="showModal = true" href="javascript:;">+</a>
             </section>
         </div>
+
+        <modal v-if="showModal" @comform="test" @cancel="showModal = false">
+            <h3 slot="header">添加日志</h3>
+            <div slot="body">
+                <addBlog @add="comform" />
+            </div>
+        </modal>
     </div>
 </template>
 
 <script>
     import panel from "@/components/panel";
+    import modal from "@/components/widgets/modal";
+    import addBlog from "./blog-add";
     // 加载blog
     import blog from "@/api/blog";
 
@@ -111,11 +120,14 @@
             return {
                 blogs: [],
                 user: null,
-                movies: null
+                movies: null,
+                showModal: false
             };
         },
         components: {
-            panel
+            panel,
+            modal,
+            addBlog
         },
         props: ["blog"],
         mounted() {
@@ -140,11 +152,8 @@
             async get_movie_top250() {
                 this.movies = await douban.get_movie_top250();
             },
-            async add_blog() {
-                // 添加日志
-                if (this.blog.title) {
-                    let res = await blog.add_blog(this.blog);
-                }
+            test() {
+                console.log('test');
             }
         }
     };
@@ -154,8 +163,14 @@
     @themeColor: #72af3a;
     .add-blog-btn {
         position: fixed;
-        top: 115px;
+        top: 50%;
         right: 0;
+        margin-right: -20px;
+        transition: .3s .2s ease-in-out;
+
+        &:hover {
+            margin-right: 1%;
+        }
     }
 </style>
 

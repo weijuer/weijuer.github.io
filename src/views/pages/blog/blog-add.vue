@@ -1,95 +1,52 @@
 <template>
-    <div class="blog-add">
-        <div class="container">
-            <section class="document">
-                <article class="article">
-                    <panel class="blog-item">
-                        <div slot="header" class="panel-header">
-                            <div class="caption">
-                                <div class="panel-header--title">
-                                    <h3 class="panel-header--title-text">添加日志</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div slot="main" class="panel-body">
-                            <form class="form form-horizontal" role="form" autocomplete="off">
-                                <div class="form-body">
-                                    <div class="form-group">
-                                        <label class="col-2 form-label">标题</label>
-                                        <div class="col-6">
-                                            <input
-                                                class="form-control"
-                                                v-model="blog.title"
-                                                type="text"
-                                            >
-                                            <span class="form-help"></span>
-                                        </div>
-                                    </div>
+    <form class="form form-horizontal" role="form" autocomplete="off">
+        <div class="form-body">
+            <div class="form-group">
+                <label class="col-2 form-label">标题</label>
+                <div class="col-6">
+                    <input class="form-control" v-model="blog.title" type="text">
+                    <span class="form-help"></span>
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <label class="col-2 form-label">作者</label>
-                                        <div class="col-6">
-                                            <input
-                                                class="form-control"
-                                                v-model="blog.author"
-                                                type="text"
-                                            >
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <label class="col-2 form-label">作者</label>
+                <div class="col-6">
+                    <input class="form-control" v-model="blog.author" type="text">
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <label class="col-2 form-label">标签</label>
-                                        <div class="col-6">
-                                            <input
-                                                class="form-control"
-                                                v-model="blog.tags"
-                                                type="text"
-                                            >
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <label class="col-2 form-label">标签</label>
+                <div class="col-6">
+                    <input class="form-control" v-model="blog.tags" type="text">
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <label class="col-2 form-label">描述</label>
-                                        <div class="col-6">
-                                            <textarea
-                                                class="form-control"
-                                                rows="3"
-                                                v-model="blog.description"
-                                            ></textarea>
-                                        </div>
-                                    </div>
+            <div class="form-group">
+                <label class="col-2 form-label">描述</label>
+                <div class="col-6">
+                    <textarea class="form-control" rows="3" v-model="blog.description"></textarea>
+                </div>
+            </div>
 
-                                    <div class="form-group">
-                                        <label class="col-2 form-label">内容</label>
-                                        <div class="col-6">
-                                            <textarea
-                                                class="form-control"
-                                                rows="3"
-                                                v-model="blog.content"
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <div class="row">
-                                        <div class="col-6 offset-2">
-                                            <a
-                                                class="btn btn-primary"
-                                                @click="add_blog"
-                                                href="javascript:;"
-                                            >保存</a>
-                                            <a class="btn btn-secondary" href="javascript:;">取消</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </panel>
-                </article>
-            </section>
+            <div class="form-group">
+                <label class="col-2 form-label">内容</label>
+                <div class="col-6">
+                    <textarea class="form-control" rows="3" v-model="blog.content"></textarea>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <!-- <div class="form-actions">
+            <div class="row">
+                <div class="col-6 offset-2">
+                    <a class="btn btn-primary" @click="add_blog" href="javascript:;">保存</a>
+                    <a class="btn btn-secondary" href="javascript:;">取消</a>
+                </div>
+            </div>
+        </div> -->
+    </form>
 </template>
 
 <script>
@@ -118,6 +75,9 @@
                 // 获取日志数据
                 if (this.blog.title) {
                     let res = await blog.add_blog(this.blog);
+
+                    // 通知外部
+                    this.$emit('add', res);
                 }
             }
         }

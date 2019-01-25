@@ -4,20 +4,17 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <div class="modal-header">
-                        <slot name="header">default header</slot>
+                        <slot name="header">{{ header }}</slot>
                     </div>
 
                     <div class="modal-body">
-                        <slot name="body">default body</slot>
+                        <slot name="body">{{ body }}</slot>
                     </div>
 
                     <div class="modal-footer">
                         <slot name="footer">
-                            default footer
-                            <button
-                                class="modal-default-button"
-                                @click="$emit('close')"
-                            >OK</button>
+                            <a class="btn btn-primary" @click="comform" href="javascript:;">保存</a>
+                            <a class="btn btn-secondary" @click="cancel" href="javascript:;">取消</a>
                         </slot>
                     </div>
                 </div>
@@ -27,14 +24,23 @@
 </template>
 
 <script>
-  export default {
-    name: 'w-model',
-    data() {
-      return {
-        menus: ['主页', '博文', '关于']
-      }
-    }
-  }
+    export default {
+        name: "modal",
+        data() {
+            return {
+                header: "default header",
+                body: "default body"
+            };
+        },
+        methods: {
+            comform() {
+                this.$emit("comform");
+            },
+            cancel() {
+                this.$emit("cancel");
+            }
+        }
+    };
 </script>
 
 <style lang="less" scoped>
@@ -56,7 +62,7 @@
     }
 
     .modal-container {
-        width: 300px;
+        width: 70%;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #fff;
@@ -64,29 +70,22 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
         transition: all 0.3s ease;
         font-family: Helvetica, Arial, sans-serif;
-    }
 
-    .modal-header h3 {
-        margin-top: 0;
-        color: #42b983;
-    }
+        .modal-header h3 {
+            margin-top: 0;
+            color: #42b983;
+        }
 
-    .modal-body {
-        margin: 20px 0;
-    }
+        .modal-body {
+            margin: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
 
-    .modal-default-button {
-        float: right;
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
     }
-
-    /*
-     * The following styles are auto-applied to elements with
-     * transition="modal" when their visibility is toggled
-     * by Vue.js.
-     *
-     * You can easily play with the modal transition by editing
-     * these styles.
-     */
 
     .modal-enter {
         opacity: 0;
