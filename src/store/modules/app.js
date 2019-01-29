@@ -21,6 +21,10 @@ const app = {
         scroll: {
             newPosition: 0,
             lastPosition: 0,
+        },
+        // document
+        document: {
+            hidden: false
         }
     },
     mutations: {
@@ -77,6 +81,14 @@ const app = {
         CHANGE_LANGUAGE(state, lang) {
             state.language = lang;
         },
+        /**
+         * 切换窗口标签状态
+         * @param {*} state 
+         * @param {*} hidden 
+         */
+        TOGGLE_HIDDEN(state, hidden) {
+            state.document.hidden = !state.document.hidden;
+        }
     },
     actions: {
         /**
@@ -161,6 +173,23 @@ const app = {
             // 3.更改语言状态
             commit('CHANGE_LANGUAGE', lang);
         },
+        /**
+         * 窗口状态切换
+         * @param commit
+         * @param state
+         */
+        TOGGLE_HIDDEN({commit, state}) {
+            let isHidden = document.hidden || document.webkitHidden || document.msHidden; 
+            if (isHidden) { 
+                // 动画视频暂停
+                commit('TOGGLE_HIDDEN', true);
+                document.title = '出bug了';
+            } else { 
+                // 动画视频开始 
+                commit('TOGGLE_HIDDEN', false);
+                document.title = `Weijuer's Blog`;
+            } 
+        }
     },
     getters: {
         isScrollUp: state => state.isScrollUp,
