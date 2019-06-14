@@ -1,5 +1,9 @@
-declare namespace Blog {
-  export interface IArticle {
+/**
+ * global interface
+ */
+declare namespace W {
+  // Article
+  interface IArticle {
     id?: number;
     description: string;
     portrait: string;
@@ -11,5 +15,3 @@ declare namespace Blog {
     lastModified: string;
   }
 }
-
-declare module "*.json";

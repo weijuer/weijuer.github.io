@@ -1,16 +1,17 @@
 @import "../core/vars";
 
 .default {
+
   a:not(.btn) {
     color: #333;
 
     &:not(.btn):hover {
-      color: @themeColor;
+      color: $themeColor;
     }
   }
 
   .app-main {
-    background: @bgColor;
+    
   }
 
   .app-footer {
@@ -26,13 +27,13 @@
         color: #fff;
 
         &:hover {
-          color: @themeColor;
+          color: $themeColor;
         }
       }
 
       &.active {
         .nav-link {
-          color: @themeColor;
+          color: $themeColor;
         }
       }
     }

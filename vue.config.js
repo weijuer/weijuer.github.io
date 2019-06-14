@@ -25,7 +25,8 @@ module.exports = {
     config.resolve.alias
       .set("@", resolve("src"))
       .set("@views", resolve("src/views"))
-      .set("@components", resolve("src/components"));
+      .set("@components", resolve("src/components"))
+      .set("@widgets", resolve("src/components/widgets"));
 
     // vue骨架屏插件配置
     /* config.plugin("skeleton").use(require("vue-skeleton-webpack-plugin"), [

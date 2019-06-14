@@ -1,5 +1,5 @@
 <template>
-  <div id="index" class="app-page">
+  <div id="app" class="app-page default">
     <Loading />
     <Header />
     <Main />
@@ -26,7 +26,17 @@ import BackToTop from "@components/widgets/BackToTop.vue";
     Footer
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Action("INIT_DB") init_db!: () => void;
+
+  created() {
+    // this.initDB();
+  }
+
+  async initDB() {
+    await this.init_db();
+  }
+}
 </script>
 
 <style lang="stylus" src="@/assets/css/index.styl" />

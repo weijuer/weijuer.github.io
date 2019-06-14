@@ -11,7 +11,7 @@ const actions: ActionTree<any, any> = {
    */
   BACK_TO_TOP({ dispatch, state }) {
     // 1.scrollBy方法
-    window.scrollBy(0, -30);
+    window.scrollBy(0, -50);
     // 2.定时滚动
     window.requestAnimationFrame(() => {
       if (state.isPageScroll) {

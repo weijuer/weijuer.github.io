@@ -1,9 +1,7 @@
 <template>
-  <main class="app-main">
-    <transition name="fade" mode="out-in">
-      <router-view class="router-view" />
-    </transition>
-  </main>
+  <transition name="fade" mode="out-in">
+    <router-view class="app-main" />
+  </transition>
 </template>
 
 <script lang="ts">
@@ -14,7 +12,7 @@ export default class Main extends Vue {}
 </script>
 
 <style lang="stylus">
-.router-view {
+.app-main {
   margin: 2em 0;
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }

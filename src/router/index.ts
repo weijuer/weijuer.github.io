@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/pages/Home.vue";
 
 Vue.use(Router);
 
@@ -14,16 +14,36 @@ export default new Router({
       component: Home
     },
     {
+      path: "/article",
+      name: "article",
+      component: () =>
+        import(/* webpackChunkName: "article" */ "../views/pages/Article.vue")
+    },
+    {
+      path: "/example",
+      name: "example",
+      component: () =>
+        import(/* webpackChunkName: "example" */ "../views/pages/Example.vue")
+    },
+    {
+      path: "/components",
+      name: "components",
+      component: () =>
+        import(
+          /* webpackChunkName: "components" */ "../views/pages/Components.vue"
+        )
+    },
+    {
+      path: "/music",
+      name: "music",
+      component: () =>
+        import(/* webpackChunkName: "music" */ "../views/pages/Music.vue")
+    },
+    {
       path: "/about",
       name: "about",
       component: () =>
-        import(/* webpackChunkName: "about" */ "../views/About.vue")
-    },
-    {
-      path: "/blog",
-      name: "blog",
-      component: () =>
-        import(/* webpackChunkName: "blog" */ "../views/Blog.vue")
+        import(/* webpackChunkName: "about" */ "../views/pages/About.vue")
     }
   ]
 });

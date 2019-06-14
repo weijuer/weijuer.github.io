@@ -3,7 +3,7 @@
     class="app-header app-header-fixed"
     :class="{ 'app-scrollUp': isScrollUp }"
   >
-    <div class="app-header-bar app-header-bar--tool">
+    <div class="app-header-bar app-header-bar--tool hidden">
       <div class="container">
         <div class="app-header-content">
           <section class="app-header-section social-section">
@@ -295,7 +295,7 @@ export default class Header extends Vue {
 
   menus: Array<any> = [
     { name: "home", path: "/home", active: true },
-    { name: "blog", path: "/blog", active: false },
+    { name: "article", path: "/article", active: false },
     { name: "example", path: "/example", active: false },
     { name: "components", path: "/components", active: false },
     { name: "music", path: "/music", active: false },

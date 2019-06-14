@@ -3,11 +3,13 @@ import actions from "./actions";
 import mutations from "./mutations";
 
 interface State {
-  blogs: Array<any>;
+  initNumber: number;
+  articles: Array<any>;
 }
 
 const state: State = {
-  blogs: []
+  initNumber: 0,
+  articles: []
 };
 
 export default {
