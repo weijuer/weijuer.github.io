@@ -2,7 +2,7 @@
   <main class="article-page">
     <div class="container">
       <div class="popular-articles"></div>
-      <div class="articles-container">
+      <div class="normal-articles">
         <aside class="sidebar">
           <Card v-for="(item, index) of articles" :key="`article-${index}`">{{
             item.title
@@ -94,7 +94,7 @@ export default class Article extends Vue {
     border-bottom: 1px solid #fff
     text-shadow: none
 
-.articles-container
+.normal-articles
   display: grid
   grid-template-columns: 300px minmax(0, 1fr)
   gap: 4rem
