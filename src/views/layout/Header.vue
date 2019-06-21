@@ -1,8 +1,5 @@
 <template>
-  <header
-    class="app-header app-header-fixed"
-    :class="{ 'app-scrollUp': isScrollUp }"
-  >
+  <header class="app-header" :class="[appHeaderType]">
     <div class="app-header-bar app-header-bar--tool hidden">
       <div class="container">
         <div class="app-header-content">
@@ -303,6 +300,20 @@ export default class Header extends Vue {
   ];
 
   isToggle: boolean = false;
+
+  private get appHeaderType() {
+    let type = "";
+
+    if (this.isPageScroll) {
+      type += "app-header-fixed";
+    }
+
+    if (this.isScrollUp) {
+      type += " app-scrollUp";
+    }
+
+    return type;
+  }
 
   shadowToggle(event: any) {
     event = event || window.event;

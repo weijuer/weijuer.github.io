@@ -17,3 +17,5 @@ declare module "vue-markdown";
 declare module "*.md";
 
 declare module "*.json";
+
+declare module "imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js";

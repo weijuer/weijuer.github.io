@@ -30,7 +30,7 @@ export default class App extends Vue {
   @Action("INIT_DB") init_db!: () => void;
 
   created() {
-    // this.initDB();
+    this.initDB();
   }
 
   async initDB() {

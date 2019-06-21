@@ -11,14 +11,14 @@ const mutations: MutationTree<any> = {
       window.pageYOffset ||
       document.documentElement.scrollTop ||
       document.body.scrollTop;
-    // 上次滚动距离
-    state.scroll.lastPosition = window.scrollY;
-    // 页面发生滚动
-    state.isPageScroll = scrollTop > 60;
-    // 页面向上滚动
-    state.isScrollUp = state.scroll.lastPosition < state.scroll.newPosition;
     // 最新滚动距离
-    state.scroll.newPosition = state.scroll.lastPosition;
+    state.scroll.newPosition = window.scrollY;
+    // 页面发生滚动
+    state.isPageScroll = scrollTop > 10;
+    // 页面向上滚动
+    state.isScrollUp = state.scroll.newPosition < state.scroll.lastPosition;
+    // 上次滚动距离
+    state.scroll.lastPosition = state.scroll.newPosition;
   },
   ToggleSideBar(state) {
     state.isSideBarActive = !state.isSideBarActive;
