@@ -16,9 +16,6 @@ export class ArticleDatabase extends Dexie {
       });
 
     this.articles = this.table("articles");
-
-    // init articles data
-    // this.init();
   }
 
   async init() {
@@ -37,12 +34,11 @@ export class ArticleDatabase extends Dexie {
    * 初始化已有数据
    */
   async initArticleData() {
-    await this.transaction("rw", this.articles, async () => {
+    return await this.transaction("rw", this.articles, async () => {
       // 批量插入
       console.time("bulkAdd_articles");
-      let res = await this.articles.bulkPut(article.articleList);
+      await this.articles.bulkPut(article.articleList);
       console.timeEnd("bulkAdd_articles");
-      console.log(`bulkAdd_articles: ===>${res}`);
     });
   }
 }

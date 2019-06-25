@@ -1,49 +1,36 @@
-@import "../core/vars";
+@import "../core/vars"
 
-.default {
+.default
+  a:not(.btn),
+  a:not(.tag-item)
+    color: #333
 
-  a:not(.btn) {
-    color: #333;
+    &:hover
+      color: $themeColor
 
-    &:not(.btn):hover {
-      color: $themeColor;
-    }
-  }
+  .app-main
+    background: #fff
 
-  .app-main {
-    
-  }
+  .app-footer
+    background: rgba(0, 0, 0, 0.7)
+    color: #fff
 
-  .app-footer {
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-  }
+  .app-header-bar.app-header-bar--menu
+    background: rgba(30, 36, 42, 0.8)
 
-  .app-header-bar.app-header-bar--menu {
-    background: rgba(30, 36, 42, 0.8);
+    .menu-section .nav
+      .nav-item
+        .nav-link
+          color: #fff
 
-    .menu-section .nav > li {
-      .nav-link {
-        color: #fff;
+          &:hover,
+          &.active
+            color: $themeColor
 
-        &:hover {
-          color: $themeColor;
-        }
-      }
+  .bg-color
+    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%)
 
-      &.active {
-        .nav-link {
-          color: $themeColor;
-        }
-      }
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .default {
-    .menu-section.active {
-      background: rgba(30, 36, 42, 0.8);
-    }
-  }
-}
+@media all and (max-width: 768px)
+  .default
+    .menu-section.active
+      background: rgba(30, 36, 42, 0.8)

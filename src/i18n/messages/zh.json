@@ -12,7 +12,7 @@
   },
   "nav":{
     "home":"首页",
-    "article":"文章",
+    "articles":"文章",
     "example":"示例",
     "components":"组件",
     "music":"音乐",

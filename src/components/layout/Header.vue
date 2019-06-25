@@ -254,13 +254,18 @@
           >
             <nav class="app-nav">
               <ul class="nav">
-                <router-link
-                  tag="li"
+                <li
+                  class="nav-item"
                   v-for="(menu, index) in menus"
-                  :key="index"
-                  :to="{ name: menu.name }"
+                  :key="`menu-${index}`"
                 >
-                  <a class="nav-link">{{ $t("nav." + menu.name) }}</a>
+                  <router-link
+                    tag="a"
+                    class="nav-link"
+                    :to="{ name: menu.name }"
+                  >
+                    {{ $t("nav." + menu.name) }}
+                  </router-link>
                   <svg
                     class="shape-container"
                     viewBox="0 0 60 40"
@@ -269,7 +274,7 @@
                   >
                     <rect class="shape"></rect>
                   </svg>
-                </router-link>
+                </li>
               </ul>
             </nav>
           </section>
@@ -291,8 +296,8 @@ export default class Header extends Vue {
   @Action("ToggleSideBar") toggleSideBar!: () => void;
 
   menus: Array<any> = [
-    { name: "home", path: "/home", active: true },
-    { name: "article", path: "/article", active: false },
+    { name: "home", path: "/home", active: true, extra: true },
+    { name: "articles", path: "/articles", active: false },
     { name: "example", path: "/example", active: false },
     { name: "components", path: "/components", active: false },
     { name: "music", path: "/music", active: false },

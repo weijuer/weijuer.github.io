@@ -1,35 +1,32 @@
 <template>
-  <main class="article-page">
-    <div class="container">
-      <div class="popular-articles"></div>
-      <div class="normal-articles">
-        <aside class="sidebar">
-          <Card v-for="(item, index) of articles" :key="`article-${index}`">{{
-            item.title
-          }}</Card>
-        </aside>
-        <div class="articles">
-          <Post
-            v-for="(article, index) of articles"
-            :article="article"
-            :key="`article-${index}`"
-          >
-          </Post>
-        </div>
-      </div>
+  <div class="normal-articles">
+    <aside class="sidebar">
+      <Card v-for="(item, index) of articles" :key="`article-${index}`">{{
+        item.title
+      }}</Card>
+    </aside>
+    <div class="articles">
+      <article-post
+        v-for="(article, index) of articles"
+        :article="article"
+        :key="`article-${index}`"
+        type="list"
+        class="article-bordered"
+      >
+      </article-post>
     </div>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import Post from "@components/layout/Post.vue";
+import ArticlePost from "./article-post.vue";
 import Card from "@widgets/Card.vue";
 
 @Component({
   components: {
-    Post,
+    ArticlePost,
     Card
   }
 })
@@ -58,4 +55,8 @@ export default class Article extends Vue {
   display: grid
   grid-template-columns: 30% minmax(0, 1fr)
   gap: 4rem
+
+@media (max-width: 768px)
+  .normal-articles
+    grid-template-columns auto
 </style>

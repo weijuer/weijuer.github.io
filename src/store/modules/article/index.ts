@@ -5,11 +5,13 @@ import mutations from "./mutations";
 interface State {
   initNumber: number;
   articles: Array<any>;
+  article: any;
 }
 
 const state: State = {
   initNumber: 0,
-  articles: []
+  articles: [],
+  article: {}
 };
 
 export default {

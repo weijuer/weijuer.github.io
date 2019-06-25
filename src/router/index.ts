@@ -15,55 +15,72 @@ Vue.use(Router);
 
 // 懒加载路由
 const routes = [
-  {
-    path: "/",
-    name: "home",
-    component: Home
-  },
-  {
-    path: "/article",
-    name: "article",
-    component: () =>
-      import(/* webpackChunkName: "article" */ "../views/pages/Article.vue")
-  },
-  {
-    path: "/example",
-    name: "example",
-    component: () =>
-      import(/* webpackChunkName: "example" */ "../views/pages/Example.vue")
-  },
-  {
-    path: "/components",
-    name: "components",
-    component: () =>
-      import(
+    {
+        path: "/",
+        name: "home",
+        component: Home
+    },
+    {
+        path: "/articles",
+        name: "articles",
+        component: () =>
+            import(/* webpackChunkName: "article" */ "../views/pages/article/Article.vue"),
+        redirect: '/articles/article-list',
+        children: [
+            {
+                path: 'article-list',
+                name: "article-list",
+                component: () =>
+                    import(/* webpackChunkName: "article-list" */ "../views/pages/article/article-list.vue")
+            },
+            {
+                path: 'article-detail/:id',
+                name: "article-detail",
+                component: () =>
+                    import(/* webpackChunkName: "article-details" */ "../views/pages/article/article-details.vue")
+            }
+
+        ]
+    },
+    {
+        path: "/example",
+        name: "example",
+        component: () =>
+            import(/* webpackChunkName: "example" */ "../views/pages/Example.vue")
+    },
+    {
+        path: "/components",
+        name: "components",
+        component: () =>
+            import(
         /* webpackChunkName: "components" */ "../views/pages/Components.vue"
-      )
-  },
-  {
-    path: "/music",
-    name: "music",
-    component: () =>
-      import(/* webpackChunkName: "music" */ "../views/pages/Music.vue")
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/pages/About.vue")
-  },
-  {
-    path: '*',
-    name: "about",
-    component: () => import(/* webpackChunkName: "404" */ "../views/pages/404.vue")
-  }
+            )
+    },
+    {
+        path: "/music",
+        name: "music",
+        component: () =>
+            import(/* webpackChunkName: "music" */ "../views/pages/Music.vue")
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: () =>
+            import(/* webpackChunkName: "about" */ "../views/pages/About.vue")
+    },
+    {
+        path: '*',
+        name: "404",
+        component: () => import(/* webpackChunkName: "404" */ "../views/pages/404.vue")
+    }
 ];
 
 export default new Router({
-  // hash路由以#号分割，history则为常规url
-  mode: 'hash',
-  base: process.env.BASE_URL,
-  linkActiveClass: 'active',
-  // scrollBehavior,
-  routes
+    // hash路由以#号分割，history则为常规url
+    mode: 'hash',
+    base: process.env.BASE_URL,
+    // linkActiveClass: 'active',
+    linkExactActiveClass: 'active',
+    // scrollBehavior,
+    routes
 });

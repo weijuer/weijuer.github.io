@@ -1,6 +1,13 @@
 <template>
   <article class="article" :class="[postType]">
-    <header class="article-header">{{ article.title }}</header>
+    <header class="article-header">
+      <router-link
+        v-if="isLinked"
+        :to="{ name: 'article-detail', params: { id: article.id } }"
+        >{{ article.title }}</router-link
+      >
+      <span v-else>{{ article.title }}</span>
+    </header>
     <div class="article-author">
       <strong>{{ article.author }}</strong>
       <time :datetime="article.lastModified">{{ article.lastModified }}</time>
@@ -8,13 +15,18 @@
     <div class="article-content">
       <p>
         {{ article.description }}
-        <a :href="article.url" class="read-more">Read more</a>
+        <router-link
+          v-if="isLinked"
+          class="read-more"
+          :to="{ name: 'article-detail', params: { id: article.id } }"
+          >Read more</router-link
+        >
       </p>
     </div>
     <div class="article-tags">
       <a
-        class="tag-item"
-        v-for="(tag, index) of tags"
+        class="tag-item bg-color"
+        v-for="(tag, index) of tags()"
         :key="`tag-${index}`"
         href="tag/"
         >{{ tag }}</a
@@ -27,7 +39,7 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class Post extends Vue {
+export default class ArticlePost extends Vue {
   @Prop({ type: String, default: "normal" }) type!: string;
   @Prop({ type: Object }) private article!: W.IArticle;
 
@@ -37,6 +49,10 @@ export default class Post extends Vue {
 
   private get postType() {
     return this.type ? `article-${this.type}` : "";
+  }
+
+  private get isLinked() {
+    return this.type && this.type === "list";
   }
 }
 </script>
@@ -66,13 +82,21 @@ export default class Post extends Vue {
   overflow: hidden
 
   &-normal
-    background #fff
+    background: #fff
 
   &-card
-    border-radius 4px
+    border-radius: 4px
 
   &-bordered
-    border 1px solid #eee
+    border-bottom: 1px dashed #aaa
+
+  .article-header
+    font-size: 24px
+
+  .article-author
+    strong
+      font-size: 14px
+      margin-right: 0.5rem
 
   .article-content
     line-height: 1.6
@@ -84,19 +108,17 @@ export default class Post extends Vue {
     padding: 0.5rem 0 1rem
     line-height: 1.8
 
-    a
-      color: #7a7a8c
+    .tag-item
+      color: #fff
       text-transform: uppercase
       font-weight: 700
       font-size: 0.66rem
       white-space: nowrap
-      border: 3px solid #28242f
       border-radius: 2rem
       margin: 0 0.12rem
       padding: 0.2rem 0.85rem 0.25rem 0.85rem
 
       &:hover
-        color: #03a9f4
-        border-color: #fff
+        color: darken(#fff, 10)
         position: relative
 </style>

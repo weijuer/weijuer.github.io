@@ -10,6 +10,10 @@ const mutations: MutationTree<any> = {
     // 结果处理
     state.articles = articles;
   },
+  GET_ARTICLE(state, article): void {
+    // 结果处理
+    state.article = article;
+  },
   INIT_DB(state, number): void {
     // 结果处理
     state.initNumber = number;

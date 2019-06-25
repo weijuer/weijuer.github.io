@@ -10,11 +10,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Getter, Action } from "vuex-class";
-import Loading from "@views/layout/Loading.vue";
-import Header from "@views/layout/Header.vue";
-import Main from "@views/layout/Main.vue";
-import Footer from "@views/layout/Footer.vue";
+import Loading from "@components/layout/Loading.vue";
+import Header from "@components/layout/Header.vue";
+import Main from "@components/layout/Main.vue";
+import Footer from "@components/layout/Footer.vue";
 import BackToTop from "@components/widgets/BackToTop.vue";
 
 @Component({
@@ -26,17 +25,7 @@ import BackToTop from "@components/widgets/BackToTop.vue";
     Footer
   }
 })
-export default class App extends Vue {
-  @Action("INIT_DB") init_db!: () => void;
-
-  created() {
-    this.initDB();
-  }
-
-  async initDB() {
-    await this.init_db();
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="stylus" src="@/assets/css/index.styl" />

@@ -200,9 +200,9 @@ export default class Clock extends Vue {
       minute.attr({ transform: "r0,80,80" });
     }
 
-    hour.animate({ transform: `r${_hour * 30},80,80` }, 200, mina.elastic);
-    minute.animate({ transform: `r${_minute * 6},80,80` }, 200, mina.elastic);
-    second.animate({ transform: `r${_second * 6},80,80` }, 500, mina.elastic);
+    hour.animate({ transform: `r${_hour * 30},80,80` }, 200);
+    minute.animate({ transform: `r${_minute * 6},80,80` }, 200);
+    second.animate({ transform: `r${_second * 6},80,80` }, 500);
   }
 
   private destroyed() {

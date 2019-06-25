@@ -13,7 +13,6 @@ export default class Main extends Vue {}
 
 <style lang="stylus">
 .app-main {
-  margin: 2em 0;
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
