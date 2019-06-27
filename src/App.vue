@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="app-page default">
+    <Svgs />
     <Loading />
     <Header />
     <Main />
@@ -10,6 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Svgs from "@components/layout/Svgs.vue";
 import Loading from "@components/layout/Loading.vue";
 import Header from "@components/layout/Header.vue";
 import Main from "@components/layout/Main.vue";
@@ -18,6 +20,7 @@ import BackToTop from "@components/widgets/BackToTop.vue";
 
 @Component({
   components: {
+    Svgs,
     BackToTop,
     Loading,
     Header,

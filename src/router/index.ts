@@ -17,6 +17,11 @@ Vue.use(Router);
 const routes = [
     {
         path: "/",
+        name: "index",
+        redirect: "/home.shtml"
+    },
+    {
+        path: "/home.shtml",
         name: "home",
         component: Home
     },
@@ -25,16 +30,16 @@ const routes = [
         name: "articles",
         component: () =>
             import(/* webpackChunkName: "article" */ "../views/pages/article/Article.vue"),
-        redirect: '/articles/article-list',
+        redirect: '/articles/article-list.shtml',
         children: [
             {
-                path: 'article-list',
+                path: 'article-list.shtml',
                 name: "article-list",
                 component: () =>
                     import(/* webpackChunkName: "article-list" */ "../views/pages/article/article-list.vue")
             },
             {
-                path: 'article-detail/:id',
+                path: 'article-detail/:id.shtml',
                 name: "article-detail",
                 component: () =>
                     import(/* webpackChunkName: "article-details" */ "../views/pages/article/article-details.vue")
@@ -43,13 +48,13 @@ const routes = [
         ]
     },
     {
-        path: "/example",
+        path: "/example.shtml",
         name: "example",
         component: () =>
             import(/* webpackChunkName: "example" */ "../views/pages/Example.vue")
     },
     {
-        path: "/components",
+        path: "/components.shtml",
         name: "components",
         component: () =>
             import(
@@ -57,13 +62,13 @@ const routes = [
             )
     },
     {
-        path: "/music",
+        path: "/music.shtml",
         name: "music",
         component: () =>
             import(/* webpackChunkName: "music" */ "../views/pages/Music.vue")
     },
     {
-        path: "/about",
+        path: "/about.shtml",
         name: "about",
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/pages/About.vue")

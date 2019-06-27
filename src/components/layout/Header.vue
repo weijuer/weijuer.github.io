@@ -7,7 +7,7 @@
             <nav class="app-nav">
               <ul class="nav">
                 <li>
-                  <a href="">
+                  <a href>
                     <svg
                       class="icon"
                       style="width: 1.3125rem; height: 1.3125rem;vertical-align: middle;fill: currentColor;overflow: hidden;"
@@ -18,19 +18,19 @@
                     >
                       <path
                         d="M958.828 614.546c0-120.659-111.006-218.796-250.973-223.622-16.090-141.573-152.836-252.582-318.542-252.582-176.967 0-320.15 123.879-320.15 278.321 0 91.7 51.483 172.142 130.311 223.622 9.653 4.827-28.959 85.266-19.305 90.094 16.090 9.653 80.441-59.525 98.137-53.090 35.394 11.263 72.396 17.696 112.617 17.696 19.305 0 38.61-1.609 57.917-4.827 37.003 85.266 133.531 146.399 246.146 146.399 30.567 0 61.134-4.827 88.485-12.87 8.043-3.219 70.787 51.483 78.831 48.265 14.478-4.827-25.741-69.178-12.87-77.222 65.962-40.22 109.398-106.181 109.398-180.186zM598.457 558.236c-14.478 0-27.348-12.87-27.348-27.348s11.263-27.348 27.348-27.348c14.478 0 27.348 12.87 27.348 27.348 0 14.478-11.263 27.348-27.348 27.348zM432.75 614.546c0 6.434 0 14.478 1.609 22.523-14.478 1.609-28.959 3.219-43.437 3.219-37.003 0-72.396-6.434-104.571-17.696-3.219-1.609-14.478-4.827-20.914 0-14.478 9.653-32.174 32.174-32.174 32.174s6.434-16.090 9.653-38.61c1.609-9.653-14.478-17.696-17.696-19.305-59.525-40.22-98.137-109.398-98.137-178.578 0-123.879 117.441-223.622 263.841-223.622 136.749 0 247.756 86.874 262.234 199.489-125.486 17.696-220.405 109.398-220.405 220.405zM765.771 558.236c-14.478 0-27.348-12.87-27.348-27.348s11.263-27.348 27.348-27.348c14.478 0 27.348 12.87 27.348 27.348 0 14.478-11.263 27.348-27.348 27.348z"
-                        fill=""
+                        fill
                         p-id="3757"
                       ></path>
                       <path
                         d="M501.93 360.356c22.523 0 41.828-19.305 41.828-41.828s-19.305-41.828-41.828-41.828c-22.523 0-41.828 19.305-41.828 41.828 0 24.132 19.305 41.828 41.828 41.828zM279.915 360.356c22.523 0 41.828-19.305 41.828-41.828s-19.305-41.828-41.828-41.828c-22.523 0-41.828 19.305-41.828 41.828 0 24.132 17.696 41.828 41.828 41.828z"
-                        fill=""
+                        fill
                         p-id="3758"
                       ></path>
                     </svg>
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href>
                     <svg
                       class="icon"
                       style="width: 1.3125rem; height: 1.25rem;vertical-align: middle;fill: currentColor;overflow: hidden;"
@@ -47,7 +47,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href>
                     <svg
                       class="icon"
                       style="width: 1.3125rem; height: 1.3125rem;vertical-align: middle;fill: currentColor;overflow: hidden;"
@@ -69,18 +69,20 @@
           <section class="app-header-section help-section">
             <nav class="app-nav">
               <ul class="nav nav-row nav-divider">
-                <li><a href="" class="nav-link">联系</a></li>
-                <li><a href="" class="nav-link">反馈</a></li>
+                <li>
+                  <a href class="nav-link">联系</a>
+                </li>
+                <li>
+                  <a href class="nav-link">反馈</a>
+                </li>
                 <li class="dropdown">
-                  <a href="javascript:;" class="nav-link">
-                    中文
-                  </a>
+                  <a href="javascript:;" class="nav-link">中文</a>
                   <ul class="nav nav-column nav-dropdown">
                     <li>
-                      <a href="">中文</a>
+                      <a href>中文</a>
                     </li>
                     <li>
-                      <a href="">English</a>
+                      <a href>English</a>
                     </li>
                   </ul>
                 </li>
@@ -96,130 +98,8 @@
         <div class="app-header-content">
           <section class="app-header-section logo-section">
             <div class="logo">
-              <svg
-                version="1.1"
-                id="weijuer"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                viewBox="0 0 240 120"
-                xml:space="preserve"
-              >
-                <path
-                  id="line"
-                  class="logo-line"
-                  d="M27.2,48.3C24.6,54.4,13,53,13,53c-15.8-7.3-5.6-25.5,1.8-26c6.6-2.5,14.3,0.3,14.8,0.7
-                  c7.6,5.5,7.7,10.3,7.7,10.3s2.4,10.5,0,24.6l-2.3,14c-0.2,1,0.9,1.5,1.4,0.8c5.7-8.6,21.3-32,21.6-30.5c0.4,1.9-4.9,32.9-2.4,34.2
-                  c5.2,1,22.4-43.3,29.6-45.9C87.8,36.8,92,65.2,93,66c1.8,0,12.7-8,13.6-14.4c-0.8-3.6-3.7-4-5.3-2.7c-1.7,1.2-5.3,4.6-5.9,10.3
-                  s1.3,13.5,4.7,13.7c5.3,0.3,16.9-19.7,18.4-18.5c1.8,3.6-7,21.4-1.2,21.6c5-3.9,15.3-24.2,17.8-25.7c2.7,0.3-8.5,41.1-10.4,44.1
-                  c-3,4.9-9.5,8.1-4.4-4.4c4.2-10.3,24.8-36.5,26.7-33.5c-1.3,5.3-3.4,14-1.2,16.4s3.4,1.9,5.3,0.7c1.9,0.1,6.4-9.6,7.5-17.9
-                  c0.1-0.7,0.9-0.8,1.1-0.1c1.1,4.9-3.2,17.2,1.2,15.9c1.7-0.5,19.2-15.9,19.9-19.2c0.7-3.3-1.3-4.8-3-4.8c-1.7,0-7.5,6.8-8.3,13
-                  c-0.5,4.8-1,10.1,4.1,11.6c5.5,1,15.5-16.9,16-17.1c3.4,0.8,7.1,6.2,7.1,6.2s-8.9,14.5-8.3,13.7c0.6-0.8,23.1-7.2,28.1-5.8
-                  c4.9,1.3,4.9,6.2,2.4,7.2c-6.8,2.7-146.1,11.3-153.2,6.2c-1.7-1.2,16.1-3.2,17.2-3.4c1.1-0.2,79-2.7,81.2-2.7
-                  c14.2,0,74.7,7.2,71.7,6.2"
-                ></path>
-                <path
-                  id="dot_first"
-                  class="logo-dot"
-                  d="M116.8,40.2l3.7,3.5"
-                ></path>
-                <path
-                  id="dot_second"
-                  class="logo-dot"
-                  d="M133.4,39.4l4.2,2.8"
-                ></path>
-              </svg>
-
-              <svg
-                class="icon-logo hidden"
-                viewBox="0 0 120 60"
-                xmlns="http://www.w3.org/2000/svg"
-                version="1.1"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                xml:space="preserve"
-              >
-                <defs>
-                  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#01c790;"></stop>
-                    <stop
-                      offset="50%"
-                      style="stop-color:rgb(93,255,178);"
-                    ></stop>
-                    <stop offset="100%" style="stop-color:#01c790;"></stop>
-                  </linearGradient>
-
-                  <radialGradient id="gr-radial" cx="50%" cy="50%" r="100%">
-                    <animate
-                      attributeName="r"
-                      values="0%;90%;90%;0%"
-                      dur="3s"
-                      repeatCount="indefinite"
-                    ></animate>
-                    <stop stop-color="#000" offset="0"></stop>
-                    <stop stop-color="#000" offset="60%"></stop>
-                    <stop
-                      offset="100%"
-                      style="stop-color:rgba(255,0,0,0.8);"
-                    ></stop>
-                  </radialGradient>
-                </defs>
-
-                <g
-                  id="arm"
-                  style="stroke:#fff;stroke-width:1px;stroke-miterlimit:10;"
-                  fill="none"
-                >
-                  <circle id="inner-circle" cx="0" cy="40" r="4"></circle>
-                  <circle id="midlle-circle" cx="0" cy="40" r="8"></circle>
-                  <circle id="outer-circle" cx="0" cy="40" r="12"></circle>
-                  <path stroke="#fff" d="m 0 0, l 0 60"></path>
-                  <animateMotion
-                    xlink:href="#arm"
-                    path="M 0 0, l 120 0, z"
-                    dur="3s"
-                    fill="freeze"
-                    repeatCount="indefinite"
-                  ></animateMotion>
-                </g>
-
-                <g
-                  id="logo-text"
-                  font-size="36"
-                  stroke-width="1"
-                  text-anchor="middle"
-                >
-                  <path stroke="#fff" d="m 0 40, l 120 0"></path>
-                  <a xlink:href="/" target="_blank">
-                    <text x="60" y="39" fill="url(#bg)">
-                      Weijuer
-                      <animate
-                        attributeName="fill-opacity"
-                        attributeType="CSS"
-                        values="1;0.4;1"
-                        begin="0s"
-                        dur="3s"
-                        repeatCount="indefinite"
-                      ></animate>
-                    </text>
-                  </a>
-                </g>
-
-                <text
-                  xml:space="preserve"
-                  id="text21859"
-                  x="60"
-                  y="39"
-                  fill="url(#bg)"
-                >
-                  <textPath
-                    xlink:href="#path21838"
-                    startOffset="50%"
-                    id="textPath21881"
-                  >
-                    <tspan id="tspan21861">Marzo</tspan>
-                  </textPath>
-                </text>
+              <svg class="icon svg-icon icon-logo">
+                <use xlink:href="#icon-logo" x="0px" y="0px"></use>
               </svg>
             </div>
 
@@ -228,19 +108,8 @@
               href="javascript:;"
               @click="toggleSideBar"
             >
-              <svg
-                class="icon-logo"
-                style="width: 100%; height: 100%;vertical-align: middle;fill: currentColor;overflow: hidden;"
-                viewBox="0 0 40 40"
-                xmlns="http://www.w3.org/2000/svg"
-                version="1.1"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g font-size="26" stroke-width="1" text-anchor="middle">
-                  <path stroke="#fff" d="M 2 8, l 36 0"></path>
-                  <path stroke="#fff" d="M 2 20, l 36 0"></path>
-                  <path stroke="#fff" d="M 2 32, l 36 0"></path>
-                </g>
+              <svg class="icon svg-icon">
+                <use xlink:href="#icon-menu-toggle"></use>
               </svg>
             </a>
           </section>
@@ -263,14 +132,12 @@
                     tag="a"
                     class="nav-link"
                     :to="{ name: menu.name }"
+                    >{{ $t("nav." + menu.name) }}</router-link
                   >
-                    {{ $t("nav." + menu.name) }}
-                  </router-link>
                   <svg
                     class="shape-container"
                     viewBox="0 0 60 40"
                     version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect class="shape"></rect>
                   </svg>
@@ -296,12 +163,12 @@ export default class Header extends Vue {
   @Action("ToggleSideBar") toggleSideBar!: () => void;
 
   menus: Array<any> = [
-    { name: "home", path: "/home", active: true, extra: true },
-    { name: "articles", path: "/articles", active: false },
-    { name: "example", path: "/example", active: false },
-    { name: "components", path: "/components", active: false },
-    { name: "music", path: "/music", active: false },
-    { name: "about", path: "/about", active: false }
+    { name: "home", path: "/home", active: true },
+    { name: "articles", path: "/articles", active: false }
+    // { name: "example", path: "/example", active: false },
+    // { name: "components", path: "/components", active: false },
+    // { name: "music", path: "/music", active: false },
+    // { name: "about", path: "/about", active: false }
   ];
 
   isToggle: boolean = false;
@@ -333,54 +200,10 @@ export default class Header extends Vue {
 </script>
 
 <style scoped lang="stylus">
-$themeColor= #72af3a
-$fontColor= #333
-$bgColor= #bee897
+.logo
+  position: relative
 
-.logo {
-  position: relative;
-
-  .logo-line {
-    fill: transparent;
-    stroke: #fff;
-    stroke-width: 4px;
-    stroke-miterlimit: 10;
-    stroke-linecap: round;
-    stroke-dasharray: 1060, 0;
-    stroke-dashoffset: 1061px;
-  }
-
-  .logo-dot {
-    fill: transparent;
-    stroke: #fff;
-    stroke-width: 4px;
-    stroke-miterlimit: 10;
-    stroke-linecap: round;
-    stroke-dasharray: 20, 0;
-    stroke-dashoffset: 20px;
-  }
-
-  &:hover .logo-line {
-    animation: draw 1s linear forwards;
-  }
-
-  &:hover .logo-dot {
-    animation: draw .3s .2s linear forwards;
-  }
-
-}
-
-@keyframes draw {
-  0% {
-    stroke-width: 4px;
-    stroke-dasharray: 5, 1060;
-    stroke-dashoffset: 1061px;
-  }
-  100% {
-    stroke: $themeColor;
-    stroke-width: 4px;
-    stroke-dasharray: 1060, 0;
-    stroke-dashoffset: 1061px;
-  }
-}
+  .icon-logo
+    width: 100%
+    height: 100%
 </style>

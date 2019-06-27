@@ -27,17 +27,16 @@ export default class Main extends Vue {}
 }
 
 .fade-enter-active {
-  transition: all 0.5s 0.3s;
+  transition: all 0.5s 0.3s ease-in-out;
 }
 
 // 显示时间持续1.5s
 .fade-leave-active {
-  transition: all 0.3s 0.2s;
+  transition: all 0.3s 0.2s ease-in-out;
 }
 
 .fade-enter, .fade-leave-active {
   opacity: 0;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  transform: translate(0, -30px);
 }
 </style>

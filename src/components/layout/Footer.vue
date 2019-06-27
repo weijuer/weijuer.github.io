@@ -2,7 +2,7 @@
   <footer class="app-footer">
     <div class="container">
       <section class="app-footer-section">
-        @Weijuer | Powered By Weijuer @2018-2019
+        Powered By Weijuer @2018-2019
       </section>
     </div>
   </footer>
@@ -19,5 +19,7 @@ export default class Footer extends Vue {}
 .app-footer-section
   display: flex
   justify-content: center
+  align-items center
+  height 40px
   font-size: 14px
 </style>

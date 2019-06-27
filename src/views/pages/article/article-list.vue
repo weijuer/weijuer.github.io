@@ -1,9 +1,45 @@
 <template>
   <div class="normal-articles">
     <aside class="sidebar">
-      <Card v-for="(item, index) of articles" :key="`article-${index}`">{{
-        item.title
-      }}</Card>
+      <Panel header="标签云">
+        <div class="tags-cloud">
+          <router-link
+            class="nav-link tag-item"
+            v-for="(tag, index) of tags"
+            :key="`tag-${index}`"
+            :to="{ name: 'tag-detail', params: { id: tag.code } }"
+            >{{ tag.code }}</router-link
+          >
+        </div>
+      </Panel>
+      <Panel header="最新">
+        <!-- <h1 slot="header">最新</h1> -->
+        <ul class="nav nav-column">
+          <li>
+            <a href>1奥斯丁</a>
+          </li>
+          <li>
+            <a href>2奥斯丁</a>
+          </li>
+          <li>
+            <a href>3奥斯丁</a>
+          </li>
+        </ul>
+      </Panel>
+      <Panel header="最热">
+        <!-- <h1 slot="header">最新</h1> -->
+        <ul class="nav nav-column">
+          <li>
+            <a href>1奥斯丁</a>
+          </li>
+          <li>
+            <a href>2奥斯丁</a>
+          </li>
+          <li>
+            <a href>3奥斯丁</a>
+          </li>
+        </ul>
+      </Panel>
     </aside>
     <div class="articles">
       <article-post
@@ -12,8 +48,7 @@
         :key="`article-${index}`"
         type="list"
         class="article-bordered"
-      >
-      </article-post>
+      ></article-post>
     </div>
   </div>
 </template>
@@ -22,17 +57,22 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
 import ArticlePost from "./article-post.vue";
-import Card from "@widgets/Card.vue";
+import Panel from "@widgets/Panel.vue";
 
 @Component({
   components: {
     ArticlePost,
-    Card
+    Panel
   }
 })
 export default class Article extends Vue {
   @Getter articles!: any[];
   @Action("GET_ARTICLES") get_articles!: () => void;
+
+  private tags: Array<any> = [
+    { id: 1, path: "js", code: "javascript", desc: "脚本" },
+    { id: 2, path: "html", code: "html", desc: "页面" }
+  ];
 
   private mounted(): void {
     this.init();
@@ -54,9 +94,28 @@ export default class Article extends Vue {
 .normal-articles
   display: grid
   grid-template-columns: 30% minmax(0, 1fr)
-  gap: 4rem
+  gap: 2rem
+
+  .articles
+    background: #fff
+
+    .article
+      &:last-child
+        border: 0
+
+  .tags-cloud
+    .tag-item
+      margin: 0 0.12rem
+      padding: 0.2rem 0.85rem 0.25rem 0.85rem
+      font-weight: 700
+      font-size: 0.66rem
+      white-space: nowrap
+      border-radius: 2rem
+      color: #fff
+      background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+      text-transform: uppercase
 
 @media (max-width: 768px)
   .normal-articles
-    grid-template-columns auto
+    grid-template-columns: auto
 </style>

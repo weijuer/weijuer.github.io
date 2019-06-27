@@ -44,6 +44,7 @@ export default class ArticlePost extends Vue {
   @Prop({ type: Object }) private article!: W.IArticle;
 
   private tags() {
+    console.log(`article:===>${this.article}`);
     return this.article.tags.split(",");
   }
 
@@ -69,15 +70,16 @@ export default class ArticlePost extends Vue {
   padding-bottom: 0.15rem
 
   &:hover
-    background: linear-gradient(to right, #ff8a00, #da1b60)
+    background: linear-gradient(to right, #da1b60, #ff8a00)
     background-clip: text
     -webkit-text-fill-color: transparent
     box-decoration-break: clone
-    border-bottom: 1px solid #fff
+    border-bottom: 1px solid #ff8a00
     text-shadow: none
 
 .article
-  margin: 0 0 4rem 0
+  margin: 0
+  padding 1.5625rem
   position: relative
   overflow: hidden
 
