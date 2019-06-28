@@ -3,12 +3,12 @@
     <aside class="sidebar">
       <Panel header="标签云">
         <div class="tags-cloud">
-          <router-link
+          <a
             class="nav-link tag-item"
             v-for="(tag, index) of tags"
             :key="`tag-${index}`"
             :to="{ name: 'tag-detail', params: { id: tag.code } }"
-            >{{ tag.code }}</router-link
+            >{{ tag.code }}</a
           >
         </div>
       </Panel>

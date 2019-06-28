@@ -20,7 +20,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class Panel extends Vue {
   @Prop({ type: String }) type!: string;
-  @Prop({ default: () => {}, type: Object }) header: any;
+  @Prop({ type: String }) header: any;
   @Prop({ default: () => {}, type: Object }) footer: any;
 
   get panelType() {

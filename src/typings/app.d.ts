@@ -14,4 +14,6 @@ declare namespace W {
     image: string;
     lastModified: string;
   }
+
 }
+
