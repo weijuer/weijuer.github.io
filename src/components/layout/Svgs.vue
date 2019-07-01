@@ -38,6 +38,23 @@
       </radialGradient>
     </defs>
 
+    <symbol id="effect-wave" viewBox="0 0 300 200">
+      <g fill="rgba(106,127,239,0.1)">
+        <path
+          d="M 0 70 Q 75 39, 150 70 T 300 70 T 450 70 T 600 70 T 750 70 V 100 H 0 V 0"
+        ></path>
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          from="0"
+          to="-300"
+          dur="1.5s"
+          repeatCount="indefinite"
+        ></animateTransform>
+      </g>
+    </symbol>
+
     <symbol id="icon-logo" viewBox="0 0 240 120">
       <title>logo</title>
       <g class="group">

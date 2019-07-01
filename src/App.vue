@@ -11,21 +11,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Svgs from "@components/layout/Svgs.vue";
-import Loading from "@components/layout/Loading.vue";
-import Header from "@components/layout/Header.vue";
-import Main from "@components/layout/Main.vue";
-import Footer from "@components/layout/Footer.vue";
-import BackToTop from "@components/widgets/BackToTop.vue";
+import Layout from "@layout";
+import Widgets from "@widgets";
 
 @Component({
   components: {
-    Svgs,
-    BackToTop,
-    Loading,
-    Header,
-    Main,
-    Footer
+    Svgs: Layout.Svgs,
+    BackToTop: Widgets.BackToTop,
+    Loading: Layout.Loading,
+    Header: Layout.Header,
+    Main: Layout.Main,
+    Footer: Layout.Footer
   }
 })
 export default class App extends Vue {}

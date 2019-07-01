@@ -2,6 +2,9 @@
   <div class="normal-articles">
     <aside class="sidebar">
       <Panel header="标签云">
+        <svg class="icon svg-icon bg-effect">
+          <use xlink:href="#effect-wave"></use>
+        </svg>
         <div class="tags-cloud">
           <a
             class="nav-link tag-item"

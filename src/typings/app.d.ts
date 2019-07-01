@@ -14,6 +14,8 @@ declare namespace W {
     image: string;
     lastModified: string;
   }
-
 }
 
+declare module "@layout";
+
+declare module "@widgets";

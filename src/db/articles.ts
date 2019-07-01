@@ -9,11 +9,9 @@ export class ArticleDatabase extends Dexie {
     super("ArticleDatabase");
 
     // create articles table
-    this
-      .version(1)
-      .stores({
-        articles: "++id,title,author,lastModified,description,tags"
-      });
+    this.version(1).stores({
+      articles: "++id,title,author,lastModified,description,tags"
+    });
 
     this.articles = this.table("articles");
   }

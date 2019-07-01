@@ -4,13 +4,13 @@ import { get_articles, initDB, get_article } from "@/api/article";
 const actions: ActionTree<any, any> = {
   /**
    * init DB
-   * @param param0 
+   * @param param0
    */
-  async INIT_DB({commit}) {
+  async INIT_DB({ commit }) {
     try {
       let res: any = await initDB();
-      
-      if(res) {
+
+      if (res) {
         // 处理数据
         commit("INIT_DB", res);
       }
@@ -39,7 +39,7 @@ const actions: ActionTree<any, any> = {
       console.log(err);
     }
   },
-    /**
+  /**
    * 获取article
    * @param param0
    */
