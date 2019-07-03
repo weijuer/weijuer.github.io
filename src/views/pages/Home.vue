@@ -39,6 +39,9 @@
           </nav>
         </div>
       </div>
+      <div class="widgets">
+        <Weather />
+      </div>
     </div>
   </main>
 </template>
@@ -46,11 +49,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import Bubble from "@widgets/Bubble.vue";
+import Widgets from "@widgets";
 
 @Component({
   components: {
-    Bubble
+    Bubble: Widgets.Bubble,
+    Weather: Widgets.Weather
   }
 })
 export default class Home extends Vue {

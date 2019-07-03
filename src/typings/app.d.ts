@@ -14,6 +14,14 @@ declare namespace W {
     image: string;
     lastModified: string;
   }
+
+  interface IWeather {
+    city: string,
+    yesterday: any,
+    forecast: Forecast[],
+    ganmao: string,
+    wendu: string
+  }
 }
 
 declare module "@layout";

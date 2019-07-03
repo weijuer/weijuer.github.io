@@ -108,7 +108,7 @@
               href="javascript:;"
               @click="toggleSideBar"
             >
-              <svg class="icon svg-icon">
+              <svg class="icon svg-icon icon-menu-toggle">
                 <use xlink:href="#icon-menu-toggle"></use>
               </svg>
             </a>

@@ -1,0 +1,59 @@
+{
+  "data": {
+    "yesterday": {
+      "date": "1日星期一",
+      "high": "高温 31℃",
+      "fx": "东南风",
+      "low": "低温 22℃",
+      "fl": "<![CDATA[<3级]]>",
+      "type": "多云"
+    },
+    "city": "南京",
+    "forecast": [
+      {
+        "date": "2日星期二",
+        "high": "高温 30℃",
+        "fengli": "<![CDATA[<3级]]>",
+        "low": "低温 22℃",
+        "fengxiang": "东风",
+        "type": "多云"
+      },
+      {
+        "date": "3日星期三",
+        "high": "高温 28℃",
+        "fengli": "<![CDATA[<3级]]>",
+        "low": "低温 21℃",
+        "fengxiang": "东风",
+        "type": "阴"
+      },
+      {
+        "date": "4日星期四",
+        "high": "高温 28℃",
+        "fengli": "<![CDATA[<3级]]>",
+        "low": "低温 23℃",
+        "fengxiang": "东南风",
+        "type": "阴"
+      },
+      {
+        "date": "5日星期五",
+        "high": "高温 23℃",
+        "fengli": "<![CDATA[<3级]]>",
+        "low": "低温 23℃",
+        "fengxiang": "东风",
+        "type": "小雨"
+      },
+      {
+        "date": "6日星期六",
+        "high": "高温 24℃",
+        "fengli": "<![CDATA[<3级]]>",
+        "low": "低温 20℃",
+        "fengxiang": "东北风",
+        "type": "阴"
+      }
+    ],
+    "ganmao": "各项气象条件适宜，发生感冒机率较低。但请避免长期处于空调房间中，以防感冒。",
+    "wendu": "28"
+  },
+  "status": 1000,
+  "desc": "OK"
+}

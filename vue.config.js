@@ -107,6 +107,20 @@ module.exports = {
         pathRewrite: {
           "^/douban": ""
         }
+      },
+      "/ip": {
+        target: "https://extreme-ip-lookup.com/json/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/ip": ""
+        }
+      },
+      "/weather": {
+        target: "https://bird.ioliu.cn/weather",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/weather": ""
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-loading" v-show="!isLoading">
+  <div class="app-loading" v-show="isLoading">
     <svg
       style="width: 60px; height: 60px;vertical-align: middle;fill: currentColor;overflow: hidden;"
       version="1.1"

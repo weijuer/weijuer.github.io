@@ -12,6 +12,20 @@
   box-sizing: border-box
 }
 
+html,body,.scrollbar
+  &::-webkit-scrollbar
+    width: 6px
+    height: 6px
+
+  &::-webkit-scrollbar-thumb
+    background: #201c29
+    border-radius: 6px
+    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.25)
+
+  &::-webkit-scrollbar-track
+    background: linear-gradient(to right, #a9a9a9, #9e9e9e)
+    border-radius: 6px
+
 html {
   font-family: @fontFamily;
   line-height: 1.15;
