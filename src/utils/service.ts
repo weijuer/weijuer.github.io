@@ -4,8 +4,8 @@ import store from "../store";
 
 /****** 创建axios实例 ******/
 const service = axios.create({
-  // 允许携带cookie
-  withCredentials: true,
+  // 允许携带cookie: true, 允许跨域：false
+  withCredentials: false,
   // api的base_url
   baseURL: process.env.BASE_URL,
   // 请求超时时间
@@ -28,7 +28,7 @@ service.interceptors.request.use(
       ? (config.data = qs.stringify({ ...config.data }))
       : (config.params = { ...config.params });
 
-    // config.headers["Content-Type"] = "application/x-www-form-urlencoded";
+    config.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
     return config;
   },

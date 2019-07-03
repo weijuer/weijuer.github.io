@@ -5,7 +5,7 @@
         <div class="avatar shadow shadow-moving">
           <Bubble class="bubble-moving">
             <svg class="icon svg-icon avatar-logo">
-              <use xlink:href="#icon-logo@2x"></use>
+              <use xlink:href="#icon-logo@2x" />
             </svg>
           </Bubble>
         </div>
@@ -17,21 +17,21 @@
               <li class="nav-item">
                 <a href>
                   <svg class="icon svg-icon">
-                    <use xlink:href="#icon-weixin"></use>
+                    <use xlink:href="#icon-weixin" />
                   </svg>
                 </a>
               </li>
               <li class="nav-item">
                 <a href>
                   <svg class="icon svg-icon">
-                    <use xlink:href="#icon-qq"></use>
+                    <use xlink:href="#icon-qq" />
                   </svg>
                 </a>
               </li>
               <li class="nav-item">
                 <a href>
                   <svg class="icon svg-icon">
-                    <use xlink:href="#icon-weibo"></use>
+                    <use xlink:href="#icon-weibo" />
                   </svg>
                 </a>
               </li>
@@ -89,8 +89,8 @@ $bubble-color = #4cbf30
     margin-bottom: 2rem
 
     .avatar-logo
-      width 100%
-      height auto
+      width: 100%
+      height: auto
 
   .nickname
     margin-bottom: 1rem
@@ -101,4 +101,9 @@ $bubble-color = #4cbf30
     text-transform: capitalize
     font-style: italic
     transition: all 0.3s ease-in-out
+
+@media (max-width: 768px)
+  .app-main
+    &.home-page
+      flex-direction row
 </style>

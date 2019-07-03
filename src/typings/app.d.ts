@@ -16,11 +16,13 @@ declare namespace W {
   }
 
   interface IWeather {
-    city: string,
-    yesterday: any,
-    forecast: Forecast[],
-    ganmao: string,
-    wendu: string
+    aqi: any;
+    basic: Weather.Basic;
+    daily_forecast: Weather.Forecast[];
+    hourly_forecast: Weather.Forecast[];
+    now: Weather.Now;
+    status: string;
+    suggestion: any
   }
 }
 
