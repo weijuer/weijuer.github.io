@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server",
+  "main": "index.js",
+  "author": "Weijuer",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/puppeteer": "^1.12.4",
+    "puppeteer": "^1.18.1",
+    "typescript": "^3.5.3"
+  }
+}
