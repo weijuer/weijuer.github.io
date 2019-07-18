@@ -19,9 +19,12 @@ declare namespace W {
 
 // 接口类型定义
 type Article = {
+  id?:number;
   title: string;
-  url: string;
-  desc: string;
   author: string;
-  date: string;
+  portrait?:string;
+  url: string;
+  description: string;
+  tags?: string;
+  lastModified: string;
 }

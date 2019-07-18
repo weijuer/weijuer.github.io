@@ -1,5 +1,5 @@
-import fs = require('fs');
-const dataDir = '../data/';
+const fs = require('fs');
+const DATADIR = './data';
 
 /**
  * 获取节点文字
@@ -7,7 +7,7 @@ const dataDir = '../data/';
  * @param selector 
  */
 export const getText = (v: Element, selector: string): string => {
-  return v.querySelector(selector) && v.querySelector(selector).innerHTML;
+  return v.querySelector(selector) && v.querySelector(selector).innerHTML.trim();
 };
 
 /**
@@ -35,10 +35,16 @@ export const sleep = (time: number) => new Promise((resolve, reject) => {
  * @param name 待保存文件名
  * @param data data数据
  */
-export const saveLocalData = (name: string, data: string) => {
-  fs.writeFile( `${dataDir}${name}.json`, data, 'utf-8', err => {
+export const saveLocalData = async (name: string, data: string) => {
+
+  const fileName = `${DATADIR}/${name}.json`;
+  // 异步写入文件
+  await fs.writeFileSync(fileName, data);
+  console.log(`JSON文件成功保存到：${DATADIR}/${name}.json`);
+  // 同步写入文件
+  /* fs.writeFile(`${DATADIR}${name}.json`, data, (err: any) => {
     if (!err) {
-      console.log(`JSON文件成功保存到：${dataDir}${name}.json`);
+      console.log(`JSON文件成功保存到：${DATADIR}${name}.json`);
     }
-  })
+  }) */
 }

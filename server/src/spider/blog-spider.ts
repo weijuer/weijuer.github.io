@@ -1,5 +1,5 @@
 import * as puppeteer from 'puppeteer-core';
-import { getText, getAttr, sleep, saveLocalData } from '../utils/tools';
+import { saveLocalData } from '../utils/tools';
 
 // 缩写 console.log
 const log = console.log;
@@ -31,15 +31,6 @@ const scrape = async (url: string, callback: puppeteer.EvaluateFn) => {
   // 等待60秒
   // await sleep(60321);
 
-  // 监听页面内部的console消息
-  page.on('console', msg => {
-    if (typeof msg === 'object') {
-      console.dir(msg)
-    } else {
-      log(msg)
-    }
-  });
-
   // 分析页面
   const result = await page.evaluate(callback);
 
@@ -52,6 +43,25 @@ const scrape = async (url: string, callback: puppeteer.EvaluateFn) => {
 
 // 分析首页数据
 const indexScrape = () => {
+
+  /**
+ * 获取节点文字
+ * @param v 
+ * @param selector 
+ */
+  const getText = (v: Element, selector: string): string => {
+    return v.querySelector(selector) && v.querySelector(selector).innerHTML.trim();
+  };
+
+  /**
+   * 获取节点属性
+   * @param v 
+   * @param selector 
+   * @param attr 
+   */
+  const getAttr = (v: Element, selector: string, attr: string): string => {
+    return v.querySelector(selector) && v.querySelector(selector).getAttribute(attr);
+  };
 
   // 获取所有items元素
   const items = Array.from(
@@ -67,9 +77,9 @@ const indexScrape = () => {
     const item: Article = {
       title: getText(v, ".info .com-article-title"),
       url: getAttr(v, ".info .favorite > a", "href"),
-      desc: getText(v, ".info .summary"),
+      description: getText(v, ".info .summary"),
       author: getText(v, ".info .editor > a.author"),
-      date: getText(v, ".info .extra .date")
+      lastModified: getText(v, ".info .extra .date")
     };
     // 存入数组
     data.push(item);
@@ -79,11 +89,12 @@ const indexScrape = () => {
 }
 
 const init = () => {
+
   scrape("https://www.infoq.cn/topic/Front-end", indexScrape)
     .then((res) => {
       log(res);
       // 数据存文件
-      saveLocalData('Blog', res);
+      saveLocalData('Blog', JSON.stringify(res, null, 4));
     })
     .catch((e: any) => { log(e) });
 }

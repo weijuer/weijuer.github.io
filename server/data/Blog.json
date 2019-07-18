@@ -1,0 +1,86 @@
+[
+    {
+        "title": "TypeScript 为什么能成为前端圈新宠？ | 极客时间",
+        "url": "/article/LoTp4ZjuPZxssUB0*jqL",
+        "desc": "前端开发者为什么要重塑“类型思维”? TypeScript 在 React、Vue、以及 Node.js 中有什么开发实践？",
+        "author": "梁宵",
+        "date": "4 小时前"
+    },
+    {
+        "title": "SwiftUI：苹果的一次天才尝试",
+        "url": "/article/hSIMYdM*ExAMGVQL8kXj",
+        "desc": "本文作者分享了使用 SwiftUI 构建网易严选的 iPad 版本 —— YanxuanHD（源码见参考链接）过程中思考和感悟。从最初的惊喜到迷茫、再到困惑直到若有所得。",
+        "author": "王亮",
+        "date": "5 小时前"
+    },
+    {
+        "title": "你知道这五种好用的编程模式吗？",
+        "url": "/article/uxD4_iA3IFiOadEuGse6",
+        "desc": "这篇文章中介绍了一些编程时使用的模式。有些模式是基于作者工作时所做的观察，还有一些是作者这些年从同事那里学来的。",
+        "author": "John Stewart",
+        "date": "5 小时前"
+    },
+    {
+        "title": "2019 年最优秀的 JIRA 项目管理工具替代方案",
+        "url": "/article/uqVRar6QoXUZ4R6C_z8S",
+        "desc": "JIRA 是最受欢迎的项目管理工具之一，也是软件开发团队的首选。如今有数以百万计的用户正在使用 JIRA 做计划、开发、记录问题、跟踪进度，从而快速发布新软件",
+        "author": "Ronak Patel",
+        "date": "5 小时前"
+    },
+    {
+        "title": "实例解说 AngularJS 在自动化测试中的应用",
+        "url": "/article/fZG*137NwirrpA4WmHjU",
+        "desc": "本文用实例演示 AngularJS 在自动化测试中的应用。",
+        "author": "武贯祥",
+        "date": "15 小时前"
+    },
+    {
+        "title": "Chrome 74 发布：可开启原生延迟加载特性",
+        "url": "/article/SfF-xzswsdrfhAZNAj5G",
+        "desc": "延迟加载不可见内容可以减少流量和内存消耗，同时加快首要内容的展示。",
+        "author": "Bruno Couriol",
+        "date": "15 小时前"
+    },
+    {
+        "title": "面向 Web 开发人者和设计者的十大 Bug 跟踪工具",
+        "url": "/article/3xPJAAzpm_NwyQfytmR9",
+        "desc": "作者在对大量的 Bug 跟踪工具进行了研究后，特别针对 Web 开发人员和设计人员列出了十大 Bug 跟踪工具。",
+        "author": "Maran kavin",
+        "date": "2019 年 7 月 17 日"
+    },
+    {
+        "title": "源码解析 React Hook 构建过程：没有设计就是最好的设计",
+        "url": "/article/fiWNgsIOLaCmt-hphLYC",
+        "desc": "本作者复盘了 React Hook 的核心架构设计和创造的过程。非常适合希望对 React Hook 有更深了解，但又不愿意去读晦涩的源码的同学。",
+        "author": "郭美青",
+        "date": "2019 年 7 月 17 日"
+    },
+    {
+        "title": "开发做了这么多年，你真的了解 JS 工作机制吗",
+        "url": "/article/E2Vvaa-ZfIrMrjrxtdF9",
+        "desc": "本文的主题是 JavaScript，但不是讲它的功能，语法之类——相反，我要谈的是 JS 的工作机制，以及与此相关的一些基本术语。",
+        "author": "Areknawo",
+        "date": "2019 年 7 月 16 日"
+    },
+    {
+        "title": "2019 年 React Native 开源更新状态总结",
+        "url": "/article/R2sP*HJthPI9iQNKX64f",
+        "desc": "Facebook 工程师 Christoph Nakazawa 总结了前半年 React Native 的更新状态。",
+        "author": "Christoph Nakazawa",
+        "date": "2019 年 7 月 16 日"
+    },
+    {
+        "title": "如何为移动开发选择技术栈？",
+        "url": "/article/sx6elAWImzYhB*Sx7dbc",
+        "desc": "选择合适的技术栈是移动应用开发领域中最关键的决策之一。你选择的技术栈将为你开发的移动应用提供基本的功能、可扩展和可维护性。",
+        "author": "2muchcoffee",
+        "date": "2019 年 7 月 16 日"
+    },
+    {
+        "title": "SwiftWebUI 框架：带你深入理解 SwiftUI 原理",
+        "url": "/article/0H_gXyqzGbAwoCkkYfSG",
+        "desc": "2019 大会上发布了 SwiftUI。OS 平台的 UI。而本文要介绍的 SwiftWebUI 则能将 SwiftUI 带到 Web 平台上。",
+        "author": "Always Right Institute",
+        "date": "2019 年 7 月 15 日"
+    }
+]

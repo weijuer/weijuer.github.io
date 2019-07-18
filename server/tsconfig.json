@@ -1,10 +1,14 @@
 {
   "compileOnSave": true,
+  "locale": "zh-CN",
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2015",
+    "target": "esnext",
+    "importHelpers": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",
