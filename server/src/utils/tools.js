@@ -6,7 +6,7 @@ const DATADIR = './data';
  * 路径拼接
  * @param dir 
  */
-export const resolve = (dir: string) => {
+export const resolve = (dir) => {
   return path.join(__dirname, dir);
 };
 
@@ -15,7 +15,7 @@ export const resolve = (dir: string) => {
  * @param v 
  * @param selector 
  */
-export const getText = (v: Element, selector: string): string => {
+export const getText = (v, selector) => {
   return v.querySelector(selector) && v.querySelector(selector).innerHTML.trim();
 };
 
@@ -25,7 +25,7 @@ export const getText = (v: Element, selector: string): string => {
  * @param selector 
  * @param attr 
  */
-export const getAttr = (v: Element, selector: string, attr: string): string => {
+export const getAttr = (v, selector, attr) => {
   return v.querySelector(selector) && v.querySelector(selector).getAttribute(attr);
 };
 
@@ -33,7 +33,7 @@ export const getAttr = (v: Element, selector: string, attr: string): string => {
  * 睡眠time毫秒
  * @param time 
  */
-export const sleep = (time: number) => new Promise((resolve, reject) => {
+export const sleep = (time) => new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(true);
   }, time);
@@ -44,14 +44,15 @@ export const sleep = (time: number) => new Promise((resolve, reject) => {
  * @param name 待保存文件名
  * @param data data数据
  */
-export const saveLocalData = async (name: string, data: string) => {
-
+export const saveLocalData = async (name, data) => {
+  // 文件名
   const fileName = `${DATADIR}/${name}.json`;
   // 异步写入文件
-  await fs.writeFileSync(fileName, data);
+  await fs.writeFileSync(fileName, JSON.stringify(data, null, 4));
   console.log(`JSON文件成功保存到：${DATADIR}/${name}.json`);
+
   // 同步写入文件
-  /* fs.writeFile(`${DATADIR}${name}.json`, data, (err: any) => {
+  /* fs.writeFile(`${DATADIR}${name}.json`, JSON.stringify(data, null, 4), (err: any) => {
     if (!err) {
       console.log(`JSON文件成功保存到：${DATADIR}${name}.json`);
     }

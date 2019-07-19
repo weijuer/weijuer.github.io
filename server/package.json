@@ -10,7 +10,7 @@
     "start": "tsc && node dist/spider/blog-spider.js",
     "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
     "start-serve": "npm run serve",
-    "serve": "node dist/server.js",
+    "serve": "nodemon app.js",
     "build": "npm run tslint && npm run build-ts",
     "build-ts": "tsc",
     "watch": "npm run tslint && npm run watch-ts",
@@ -28,8 +28,14 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "ejs": "^2.6.2",
     "koa": "^2.7.0",
-    "koa-router": "^7.4.0"
+    "koa-body": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-socket-2": "^1.1.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "koa2-cors": "^2.0.6"
   },
   "nodemonConfig": {
     "ignore": [
@@ -38,7 +44,7 @@
     ],
     "delay": "2500",
     "watch": [
-      "./dist/*-spider.js"
+      "app.js"
     ],
     "stdout": true
   }
