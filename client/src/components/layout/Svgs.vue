@@ -38,6 +38,19 @@
       </radialGradient>
     </defs>
 
+    <symbol id="shap-star" viewBox="0 0 300 200">
+      <polygon
+        points="0 -10 2 -2 10 0 2 2 0 10 -2 2 -10 0 -2 -2"
+        fill="white"
+      ></polygon>
+    </symbol>
+
+    <symbol id="logo-icon-new" viewBox="0 0 300 200">
+      <polyline
+        points="662,493.5 990,493.5 1014,419.5 1043.5,564 1057.5,460 1078,491.8 1299.5,491.8 "
+      ></polyline>
+    </symbol>
+
     <symbol id="effect-wave" viewBox="0 0 300 200">
       <g fill="rgba(106,127,239,0.1)">
         <path

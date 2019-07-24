@@ -7,19 +7,23 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "tsc && node dist/spider/blog-spider.js",
-    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
-    "start-serve": "npm run serve",
-    "serve": "nodemon app.js",
-    "build": "npm run tslint && npm run build-ts",
+    "start": "NODE_ENV=local npm run serve",
+    "serve": "node dist/server.js",
     "build-ts": "tsc",
-    "watch": "npm run tslint && npm run watch-ts",
     "watch-ts": "tsc -w",
+    "watch": "npm run tslint && npm run watch-ts",
+    "build": "npm run build-ts && npm run copy-static-assets",
+    "watch-node": "NODE_ENV=local nodemon dist/server.js",
+    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "devDependencies": {
+    "@types/consolidate": "^0.14.0",
     "@types/koa": "^2.0.49",
     "@types/koa-router": "^7.0.42",
+    "@types/koa-static": "^4.0.1",
+    "@types/koa-views": "^2.0.3",
+    "@types/koa2-cors": "^2.0.1",
     "@types/puppeteer-core": "^1.9.0",
     "fs": "^0.0.1-security",
     "nodemon": "^1.19.1",
@@ -28,14 +32,18 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "consolidate": "^0.15.1",
     "ejs": "^2.6.2",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
+    "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
     "koa-socket-2": "^1.1.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
-    "koa2-cors": "^2.0.6"
+    "koa2-cors": "^2.0.6",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.7.7"
   },
   "nodemonConfig": {
     "ignore": [

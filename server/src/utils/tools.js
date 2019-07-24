@@ -6,8 +6,29 @@ const DATADIR = './data';
  * 路径拼接
  * @param dir 
  */
-export const resolve = (dir) => {
+const resolve = (dir) => {
   return path.join(__dirname, dir);
+};
+
+/**
+ * 获取节点信息
+ * @param element 
+ */
+const getData = (element) => {
+  if (element.nodeName === 'A') {
+    return element.getAttribute('href').trim();
+  } else {
+    return element.innerHTML.trim();
+  }
+};
+
+/**
+ * 获取子节点
+ * @param element 父节点
+ * @param selector 选择器
+ */
+const getChildNode = (element, selector) => {
+  return element && element.querySelector(selector);
 };
 
 /**
@@ -15,7 +36,7 @@ export const resolve = (dir) => {
  * @param v 
  * @param selector 
  */
-export const getText = (v, selector) => {
+const getText = (v, selector) => {
   return v.querySelector(selector) && v.querySelector(selector).innerHTML.trim();
 };
 
@@ -25,7 +46,7 @@ export const getText = (v, selector) => {
  * @param selector 
  * @param attr 
  */
-export const getAttr = (v, selector, attr) => {
+const getAttr = (v, selector, attr) => {
   return v.querySelector(selector) && v.querySelector(selector).getAttribute(attr);
 };
 
@@ -33,7 +54,7 @@ export const getAttr = (v, selector, attr) => {
  * 睡眠time毫秒
  * @param time 
  */
-export const sleep = (time) => new Promise((resolve, reject) => {
+const sleep = (time) => new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(true);
   }, time);
@@ -44,7 +65,13 @@ export const sleep = (time) => new Promise((resolve, reject) => {
  * @param name 待保存文件名
  * @param data data数据
  */
-export const saveLocalData = async (name, data) => {
+const saveLocalData = async (name, data) => {
+
+  // 如果文件夹不存在则创建
+  if (!fs.existsSync(DATADIR)) {
+    fs.mkdirSync(DATADIR)
+  }
+
   // 文件名
   const fileName = `${DATADIR}/${name}.json`;
   // 异步写入文件
@@ -58,3 +85,31 @@ export const saveLocalData = async (name, data) => {
     }
   }) */
 }
+
+/**
+ * 格式化JSON数据
+ * @param {*} data 
+ */
+const toJSONString = (data) => {
+  return JSON.stringify(data, null, 4);
+}
+
+/**
+ * 遍历对象
+ * @param {*} object 
+ */
+const getItem = (element, object) => {
+  var _item = {};
+  for (const key in object) {
+    if (object.hasOwnProperty(key)) {
+      if (element.name === 'A') {
+        _item[key] = getAttr(element, object[key], 'href');
+      } else {
+        _item[key] = getText(element, object[key]);
+      }
+    }
+  }
+  return _item;
+}
+
+module.exports = { sleep, resolve, getText, getItem }

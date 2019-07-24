@@ -1,5 +1,5 @@
 import * as puppeteer from 'puppeteer-core';
-import { saveLocalData } from '../utils/tools';
+import { saveLocalData } from '../utils/utils';
 
 // 缩写 console.log
 const log = console.log;

@@ -24,38 +24,8 @@ router
 /**
  * 获取blogs
  */
-router.post('/getBlogs', koaBody(), (ctx, next) => {
-  const url = 'https://www.infoq.cn/topic/Front-end';
-  const options = {
-    selector: '.article-list>.list>.list-item',
-    target: [
-      {
-        key: 'title',
-        selector: '.info .com-article-title'
-      },
-      {
-        key: 'url',
-        selector: '.info .favorite > a',
-        text: false,
-        attribute: true,
-        sourceType: 'href'
-      },
-      {
-        key: 'description',
-        selector: '.info .summary'
-      },
-      {
-        key: 'author',
-        selector: '.info .editor > a.author'
-      },
-      {
-        key: 'lastModified',
-        selector: '.info .extra .date'
-      }
-    ]
-  };
-
-  return blog.get_blogs(url, options);
+router.get('/getBlogs', koaBody(), (ctx, next) => {
+  return blog.get_blogs();
 });
 
 module.exports = router
