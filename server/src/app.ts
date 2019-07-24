@@ -1,19 +1,25 @@
 import 'reflect-metadata'
-import { createKoaServer } from 'routing-controllers'
+import { createKoaServer, useContainer } from 'routing-controllers'
+import { Container } from "typedi"
 import cors from 'koa2-cors'
-import koaBody from 'koa-bodyparser'
-import koaViews from 'koa-views'
-import statics from 'koa-static'
+import bodyParser from 'koa-bodyparser'
+import views from 'koa-views'
+import serve from 'koa-static'
 import { distPath, viewPath } from './config'
+
+/**
+ * Setup routing-controllers to use typedi container.
+ */
+useContainer(Container);
 
 const app = createKoaServer({
   controllers: [`${__dirname}/controllers/**/*{.js,.ts}`],
 })
 
 // 静态资源
-app.use(statics(distPath));
+app.use(serve(distPath));
 // koaBody
-app.use(koaBody());
+app.use(bodyParser());
 
 // cors跨域
 app.use(cors({
@@ -24,7 +30,7 @@ app.use(cors({
 }));
 
 // 模板引擎
-app.use(koaViews(viewPath, {
+app.use(views(viewPath, {
   map: { html: 'ejs' }
 }));
 

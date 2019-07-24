@@ -28,3 +28,6 @@ type Article = {
   tags?: string;
   lastModified: string;
 }
+
+
+declare module 'typedi';

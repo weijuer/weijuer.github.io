@@ -3,7 +3,8 @@
   "locale": "zh-CN",
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "esModuleInterop": true,
+    "target": "ES2017",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
