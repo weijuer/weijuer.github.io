@@ -1,5 +1,5 @@
-const browser = require("../utils/browser");
-const tools = require("../utils/tools");
+import browser from "../utils/browser";
+import * as tools from "../utils/utils";
 
 // 缩写 console.log
 const log = console.log;
@@ -7,7 +7,7 @@ const log = console.log;
 /**
  * 获取blog日志
  */
-const get_blogs = async () => {
+export const get_blogs = async () => {
   const url = 'https://www.infoq.cn/topic/Front-end';
   const options = {
     target: '.article-list>.list>.list-item',
@@ -21,5 +21,3 @@ const get_blogs = async () => {
   };
   return await browser.scrape(url, options, tools);
 }
-
-module.exports = { get_blogs };

@@ -7,11 +7,24 @@ var Index = new Vue({
   computed: {
   },
   mounted() {
-    this.init();
+    // this.init();
   },
   methods: {
     init() {
       this.initSocket();
+    },
+    getBlogs() {
+      // 获取最新日志
+      let url = '/blog/getBlogs';
+
+      fetch(url, {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors'
+      })
+        .then(response => response)
+        .then(data => console.log('fetch data is', data))
+        .catch(error => console.error('Error:', error));
     },
     initSocket() {
       let socket = io('http://localhost:3000');

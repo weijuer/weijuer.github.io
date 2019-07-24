@@ -1,7 +1,7 @@
-const puppeteer = require("puppeteer-core");
+import * as puppeteer from "puppeteer-core";
 
 // 缩写 console.log
-const log = (...args) => {
+const log = (...args: string[]) => {
   args.unshift(`[Brower]`);
   // args.push('color: green;');
   return console.log.apply(console, args);
@@ -11,8 +11,11 @@ const log = (...args) => {
 const pathToExtension = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe';
 
 class Browser {
+  option: any;
+  browser: any;
+  page: any;
 
-  constructor(option) {
+  constructor(option: any) {
     this.option = {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       ignoreHTTPSErrors: true,
@@ -55,7 +58,7 @@ class Browser {
    * 打开浏览器
    * @param {*} url 
    */
-  async open(url) {
+  async open(url: string) {
     // 启动浏览器
     await this.start();
     // 创建一个page对象
@@ -73,7 +76,7 @@ class Browser {
     });
 
     // 页面日志
-    this.page.on('console', (data) => {
+    this.page.on('console', (data: string) => {
       log(data);
     });
 
@@ -87,7 +90,7 @@ class Browser {
    * @param options 数据处理对象
    * @param tools 数据处理工具
    */
-  async scrape(url, options, tools) {
+  async scrape(url: string, options: any, tools: any) {
 
     log(`tools1:===> ${tools.getItem}`);
 
@@ -104,13 +107,13 @@ class Browser {
     await this.page.waitForSelector(options.target);
     log(`页面元素加载完毕...target:===> ${options.target}`);
     // 分析页面
-    const result = await this.page.evaluate((options, tools) => {
+    const result = await this.page.evaluate((options: any, tools: any) => {
       console.log(`options:===>${JSON.stringify(options, null, 4)}`);
       console.log(`tools2:===>${tools.getItem}`);
       // 提取函数
-      const dataScrape = (el) => { return tools.getItem(el, options.item) };
+      const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
       // 获取所有元素
-      const targets = [...document.querySelectorAll(options.target)];
+      const targets = Array.from(document.querySelectorAll(options.target));
       console.log(`targets size:===>${targets.length}`);
       // 解析数据
       return targets.map(dataScrape);
@@ -131,7 +134,7 @@ class Browser {
    * @param {*} options 
    * @param {*} tools 
    */
-  async process(options, tools) {
+  async process(options: any, tools: any) {
 
     console.log(`options:===>${tools.toString(options)}`);
 
@@ -142,10 +145,10 @@ class Browser {
     console.log(`targets size:===>${targets.length}`);
 
     // 数据集
-    const data = [];
+    const data: any = [];
     // 解析数据
     targets.map((element) => {
-      const item = this.getItem(element, options.item);
+      const item = tools.getItem(element, options.item);
 
       // 存入数组
       data.push(item);
@@ -167,4 +170,4 @@ process.on('exit', () => {
   browser.exit()
 });
 
-module.exports = browser;
+export default browser;

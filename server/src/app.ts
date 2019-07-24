@@ -29,9 +29,9 @@ app.use(cors({
   allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }));
 
-// 模板引擎
+// 模板引擎 handlebars
 app.use(views(viewPath, {
-  map: { html: 'ejs' }
+  map: { html: 'handlebars' }
 }));
 
 export default app
