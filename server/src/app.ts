@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { createKoaServer } from 'routing-controllers'
 import cors from 'koa2-cors'
-import koaBody from 'koa-body'
+import koaBody from 'koa-bodyparser'
 import koaViews from 'koa-views'
 import statics from 'koa-static'
 import { distPath, viewPath } from './config'
