@@ -4,10 +4,10 @@ import { get_blogs } from '../api/blog'
 /**
  * 日志
  */
-@Controller('blog')
+@Controller()
 export class BlogController {
   @Get('/getBlogs')
-  async getBlogs() {
-    return await get_blogs();
+  getBlogs() {
+    return get_blogs();
   }
 }

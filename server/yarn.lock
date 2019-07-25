@@ -153,7 +153,7 @@
   dependencies:
     "@types/puppeteer" "*"
 
-"@types/puppeteer@*":
+"@types/puppeteer@*", "@types/puppeteer@^1.12.4":
   version "1.12.4"
   resolved "https://registry.npm.taobao.org/@types/puppeteer/download/@types/puppeteer-1.12.4.tgz#8388efdb0b30a54a7e7c4831ca0d709191d77ff1"
   integrity sha1-g4jv2wswpUp+fEgxyg1wkZHXf/E=

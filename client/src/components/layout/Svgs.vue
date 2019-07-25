@@ -61,8 +61,9 @@
           attributeType="XML"
           type="translate"
           from="0"
-          to="-300"
+          to="-200"
           dur="1.5s"
+          additive="sum"
           repeatCount="indefinite"
         ></animateTransform>
       </g>
@@ -70,6 +71,14 @@
 
     <symbol id="icon-logo" viewBox="0 0 240 120">
       <title>logo</title>
+      <defs>
+        <circle id="inner-circle" cx="0" cy="40" r="4"></circle>
+        <rect id="SVGID_1_" x="235" y="-106.3" width="500" height="309" />
+      </defs>
+      <clipPath id="SVGID_2_">
+        <use xlink:href="#SVGID_1_" overflow="visible" />
+      </clipPath>
+
       <g class="group">
         <path
           id="line"

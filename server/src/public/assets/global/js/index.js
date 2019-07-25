@@ -15,7 +15,7 @@ var Index = new Vue({
     },
     getBlogs() {
       // 获取最新日志
-      let url = '/blog/getBlogs';
+      let url = '/getBlogs';
 
       fetch(url, {
         method: 'GET',

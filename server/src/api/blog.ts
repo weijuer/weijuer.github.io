@@ -1,5 +1,4 @@
 import browser from "../utils/browser";
-import * as tools from "../utils/utils";
 
 // 缩写 console.log
 const log = console.log;
@@ -19,5 +18,5 @@ export const get_blogs = async () => {
       lastModified: '.info .extra .date'
     }
   };
-  return await browser.scrape(url, options, tools);
+  return await browser.scrape(url, options);
 }

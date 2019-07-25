@@ -1,4 +1,5 @@
-import * as puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer-core";
+import * as tools from "../utils/utils";
 
 // 缩写 console.log
 const log = (...args: string[]) => {
@@ -75,10 +76,8 @@ class Browser {
       timeout: 70000,
     });
 
-    // 页面日志
-    this.page.on('console', (data: string) => {
-      log(data);
-    });
+    // 监听页面日志
+    this.page.on('console', (msg: any) => console.log('PAGE LOG:', msg.text()));
 
     log('页面初次加载完毕...');
     return this.page;
@@ -88,11 +87,8 @@ class Browser {
    * 爬虫主函数
    * @param url 待处理url
    * @param options 数据处理对象
-   * @param tools 数据处理工具
    */
-  async scrape(url: string, options: any, tools: any) {
-
-    log(`tools1:===> ${tools.getItem}`);
+  async scrape(url: string, options: any) {
 
     // 打开浏览器
     await this.open(url);
@@ -107,22 +103,13 @@ class Browser {
     await this.page.waitForSelector(options.target);
     log(`页面元素加载完毕...target:===> ${options.target}`);
     // 分析页面
-    const result = await this.page.evaluate((options: any, tools: any) => {
-      console.log(`options:===>${JSON.stringify(options, null, 4)}`);
-      console.log(`tools2:===>${tools.getItem}`);
-      // 提取函数
-      const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
-      // 获取所有元素
-      const targets = Array.from(document.querySelectorAll(options.target));
-      console.log(`targets size:===>${targets.length}`);
-      // 解析数据
-      return targets.map(dataScrape);
-    }, options, tools);
+    // const result = await this.page.evaluate(this.process(options, tools), options, tools);
+    const result = await this.page.$$eval(options.target, this.process);
 
     log(`解析完成... result:===>${JSON.stringify(result, null, 4)}`);
 
     // 等待3s
-    await this.page.waitFor(3000);
+    // await this.page.waitFor(3000);
     // 关闭浏览器
     this.exit();
 
@@ -131,31 +118,31 @@ class Browser {
 
   /**
    * 分析数据
+   * @param {*} items 
+   * @param {*} options 
+   */
+  async process(items: any, options: any) {
+    console.log(`items===>${items.length}`);
+    console.log(`tools===>${tools.getItem}`);
+    // 提取函数
+    const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
+    // 解析数据
+    return items.map(dataScrape);
+  }
+
+    /**
+   * 分析数据
    * @param {*} options 
    * @param {*} tools 
    */
-  async process(options: any, tools: any) {
-
-    console.log(`options:===>${tools.toString(options)}`);
-
-    // 获取所有selector元素
-    const targets = Array.from(
-      document.querySelectorAll(options.target)
-    );
+  async process1(options: any, tools: any) {
+    // 提取函数
+    const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
+    // 获取所有元素
+    const targets = Array.from(document.querySelectorAll(options.target));
     console.log(`targets size:===>${targets.length}`);
-
-    // 数据集
-    const data: any = [];
     // 解析数据
-    targets.map((element) => {
-      const item = tools.getItem(element, options.item);
-
-      // 存入数组
-      data.push(item);
-    });
-
-    // 返回数据
-    return data;
+    return targets.map(dataScrape);
   }
 
 }
