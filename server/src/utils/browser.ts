@@ -12,17 +12,22 @@ const log = (...args: string[]) => {
 const pathToExtension = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe';
 
 class Browser {
-  option: any;
+  options: any;
   browser: any;
   page: any;
 
-  constructor(option: any) {
-    this.option = {
+  constructor(options: any) {
+    this.options = {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      // 是否在导航期间忽略 HTTPS 错误
       ignoreHTTPSErrors: true,
+      // Chrome 可执行文件的路径
       executablePath: process.env.CHROME_PUPPETEER_PATH || pathToExtension,
-      dumpio: false,
-      ...option
+      // 默认视口
+      defaultViewport: { width: 1280, height: 1080 },
+      // 减缓效果
+      slowMo: 300,
+      ...options
     };
     // 浏览器对象
     this.browser = null;
@@ -35,7 +40,7 @@ class Browser {
    */
   async start() {
     if (!this.browser) {
-      this.browser = await puppeteer.launch(this.option);
+      this.browser = await puppeteer.launch(this.options);
       log('浏览器已启动...');
       this.browser.once('disconnected', () => {
         this.browser = null;
@@ -121,7 +126,7 @@ class Browser {
    * @param {*} items 
    * @param {*} options 
    */
-  async process(items: any, options: any) {
+  process(items: any, options: any) {
     console.log(`items===>${items.length}`);
     console.log(`tools===>${tools.getItem}`);
     // 提取函数
@@ -130,12 +135,12 @@ class Browser {
     return items.map(dataScrape);
   }
 
-    /**
-   * 分析数据
-   * @param {*} options 
-   * @param {*} tools 
-   */
-  async process1(options: any, tools: any) {
+  /**
+ * 分析数据
+ * @param {*} options 
+ * @param {*} tools 
+ */
+  process1(options: any, tools: any) {
     // 提取函数
     const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
     // 获取所有元素
