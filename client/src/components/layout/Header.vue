@@ -99,7 +99,7 @@
           <section class="app-header-section logo-section">
             <div class="logo">
               <svg class="icon svg-icon icon-logo">
-                <use xlink:href="#icon-logo" x="0px" y="0px"></use>
+                <use xlink:href="#icon-logo-new" x="0px" y="0px"></use>
               </svg>
             </div>
 
@@ -202,8 +202,11 @@ export default class Header extends Vue {
 <style scoped lang="stylus">
 .logo
   position: relative
+  width: 220px
+  height: 60px
 
   .icon-logo
     width: 100%
     height: 100%
+    color #fff
 </style>

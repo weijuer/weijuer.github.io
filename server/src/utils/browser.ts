@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer-core";
-import * as tools from "../utils/utils";
 
 // 缩写 console.log
 const log = (...args: string[]) => {
@@ -93,33 +92,27 @@ class Browser {
    * @param url 待处理url
    * @param options 数据处理对象
    */
-  async scrape(url: string, options: any) {
+  async scrape(options: any) {
 
     // 打开浏览器
-    await this.open(url);
-
-    // 等待60秒
-    // await sleep(60321);
-
-    // 添加额外插件
-    // await page.addScriptTag({url: 'https://code.jquery.com/jquery-3.2.1.min.js'});
+    await this.open(options.url);
 
     // 等待被选的元素
     await this.page.waitForSelector(options.target);
     log(`页面元素加载完毕...target:===> ${options.target}`);
     // 分析页面
     // const result = await this.page.evaluate(this.process(options, tools), options, tools);
-    const result = await this.page.$$eval(options.target, this.process);
+    const result = await this.page.$$eval(options.target, this.process, options);
 
     log(`解析完成... result:===>${JSON.stringify(result, null, 4)}`);
 
-    // 等待3s
-    // await this.page.waitFor(3000);
     // 关闭浏览器
     this.exit();
 
     return result;
   }
+
+
 
   /**
    * 分析数据
@@ -128,21 +121,45 @@ class Browser {
    */
   process(items: any, options: any) {
     console.log(`items===>${items.length}`);
-    console.log(`tools===>${tools.getItem}`);
+    // 获取元素文字
+    const getText = (element: Element, selector: string) => {
+      return element.querySelector(selector) && element.querySelector(selector).innerHTML.trim();
+    }
+
+    // 获取元素属性
+    const getAttr = (element: Element, selector: string, attr: string) => {
+      return element.querySelector(selector) && element.querySelector(selector).getAttribute(attr);
+    }
+
+    // 遍历属性
+    const getItem = (element: Element, object: any) => {
+      var _item: any = {};
+      for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+          if (key === 'url') {
+            _item[key] = getAttr(element, object[key], 'href');
+          } else {
+            _item[key] = getText(element, object[key]);
+          }
+        }
+      }
+      return _item;
+    }
+
     // 提取函数
-    const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
+    const dataScrape = (el: Element) => { return getItem(el, options.item) };
     // 解析数据
     return items.map(dataScrape);
   }
 
   /**
- * 分析数据
- * @param {*} options 
- * @param {*} tools 
- */
+  * 分析数据
+  * @param {*} options 
+  * @param {*} tools 
+  */
   process1(options: any, tools: any) {
     // 提取函数
-    const dataScrape = (el: Element) => { return tools.getItem(el, options.item) };
+    const dataScrape = (el: Element) => { return el.innerHTML };
     // 获取所有元素
     const targets = Array.from(document.querySelectorAll(options.target));
     console.log(`targets size:===>${targets.length}`);
