@@ -2,7 +2,12 @@
 var Index = new Vue({
   el: '#index',
   data: {
-    message: ''
+    message: '',
+    options: {
+      url: '',
+      target: '',
+      item: null
+    }
   },
   computed: {
   },
@@ -15,10 +20,12 @@ var Index = new Vue({
     },
     getBlogs() {
       // 获取最新日志
-      let url = '/getBlogs';
+      let url = '/scrapeBlogs';
+      let data = {options: this.options};
 
       fetch(url, {
-        method: 'GET',
+        body: JSON.stringify(data),
+        method: 'POST',
         credentials: 'include',
         mode: 'cors'
       })

@@ -101,9 +101,8 @@ class Browser {
     await this.page.waitForSelector(options.target);
     log(`页面元素加载完毕...target:===> ${options.target}`);
     // 分析页面
-    // const result = await this.page.evaluate(this.process(options, tools), options, tools);
+    // const result = await this.page.evaluate(this.process, options);
     const result = await this.page.$$eval(options.target, this.process, options);
-
     log(`解析完成... result:===>${JSON.stringify(result, null, 4)}`);
 
     // 关闭浏览器
@@ -111,8 +110,6 @@ class Browser {
 
     return result;
   }
-
-
 
   /**
    * 分析数据
@@ -157,12 +154,37 @@ class Browser {
   * @param {*} options 
   * @param {*} tools 
   */
-  process1(options: any, tools: any) {
-    // 提取函数
-    const dataScrape = (el: Element) => { return el.innerHTML };
+  processData(options: any) {
+    // 获取元素文字
+    const getText = (element: Element, selector: string) => {
+      return element.querySelector(selector) && element.querySelector(selector).innerHTML.trim();
+    }
+
+    // 获取元素属性
+    const getAttr = (element: Element, selector: string, attr: string) => {
+      return element.querySelector(selector) && element.querySelector(selector).getAttribute(attr);
+    }
+
+    // 遍历属性
+    const getItem = (element: Element, object: any) => {
+      var _item: any = {};
+      for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+          if (key === 'url') {
+            _item[key] = getAttr(element, object[key], 'href');
+          } else {
+            _item[key] = getText(element, object[key]);
+          }
+        }
+      }
+      return _item;
+    }
+
     // 获取所有元素
     const targets = Array.from(document.querySelectorAll(options.target));
     console.log(`targets size:===>${targets.length}`);
+    // 提取函数
+    const dataScrape = (el: Element) => { return getItem(el, options.item) };
     // 解析数据
     return targets.map(dataScrape);
   }

@@ -8,8 +8,26 @@
 </head>
 <body>
   <div id="index">
-      <button @click="getBlogs">获取最新日志</button>
-      <div></div>
+      <div class="form">
+        <div class="form-control">
+            <label for="url">URL</label>
+            <input id="url" v-model="options.url" type="text" />
+        </div>
+
+        <div class="form-control">
+            <label for="target">target</label>
+            <input id="target" v-model="options.target" type="text" />
+        </div>
+
+        <div class="form-control">
+            <label for="item">item</label>
+            <textarea name="item" id="item" v-model="options.item" cols="30" rows="10" ></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button @click="getBlogs">获取最新日志</button>
+        </div>
+      </div>
   </div>
   <script src="../assets/global/plugins/vue.js"></script>
   <script src="../assets/global/plugins/socket/socket.io.dev.js"></script>

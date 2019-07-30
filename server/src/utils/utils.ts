@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from "path";
-const DATADIR = './data';
+const DATADIR = './server/data';
 
 /**
  * 路径拼接
@@ -62,18 +62,19 @@ export const sleep = (time: number) => new Promise((resolve, reject) => {
 
 /**
  * 数据存文件
- * @param name 待保存文件名
+ * @param type 待保存类别
  * @param data data数据
  */
-export const saveLocalData = async (name: string, data: Object) => {
+export const saveLocalData = async (type: string, data: Object) => {
 
   // 如果文件夹不存在则创建
   if (!fs.existsSync(DATADIR)) {
     fs.mkdirSync(DATADIR)
   }
-
+  // 当前日期
+  const name: string = new Date().toLocaleDateString();
   // 文件名
-  const fileName = `${DATADIR}/${name}.json`;
+  const fileName = `${DATADIR}/${name}/.json`;
   // 异步写入文件
   await fs.writeFileSync(fileName, JSON.stringify(data, null, 4));
   console.log(`JSON文件成功保存到：${DATADIR}/${name}.json`);
