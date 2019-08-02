@@ -34,6 +34,8 @@ const actions: ActionTree<any, any> = {
       if (res) {
         // 处理数据
         commit("GET_ARTICLES", res);
+        // 1.成功请求到数据，清除加载中动画
+        commit("CHANGE_LOADING", false);
       }
     } catch (err) {
       console.log(err);

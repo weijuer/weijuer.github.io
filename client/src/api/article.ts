@@ -26,6 +26,14 @@ export const add_article = (article: W.IArticle) => {
 };
 
 /**
+ * 批量新增articles
+ * @param articles
+ */
+export const bulk_add_article = (articles: W.IArticle[]) => {
+  return db.table("articles").bulkAdd(articles);
+};
+
+/**
  * 删除article
  * @param id
  */

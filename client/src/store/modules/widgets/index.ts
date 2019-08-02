@@ -9,7 +9,20 @@ interface State {
 
 const state: State = {
   city: '',
-  weather: {}
+  weather: {
+    aqi: {},
+    basic: {
+      city: '',
+      update: {}
+    },
+    daily_forecast: {},
+    hourly_forecast: {},
+    now: {
+      cond: {},
+      tmp: '',
+      wind: {}
+    },
+  }
 };
 
 export default {

@@ -10,7 +10,9 @@
           </Bubble>
         </div>
         <div class="nickname box-reflect">Weijuer</div>
-        <div class="description text-shadowing">Less talk more code!</div>
+        <div class="description text-shadowing">
+          Talk is cheap, show me your code!
+        </div>
         <div class="links">
           <nav class="social-links">
             <ul class="nav">
