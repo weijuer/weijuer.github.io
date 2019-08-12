@@ -15,15 +15,12 @@
     <div class="article-content">
       <p>
         {{ article.description }}
-        <router-link
-          v-if="isLinked"
-          class="read-more"
-          :to="{ name: 'article-detail', params: { id: article.id } }"
-          >Read more</router-link
-        >
+        <a v-if="isLinked" class="read-more" :href="moreLink(article)"
+          >Read more
+        </a>
       </p>
     </div>
-    <div class="article-tags">
+    <div class="article-tags" v-if="article.tags">
       <a
         class="tag-item bg-color"
         v-for="(tag, index) of tags()"
@@ -44,8 +41,7 @@ export default class ArticlePost extends Vue {
   @Prop({ type: Object }) private article!: W.IArticle;
 
   private tags() {
-    console.log(`article:===>${this.article}`);
-    return this.article.tags.split(",");
+    return this.article.tags && this.article.tags.split(",");
   }
 
   private get postType() {
@@ -54,6 +50,10 @@ export default class ArticlePost extends Vue {
 
   private get isLinked() {
     return this.type && this.type === "list";
+  }
+
+  private moreLink(article) {
+    return `https://www.infoq.cn${article.url}`;
   }
 }
 </script>

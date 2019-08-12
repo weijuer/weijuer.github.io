@@ -1,10 +1,8 @@
-import { Get, Post, JsonController, Body } from 'routing-controllers'
+import { Get, Post, Param, JsonController, Body } from 'routing-controllers'
 import { Service, Inject } from "typedi";
 import { ArticleRepository } from "../repository/ArticleRepository";
 import browser from "../utils/browser";
 import * as utils from '../utils/utils';
-
-
 
 /**
  * 日志文章
@@ -19,7 +17,7 @@ export class ArticleController {
   /**
    * 获取当前日志列表
    */
-  @Get("/blogs")
+  @Get("/articles")
   all(): Promise<W.IArticle[]> {
     return this.articleRepository.findAll();
   }
@@ -28,8 +26,8 @@ export class ArticleController {
    * 抓取日志文章
    * @param options 
    */
-  @Post('/scrapeBlogs')
-  async scrapeBlogs(@Body() options: any) {
+  @Post('/scrapeArticles')
+  async scrapeArticles(@Body() options: any) {
     // 测试
     const _options = {
       url: 'https://www.infoq.cn/topic/Front-end',
@@ -46,8 +44,16 @@ export class ArticleController {
     // 爬取日志
     const articles = await browser.scrape(_options);
     // 保存到本地文件
-    await utils.saveLocalData('blog', articles);
+    await utils.saveLocalData('article', articles);
     // 保存到IndexDB
-    return this.articleRepository.bulk(articles);
+    // this.articleRepository.bulk(articles);
+    return {code: 1000, message: 'success'};
   }
+
+  @Get('/getPDF')
+  async getPDF(@Param("url") url: string) {
+    // 生成PDF
+    await browser.printPDF(url);
+  }
+
 }

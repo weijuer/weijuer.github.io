@@ -77,7 +77,8 @@ class Browser {
     await this.page.setJavaScriptEnabled(true);
     // 跳转到目标地址
     await this.page.goto(url, {
-      timeout: 70000,
+      timeout: 7000,
+      waitUntil: 'networkidle0'
     });
 
     // 监听页面日志
@@ -85,6 +86,18 @@ class Browser {
 
     log('页面初次加载完毕...');
     return this.page;
+  }
+
+  /**
+   * 打印PDF
+   */
+  async printPDF(url: string) {
+    // 打开浏览器
+    await this.open(url);
+    await this.page.pdf({path: 'page.pdf'});
+    log('打印PDF完毕...');
+    // 关闭浏览器
+    this.exit();
   }
 
   /**
@@ -120,7 +133,7 @@ class Browser {
     console.log(`items===>${items.length}`);
     // 获取元素文字
     const getText = (element: Element, selector: string) => {
-      return element.querySelector(selector) && element.querySelector(selector).innerHTML.trim();
+      return element.querySelector(selector) && element.querySelector(selector).textContent.trim();
     }
 
     // 获取元素属性
@@ -157,7 +170,7 @@ class Browser {
   processData(options: any) {
     // 获取元素文字
     const getText = (element: Element, selector: string) => {
-      return element.querySelector(selector) && element.querySelector(selector).innerHTML.trim();
+      return element.querySelector(selector) && element.querySelector(selector).textContent.trim();
     }
 
     // 获取元素属性

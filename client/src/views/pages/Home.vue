@@ -13,7 +13,7 @@
         <div class="description text-shadowing">
           Talk is cheap, show me your code!
         </div>
-        <div class="links">
+        <div class="links hidden">
           <nav class="social-links">
             <ul class="nav">
               <li class="nav-item">
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="widgets">
-        <Weather />
+        <!-- <Weather /> -->
       </div>
     </div>
   </main>
@@ -107,5 +107,5 @@ $bubble-color = #4cbf30
 @media (max-width: 768px)
   .app-main
     &.home-page
-      flex-direction row
+      flex-direction: row
 </style>

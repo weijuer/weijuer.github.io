@@ -26,7 +26,7 @@ const state: State = {
   },
   isPageScroll: false,
   isScrollUp: false,
-  isLoading: true,
+  isLoading: false,
   language: "zh",
   device: null,
   isLogin: false,

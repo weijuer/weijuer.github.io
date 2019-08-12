@@ -1,5 +1,5 @@
 import Dexie from "dexie";
-import article from "@/data/articles.json";
+import article from "@/data/article.json";
 
 export class ArticleDatabase extends Dexie {
   articles!: Dexie.Table<W.IArticle, number>;
@@ -32,10 +32,11 @@ export class ArticleDatabase extends Dexie {
    * 初始化已有数据
    */
   async initArticleData() {
+
     return await this.transaction("rw", this.articles, async () => {
       // 批量插入
       console.time("bulkAdd_articles");
-      await this.articles.bulkPut(article.articleList);
+      await this.articles.bulkPut(article);
       console.timeEnd("bulkAdd_articles");
     });
   }

@@ -2,9 +2,6 @@
   <div class="normal-articles">
     <aside class="sidebar">
       <Panel header="标签云">
-        <svg class="icon svg-icon bg-effect">
-          <use xlink:href="#effect-wave"></use>
-        </svg>
         <div class="tags-cloud">
           <a
             class="nav-link tag-item"
@@ -114,9 +111,13 @@ export default class Article extends Vue {
       font-size: 0.66rem
       white-space: nowrap
       border-radius: 2rem
+      cursor: pointer
       color: #fff
-      background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+      background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%)
       text-transform: uppercase
+
+      &:hover
+        color: #2d2d2d
 
 @media (max-width: 768px)
   .normal-articles

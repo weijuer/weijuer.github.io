@@ -18,9 +18,9 @@ var Index = new Vue({
     init() {
       this.initSocket();
     },
-    getBlogs() {
+    scrapeArticles() {
       // 获取最新日志
-      let url = '/scrapeBlogs';
+      let url = '/scrapeArticles';
       let data = {options: this.options};
 
       fetch(url, {
