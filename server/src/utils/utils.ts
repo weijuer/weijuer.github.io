@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from "path";
-const DATADIR = './client/src/data';
+const dataPath = './server/src/data';
 
 /**
  * 路径拼接
@@ -61,6 +61,14 @@ export const sleep = (time: number) => new Promise((resolve, reject) => {
 })
 
 /**
+ * 格式化JSON数据
+ * @param {*} data 
+ */
+export const toJSONString = (data: Object) => {
+  return JSON.stringify(data, null, 4);
+}
+
+/**
  * 数据存文件
  * @param type 待保存类别
  * @param data data数据
@@ -68,7 +76,7 @@ export const sleep = (time: number) => new Promise((resolve, reject) => {
 export const saveLocalData = async (type: string, data: Object) => {
 
   // 如果文件夹不存在则创建
-  const localPath = `${DATADIR}/${type}`;
+  const localPath = `${dataPath}/${type}`;
   if (!fs.existsSync(localPath)) {
     fs.mkdirSync(localPath)
   }
@@ -77,23 +85,15 @@ export const saveLocalData = async (type: string, data: Object) => {
   // 文件名
   const fileName = `${localPath}.json`;
   // 异步写入文件
-  await fs.writeFileSync(fileName, JSON.stringify(data, null, 4));
+  await fs.writeFileSync(fileName, toJSONString(data));
   console.log(`JSON文件成功保存到：${localPath}.json`);
 
   // 同步写入文件
-  /* fs.writeFile(`${DATADIR}${name}.json`, JSON.stringify(data, null, 4), (err: any) => {
+  /* fs.writeFile(`${DATADIR}${name}.json`, toJSONString(data), (err: any) => {
     if (!err) {
       console.log(`JSON文件成功保存到：${DATADIR}${name}.json`);
     }
   }) */
-}
-
-/**
- * 格式化JSON数据
- * @param {*} data 
- */
-export const toJSONString = (data: Object) => {
-  return JSON.stringify(data, null, 4);
 }
 
 /**

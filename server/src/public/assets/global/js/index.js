@@ -33,6 +33,21 @@ var Index = new Vue({
         .then(data => console.log('fetch data is', data))
         .catch(error => console.error('Error:', error));
     },
+    getPDF() {
+      // 获取最新日志
+      let url = '/getPDF';
+      let data = {options: this.options};
+
+      fetch(url, {
+        body: JSON.stringify(data),
+        method: 'POST',
+        credentials: 'include',
+        mode: 'cors'
+      })
+        .then(response => response)
+        .then(data => console.log('fetch data is', data))
+        .catch(error => console.error('Error:', error));
+    },
     initSocket() {
       let socket = io('http://localhost:3000');
 

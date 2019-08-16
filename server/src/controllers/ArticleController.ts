@@ -50,7 +50,7 @@ export class ArticleController {
     return {code: 1000, message: 'success'};
   }
 
-  @Get('/getPDF')
+  @Post('/getPDF')
   async getPDF(@Param("url") url: string) {
     // 生成PDF
     await browser.printPDF(url);

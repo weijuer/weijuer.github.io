@@ -94,6 +94,7 @@ class Browser {
   async printPDF(url: string) {
     // 打开浏览器
     await this.open(url);
+    log('开始打印PDF中...');
     await this.page.pdf({path: 'page.pdf'});
     log('打印PDF完毕...');
     // 关闭浏览器
