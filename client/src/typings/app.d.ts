@@ -24,6 +24,17 @@ declare namespace W {
     status: string;
     suggestion: any;
   }
+
+  interface IMusic {
+    songid: number;
+    title: string;
+    type: string;
+    author: string;
+    link: string;
+    lrc?: string;
+    pic: string;
+    url: string;
+  }
 }
 
 declare module "@layout";

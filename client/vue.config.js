@@ -89,7 +89,7 @@ module.exports = {
     port: 8081,
     proxy: {
       "/api": {
-        target: "https://newtest.linkdood.cn:10669",
+        target: "https://api.apiopen.top",
         // 获取cookie
         changeOrigin: true,
         pathRewrite: { "^/api": "" },

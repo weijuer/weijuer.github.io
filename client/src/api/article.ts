@@ -57,3 +57,20 @@ export const update_article = (key: number, changes: any) => {
 export const get_article = (id: number) => {
   return db.table("articles").get(id);
 };
+
+/**
+ * 获取热门articles
+ * @param size
+ */
+export const get_popular_articles = (size: number) => {
+  return db.table("articles").where('lastModified').above(10).limit(size);
+};
+
+/**
+ * 获取最新articles
+ * @param size
+ */
+export const get_lastest_articles = (size: number) => {
+  let today = new Date().getTime();
+  return db.table("articles").where('lastModified').belowOrEqual(today).limit(size);
+};
