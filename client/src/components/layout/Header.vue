@@ -164,10 +164,10 @@ export default class Header extends Vue {
 
   menus: Array<any> = [
     { name: "home", path: "/home", active: true },
-    { name: "articles", path: "/articles", active: false }
+    { name: "articles", path: "/articles", active: false },
     // { name: "example", path: "/example", active: false },
     // { name: "components", path: "/components", active: false },
-    // { name: "music", path: "/music", active: false },
+    { name: "music", path: "/music", active: false }
     // { name: "about", path: "/about", active: false }
   ];
 

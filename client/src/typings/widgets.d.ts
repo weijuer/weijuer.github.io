@@ -15,7 +15,7 @@ declare namespace Weather {
       dir: string;
       sc: string;
       spd: string;
-    }
+    };
   }
 
   interface Basic {
@@ -26,8 +26,8 @@ declare namespace Weather {
     lon: string;
     update: {
       loc: string;
-      utc: string
-    }
+      utc: string;
+    };
   }
 
   interface Now {
@@ -46,7 +46,6 @@ declare namespace Weather {
       dir: string;
       sc: string;
       spd: string;
-    }
+    };
   }
-
 }

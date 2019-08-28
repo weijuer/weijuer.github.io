@@ -32,7 +32,6 @@ export class ArticleDatabase extends Dexie {
    * 初始化已有数据
    */
   async initArticleData() {
-
     return await this.transaction("rw", this.articles, async () => {
       // 批量插入
       console.time("bulkAdd_articles");

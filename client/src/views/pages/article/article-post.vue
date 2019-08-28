@@ -52,7 +52,7 @@ export default class ArticlePost extends Vue {
     return this.type && this.type === "list";
   }
 
-  private moreLink(article) {
+  private moreLink(article: W.IArticle) {
     return `https://www.infoq.cn${article.url}`;
   }
 }

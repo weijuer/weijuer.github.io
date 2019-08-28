@@ -54,11 +54,11 @@ export const getAttr = (element: Element, selector: string, attr: string) => {
  * 睡眠time毫秒
  * @param time 
  */
-export const sleep = (time: number) => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(true);
-  }, time);
-})
+export const sleep = (time: number) => {
+  return new Promise((resolve) => {
+    return setTimeout(resolve, time);
+  });
+}
 
 /**
  * 格式化JSON数据

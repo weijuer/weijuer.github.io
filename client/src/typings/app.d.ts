@@ -22,7 +22,7 @@ declare namespace W {
     hourly_forecast: Weather.Forecast[];
     now: Weather.Now;
     status: string;
-    suggestion: any
+    suggestion: any;
   }
 }
 
