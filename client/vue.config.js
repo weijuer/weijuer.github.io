@@ -95,6 +95,13 @@ module.exports = {
         pathRewrite: { "^/api": "" },
         secure: false
       },
+      "/music": {
+        target: "http://p2.music.126.net/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/music": ""
+        }
+      },
       "/github": {
         target: "https://api.github.com",
         changeOrigin: true,

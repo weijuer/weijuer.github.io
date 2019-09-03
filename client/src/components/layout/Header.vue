@@ -104,9 +104,9 @@
             </div>
 
             <a
-              :class="['menu-toggle', isSideBarActive ? 'active' : '']"
+              :class="['menu-toggle', isSidebarActive ? 'active' : '']"
               href="javascript:;"
-              @click="toggleSideBar"
+              @click="toggleSidebar"
             >
               <svg class="icon svg-icon icon-menu-toggle">
                 <use xlink:href="#icon-menu-toggle"></use>
@@ -117,9 +117,9 @@
             :class="[
               'app-header-section',
               'menu-section',
-              isSideBarActive ? 'active' : ''
+              isSidebarActive ? 'active' : ''
             ]"
-            @click.self="shadowToggle($event)"
+            @click.self="toggleShadow($event)"
           >
             <nav class="app-nav">
               <ul class="nav">
@@ -159,8 +159,8 @@ import { Getter, Action } from "vuex-class";
 export default class Header extends Vue {
   @Getter isScrollUp!: boolean;
   @Getter isPageScroll!: boolean;
-  @Getter isSideBarActive!: boolean;
-  @Action("ToggleSideBar") toggleSideBar!: () => void;
+  @Getter isSidebarActive!: boolean;
+  @Action("ToggleSidebar") toggleSidebar!: () => void;
 
   menus: Array<any> = [
     { name: "home", path: "/home", active: true },
@@ -187,11 +187,11 @@ export default class Header extends Vue {
     return type;
   }
 
-  shadowToggle(event: any) {
+  toggleShadow(event: any) {
     event = event || window.event;
     let target = event.target || event.srcElement;
     if (target.nodeName.toLowerCase() === "section") {
-      this.toggleSideBar();
+      this.toggleSidebar();
     }
     // 阻止事件冒泡
     event.stopPropagation();

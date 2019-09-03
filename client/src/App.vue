@@ -12,12 +12,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Layout from "@layout";
-import Widgets from "@widgets";
+import { BackToTop } from "@widgets";
 
 @Component({
   components: {
     Svgs: Layout.Svgs,
-    BackToTop: Widgets.BackToTop,
+    BackToTop: BackToTop,
     Loading: Layout.Loading,
     Header: Layout.Header,
     Main: Layout.Main,

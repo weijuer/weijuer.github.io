@@ -202,6 +202,7 @@
       &.menu-section
         margin: 0
         width: 280px
+        height: 100vh
         align-items: flex-start
         position: fixed
         top: 60px
@@ -230,13 +231,15 @@
 
           &:before
             content: ""
+            width: 100vw
+            height: 100vh
             position: fixed
             top: 60px
             left: 0
             right: 0
             bottom: 0
             margin: 0
-            z-index: 2018
+            z-index: 2017
             background: rgba(0, 0, 0, 0.5)
             transition: all 0.3s cubic-bezier(0.815, 1.65, 0.4, 0.68)
 

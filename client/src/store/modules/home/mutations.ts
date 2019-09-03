@@ -20,8 +20,8 @@ const mutations: MutationTree<any> = {
     // 上次滚动距离
     state.scroll.lastPosition = state.scroll.newPosition;
   },
-  ToggleSideBar(state) {
-    state.isSideBarActive = !state.isSideBarActive;
+  ToggleSidebar(state) {
+    state.isSidebarActive = !state.isSidebarActive;
   },
   /**
    * 停止动画

@@ -19,8 +19,8 @@ const actions: ActionTree<any, any> = {
       }
     });
   },
-  ToggleSideBar({ commit }) {
-    commit("TOGGLE_SIDEBAR");
+  ToggleSidebar({ commit }) {
+    commit("ToggleSidebar");
   },
   // 停止动画
   CHANGE_LOADING({ commit, state }, isLoading) {

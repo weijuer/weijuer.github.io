@@ -6,7 +6,7 @@
       </div>
     </header>
     <div class="panel-body">
-      <slot>panel-body</slot>
+      <slot></slot>
     </div>
     <div class="panel-footer" v-if="$slots.footer || footer">
       <slot name="footer">{{ footer }}</slot>

@@ -10,6 +10,7 @@ interface State {
   };
   isPageScroll: boolean;
   isScrollUp: boolean;
+  isSidebarActive: boolean;
   isLoading: boolean;
   language: string;
   device: any;
@@ -26,6 +27,7 @@ const state: State = {
   },
   isPageScroll: false,
   isScrollUp: false,
+  isSidebarActive: false,
   isLoading: false,
   language: "zh",
   device: null,

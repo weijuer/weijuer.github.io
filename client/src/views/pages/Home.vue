@@ -11,7 +11,7 @@
         </div>
         <div class="nickname box-reflect">Weijuer</div>
         <div class="description text-shadowing">
-          Talk is cheap, show me your code!
+          Talking is cheap, show me the codes.
         </div>
         <div class="links hidden">
           <nav class="social-links">
@@ -51,12 +51,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import Widgets from "@widgets";
+import { Bubble, Weather } from "@widgets";
 
 @Component({
   components: {
-    Bubble: Widgets.Bubble,
-    Weather: Widgets.Weather
+    Bubble: Bubble,
+    Weather: Weather
   }
 })
 export default class Home extends Vue {
