@@ -10,10 +10,14 @@
         </aside>
         <div class="music-list">
           <Panel header="搜索结果">
-            <Media v-for="(music, index) of musics" :key="`music-${index}`">
+            <Media
+              v-for="(music, index) of musics"
+              :key="`music-${index}`"
+              @getMediaSong="getMusicSong(music)"
+            >
               <img class="media-image" slot="header" :src="music.pic" />
               <div class="media-content">
-                <a :href="music.link">{{ music.title }}</a>
+                <h5 :data-href="music.link">{{ music.title }}</h5>
                 <p>{{ music.author }}</p>
               </div>
             </Media>
@@ -28,8 +32,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import Panel from "@widgets/Panel.vue";
-import { Media, Player } from "@widgets";
+import { Panel, Media, Player } from "@widgets";
 
 @Component({
   components: {
@@ -39,8 +42,15 @@ import { Media, Player } from "@widgets";
   }
 })
 export default class Music extends Vue {
-  @Getter musics!: W.IMusic[];
-  @Action("SEARCH_MUSIC") search_music!: (name: string) => W.IMusic[];
+  @Getter
+  musics!: W.IMusic[];
+
+  @Action("SEARCH_MUSIC")
+  search_music!: (name: string) => W.IMusic[];
+
+  @Action("GET_SONG")
+  getMusicSong!: (song: any) => void;
+
   // data
   private name: string = "";
 

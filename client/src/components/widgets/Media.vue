@@ -1,5 +1,5 @@
 <template>
-  <div class="media" :class="[mediaType]">
+  <div class="media" :class="[mediaType]" @click="getSong">
     <div class="media-header" v-if="$slots.header || header">
       <slot name="header">{{ header }}</slot>
     </div>
@@ -10,12 +10,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+import { Getter, Action } from "vuex-class";
 
 @Component
 export default class Media extends Vue {
-  @Prop({ type: String }) type!: string;
-  @Prop({ default: () => {}, type: Object }) header: any;
+  @Prop({ type: String })
+  type!: string;
+
+  @Prop({ default: () => {}, type: Object })
+  header: any;
+
+  @Emit("getMediaSong")
+  getSong() {}
 
   get mediaType() {
     return this.type ? `media-${this.type}` : "";
@@ -36,6 +43,9 @@ $theme-color = #2ecc71
 
   &:last-child
     border-bottom: none
+
+  &:hover
+    background: #eee
 
   .media-header
     margin-right: 1rem

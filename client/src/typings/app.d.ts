@@ -40,3 +40,5 @@ declare namespace W {
 declare module "@layout";
 
 declare module "@widgets";
+
+declare module "@mixins";

@@ -22,7 +22,6 @@ const actions: ActionTree<any, any> = {
       console.log(err);
     }
   },
-
   /**
    * 获取音乐详情
    * @param id
@@ -42,6 +41,14 @@ const actions: ActionTree<any, any> = {
     } catch (err) {
       console.log(err);
     }
+  },
+  /**
+   * 获取歌曲
+   * @param param0
+   * @param song
+   */
+  GET_SONG({ commit, state }, song: W.IMusic) {
+    commit("GET_SONG", song);
   }
 };
 

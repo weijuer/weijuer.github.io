@@ -5,11 +5,22 @@ import mutations from "./mutations";
 interface State {
   musics: Array<W.IMusic>;
   music: any;
+  song: W.IMusic;
 }
 
 const state: State = {
   musics: [],
-  music: {}
+  music: {},
+  song: {
+    songid: 0,
+    title: "",
+    type: "",
+    author: "",
+    link: "",
+    lrc: "",
+    pic: "",
+    url: ""
+  }
 };
 
 export default {

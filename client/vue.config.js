@@ -27,6 +27,7 @@ module.exports = {
       .set("@views", resolve("src/views"))
       .set("@components", resolve("src/components"))
       .set("@assets", resolve("src/assets"))
+      .set("@mixins", resolve("src/mixins"))
       .set("@widgets", resolve("src/components/widgets"))
       .set("@layout", resolve("src/components/layout"));
 
@@ -95,7 +96,7 @@ module.exports = {
         pathRewrite: { "^/api": "" },
         secure: false
       },
-      "/music": {
+      "/music1": {
         target: "http://p2.music.126.net/",
         changeOrigin: true,
         pathRewrite: {

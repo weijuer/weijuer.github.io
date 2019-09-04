@@ -6,12 +6,4 @@ import Weather from "./Weather.vue";
 import Media from "./Media.vue";
 import Player from "./Player.vue";
 
-export {
-  BackToTop,
-  Bubble,
-  Card,
-  Panel,
-  Weather,
-  Media,
-  Player
-};
+export { BackToTop, Bubble, Card, Panel, Weather, Media, Player };

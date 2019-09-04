@@ -11,6 +11,9 @@ const mutations: MutationTree<any> = {
   },
   GET_MUSIC_DETAIL(state, music): void {
     state.music = music;
+  },
+  GET_SONG(state, song): void {
+    state.song = song;
   }
 };
 

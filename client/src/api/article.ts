@@ -63,7 +63,11 @@ export const get_article = (id: number) => {
  * @param size
  */
 export const get_popular_articles = (size: number) => {
-  return db.table("articles").where('lastModified').above(10).limit(size);
+  return db
+    .table("articles")
+    .where("lastModified")
+    .above(10)
+    .limit(size);
 };
 
 /**
@@ -72,5 +76,9 @@ export const get_popular_articles = (size: number) => {
  */
 export const get_lastest_articles = (size: number) => {
   let today = new Date().getTime();
-  return db.table("articles").where('lastModified').belowOrEqual(today).limit(size);
+  return db
+    .table("articles")
+    .where("lastModified")
+    .belowOrEqual(today)
+    .limit(size);
 };
