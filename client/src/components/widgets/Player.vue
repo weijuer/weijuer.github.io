@@ -18,7 +18,14 @@
 
       <div class="player-body">
         <div class="media-desc">
-          <div class="media-basic">{{ mediaBasic }}</div>
+          <marquee
+            class="media-marquee"
+            direction="left"
+            onmouseover="this.stop()"
+            onmouseout="this.start()"
+          >
+            <div class="media-basic">{{ mediaBasic }}</div>
+          </marquee>
           <div class="media-time">
             {{ currentTime | formatTime }} / {{ duration | formatTime }}
           </div>
@@ -165,8 +172,9 @@ export default class Player extends Vue {
 
   // 获取音频总长度
   onLoadedmetadata(event: any) {
-    console.log("loadedmetadata");
+    this.playing = false;
     this.duration = parseInt(event.target.duration);
+    this.play();
   }
 }
 </script>
@@ -263,6 +271,10 @@ export default class Player extends Vue {
     .media-desc
       display: flex
       justify-content: space-between
+      font-size: 1rem
+
+      .media-marquee
+        width: 10rem
 
     .media-progress
       margin: 4px 0
