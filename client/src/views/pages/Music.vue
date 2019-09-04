@@ -4,8 +4,15 @@
       <div class="music">
         <aside class="sidebar">
           <Panel header="搜索">
-            <input type="search" v-model="name" placeholder="请输入名称" />
-            <button @click="handleSearch">搜索</button>
+            <div class="form-item">
+              <input
+                class="form-control"
+                type="search"
+                v-model="name"
+                placeholder="请输入名称"
+              />
+              <button class="btn" @click="handleSearch">搜索</button>
+            </div>
           </Panel>
         </aside>
         <div class="music-list">
@@ -60,10 +67,34 @@ export default class Music extends Vue {
 }
 </script>
 <style lang="stylus">
+@import "../../assets/css/core/vars.styl"
+
 .music
   display: grid
   grid-template-columns: 30% minmax(0, 1fr)
   gap: 2rem
+
+.form-item
+  display: flex
+  font-size: 0.875rem
+
+  .form-control
+    flex: 1
+    width: 60%
+    height: 30px
+    line-height: 30px
+    outline: none
+    border: 1px solid $themes[primary]
+
+  .btn
+    color: #fff
+    background: $themes[primary]
+    border: 1px solid $themes[primary]
+    outline: none
+
+    &:hover
+      background: darken($themes[primary], 20%)
+      border: 1px solid darken($themes[primary], 20%)
 
 @media (max-width: 768px)
   .music

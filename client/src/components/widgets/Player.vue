@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div class="player-container">
-      <div class="player-header">
+      <div class="player-header" :class="[playing ? 'playing' : 'paused']">
         <img class="album-cover" :src="getAlbumCover" alt="图片" />
       </div>
 
@@ -141,6 +141,7 @@ export default class Player extends Vue {
 
   // 控制音频的播放与暂停
   playOrPause() {
+    if (!this.song.author) return false;
     return this.playing ? this.pause() : this.play();
   }
 
@@ -184,29 +185,43 @@ export default class Player extends Vue {
 
 .player-container
   display: flex
-  padding: 0.5rem
+  justify-content: center
+  padding: 1rem
   position: fixed
   left: 0
   bottom: 0
   right: 0
-  background: rgba(0, 0, 0, 0.8)
+  cursor: grab
+  background: #4a4f54
+  transition: all 1s ease-in-out
+  transform: translateY(100%)
+
+  &:hover
+    transform: translateY(0%)
 
   .player-header
-    margin-right: 2rem
+    position: absolute
+    left: 2rem
+    top: -1rem
+
+    &.playing
+      animation: moveAround 3s infinite linear
 
     .album-cover
       width: 4rem
       height: 4rem
+      box-shadow: 0px 0px 0px 12px #000
       border-radius: 50%
 
   .player-controls
-    margin-right: 2rem
+    flex: 1
     display: flex
     align-items: center
-    justify-content: space-between
+    justify-content: center
+    margin-left: 6rem
 
     .btn
-      margin-right: 1rem
+      margin: 0 1rem
       display: inline-flex
       width: 2rem
       height: 2rem
@@ -264,8 +279,7 @@ export default class Player extends Vue {
           border-left: 10px solid #fff
 
   .player-body
-    width: 40vw
-    margin-right: 2rem
+    flex: 2
     color: #fff
 
     .media-desc
@@ -274,7 +288,11 @@ export default class Player extends Vue {
       font-size: 1rem
 
       .media-marquee
-        width: 10rem
+        flex: 1
+        margin-right: 1rem
+
+      .media-time
+        text-align: center
 
     .media-progress
       margin: 4px 0
@@ -314,4 +332,22 @@ export default class Player extends Vue {
         background-color: #fff
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37)
         transform: translate(-6px, -50%)
+
+@keyframes moveAround
+  from
+    transform: rotate(0deg)
+
+  to
+    transform: rotate(360deg)
+
+@media (max-width: 768px)
+  .player-container
+    flex-direction: column
+
+    .player-header
+      display: none
+
+    .player-controls
+      margin-left: 0
+      margin-bottom: 1rem
 </style>
