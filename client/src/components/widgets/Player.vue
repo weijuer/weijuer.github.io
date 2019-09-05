@@ -154,13 +154,13 @@ export default class Player extends Vue {
   }
 
   // 调整播放时间
-  updateCurrentTime(progress) {
+  updateCurrentTime(progress: number) {
     this.currentTime = progress * this.duration;
     this.$audio.currentTime = this.currentTime;
   }
 
   // 调整音量大小
-  onVolumeChange(volume) {
+  onVolumeChange(volume: number) {
     this.volume = volume;
     this.$audio.volume = volume;
   }
