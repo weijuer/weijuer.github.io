@@ -30,19 +30,9 @@
             {{ currentTime | formatTime }} / {{ duration | formatTime }}
           </div>
         </div>
-        <div class="media-progress">
-          <div
-            class="progress-bar"
-            ref="$progress"
-            :style="getProgressStyle"
-          ></div>
-          <div class="progress-track"></div>
-          <div
-            class="progress-pointer"
-            :style="getPointerStyle"
-            @click="updateCurrentTime"
-          ></div>
-        </div>
+
+        <w-slider @change="updateCurrentTime" v-model="progress" />
+
         <div class="player">
           <audio
             ref="$audio"
@@ -53,8 +43,9 @@
         </div>
       </div>
 
-      <div class="player-controls-extra">
-        <a class="btn btn-volume" href="javascript:;"></a>
+      <div class="player-settings">
+        <a class="btn btn-volume" href="javascript:;">音量</a>
+        <w-slider @change="onVolumeChange" v-model="volume" />
       </div>
     </div>
   </transition>
@@ -63,8 +54,12 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
+import { Slider } from "@widgets";
 
 @Component({
+  components: {
+    wSlider: Slider
+  },
   filters: {
     formatTime(seconds: number) {
       let mins: any = Math.floor(seconds / 60);
@@ -131,14 +126,6 @@ export default class Player extends Vue {
     );
   }
 
-  private get getProgressStyle() {
-    return { width: `${this.progress * 100}%` };
-  }
-
-  private get getPointerStyle() {
-    return { left: `${this.progress * 100}%` };
-  }
-
   // 控制音频的播放与暂停
   playOrPause() {
     if (!this.song.author) return false;
@@ -159,10 +146,24 @@ export default class Player extends Vue {
 
   // 更新进度条
   updateProgress() {
+    // 是否播放完毕
+    if (this.$audio.ended) {
+      return this.pause();
+    }
     this.progress = this.currentTime / this.duration;
   }
 
-  updateCurrentTime() {}
+  // 调整播放时间
+  updateCurrentTime(progress) {
+    this.currentTime = progress * this.duration;
+    this.$audio.currentTime = this.currentTime;
+  }
+
+  // 调整音量大小
+  onVolumeChange(volume) {
+    this.volume = volume;
+    this.$audio.volume = volume;
+  }
 
   // 更新播放时间
   onUpdateTime(event: any) {
@@ -191,7 +192,6 @@ export default class Player extends Vue {
   left: 0
   bottom: 0
   right: 0
-  cursor: grab
   background: #4a4f54
   transition: all 1s ease-in-out
   transform: translateY(100%)
@@ -207,10 +207,32 @@ export default class Player extends Vue {
     &.playing
       animation: moveAround 3s infinite linear
 
+    .record
+      position: relative
+      width: 100%
+      height: 100%
+      border-radius: 50%
+      background: linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, 0.85) 40%) no-repeat 100% 0, linear-gradient(60deg, rgba(42, 41, 40, 0.85) 60%, transparent 60%) no-repeat 0 100%, repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px)
+      background-size: 50% 100%, 100% 50%, 100% 100%
+
+      &:after
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        margin: -35px
+        border: 1px solid #d9a388
+        width: 68px
+        height: 68px
+        border-radius: 50%
+        box-shadow: 0 0 0 4px #da5b33, inset 0 0 0 27px #da5b33
+        background: #b5ac9a
+
     .album-cover
       width: 4rem
       height: 4rem
-      box-shadow: 0px 0px 0px 12px #000
+      background: linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, 0.85) 40%) no-repeat 100% 0, linear-gradient(60deg, rgba(42, 41, 40, 0.85) 60%, transparent 60%) no-repeat 0 100%, repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px)
+      box-shadow: 0 0 0 20px #000
       border-radius: 50%
 
   .player-controls
@@ -280,6 +302,7 @@ export default class Player extends Vue {
 
   .player-body
     flex: 2
+    margin: 0 1rem
     color: #fff
 
     .media-desc
@@ -294,44 +317,12 @@ export default class Player extends Vue {
       .media-time
         text-align: center
 
-    .media-progress
-      margin: 4px 0
-      position: relative
-      height: 4px
-      cursor: pointer
+  .player-settings
+    flex: 1
+    margin: 0 1rem
 
-      .progress-bar
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        z-index: 2018
-        border-radius: 4px
-        background: $themeColor
-
-      .progress-track
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        border-radius: 4px
-        background: #7d7d7d
-
-      .progress-pointer
-        display: inline-block
-        position: absolute
-        top: 50%
-        z-index: 2019
-        width: 12px
-        height: 12px
-        border: 2px solid $themeColor
-        border-radius: 50%
-        cursor: pointer
-        background-color: #fff
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37)
-        transform: translate(-6px, -50%)
+    .btn-volume
+      color: #fff
 
 @keyframes moveAround
   from
@@ -343,11 +334,12 @@ export default class Player extends Vue {
 @media (max-width: 768px)
   .player-container
     flex-direction: column
+    transform: translateY(0)
 
-    .player-header
-      display: none
-
+    .player-body,
     .player-controls
-      margin-left: 0
       margin-bottom: 1rem
+
+    .player-settings
+      display: none
 </style>

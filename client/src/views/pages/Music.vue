@@ -1,5 +1,5 @@
 <template>
-  <main class="article-page">
+  <main class="music-page">
     <div class="container">
       <div class="music">
         <aside class="sidebar">
@@ -28,7 +28,14 @@
                 <p>{{ music.author }}</p>
               </div>
             </Media>
-            <p v-if="musics.length === 0">这里什么都没有哦~</p>
+            <div v-if="musics.length === 0">
+              <p>
+                <svg class="icon svg-icon icon-music">
+                  <use xlink:href="#icon-music" />
+                </svg>
+                这里什么都没有哦，赶紧动手搜索试试吧~
+              </p>
+            </div>
           </Panel>
         </div>
       </div>
