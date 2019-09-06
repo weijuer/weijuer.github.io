@@ -12,34 +12,6 @@
           >
         </div>
       </Panel>
-      <Panel header="最新">
-        <!-- <h1 slot="header">最新</h1> -->
-        <ul class="nav nav-column">
-          <li>
-            <a href>1奥斯丁</a>
-          </li>
-          <li>
-            <a href>2奥斯丁</a>
-          </li>
-          <li>
-            <a href>3奥斯丁</a>
-          </li>
-        </ul>
-      </Panel>
-      <Panel header="最热">
-        <!-- <h1 slot="header">最新</h1> -->
-        <ul class="nav nav-column">
-          <li>
-            <a href>1奥斯丁</a>
-          </li>
-          <li>
-            <a href>2奥斯丁</a>
-          </li>
-          <li>
-            <a href>3奥斯丁</a>
-          </li>
-        </ul>
-      </Panel>
     </aside>
     <div class="articles">
       <article-post

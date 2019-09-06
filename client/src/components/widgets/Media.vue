@@ -35,26 +35,32 @@ $theme-color = #2ecc71
 
 .media
   display: flex
-  padding: 1rem 0
+  padding: 1rem
   position: relative
   overflow: hidden
   background: #fff
-  border-bottom: 1px dashed #aaa
+
+  &:after
+    content: ""
+    position: absolute
+    display: block
+    left: 1rem
+    bottom: 0
+    width: 100%
+    height: 1px
+    background: #f7f7f7
 
   &:last-child
     border-bottom: none
-
-  &:hover
-    background: #eee
 
   .media-header
     margin-right: 1rem
 
     img,
     .media-image
-      width: 4rem
-      height: 4rem
-      border-radius: 50%
+      width: 2rem
+      height: 2rem
+      border-radius: 4px
 
   .media-body
     color: #575962

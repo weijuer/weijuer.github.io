@@ -85,10 +85,6 @@ export default class Slider extends Vue {
     return progress.toFixed(2);
   }
 
-  updated() {
-    console.log(`progress: ===>${this.progress}`);
-  }
-
   handleMouseDown(e: Event) {
     this.handleChange(e, true);
     window.addEventListener("mousemove", this.handleChange);

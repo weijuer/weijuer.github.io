@@ -6,17 +6,19 @@
           <Panel header="搜索">
             <div class="form-item">
               <input
-                class="form-control"
+                class="form-control theme"
                 type="search"
                 v-model="name"
                 placeholder="请输入名称"
               />
-              <button class="btn" @click="handleSearch">搜索</button>
+              <button class="btn btn-theme" @click.enter="handleSearch">
+                搜索
+              </button>
             </div>
           </Panel>
         </aside>
         <div class="music-list">
-          <Panel header="搜索结果">
+          <Panel class="music-list-panel" header="搜索结果">
             <Media
               v-for="(music, index) of musics"
               :key="`music-${index}`"
@@ -24,11 +26,19 @@
             >
               <img class="media-image" slot="header" :src="music.pic" />
               <div class="media-content">
-                <h5 :data-href="music.link">{{ music.title }}</h5>
-                <p>{{ music.author }}</p>
+                <h5 class="media-title" :data-href="music.link">
+                  {{ music.title }}
+                </h5>
+                <p class="media-author">{{ music.author }}</p>
+              </div>
+              <div class="media-status">
+                <i
+                  class="icon icon-status"
+                  :class="[getMusicStatus(music.songid)]"
+                ></i>
               </div>
             </Media>
-            <div v-if="musics.length === 0">
+            <div class="empty" v-if="musics.length === 0">
               <p>
                 <svg class="icon svg-icon icon-music">
                   <use xlink:href="#icon-music" />
@@ -63,13 +73,27 @@ export default class Music extends Vue {
   search_music!: (name: string) => W.IMusic[];
 
   @Action("GET_SONG")
-  getMusicSong!: (song: any) => void;
+  get_song!: (song: any) => void;
 
-  // data
+  // 搜索名称
   private name: string = "";
+
+  // 当前播放曲目
+  private playing: number = 0;
 
   private async handleSearch() {
     return await this.search_music(this.name);
+  }
+
+  // 获取歌曲
+  private getMusicSong(song: any) {
+    this.playing = song.songid;
+    this.get_song(song);
+  }
+
+  // 当前歌曲状态
+  private getMusicStatus(id: number) {
+    return id === this.playing ? "icon-playing" : "icon-paused";
   }
 }
 </script>
@@ -81,6 +105,100 @@ export default class Music extends Vue {
   grid-template-columns: 30% minmax(0, 1fr)
   gap: 2rem
 
+  .music-list-panel
+    counter-reset: media 0
+
+    .panel-body
+      padding: 0
+
+    .empty
+      padding: 1.5625rem
+
+  .media
+    counter-increment: media
+
+    &:before
+      content: counter(media)
+      margin-right: 12px
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      color: #575962
+      width: 1.25rem
+      height: 1.25rem
+      font-size: 14px
+      font-weight: bold
+      border-radius: 50%
+
+    &:first-child
+      &:before
+        color: #fff
+        background: $themes[danger]
+
+    &:nth-child(2)
+      &:before
+        color: #fff
+        background: $themes[warning]
+
+    &:nth-child(3)
+      &:before
+        color: #fff
+        background: $themes[info]
+
+    .media-body
+      flex: 2
+      display: flex
+
+      .media-content
+        flex: 2
+
+        .media-title
+          font-size: 1rem
+
+        .media-author
+          font-size: 0.75rem
+          color: #777
+          margin-bottom: 0
+
+      .media-status
+        .icon
+          display: inline-flex
+          justify-content: center
+          align-items: center
+          width: 1.5rem
+          height: 1.5rem
+          position: relative
+          border: 1px solid #777
+          border-radius: 50%
+
+          &:before,
+          &:after
+            content: ""
+            display: block
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
+          &.icon-paused
+            &:before
+              left: 15px
+              border: 6px solid transparent
+              border-left: 10px solid #737373
+
+          &.icon-playing
+            &:before
+              left: 8px
+              width: 0
+              height: 14px
+              border: 2px solid #737373
+
+            &:after
+              left: 14px
+              width: 0
+              height: 14px
+              border: 2px solid #737373
+
 .form-item
   display: flex
   font-size: 0.875rem
@@ -90,20 +208,26 @@ export default class Music extends Vue {
     width: 60%
     height: 30px
     line-height: 30px
+    text-indent: 4px
     outline: none
-    border: 1px solid $themes[primary]
+    border: 1px solid $themes[brand]
 
   .btn
     color: #fff
-    background: $themes[primary]
-    border: 1px solid $themes[primary]
     outline: none
 
-    &:hover
-      background: darken($themes[primary], 20%)
-      border: 1px solid darken($themes[primary], 20%)
+    &.btn-theme
+      background: $themes[brand]
+      border: 1px solid $themes[brand]
+
+      &:hover
+        background: darken($themes[brand], 20%)
+        border: 1px solid darken($themes[brand], 20%)
 
 @media (max-width: 768px)
-  .music
-    grid-template-columns: auto
+  .music-page
+    padding: 80px 0
+
+    .music
+      grid-template-columns: auto
 </style>

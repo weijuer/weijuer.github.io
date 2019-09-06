@@ -1,10 +1,12 @@
-import { db } from "@/db/articles";
+import db from "@/db/weijuer.db";
+import articles from "@/data/article.json";
 
 /**
  * init DA
  */
-export const initDB = () => {
-  return db.init();
+export const initDB = async () => {
+  await db.init();
+  return await bulk_add_article(articles);
 };
 
 /**
@@ -12,7 +14,7 @@ export const initDB = () => {
  */
 export const get_articles = () => {
   return db
-    .table("articles")
+    .table("article")
     .orderBy("lastModified")
     .toArray();
 };
@@ -22,7 +24,7 @@ export const get_articles = () => {
  * @param article
  */
 export const add_article = (article: W.IArticle) => {
-  return db.table("articles").add(article);
+  return db.table("article").add(article);
 };
 
 /**
@@ -30,7 +32,7 @@ export const add_article = (article: W.IArticle) => {
  * @param articles
  */
 export const bulk_add_article = (articles: W.IArticle[]) => {
-  return db.table("articles").bulkAdd(articles);
+  return db.table("article").bulkAdd(articles);
 };
 
 /**
@@ -38,7 +40,7 @@ export const bulk_add_article = (articles: W.IArticle[]) => {
  * @param id
  */
 export const delete_article = (id: number) => {
-  return db.table("articles").delete(id);
+  return db.table("article").delete(id);
 };
 
 /**
@@ -47,7 +49,7 @@ export const delete_article = (id: number) => {
  * @param changes
  */
 export const update_article = (key: number, changes: any) => {
-  return db.table("articles").update(key, changes);
+  return db.table("article").update(key, changes);
 };
 
 /**
@@ -55,7 +57,7 @@ export const update_article = (key: number, changes: any) => {
  * @param id
  */
 export const get_article = (id: number) => {
-  return db.table("articles").get(id);
+  return db.table("article").get(id);
 };
 
 /**
@@ -64,7 +66,7 @@ export const get_article = (id: number) => {
  */
 export const get_popular_articles = (size: number) => {
   return db
-    .table("articles")
+    .table("article")
     .where("lastModified")
     .above(10)
     .limit(size);
@@ -77,7 +79,7 @@ export const get_popular_articles = (size: number) => {
 export const get_lastest_articles = (size: number) => {
   let today = new Date().getTime();
   return db
-    .table("articles")
+    .table("article")
     .where("lastModified")
     .belowOrEqual(today)
     .limit(size);
