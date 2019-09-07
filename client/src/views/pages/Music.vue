@@ -11,8 +11,17 @@
                 v-model="name"
                 placeholder="请输入名称"
               />
-              <button class="btn btn-theme" @click.enter="handleSearch">
-                搜索
+              <button class="btn btn-theme" @click="handleSearch">搜索</button>
+            </div>
+            <h5 class="inner-title">搜索历史</h5>
+            <div class="tags-cloud">
+              <button
+                class="tag-item"
+                v-for="(tag, index) of searchArray"
+                :key="`tag-${index}`"
+                @click="tagSearch(tag)"
+              >
+                {{ tag }}
               </button>
             </div>
           </Panel>
@@ -81,7 +90,34 @@ export default class Music extends Vue {
   // 当前播放曲目
   private playing: number = 0;
 
+  // 搜索历史
+  private searchHistory: string = "";
+
+  // 搜索历史集合
+  private get searchArray() {
+    let searchHistory =
+      this.searchHistory || localStorage.getItem("searchHistory") || "";
+    if (!searchHistory) {
+      return [];
+    } else {
+      return searchHistory.split(",");
+    }
+  }
+
+  private tagSearch(name: string) {
+    this.name = name;
+    this.handleSearch();
+  }
+
   private async handleSearch() {
+    // 复制
+    let tempArr = this.searchArray.slice();
+    if (!tempArr.includes(this.name)) {
+      tempArr.push(this.name);
+      this.searchHistory = tempArr.join(",");
+      localStorage.setItem("searchHistory", this.searchHistory);
+    }
+
     return await this.search_music(this.name);
   }
 
@@ -99,6 +135,9 @@ export default class Music extends Vue {
 </script>
 <style lang="stylus">
 @import "../../assets/css/core/vars.styl"
+
+.inner-title
+  font-size: 0.875rem
 
 .music
   display: grid
@@ -199,9 +238,27 @@ export default class Music extends Vue {
               height: 14px
               border: 2px solid #737373
 
+.tags-cloud
+  .tag-item
+    margin: 0 0.12rem
+    padding: 0.2rem 0.85rem 0.25rem 0.85rem
+    font-weight: 700
+    font-size: 0.66rem
+    white-space: nowrap
+    border: 0
+    border-radius: 2rem
+    cursor: pointer
+    color: #fff
+    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%)
+    text-transform: uppercase
+
+    &:hover
+      color: #2d2d2d
+
 .form-item
   display: flex
   font-size: 0.875rem
+  margin-bottom: 0.5rem
 
   .form-control
     flex: 1
