@@ -75,9 +75,6 @@ import { Slider } from "@widgets";
   }
 })
 export default class Player extends Vue {
-  @Prop({ type: String })
-  source!: string;
-
   @Ref("$audio")
   readonly $audio!: HTMLAudioElement;
 

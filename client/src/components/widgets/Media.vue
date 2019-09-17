@@ -44,11 +44,11 @@ $theme-color = #2ecc71
     content: ""
     position: absolute
     display: block
-    left: 1rem
+    left: 3rem
     bottom: 0
     width: 100%
     height: 1px
-    background: #f7f7f7
+    background: #ebedf2
 
   &:last-child
     border-bottom: none
@@ -58,8 +58,8 @@ $theme-color = #2ecc71
 
     img,
     .media-image
-      width: 2rem
-      height: 2rem
+      width: 3rem
+      height: 3rem
       border-radius: 4px
 
   .media-body
