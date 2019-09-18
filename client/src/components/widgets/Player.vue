@@ -194,7 +194,7 @@ export default class Player extends Vue {
   transform: translateY(100%)
 
   &:hover
-    transform: translateY(0%)
+    transform: translateY(0)
 
   .player-header
     position: absolute
