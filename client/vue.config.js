@@ -1,4 +1,6 @@
 const path = require("path");
+// 多页面配置
+const pages = require("./src/utils/pages");
 
 const resolve = dir => {
   return path.join(__dirname, dir);
@@ -12,9 +14,11 @@ module.exports = {
   // 静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录
   assetsDir: "assets/global",
   // 是否关闭文件名哈希
-  filenameHashing: false,
+  filenameHashing: true,
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)
-  indexPath: "index.html",
+  // indexPath: "index.html",
+  // 多页面
+  pages: pages.getPages(),
   productionSourceMap: false,
   css: {
     // css拆分ExtractTextPlugin插件，默认true

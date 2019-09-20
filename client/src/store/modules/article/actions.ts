@@ -8,9 +8,9 @@ const actions: ActionTree<any, any> = {
    */
   async INIT_DB({ commit }) {
     try {
-      let isFirstVisit = localStorage.getItem('isFirstVisit') || 'false';
+      let isFirstVisit = localStorage.getItem("isFirstVisit") || "false";
       // 是否首次登录
-      if (Object.is(isFirstVisit, 'true')) {
+      if (Object.is(isFirstVisit, "true")) {
         return false;
       }
 
@@ -20,7 +20,7 @@ const actions: ActionTree<any, any> = {
         // 处理数据
         commit("INIT_DB", res);
         // 首次登录
-        localStorage.setItem('isFirstVisit', 'true');
+        localStorage.setItem("isFirstVisit", "true");
       }
     } catch (error) {
       console.log(error);

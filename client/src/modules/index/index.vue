@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-page default">
+  <div id="index" class="app-page default">
     <Svgs />
     <Loading />
     <Header />

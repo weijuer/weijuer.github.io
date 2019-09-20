@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === "production") {
  * @param name
  */
 export const search_music = async (name: string) => {
-
   const res: any = await service({
     url: `${music_api}/searchMusic?name=${name}`,
     method: "get"

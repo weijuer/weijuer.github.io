@@ -34,7 +34,6 @@ class WeijuerDB extends Dexie {
       console.error(ex);
     }
   }
-
 }
 
 export default new WeijuerDB();

@@ -769,7 +769,7 @@
   resolved "http://192.168.6.114:4873/@types%2fminimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*":
+"@types/node@*", "@types/node@^12.7.5":
   version "12.7.5"
   resolved "http://192.168.6.114:4873/@types%2fnode/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
@@ -1058,6 +1058,13 @@
     prettier "1.16.3"
     source-map "~0.6.1"
     vue-template-es2015-compiler "^1.9.0"
+
+"@vue/composition-api@^0.3.1":
+  version "0.3.1"
+  resolved "http://192.168.6.114:4873/@vue%2fcomposition-api/-/composition-api-0.3.1.tgz#bcfecd9b4112685b16699163e6e5eca112ea1ae6"
+  integrity sha512-AsKr/dcEnyqwj2QxXfHG6idQDYMo7D9HZIKsjcFlSr0P9hQu6r3qHLGaE9urRZLInnDFuXOmAdIIzcNoO71Frw==
+  dependencies:
+    tslib "^1.9.3"
 
 "@vue/eslint-config-prettier@^4.0.1":
   version "4.0.1"
@@ -1627,6 +1634,13 @@ babel-plugin-transform-object-rest-spread@^6.26.0:
   dependencies:
     babel-plugin-syntax-object-rest-spread "^6.8.0"
     babel-runtime "^6.26.0"
+
+babel-preset-vca-jsx@^0.3.2:
+  version "0.3.2"
+  resolved "http://192.168.6.114:4873/babel-preset-vca-jsx/-/babel-preset-vca-jsx-0.3.2.tgz#f8ec67747dc8ab99a3f7ff28d26df5ea63f30fbb"
+  integrity sha512-YA2zyo5rWBMj/c8O150NfAo7o8Rm/rLYC+x40r4hDXgCcqRe8aCRVJe21N17r0+2cwWvoNcLKcY0+M661o5GhQ==
+  dependencies:
+    "@babel/plugin-syntax-jsx" "^7.2.0"
 
 babel-runtime@^6.26.0:
   version "6.26.0"
@@ -8371,7 +8385,7 @@ ts-loader@^5.3.3:
     micromatch "^3.1.4"
     semver "^5.0.1"
 
-tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "http://192.168.6.114:4873/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
