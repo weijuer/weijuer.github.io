@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Web from "./Web.vue";
+import Index from "./Index.vue";
 import router from "@/router";
 import store from "@/store";
 import i18n from "@/i18n";
@@ -11,5 +11,5 @@ new Vue({
   router,
   store,
   i18n,
-  render: h => h(Web)
-}).$mount("#web");
+  render: h => h(Index)
+}).$mount("#index");

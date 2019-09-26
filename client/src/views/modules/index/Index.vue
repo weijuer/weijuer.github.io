@@ -1,5 +1,5 @@
 <template>
-  <div id="web" class="app-page default">
+  <div id="index" class="app-page default">
     <Svgs />
     <Loading />
     <Header />
@@ -24,7 +24,7 @@ import { BackToTop } from "@webWidgets";
     Footer: Layout.Footer
   }
 })
-export default class Web extends Vue {}
+export default class Index extends Vue {}
 </script>
 
 <style lang="stylus" src="@/assets/css/index.styl" />
