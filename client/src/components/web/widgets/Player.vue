@@ -54,7 +54,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Slider } from "@widgets";
+import { Slider } from "@webWidgets";
 
 @Component({
   components: {
@@ -179,7 +179,7 @@ export default class Player extends Vue {
 </script>
 
 <style lang="stylus">
-@import "../../assets/css/core/vars.styl"
+@import "../../../assets/css/core/vars.styl"
 
 .player-container
   display: flex

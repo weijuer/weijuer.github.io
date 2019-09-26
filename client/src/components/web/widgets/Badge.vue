@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/core/vars.styl"
+@import "@/assets/core/vars.styl"
 
 .badge
   padding: 0

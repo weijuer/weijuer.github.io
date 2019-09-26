@@ -1,4 +1,5 @@
 const path = require("path");
+const pages = require("./src/config/pages");
 
 const resolve = dir => {
   return path.join(__dirname, dir);
@@ -14,7 +15,9 @@ module.exports = {
   // 是否关闭文件名哈希
   filenameHashing: false,
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)
-  indexPath: "index.html",
+  // indexPath: "index.html",
+  // 多页配置
+  pages: pages.getPages(),
   productionSourceMap: false,
   css: {
     // css拆分ExtractTextPlugin插件，默认true
@@ -25,33 +28,21 @@ module.exports = {
     config.resolve.alias
       .set("@", resolve("src"))
       .set("@views", resolve("src/views"))
-      .set("@components", resolve("src/components"))
       .set("@assets", resolve("src/assets"))
       .set("@mixins", resolve("src/mixins"))
-      .set("@widgets", resolve("src/components/widgets"))
-      .set("@layout", resolve("src/components/layout"));
-
-    // vue骨架屏插件配置
-    /* config.plugin("skeleton").use(require("vue-skeleton-webpack-plugin"), [
-      {
-        webpackConfig: {
-          entry: {
-            index: resolve("src/utils/skeleton.ts")
-          }
-        },
-        insertAfter: '<div id="index">',
-        minimize: true,
-        quiet: false
-      }
-    ]); */
+      .set("@webComps", resolve("src/components/web"))
+      .set("@mobileComps", resolve("src/components/mobile"))
+      .set("@webLayout", resolve("src/components/web/layout"))
+      .set("@webWidgets", resolve("src/components/web/widgets"))
+      .set("@mobileLayout", resolve("src/components/mobile/layout"))
+      .set("@mobileWidgets", resolve("src/components/mobile/widgets"));
 
     // 查看打包组件大小情况
-    /* if (process.env.Bundle_Analyzer) {
-      // 在运行命令中添加 --report参数运行， 如：npm run build --report
+    if (process.env.Bundle_Analyzer) {
       config
         .plugin("webpack-bundle-analyzer")
         .use(require("webpack-bundle-analyzer").BundleAnalyzerPlugin);
-    } */
+    }
 
     // snapsvg
     config.module

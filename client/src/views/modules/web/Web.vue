@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-page default">
+  <div id="web" class="app-page default">
     <Svgs />
     <Loading />
     <Header />
@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Layout from "@layout";
-import { BackToTop } from "@widgets";
+import Layout from "@webLayout";
+import { BackToTop } from "@webWidgets";
 
 @Component({
   components: {
@@ -24,7 +24,7 @@ import { BackToTop } from "@widgets";
     Footer: Layout.Footer
   }
 })
-export default class App extends Vue {}
+export default class Web extends Vue {}
 </script>
 
 <style lang="stylus" src="@/assets/css/index.styl" />
