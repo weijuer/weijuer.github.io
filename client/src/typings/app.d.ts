@@ -38,7 +38,7 @@ declare namespace W {
 }
 
 declare module "@webLayout";
-
 declare module "@webWidgets";
-
+declare module "@mobileLayout";
+declare module "@mobileWidgets";
 declare module "@mixins";

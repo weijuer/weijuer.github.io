@@ -10,7 +10,8 @@ const getters: GetterTree<any, any> = {
   isLogin: (state: any) => state.isLogin,
   user: (state: any) => state.user,
   token: (state: any) => state.token,
-  domain: (state: any) => state.domain
+  domain: (state: any) => state.domain,
+  themeColor: (state: any) => state.themeColor
 };
 
 export default getters;

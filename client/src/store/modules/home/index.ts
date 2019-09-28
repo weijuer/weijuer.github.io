@@ -18,6 +18,7 @@ interface State {
   user: null;
   token: null;
   domain: string;
+  themeColor: string | null;
 }
 
 const state: State = {
@@ -34,7 +35,8 @@ const state: State = {
   isLogin: false,
   user: null,
   token: null,
-  domain: navi.getDomain()
+  domain: navi.getDomain(),
+  themeColor: localStorage.getItem('themeColor')
 };
 
 export default {
