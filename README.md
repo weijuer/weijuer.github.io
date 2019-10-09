@@ -1,8 +1,8 @@
+![](https://img.shields.io/github/forks/weijuer/weijuer.github.io) ![](https://img.shields.io/badge/Blog-weijuer.github.io-blue)
+
 # 背景
 
 > 一直在揣摩整个博客，这个项目很早就诞生了，经历了很多次修改，再推翻，修改（N 次），竟然是这个样？？？
-
-[![](https://img.shields.io/github/issues/weijuer/weijuer.github.io?style=social)]
 
 # 一、项目概述
 
