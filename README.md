@@ -2,6 +2,8 @@
 
 > 一直在揣摩整个博客，这个项目很早就诞生了，经历了很多次修改，再推翻，修改（N 次），竟然是这个样？？？
 
+[![](https://img.shields.io/github/issues/weijuer/weijuer.github.io?style=social)]
+
 # 一、项目概述
 
 ## 1.client
@@ -35,4 +37,4 @@
 * [x] 根据 IP 定位当前城市
 * [x] 当前天气及未来一周天气详情
 * [x] 通过 puppeteer 爬取最新业界动态文章
-* [ ] 爬取的信息存储到本地文件，并存储在IndexedDB 中
+* [ ] 爬取的信息存储到本地文件，并存储在 IndexedDB 中
