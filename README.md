@@ -1,8 +1,10 @@
-![](https://img.shields.io/github/forks/weijuer/weijuer.github.io) ![](https://img.shields.io/badge/Blog-weijuer.github.io-blue)
+![](https://img.shields.io/github/forks/weijuer/weijuer.github.io) ![](https://img.shields.io/badge/Blog-@Weijuer-blue)
 
 # 背景
 
 > 一直在揣摩整个博客，这个项目很早就诞生了，经历了很多次修改，再推翻，修改（N 次），竟然是这个样？？？
+
+$\color{red}{talk}$ is cheap, $\color{rgba(0,255,0,.8)}{show}$me the $\color{#ff0000}{code}$
 
 # 一、项目概述
 
