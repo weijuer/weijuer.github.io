@@ -1,8 +1,8 @@
 <template>
   <div id="mobile" class="app default">
-    <w-header title="test">
-      <a slot="left-actions" href>left</a>
-      <a slot="right-actions" href>right</a>
+    <w-header title="Weijuer">
+      <w-link slot="left-actions">Back</w-link>
+      <w-link slot="right-actions">right</w-link>
     </w-header>
   </div>
 </template>
@@ -10,10 +10,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Header } from "@mobileLayout";
+import { Link } from "@mobileWidgets";
 
 @Component({
   components: {
-    [Header.name]: Header
+    [Header.name]: Header,
+    [Link.name]: Link
   }
 })
 export default class Mobile extends Vue {
