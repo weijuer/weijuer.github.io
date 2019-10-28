@@ -1,21 +1,30 @@
 <template>
   <div id="mobile" class="app default">
-    <w-header title="Weijuer">
-      <w-link slot="left-actions">Back</w-link>
-      <w-link slot="right-actions">right</w-link>
+    <w-svg />
+    <w-header title="Title">
+      <w-link slot="left-actions" type="icon-only">
+        <w-icon name="menu" />
+      </w-link>
+      <w-link slot="right-actions" type="icon-only">
+        <w-icon name="search" />
+      </w-link>
     </w-header>
+    <w-main />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Header } from "@mobileLayout";
-import { Link } from "@mobileWidgets";
+import { Header, Main, Svg } from "@mobileLayout";
+import { Link, Icon } from "@mobileWidgets";
 
 @Component({
   components: {
     [Header.name]: Header,
-    [Link.name]: Link
+    [Main.name]: Main,
+    [Svg.name]: Svg,
+    [Link.name]: Link,
+    [Icon.name]: Icon
   }
 })
 export default class Mobile extends Vue {

@@ -36,7 +36,7 @@ const state: State = {
   user: null,
   token: null,
   domain: navi.getDomain(),
-  themeColor: localStorage.getItem('themeColor')
+  themeColor: localStorage.getItem("themeColor")
 };
 
 export default {

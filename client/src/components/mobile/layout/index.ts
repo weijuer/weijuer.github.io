@@ -1,5 +1,5 @@
-import Header from './Header.vue';
+import Header from "./Header.vue";
+import Main from "./Main.vue";
+import Svg from "./Svg.vue";
 
-export {
-  Header
-}
+export { Header, Main, Svg };

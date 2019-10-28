@@ -5,13 +5,13 @@ import Home from "../views/pages/Home.vue";
 Vue.use(Router);
 
 // 页面滚动配置
-/* const scrollBehavior = (to: Route, from: Route, savedPosition: void | Position) => {
+const scrollBehavior = (to: Router, from: Router, savedPosition: void | Position) => {
   if (savedPosition) {
     return savedPosition
   } else {
     return { x: 0, y: 0 }
   }
-}; */
+};
 
 // 懒加载路由
 const routes = [

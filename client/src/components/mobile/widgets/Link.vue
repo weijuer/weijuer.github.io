@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 @import "../../../assets/css/core/vars.styl"
 
 .link
@@ -41,6 +41,10 @@ export default {
   margin: 0
   display: flex
   justify-content: flex-start
+
+  &.icon-only
+    margin: 0;
+    justify-content: center;
 
   &.middle
     vertical-align: middle
