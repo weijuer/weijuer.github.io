@@ -1,5 +1,5 @@
 <template>
-  <div id="mobile" class="app default">
+  <div id="mobile" class="app-page default">
     <w-svg />
     <w-header title="Title">
       <w-link slot="left-actions" type="icon-only">

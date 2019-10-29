@@ -15,7 +15,7 @@ const navigatorLang = (navigator.language || navigator.browserLanguage)
 const navi = {
   navigator: {
     // 是否手机
-    isMobile: !!userAgent.match(/AppleWebKit.*Mobile.*/),
+    isMobile: !!userAgent.match(/Mobile.*/),
 
     // 是否安卓
     isAndroid:

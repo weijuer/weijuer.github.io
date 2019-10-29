@@ -30,6 +30,8 @@ module.exports = {
       .set("@views", resolve("src/views"))
       .set("@assets", resolve("src/assets"))
       .set("@mixins", resolve("src/mixins"))
+      .set("@utils", resolve("src/utils"))
+      .set("@pages", resolve("src/views/pages"))
       .set("@webComps", resolve("src/components/web"))
       .set("@mobileComps", resolve("src/components/mobile"))
       .set("@webLayout", resolve("src/components/web/layout"))

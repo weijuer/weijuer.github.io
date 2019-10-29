@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" mode="out-in">
-    <router-view class="main" />
+    <router-view class="app-main" />
   </transition>
 </template>
 
@@ -12,16 +12,6 @@ export default class WMain extends Vue {}
 </script>
 
 <style lang="stylus">
-.main
-  will-change: scroll-position
-  overflow: auto
-  webkit-overflow-scrolling: touch
-  box-sizing: border-box
-  height: 100%
-  position: relative
-  z-index: 1
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1)
-
 .slide-left-enter,
 .slide-right-leave-active
   opacity: 0
