@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header header-fixed">
     <div class="header-left">
       <slot name="left-actions"></slot>
     </div>
@@ -38,6 +38,13 @@ export default class WHeader extends Vue {
   justify-content: space-between
   height: var(--navbar-height)
   align-items: center
+
+  &.header-fixed
+    position: fixed
+    left: 0
+    right: 0
+    background: #fff
+    z-index: 10086
 
   .header-left,
   .header-right

@@ -22,7 +22,7 @@ export default class WIcon extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../../assets/css/core/vars.styl"
+@import "../../assets/css/core/vars.styl"
 
 .icon
   padding: 0

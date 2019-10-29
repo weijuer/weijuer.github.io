@@ -29,7 +29,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
 import ArticlePost from "./article-post.vue";
-import { Panel } from "@webWidgets";
+import { Panel } from "@widgets";
 
 @Component({
   components: {

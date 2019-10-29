@@ -12,11 +12,11 @@
   align-items: center
 
   .error-code
-    font-size: 150px
+    font-size: 6rem
     font-weight: bold
     color: #595d6e
 
   .error-desc
-    font-size: 1.5rem
+    font-size: 1rem
     color: #74788d
 </style>

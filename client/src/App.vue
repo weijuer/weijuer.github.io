@@ -15,8 +15,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Header, Main, Svg } from "@mobileLayout";
-import { Link, Icon } from "@mobileWidgets";
+import { Header, Main, Svg } from "@layout";
+import { Link, Icon } from "@widgets";
 
 @Component({
   components: {

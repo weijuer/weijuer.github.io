@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import "../../../assets/css/core/vars.styl"
+@import "../../assets/css/core/vars.styl"
 
 .link
   padding: 0
