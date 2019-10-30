@@ -1,0 +1,33 @@
+<template>
+  <div id="mobile" class="app-page default">
+    <w-svg />
+    <w-header title="Title">
+      <w-link slot="left-actions" type="icon-only">
+        <w-icon name="menu" />
+      </w-link>
+      <w-link slot="right-actions" type="icon-only">
+        <w-icon name="search" />
+      </w-link>
+    </w-header>
+    <w-main />
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { Header, Main, Svg } from "@layout";
+import { Link, Icon } from "@widgets";
+
+@Component({
+  components: {
+    [Header.name]: Header,
+    [Main.name]: Main,
+    [Svg.name]: Svg,
+    [Link.name]: Link,
+    [Icon.name]: Icon
+  }
+})
+export default class WLayout extends Vue {}
+</script>
+
+<style lang="stylus" src="@/assets/css/mobile.styl" />
