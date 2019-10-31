@@ -74,5 +74,5 @@ export default class BackToTop extends Vue {
 @media (max-width: 768px)
   .back-to-top
     &.active
-      bottom: 22%
+      bottom: 8%
 </style>

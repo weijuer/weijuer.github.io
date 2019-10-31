@@ -22,6 +22,8 @@ $theme-color = #2ecc71
 
 .bubble
   display: flex
+  justify-content: center;
+  overflow: hidden;
   position: relative
   margin: 0 auto
   width: 100%

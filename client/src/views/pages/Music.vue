@@ -137,154 +137,151 @@ export default class Music extends Vue {
 @import "../../assets/css/core/vars.styl"
 
 .inner-title
-  font-size: 0.875rem
+  font-size 0.875rem
 
 .music
-  display: grid
-  grid-template-columns: 30% minmax(0, 1fr)
-  gap: 2rem
+  display grid
+  grid-template-columns 30% minmax(0, 1fr)
+  gap 2rem
 
   .music-list-panel
-    counter-reset: media 0
+    counter-reset media 0
 
     .panel-body
-      padding: 0
+      padding 0
 
     .empty
-      padding: 1.5625rem
+      padding 1.5625rem
 
   .media
-    counter-increment: media
+    counter-increment media
 
     &:before
-      content: counter(media)
-      margin-right: 12px
-      display: inline-flex
-      justify-content: center
-      align-items: center
-      color: #575962
-      width: 1.25rem
-      height: 1.25rem
-      font-size: 14px
-      font-weight: bold
-      border-radius: 50%
+      content counter(media)
+      margin-right 12px
+      display inline-flex
+      justify-content center
+      align-items center
+      color #575962
+      width 1.25rem
+      height 1.25rem
+      font-size 14px
+      font-weight bold
+      border-radius 50%
 
     &:first-child
       &:before
-        color: #fff
-        background: $themes[danger]
+        color #fff
+        background $themes[danger]
 
     &:nth-child(2)
       &:before
-        color: #fff
-        background: $themes[warning]
+        color #fff
+        background $themes[warning]
 
     &:nth-child(3)
       &:before
-        color: #fff
-        background: $themes[info]
+        color #fff
+        background $themes[info]
 
     .media-body
-      flex: 2
-      display: flex
+      flex 2
+      display flex
 
       .media-content
-        flex: 2
+        flex 2
 
         .media-title
-          font-size: 1rem
+          font-size 1rem
 
         .media-author
-          font-size: 0.75rem
-          color: #777
-          margin-bottom: 0
+          font-size 0.75rem
+          color #777
+          margin-bottom 0
 
       .media-status
         .icon
-          display: inline-flex
-          justify-content: center
-          align-items: center
-          width: 1.5rem
-          height: 1.5rem
-          position: relative
-          border: 1px solid #777
-          border-radius: 50%
+          display inline-flex
+          justify-content center
+          align-items center
+          width 1.5rem
+          height 1.5rem
+          position relative
+          border 1px solid #777
+          border-radius 50%
 
           &:before,
           &:after
-            content: ""
-            display: block
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
+            content ""
+            display block
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
 
           &.icon-paused
             &:before
-              left: 15px
-              border: 6px solid transparent
-              border-left: 10px solid #737373
+              left 15px
+              border 6px solid transparent
+              border-left 10px solid #737373
 
           &.icon-playing
             &:before
-              left: 8px
-              width: 0
-              height: 14px
-              border: 2px solid #737373
+              left 8px
+              width 0
+              height 14px
+              border 2px solid #737373
 
             &:after
-              left: 14px
-              width: 0
-              height: 14px
-              border: 2px solid #737373
+              left 14px
+              width 0
+              height 14px
+              border 2px solid #737373
 
 .tags-cloud
   .tag-item
-    margin: 0 0.12rem
-    padding: 0.2rem 0.85rem 0.25rem 0.85rem
-    font-weight: 700
-    font-size: 0.66rem
-    white-space: nowrap
-    border: 0
-    border-radius: 2rem
-    cursor: pointer
-    color: #fff
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%)
-    text-transform: uppercase
+    margin 0 0.12rem
+    padding 0.2rem 0.85rem 0.25rem 0.85rem
+    font-weight 700
+    font-size 0.66rem
+    white-space nowrap
+    border 0
+    border-radius 2rem
+    cursor pointer
+    color #fff
+    background linear-gradient(to right, #4cbf30 0%, #0f9d58 100%)
+    text-transform uppercase
 
     &:hover
-      color: #2d2d2d
+      color #2d2d2d
 
 .form-item
-  display: flex
-  font-size: 0.875rem
-  margin-bottom: 0.5rem
+  display flex
+  font-size 0.875rem
+  margin-bottom 0.5rem
 
   .form-control
-    flex: 1
-    width: 60%
-    height: 30px
-    line-height: 30px
-    text-indent: 4px
-    outline: none
-    border: 1px solid $themes[brand]
+    flex 1
+    width 60%
+    height 30px
+    line-height 30px
+    text-indent 4px
+    outline none
+    border 1px solid $themes[brand]
 
   .btn
-    color: #fff
-    outline: none
+    color #fff
+    outline none
 
     &.btn-theme
-      background: $themes[brand]
-      border: 1px solid $themes[brand]
-
+      background $themes[brand],
+      border 1px solid $themes[brand],
       &:hover
-        background: darken($themes[brand], 20%)
-        border: 1px solid darken($themes[brand], 20%)
+        background darken($themes[brand], 20%)
+        border 1px solid darken($themes[brand], 20%)
 
 @media (max-width: 768px)
   .music-page
-    padding: 80px 0
-
     .music
-      grid-template-columns: auto
+      grid-template-columns auto
 </style>

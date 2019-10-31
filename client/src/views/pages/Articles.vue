@@ -28,7 +28,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import ArticlePost from "./article-post.vue";
+import ArticlePost from "./article/article-post.vue";
 import { Panel } from "@webWidgets";
 
 @Component({
@@ -37,7 +37,7 @@ import { Panel } from "@webWidgets";
     Panel
   }
 })
-export default class Article extends Vue {
+export default class Articles extends Vue {
   @Getter articles!: any[];
   @Action("GET_ARTICLES") get_articles!: () => void;
 

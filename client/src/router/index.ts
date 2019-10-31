@@ -21,22 +21,13 @@ const routes = [
     component: Home
   },
   {
-    path: "/articles",
+    path: "/articles.shtml",
     name: "articles",
     component: () =>
       import(
-        /* webpackChunkName: "article" */ "../views/pages/article/Article.vue"
+        /* webpackChunkName: "article" */ "../views/pages/Articles.vue"
       ),
-    redirect: "/articles/article-list.shtml",
     children: [
-      {
-        path: "article-list.shtml",
-        name: "article-list",
-        component: () =>
-          import(
-            /* webpackChunkName: "article-list" */ "../views/pages/article/article-list.vue"
-          )
-      },
       {
         path: "article-detail/:id.shtml",
         name: "article-detail",
