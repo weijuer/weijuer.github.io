@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "production") {
 
 /**
  * 处理music对象增加索引
- * @param musics 
+ * @param musics
  */
 const processMusic = (musics: any) => {
   musics.map((item: any, index: number) => {

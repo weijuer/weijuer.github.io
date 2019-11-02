@@ -78,8 +78,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Panel, Media, Player } from "@webWidgets";
-import { Icon } from "@mobileWidgets";
+import { Panel, Media, Player, Icon } from "@webWidgets";
 
 @Component({
   components: {
