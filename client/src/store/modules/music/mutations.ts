@@ -9,6 +9,9 @@ const mutations: MutationTree<any> = {
   SEARCH_MUSIC(state, musics): void {
     state.musics = musics;
   },
+  SEARCH_LOCAL_MUSIC(state, musics): void {
+    state.musics = musics;
+  },
   GET_MUSIC_DETAIL(state, music): void {
     state.music = music;
   },

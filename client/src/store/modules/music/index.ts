@@ -12,6 +12,7 @@ const state: State = {
   musics: [],
   music: {},
   song: {
+    id: 0,
     songid: 0,
     title: "",
     type: "",
@@ -19,7 +20,8 @@ const state: State = {
     link: "",
     lrc: "",
     pic: "",
-    url: ""
+    url: "",
+    lastModified: ""
   }
 };
 

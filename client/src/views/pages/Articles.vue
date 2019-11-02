@@ -1,28 +1,32 @@
 <template>
-  <div class="normal-articles">
-    <aside class="sidebar">
-      <Panel header="标签云">
-        <div class="tags-cloud">
-          <a
-            class="nav-link tag-item"
-            v-for="(tag, index) of tags"
-            :key="`tag-${index}`"
-            :to="{ name: 'tag-detail', params: { id: tag.code } }"
-            >{{ tag.code }}</a
-          >
+  <main class="article-page">
+    <div class="container">
+      <div class="normal-articles">
+        <aside class="sidebar">
+          <Panel header="标签云">
+            <div class="tags-cloud">
+              <a
+                class="nav-link tag-item"
+                v-for="(tag, index) of tags"
+                :key="`tag-${index}`"
+                :to="{ name: 'tag-detail', params: { id: tag.code } }"
+                >{{ tag.code }}</a
+              >
+            </div>
+          </Panel>
+        </aside>
+        <div class="articles">
+          <article-post
+            v-for="(article, index) of articles"
+            :article="article"
+            :key="`article-${index}`"
+            type="list"
+            class="article-bordered"
+          ></article-post>
         </div>
-      </Panel>
-    </aside>
-    <div class="articles">
-      <article-post
-        v-for="(article, index) of articles"
-        :article="article"
-        :key="`article-${index}`"
-        type="list"
-        class="article-bordered"
-      ></article-post>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

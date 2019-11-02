@@ -5,11 +5,15 @@ import Home from "../views/pages/Home.vue";
 Vue.use(Router);
 
 // 页面滚动配置
-const scrollBehavior = (to: Router, from: Router, savedPosition: void | Position) => {
+const scrollBehavior = (
+  to: Router,
+  from: Router,
+  savedPosition: void | Position
+) => {
   if (savedPosition) {
-    return savedPosition
+    return savedPosition;
   } else {
-    return { x: 0, y: 0 }
+    return { x: 0, y: 0 };
   }
 };
 
@@ -24,9 +28,7 @@ const routes = [
     path: "/articles.shtml",
     name: "articles",
     component: () =>
-      import(
-        /* webpackChunkName: "article" */ "../views/pages/Articles.vue"
-      ),
+      import(/* webpackChunkName: "article" */ "../views/pages/Articles.vue"),
     children: [
       {
         path: "article-detail/:id.shtml",

@@ -50,7 +50,7 @@ export default class Panel extends Vue {
     justify-content: space-between
     position: relative
     padding: 0 1.5625rem
-    min-height: 60px
+    min-height: 50px
     border-bottom: 1px solid #ebedf2
     transition: height 0.3s
 
@@ -62,7 +62,7 @@ export default class Panel extends Vue {
       .panel-header--title
         margin: 0
         padding: 0
-        font-size: 1.1rem
+        font-size: 1rem
         font-weight: 500
 
   .panel-body

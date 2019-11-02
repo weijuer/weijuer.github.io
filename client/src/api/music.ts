@@ -10,6 +10,17 @@ if (process.env.NODE_ENV === "production") {
 }
 
 /**
+ * 处理music对象增加索引
+ * @param musics 
+ */
+const processMusic = (musics: any) => {
+  musics.map((item: any, index: number) => {
+    item.lastModified = new Date().getTime() + index;
+  });
+  return musics;
+};
+
+/**
  * 音乐搜索接口
  * @param name
  */
@@ -21,10 +32,10 @@ export const search_music = async (name: string) => {
 
   // 结果处理
   if (res.code === 200) {
-    // 清空数据
-    await clear_music();
     // 处理数据
-    await bulk_add_music(res.result);
+    let musics = processMusic(res.result);
+    // 存入本地缓存
+    await bulk_add_music(musics);
   }
 
   return res;
@@ -47,6 +58,18 @@ export const get_music_detail = (id: string) => {
  */
 export const get_music = (id: number) => {
   return db.table("music").get(id);
+};
+
+/**
+ * 根据title获取musics
+ * @param title
+ */
+export const get_musics_by_title = (title: string) => {
+  return db
+    .table("music")
+    .where("title")
+    .startsWithIgnoreCase(title)
+    .sortBy("lastModified");
 };
 
 /**

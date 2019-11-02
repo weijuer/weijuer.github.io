@@ -14,7 +14,7 @@ class WeijuerDB extends Dexie {
 
     // create table
     this.version(1).stores({
-      music: "++songid,title,type,author,link,lrc,pic,url,lastModified"
+      music: "++id,songid,title,type,author,link,lrc,pic,url,lastModified"
     });
 
     this.version(1).stores({

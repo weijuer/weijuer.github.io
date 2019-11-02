@@ -26,6 +26,7 @@ declare namespace W {
   }
 
   interface IMusic {
+    id?: number;
     songid: number;
     title: string;
     type: string;
@@ -34,6 +35,7 @@ declare namespace W {
     lrc?: string;
     pic: string;
     url: string;
+    lastModified: string;
   }
 }
 

@@ -74,14 +74,11 @@
       flex: 1 1 auto
       justify-content: space-between
 
-      .logo
-        flex-shrink: 1
-
       .menu-toggle
         display: none
-        width: 40px
-        height: 40px
-        flex-shrink: 1
+        width: 30px
+        height: 30px
+        color: #fff
 
         .icon-menu-toggle
           width: 100%
@@ -199,19 +196,19 @@
 
   .app-header
     .app-header-section
-      margin: 0.25rem 1rem;
+      margin: 0.25rem 0
 
       &.menu-section
         margin: 0
-        width: 280px
+        width: 260px
         height: 100vh
         align-items: flex-start
         position: fixed
-        top: 60px
+        top: 48px
         right: -280px
         bottom: 0
         z-index: 2018
-        transition: all 0.3s cubic-bezier(0.815, 1.65, 0.4, 0.68)
+        transition: all 0.3s ease-in-out
 
         .app-nav
           flex: 1
@@ -236,7 +233,7 @@
             width: 100vw
             height: 100vh
             position: fixed
-            top: 60px
+            top: 48px
             left: 0
             right: 0
             bottom: 0

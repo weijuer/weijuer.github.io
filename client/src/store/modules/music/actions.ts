@@ -1,5 +1,10 @@
 import { ActionTree } from "vuex";
-import { search_music, get_music_detail } from "@/api/music";
+import {
+  search_music,
+  get_musics_by_title,
+  clear_music,
+  get_music_detail
+} from "@/api/music";
 
 const actions: ActionTree<any, any> = {
   /**
@@ -18,6 +23,37 @@ const actions: ActionTree<any, any> = {
         // 处理数据
         commit("SEARCH_MUSIC", res.result);
       }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  /**
+   * 搜索本地音乐
+   * @param title
+   */
+  async SEARCH_LOCAL_MUSIC({ commit, state }, title: string) {
+    try {
+      // 调用获取登录用户信息接口
+      console.time("VUEX_search_local_music");
+      let res: any = await get_musics_by_title(title);
+      console.timeEnd("VUEX_search_local_music");
+
+      // 结果处理
+      commit("SEARCH_LOCAL_MUSIC", res);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  /**
+   * 清空音乐搜索记录
+   * @param name
+   */
+  async ClEAR_MUSIC({ commit, state }) {
+    try {
+      // 调用获取登录用户信息接口
+      console.time("VUEX_clear_music");
+      await clear_music();
+      console.timeEnd("VUEX_clear_music");
     } catch (err) {
       console.log(err);
     }
