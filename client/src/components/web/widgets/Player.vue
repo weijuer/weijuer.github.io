@@ -8,7 +8,7 @@
       <div class="player-controls">
         <a class="btn btn-prev" href="javascript:;"></a>
         <a
-          class="btn btn-start"
+          class="btn"
           :class="[playing ? 'btn-pause' : 'btn-start']"
           href="javascript:;"
           @click="playOrPause"
@@ -337,10 +337,24 @@ export default class Player extends Vue {
     flex-direction: column
     transform: translateY(0)
 
-    .player-body,
-    .player-controls
-      margin-bottom: 1rem
+    .player-header
+      left: 1rem
+      top: 1rem
 
+      .album-cover
+        width: 2rem
+        height: 2rem
+        box-shadow: 0 0 0 10px #000
+
+    .player-controls
+      margin-left: 0
+      align-self: flex-end
+
+      .btn-prev,
+      .btn-next
+        display: none
+
+    .player-body,
     .player-settings
       display: none
 </style>
