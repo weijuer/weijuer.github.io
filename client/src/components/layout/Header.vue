@@ -98,25 +98,19 @@
         <div class="app-header-content">
           <section class="app-header-section logo-section">
             <div class="logo">
-              <svg class="icon svg-icon icon-logo">
-                <use xlink:href="#icon-logo-new" x="0px" y="0px" />
-              </svg>
+              <w-icon name="logo-new" />
             </div>
-
-            <a
-              :class="['menu-toggle', isSidebarActive ? 'active' : '']"
-              href="javascript:;"
+            <w-link
               @click="toggleSidebar"
+              :class="['menu-toggle', isSidebarActive ? 'active' : '']"
+              type="icon-only"
             >
               <w-icon :name="isSidebarActive ? 'menu-open' : 'menu'" />
-            </a>
+            </w-link>
           </section>
           <section
-            :class="[
-              'app-header-section',
-              'menu-section',
-              isSidebarActive ? 'active' : ''
-            ]"
+            class="app-header-section menu-section"
+            :class="[isSidebarActive ? 'active' : '']"
             @click.self="toggleShadow($event)"
           >
             <nav class="app-nav">
@@ -152,18 +146,26 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Icon } from "@widgets";
+import { Link, Icon } from "@widgets";
 
 @Component({
   components: {
+    [Link.name]: Link,
     [Icon.name]: Icon
   }
 })
 export default class Header extends Vue {
-  @Getter isScrollUp!: boolean;
-  @Getter isPageScroll!: boolean;
-  @Getter isSidebarActive!: boolean;
-  @Action("ToggleSidebar") toggleSidebar!: () => void;
+  @Getter
+  isScrollUp!: boolean;
+
+  @Getter
+  isPageScroll!: boolean;
+
+  @Getter
+  isSidebarActive!: boolean;
+
+  @Action("ToggleSidebar")
+  toggleSidebar!: () => void;
 
   menus: Array<any> = [
     { name: "home", path: "/home", active: true },
@@ -202,7 +204,7 @@ export default class Header extends Vue {
 }
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus">
 .logo
   position: relative
   width: 220px

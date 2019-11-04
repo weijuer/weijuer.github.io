@@ -13,22 +13,20 @@ export default {
       default: "#"
     }
   },
-  render(h, { props, slots }) {
+  render(h, { props, data, slots }) {
     return h(
       "a",
       {
-        class: ["link", props.type, props.vertical],
+        class: ["link", data.class, props.type],
         attrs: {
           href: props.href === true ? "#" : undefined
+        },
+        on: {
+          click: data.on.click
         }
       },
       [props.text, slots().default]
     );
-  },
-  methods: {
-    onClick(event) {
-      this.$emit("click", event);
-    }
   }
 };
 </script>
@@ -43,14 +41,7 @@ export default {
   justify-content: flex-start
 
   &.icon-only
-    margin: 0;
     justify-content: center;
-
-  &.middle
-    vertical-align: middle
-
-  &.top
-    vertical-align: top
 
   for theme in $themes
     &.{theme}

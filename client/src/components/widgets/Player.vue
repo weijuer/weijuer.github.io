@@ -1,51 +1,70 @@
 <template>
   <transition name="fade">
     <div class="player-container">
-      <div class="player-header" :class="[playing ? 'playing' : 'paused']">
-        <img class="album-cover" :src="getAlbumCover" alt="图片" />
+      <div class="player-web">
+        <div class="player-header" :class="[playing ? 'playing' : 'paused']">
+          <img class="album-cover" :src="getAlbumCover" alt="图片" />
+        </div>
+
+        <div class="player-controls">
+          <a class="btn btn-prev" href="javascript:;"></a>
+          <a
+            class="btn"
+            :class="[playing ? 'btn-pause' : 'btn-start']"
+            href="javascript:;"
+            @click="playOrPause"
+          ></a>
+          <a class="btn btn-next" href="javascript:;"></a>
+        </div>
+
+        <div class="player-body">
+          <div class="media-desc">
+            <marquee
+              class="media-marquee"
+              direction="left"
+              onmouseover="this.stop()"
+              onmouseout="this.start()"
+            >
+              <div class="media-basic">{{ mediaBasic }}</div>
+            </marquee>
+            <div class="media-time">
+              {{ currentTime | formatTime }} / {{ duration | formatTime }}
+            </div>
+          </div>
+
+          <w-slider @change="updateCurrentTime" v-model="progress" />
+
+          <div class="player">
+            <audio
+              ref="$audio"
+              @timeupdate="onUpdateTime"
+              @loadedmetadata="onLoadedmetadata"
+              :src="song.url"
+            />
+          </div>
+        </div>
+
+        <div class="player-settings">
+          <a class="btn btn-volume" href="javascript:;">音量</a>
+          <w-slider @change="onVolumeChange" v-model="volume" />
+        </div>
       </div>
 
-      <div class="player-controls">
-        <a class="btn btn-prev" href="javascript:;"></a>
+      <div class="player-mini">
+        <div class="player-header" :class="[playing ? 'playing' : 'paused']">
+          <img class="album-cover" :src="getAlbumCover" alt="图片" />
+        </div>
+        <div class="player-body">
+          <h5 class="song-title">{{ song.title }}</h5>
+          <div class="song-author">{{ song.author }}</div>
+        </div>
         <a
           class="btn"
           :class="[playing ? 'btn-pause' : 'btn-start']"
           href="javascript:;"
           @click="playOrPause"
         ></a>
-        <a class="btn btn-next" href="javascript:;"></a>
-      </div>
-
-      <div class="player-body">
-        <div class="media-desc">
-          <marquee
-            class="media-marquee"
-            direction="left"
-            onmouseover="this.stop()"
-            onmouseout="this.start()"
-          >
-            <div class="media-basic">{{ mediaBasic }}</div>
-          </marquee>
-          <div class="media-time">
-            {{ currentTime | formatTime }} / {{ duration | formatTime }}
-          </div>
-        </div>
-
-        <w-slider @change="updateCurrentTime" v-model="progress" />
-
-        <div class="player">
-          <audio
-            ref="$audio"
-            @timeupdate="onUpdateTime"
-            @loadedmetadata="onLoadedmetadata"
-            :src="song.url"
-          />
-        </div>
-      </div>
-
-      <div class="player-settings">
-        <a class="btn btn-volume" href="javascript:;">音量</a>
-        <w-slider @change="onVolumeChange" v-model="volume" />
+        <div class="timeline" :style="{ width: timelineStyle }"></div>
       </div>
     </div>
   </transition>
@@ -121,6 +140,10 @@ export default class Player extends Vue {
       (this.song.author && `${this.song.title}-${this.song.author}`) ||
       "暂无信息"
     );
+  }
+
+  private get timelineStyle() {
+    return this.ended ? "100%" : (this.progress * 100).toFixed(2) + "%";
   }
 
   // 控制音频的播放与暂停
@@ -325,6 +348,9 @@ export default class Player extends Vue {
     .btn-volume
       color: #fff
 
+  .player-mini
+    display none
+
 @keyframes moveAround
   from
     transform: rotate(0deg)
@@ -337,24 +363,44 @@ export default class Player extends Vue {
     flex-direction: column
     transform: translateY(0)
 
-    .player-header
-      left: 1rem
-      top: 1rem
+    .player-web
+      display none
 
-      .album-cover
-        width: 2rem
-        height: 2rem
-        box-shadow: 0 0 0 10px #000
+    .player-mini
+      display block
+      height 34px
 
-    .player-controls
-      margin-left: 0
-      align-self: flex-end
+      .player-header
+        left: 1rem
+        top: 1rem
 
-      .btn-prev,
-      .btn-next
-        display: none
+        .album-cover
+          width: 2rem
+          height: 2rem
+          box-shadow: 0 0 0 10px #000
 
-    .player-body,
-    .player-settings
-      display: none
+      .player-body
+        margin 0 0 0 3.5rem
+
+        .song-title
+          font-size .875rem
+          margin-bottom 0
+
+        .song-author
+          font-size .75rem
+          margin-bottom 0
+
+      .player-controls
+        margin-left: 0
+        align-self: flex-end
+
+      .timeline
+        display block
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: $themeColor;
+        transition all 1s ease-in-out
 </style>

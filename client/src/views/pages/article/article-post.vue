@@ -93,7 +93,7 @@ export default class ArticlePost extends Vue {
     border-bottom: 1px dashed #aaa
 
   .article-header
-    font-size: 24px
+    font-size: 1rem
 
   .article-author
     strong

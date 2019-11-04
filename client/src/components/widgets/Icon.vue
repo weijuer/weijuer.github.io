@@ -1,27 +1,39 @@
-<template>
-  <svg class="icon">
-    <use :xlink:href="iconName" />
-  </svg>
-</template>
+<script>
+export default {
+  functional: true,
+  name: "WIcon",
+  props: {
+    type: {
+      type: String,
+      default: "svg"
+    },
+    name: String
+  },
+  render(h, { props, data, slots }) {
+    let useDom = h("use", {
+      attrs: {
+        "xlink:href": props.name ? `#icon-${props.name}` : "#"
+      }
+    });
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { Getter, Action } from "vuex-class";
+    let svg = h(
+      "svg",
+      {
+        class: ["icon", data.class]
+      },
+      [useDom, slots().default]
+    );
 
-@Component
-export default class WIcon extends Vue {
-  @Prop()
-  name!: string;
-  @Getter
-  themeColor!: string;
+    let i = h("i", {
+      class: ["icon", data.class]
+    });
 
-  private get iconName() {
-    return this.name ? `#icon-${this.name}` : "#";
+    return props.type === "svg" ? svg : i;
   }
-}
+};
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 @import "../../assets/css/core/vars.styl"
 
 .icon

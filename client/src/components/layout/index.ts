@@ -4,10 +4,4 @@ import Main from "./Main.vue";
 import Footer from "./Footer.vue";
 import Svgs from "./Svgs.vue";
 
-export default {
-  Header,
-  Loading,
-  Main,
-  Footer,
-  Svgs
-};
+export { Header, Loading, Main, Footer, Svgs };
