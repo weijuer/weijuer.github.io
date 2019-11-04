@@ -118,7 +118,7 @@ export default class Slider extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../../assets/css/core/vars.styl"
+@import "../../assets/css/core/vars.styl"
 
 .progress
   margin: 4px 0

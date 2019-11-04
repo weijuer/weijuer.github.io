@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Layout from "@webLayout";
-import { BackToTop } from "@webWidgets";
+import Layout from "@layout";
+import { BackToTop } from "@widgets";
 
 @Component({
   components: {

@@ -1,6 +1,6 @@
 <template>
   <svg class="icon">
-    <use :xlink:href="iconName"></use>
+    <use :xlink:href="iconName" />
   </svg>
 </template>
 
@@ -22,15 +22,16 @@ export default class WIcon extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../../assets/css/core/vars.styl"
+@import "../../assets/css/core/vars.styl"
 
 .icon
   padding: 0
   margin: 0
-  width 28px
-  height 28px
+  width: 100%
+  height: 100%
   display: flex
   justify-content: flex-start
+  fill: currentColor
 
   for theme in $themes
     &.{theme}

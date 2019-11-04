@@ -51,7 +51,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Bubble, Weather } from "@webWidgets";
+import { Bubble, Weather } from "@widgets";
 
 @Component({
   components: {

@@ -15,9 +15,9 @@ module.exports = {
   // 是否关闭文件名哈希
   filenameHashing: false,
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)
-  // indexPath: "index.html",
+  indexPath: "index.html",
   // 多页配置
-  pages: pages.getPages(),
+  // pages: pages.getPages(),
   productionSourceMap: false,
   css: {
     // css拆分ExtractTextPlugin插件，默认true
@@ -32,12 +32,9 @@ module.exports = {
       .set("@mixins", resolve("src/mixins"))
       .set("@utils", resolve("src/utils"))
       .set("@pages", resolve("src/views/pages"))
-      .set("@webComps", resolve("src/components/web"))
-      .set("@mobileComps", resolve("src/components/mobile"))
-      .set("@webLayout", resolve("src/components/web/layout"))
-      .set("@webWidgets", resolve("src/components/web/widgets"))
-      .set("@mobileLayout", resolve("src/components/mobile/layout"))
-      .set("@mobileWidgets", resolve("src/components/mobile/widgets"));
+      .set("@comps", resolve("src/components"))
+      .set("@layout", resolve("src/components/layout"))
+      .set("@widgets", resolve("src/components/widgets"));
 
     // 查看打包组件大小情况
     if (process.env.Bundle_Analyzer) {

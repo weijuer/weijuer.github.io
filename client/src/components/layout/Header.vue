@@ -152,7 +152,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Icon } from "@webWidgets";
+import { Icon } from "@widgets";
 
 @Component({
   components: {
