@@ -58,12 +58,18 @@
           <h5 class="song-title">{{ song.title }}</h5>
           <div class="song-author">{{ song.author }}</div>
         </div>
-        <a
-          class="btn"
-          :class="[playing ? 'btn-pause' : 'btn-start']"
-          href="javascript:;"
-          @click="playOrPause"
-        ></a>
+
+        <div class="player-controls">
+          <a
+            class="btn"
+            :class="[playing ? 'btn-pause' : 'btn-start']"
+            href="javascript:;"
+            @click="playOrPause"
+          >
+            <w-progress :percent="(progress * 100).toFixed(0)" />
+          </a>
+        </div>
+
         <div class="timeline" :style="{ width: timelineStyle }"></div>
       </div>
     </div>
@@ -73,11 +79,13 @@
 <script lang="ts">
 import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Slider } from "@widgets";
+import Slider from "./Slider.vue";
+import Progress from "./Progress.vue";
 
 @Component({
   components: {
-    wSlider: Slider
+    [Slider.name]: Slider,
+    [Progress.name]: Progress
   },
   filters: {
     formatTime(seconds: number) {
@@ -167,7 +175,7 @@ export default class Player extends Vue {
   // 更新进度条
   updateProgress() {
     // 是否播放完毕
-    if (this.$audio.ended) {
+    if (this.$audio && this.$audio.ended) {
       return this.pause();
     }
     this.progress = this.currentTime / this.duration;
@@ -349,7 +357,7 @@ export default class Player extends Vue {
       color: #fff
 
   .player-mini
-    display none
+    display: none
 
 @keyframes moveAround
   from
@@ -362,17 +370,18 @@ export default class Player extends Vue {
   .player-container
     flex-direction: column
     transform: translateY(0)
+    padding: 10px
 
     .player-web
-      display none
+      display: none
 
     .player-mini
-      display block
-      height 34px
+      display: flex
+      height: 34px
 
       .player-header
         left: 1rem
-        top: 1rem
+        top: 0
 
         .album-cover
           width: 2rem
@@ -380,27 +389,48 @@ export default class Player extends Vue {
           box-shadow: 0 0 0 10px #000
 
       .player-body
-        margin 0 0 0 3.5rem
+        margin: 0 0 0 3.5rem
 
         .song-title
-          font-size .875rem
-          margin-bottom 0
+          font-size: 0.875rem
+          margin-bottom: 0
 
         .song-author
-          font-size .75rem
-          margin-bottom 0
+          font-size: 0.75rem
+          margin-bottom: 0
 
       .player-controls
         margin-left: 0
-        align-self: flex-end
+        justify-content: flex-end
+
+        .btn
+          width: 34px
+          height: 34px
+          margin: 0
+          border: 0
+          border-radius: 0
+
+          &.btn-start
+            &:before
+              top: 9px
+              left: 12px
+
+          &.btn-pause
+            &:before
+              top: 10px
+              left: 12px
+
+            &:after
+              top: 10px
+              left: 19px
 
       .timeline
-        display block
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 2px;
-        background: $themeColor;
-        transition all 1s ease-in-out
+        display: block
+        position: absolute
+        left: 0
+        bottom: 0
+        width: 0
+        height: 2px
+        background: $themeColor
+        transition: all 1s ease-in-out
 </style>

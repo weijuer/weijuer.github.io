@@ -132,10 +132,10 @@ export default class Music extends Vue {
    * 清空历史
    */
   private async tagHistoryClear() {
-    // 清空
-    await this.clear_music();
     this.searchHistory = "";
     localStorage.setItem("searchHistory", this.searchHistory);
+    // 清空
+    await this.clear_music();
   }
 
   /**

@@ -29,7 +29,7 @@ import {
 import { Getter, Action } from "vuex-class";
 
 @Component
-export default class Slider extends Vue {
+export default class WSlider extends Vue {
   // 方向：[horizontal | vertical]
   @Prop({ default: "horizontal", type: String })
   direction!: string;
