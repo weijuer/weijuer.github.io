@@ -5,15 +5,10 @@
     @mousedown="handleMouseDown"
     @touchstart="handleChange"
     @touchmove="handleChange"
-    @touchend.passive="handleTouchEnd"
   >
     <div class="progress-bar" :style="getProgressStyle"></div>
     <div class="progress-track"></div>
-    <div
-      class="progress-pointer"
-      :class="{ 'progress-pointer-pressed': isPressed }"
-      :style="getPointerStyle"
-    ></div>
+    <div class="progress-pointer" :style="getPointerStyle"></div>
   </div>
 </template>
 
@@ -49,9 +44,6 @@ export default class WSlider extends Vue {
   @Ref("$progress")
   private readonly $progress!: HTMLDivElement;
 
-  // 是否点击
-  isPressed: boolean = false;
-
   // 进度条
   private get progress() {
     return this.value;
@@ -79,8 +71,6 @@ export default class WSlider extends Vue {
     let left = pageX - xOffset;
     let top = pageY - yOffset;
 
-    this.isPressed = true;
-
     // 计算百分比
     if (this.direction === "vertical") {
       progress = top / containerHeight;
@@ -94,10 +84,6 @@ export default class WSlider extends Vue {
 
     // 返回
     return progress.toFixed(2);
-  }
-
-  handleTouchEnd(e: Event) {
-    this.isPressed = false;
   }
 
   handleMouseDown(e: Event) {
@@ -161,6 +147,7 @@ export default class WSlider extends Vue {
     transform: translate(-6px, -50%)
     transition: all 10ms linear
 
+    &:hover,
     &.progress-pointer-pressed
       transform: scale(1.5) translate(-33.333%, -33.333%)
 </style>
