@@ -41,25 +41,27 @@
         </aside>
         <div class="music-list">
           <Panel class="music-list-panel" header="最佳匹配">
-            <Media
-              v-for="(music, index) of musics"
-              :key="`music-${index}`"
-              @getMediaSong="getMusicSong(music)"
-            >
-              <img class="media-image" slot="header" :src="music.pic" />
-              <div class="media-content">
-                <h5 class="media-title" :data-href="music.link">
-                  {{ music.title }}
-                </h5>
-                <p class="media-author">{{ music.author }}</p>
-              </div>
-              <div class="media-status">
-                <w-icon
-                  :class="[getMusicStatus(music.songid)]"
-                  name="music-playing"
-                />
-              </div>
-            </Media>
+            <transition-group name="scale">
+              <Media
+                v-for="(music, index) of musics"
+                :key="`music-${index}`"
+                @getMediaSong="getMusicSong(music)"
+              >
+                <img class="media-image" slot="header" :src="music.pic" />
+                <div class="media-content">
+                  <h5 class="media-title" :data-href="music.link">
+                    {{ music.title }}
+                  </h5>
+                  <p class="media-author">{{ music.author }}</p>
+                </div>
+                <div class="media-status">
+                  <w-icon
+                    :class="[getMusicStatus(music.songid)]"
+                    name="music-playing"
+                  />
+                </div>
+              </Media>
+            </transition-group>
             <div class="empty" v-if="musics.length === 0">
               <p>
                 <svg class="icon svg-icon icon-music">

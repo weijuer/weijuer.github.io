@@ -7,22 +7,14 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
-import { Slider } from "@widgets";
 
 @Component
 export default class WIcon extends Vue {
-  @Prop({ type: String, default: "svg" })
-  type!: string;
-
   @Prop()
   name!: string;
 
   private get iconName() {
-    if (this.type === "svg") {
-      return this.name ? `#icon-${this.name}` : "#";
-    } else {
-      return this.name ? `fa-${this.name}` : "";
-    }
+    return this.name ? `#icon-${this.name}` : "#";
   }
 }
 </script>

@@ -84,8 +84,8 @@ import Progress from "./Progress.vue";
 
 @Component({
   components: {
-    [Slider.name]: Slider,
-    [Progress.name]: Progress
+    wSlider: Slider,
+    wProgress: Progress
   },
   filters: {
     formatTime(seconds: number) {
@@ -138,10 +138,6 @@ export default class Player extends Vue {
   volume: number = (this.$audio && this.$audio.volume) || 1.0;
   //播放速度，大多数浏览器支持0.5-4， 1表示正常速度
   playbackRate: number = (this.$audio && this.$audio.playbackRate) || 1;
-
-  mounted() {
-    // debugger;
-  }
 
   private get getAlbumCover() {
     return this.song.pic || "img/logo.png";

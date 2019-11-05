@@ -150,8 +150,8 @@ import { Link, Icon } from "@widgets";
 
 @Component({
   components: {
-    [Link.name]: Link,
-    [Icon.name]: Icon
+    wLink: Link,
+    wIcon: Icon
   }
 })
 export default class Header extends Vue {

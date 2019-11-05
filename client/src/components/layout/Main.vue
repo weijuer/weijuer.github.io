@@ -1,5 +1,5 @@
 <template>
-  <transition name="bottom" mode="out-in">
+  <transition name="fade" mode="out-in">
     <router-view class="app-main" />
   </transition>
 </template>

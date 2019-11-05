@@ -43,14 +43,6 @@ module.exports = {
         .use(require("webpack-bundle-analyzer").BundleAnalyzerPlugin);
     }
 
-    // snapsvg
-    config.module
-      .rule("snapsvg")
-      .test(require.resolve("snapsvg"))
-      .use("imports-loader?this=>window,fix=>module.exports=0")
-      .loader("imports-loader")
-      .end();
-
     // 生产环境下打包dist为zip
     if (process.env.NODE_ENV === "production") {
       config
