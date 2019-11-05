@@ -1,36 +1,30 @@
-<script>
-export default {
-  functional: true,
-  name: "WIcon",
-  props: {
-    type: {
-      type: String,
-      default: "svg"
-    },
-    name: String
-  },
-  render(h, { props, data, slots }) {
-    let useDom = h("use", {
-      attrs: {
-        "xlink:href": props.name ? `#icon-${props.name}` : "#"
-      }
-    });
+<template>
+  <svg class="icon">
+    <use :xlink:href="iconName" />
+  </svg>
+</template>
 
-    let svg = h(
-      "svg",
-      {
-        class: ["icon", data.class]
-      },
-      [useDom, slots().default]
-    );
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Getter, Action } from "vuex-class";
+import { Slider } from "@widgets";
 
-    let i = h("i", {
-      class: ["icon", data.class]
-    });
+@Component
+export default class WIcon extends Vue {
+  @Prop({ type: String, default: "svg" })
+  type!: string;
 
-    return props.type === "svg" ? svg : i;
+  @Prop()
+  name!: string;
+
+  private get iconName() {
+    if (this.type === "svg") {
+      return this.name ? `#icon-${this.name}` : "#";
+    } else {
+      return this.name ? `fa-${this.name}` : "";
+    }
   }
-};
+}
 </script>
 
 <style lang="stylus">

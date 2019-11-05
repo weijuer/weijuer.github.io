@@ -63,5 +63,7 @@ $theme-color = #2ecc71
       border-radius: 4px
 
   .media-body
+    flex: 2
+    display: flex
     color: #575962
 </style>

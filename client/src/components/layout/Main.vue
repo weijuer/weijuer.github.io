@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" mode="out-in">
+  <transition name="bottom" mode="out-in">
     <router-view class="app-main" />
   </transition>
 </template>
@@ -38,5 +38,35 @@ export default class Main extends Vue {}
 .fade-enter, .fade-leave-active {
   opacity: 0;
   transform: translate(0, -30px);
+}
+
+.scale-enter, .scale-leave-to {
+      transform: scale(0)
+}
+.scale-leave, .scale-enter-to {
+      transform: scale(1)
+}
+.scale-enter-active, .scale-leave-active {
+      transition: all .2s
+}
+
+.top-enter, .top-leave-to {
+      transform: translate3d(0,-100%, 0)
+}
+.top-leave, .top-enter-to {
+      transform: translate3d(0, 0, 0)
+}
+.top-enter-active, .top-leave-active {
+      transition: all .2s
+}
+
+.bottom-enter, .bottom-leave-to {
+      transform: translate3d(0,100%, 0)
+}
+.bottom-leave, .bottom-enter-to {
+      transform: translate3d(0, 0, 0)
+}
+.bottom-enter-active, .bottom-leave-active {
+      transition: all .2s
 }
 </style>

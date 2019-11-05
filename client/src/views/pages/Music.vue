@@ -54,10 +54,10 @@
                 <p class="media-author">{{ music.author }}</p>
               </div>
               <div class="media-status">
-                <i
-                  class="icon icon-status"
+                <w-icon
                   :class="[getMusicStatus(music.songid)]"
-                ></i>
+                  name="music-playing"
+                />
               </div>
             </Media>
             <div class="empty" v-if="musics.length === 0">
@@ -113,12 +113,18 @@ export default class Music extends Vue {
   // 搜索历史
   private searchHistory: string = "";
 
+  updated() {
+    console.log(`searchHistory: ${this.searchHistory}`);
+  }
+
   // 搜索历史集合
   private get searchArray() {
     let searchHistory =
       this.searchHistory || localStorage.getItem("searchHistory") || "";
     return searchHistory ? searchHistory.split(",") : [];
   }
+
+  private set searchArray(value) {}
 
   /**
    * 历史搜索
@@ -133,6 +139,7 @@ export default class Music extends Vue {
    */
   private async tagHistoryClear() {
     this.searchHistory = "";
+    this.searchArray = [];
     localStorage.setItem("searchHistory", this.searchHistory);
     // 清空
     await this.clear_music();
@@ -168,7 +175,7 @@ export default class Music extends Vue {
   }
 }
 </script>
-<style lang="stylus">
+<style scoped lang="stylus">
 @import "../../assets/css/core/vars.styl"
 
 .inner-title
@@ -184,7 +191,7 @@ export default class Music extends Vue {
   .music-list-panel
     counter-reset: media 0
 
-    .panel-body
+    >>>.panel-body
       padding: 0
 
     .empty
@@ -219,8 +226,6 @@ export default class Music extends Vue {
         color: $themes[info]
 
     .media-body
-      flex: 2
-      display: flex
 
       .media-content
         flex: 2
@@ -235,42 +240,12 @@ export default class Music extends Vue {
 
       .media-status
         .icon
-          display: inline-flex
-          justify-content: center
-          align-items: center
-          width: 1.5rem
-          height: 1.5rem
-          position: relative
-          border: 1px solid #777
-          border-radius: 50%
-
-          &:before,
-          &:after
-            content: ""
-            display: block
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
-
-          &.icon-paused
-            &:before
-              left: 15px
-              border: 6px solid transparent
-              border-left: 10px solid #737373
+          width 28px
+          height 28px
+          display none
 
           &.icon-playing
-            &:before
-              left: 8px
-              width: 0
-              height: 14px
-              border: 2px solid #737373
-
-            &:after
-              left: 14px
-              width: 0
-              height: 14px
-              border: 2px solid #737373
+            display inline-block
 
 .tags-cloud
   .tag-item
@@ -318,4 +293,7 @@ export default class Music extends Vue {
   .music-page
     .music
       grid-template-columns: auto
+      gap: .5rem
+  .app-footer
+    display none
 </style>

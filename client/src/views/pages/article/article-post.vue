@@ -90,7 +90,7 @@ export default class ArticlePost extends Vue {
     border-radius: 4px
 
   &-bordered
-    border-bottom: 1px dashed #aaa
+    border-bottom: 1px dashed #e4e4e4
 
   .article-header
     font-size: 1rem
@@ -101,6 +101,7 @@ export default class ArticlePost extends Vue {
       margin-right: 0.5rem
 
   .article-content
+    font-size .875rem
     line-height: 1.6
     color: #c2c2c2
     overflow-wrap: break-word

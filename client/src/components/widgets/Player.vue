@@ -66,7 +66,7 @@
             href="javascript:;"
             @click="playOrPause"
           >
-            <w-progress :percent="(progress * 100).toFixed(0)" />
+            <w-progress :percent="progress * 100" :radius="15" />
           </a>
         </div>
 
@@ -110,6 +110,10 @@ export default class Player extends Vue {
 
   @Getter("song")
   song!: W.IMusic;
+
+  @Action("GET_SONG")
+  get_song!: (song: any) => void;
+
   // 是否播放
   playing: boolean = false;
   // 进度条
@@ -206,6 +210,11 @@ export default class Player extends Vue {
     this.duration = parseInt(event.target.duration);
     this.play();
   }
+
+  destroyed() {
+    // 清除歌曲
+    this.get_song({});
+  }
 }
 </script>
 
@@ -226,6 +235,10 @@ export default class Player extends Vue {
 
   &:hover
     transform: translateY(0)
+
+  .player-web
+    display: flex;
+    flex: 1;
 
   .player-header
     position: absolute

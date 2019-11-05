@@ -98,4 +98,5 @@ export default class Articles extends Vue {
 @media (max-width: 768px)
   .normal-articles
     grid-template-columns: auto
+    gap: .5rem
 </style>

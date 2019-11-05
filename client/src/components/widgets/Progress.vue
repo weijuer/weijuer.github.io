@@ -1,18 +1,13 @@
 <template>
   <transition name="fade">
-    <div class="progress">
-      <svg class="progress-bar">
-        <circle class="progress-circle" cx="17" cy="17" r="15" />
-        <circle
-          class="progress-circle active-circle"
-          cx="17"
-          cy="17"
-          r="15"
-          :stroke-dasharray="updateDasharray"
-        />
-        <!-- <text class="progress-percent" x="50" y="55">{{ percent + "%" }}</text> -->
-      </svg>
-    </div>
+    <svg class="progress-bar" :style="barStyle">
+      <circle class="progress-circle" :style="circleStyle" />
+      <circle
+        class="progress-circle active-circle"
+        :style="activeCircleStyle"
+      />
+      <!-- <text class="progress-percent" x="17" y="55">{{ percent + "%" }}</text> -->
+    </svg>
   </transition>
 </template>
 
@@ -22,12 +17,50 @@ import { Getter, Action } from "vuex-class";
 
 @Component
 export default class WProgress extends Vue {
-  @Prop({ type: [Number, String], default: 0 })
-  percent: number = 0;
+  @Prop({ type: Number, default: 2 })
+  circleWidth!: number;
 
-  private get updateDasharray() {
+  @Prop({ type: Number, default: 0 })
+  radius!: number;
+
+  @Prop({ type: Number, default: 0 })
+  percent!: number;
+
+  // 圆心位置
+  private get circleCenter() {
+    return this.radius + this.circleWidth;
+  }
+
+  private get barStyle() {
+    return {
+      width: this.circleCenter * 2,
+      height: this.circleCenter * 2
+    };
+  }
+
+  private get circleStyle() {
+    return {
+      strokeWidth: this.circleWidth,
+      cx: this.circleCenter,
+      cy: this.circleCenter,
+      r: this.radius
+    };
+  }
+
+  private get activeCircleStyle() {
+    return {
+      strokeWidth: this.circleWidth,
+      cx: this.circleCenter,
+      cy: this.circleCenter,
+      r: this.radius,
+      strokeDasharray: this.activeDasharray,
+      transform: `matrix(0, -1, 1, 0, 0, ${this.circleCenter * 2})`
+    };
+  }
+
+  private get activeDasharray() {
     let _percent = this.percent / 100;
-    let perimeter = Math.PI * 2 * 15;
+    let perimeter = Math.PI * 2 * this.radius;
     return perimeter * _percent + " " + perimeter * (1 - _percent);
   }
 }
@@ -36,29 +69,22 @@ export default class WProgress extends Vue {
 <style lang="stylus">
 @import "../../assets/css/core/vars.styl"
 
-.progress
+.progress-bar
   display: inline-flex
-  flex-direction: column
   justify-content: center
   align-items: center
-
-  .progress-bar
-    width: 34px
-    height: 34px
 
   .progress-text
     margin: 10px auto
     color: #4b88fa
 
   .progress-circle
-    stroke-width: 2px
     stroke: #d1d3d7
     fill: none
     transition: all 0.3s
 
     &.active-circle
       stroke: $themeColor
-      transform: matrix(0, -1, 1, 0, 0, 34)
 
   .progress-percent
     font-size: 12px
