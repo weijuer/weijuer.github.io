@@ -12,8 +12,8 @@ import Link from "./Link.vue";
 
 @Component({
   components: {
-    [Link.name]: Link,
-    [Icon.name]: Icon
+    wLink: Link,
+    wIcon: Icon
   }
 })
 export default class BackToTop extends Vue {

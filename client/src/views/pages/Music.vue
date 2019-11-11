@@ -87,7 +87,7 @@ import { Panel, Media, Player, Icon } from "@widgets";
     Panel,
     Media,
     Player,
-    [Icon.name]: Icon
+    wIcon: Icon
   }
 })
 export default class Music extends Vue {
