@@ -72,6 +72,10 @@
 
         <div class="timeline" :style="{ width: timelineStyle }"></div>
       </div>
+
+      <div class="play-analyser">
+        <w-analyser ref="analyser" :audio="$audio" />
+      </div>
     </div>
   </transition>
 </template>
@@ -81,11 +85,13 @@ import { Component, Vue, Prop, Ref } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
 import Slider from "./Slider.vue";
 import Progress from "./Progress.vue";
+import Analyser from "./Analyser.vue";
 
 @Component({
   components: {
     wSlider: Slider,
-    wProgress: Progress
+    wProgress: Progress,
+    wAnalyser: Analyser
   },
   filters: {
     formatTime(seconds: number) {
@@ -103,10 +109,13 @@ import Progress from "./Progress.vue";
 })
 export default class Player extends Vue {
   @Ref("$audio")
-  readonly $audio!: HTMLAudioElement;
+  readonly $audio!: HTMLMediaElement;
 
   @Ref("$progress")
   readonly $progress!: HTMLDivElement;
+
+  @Ref("analyser")
+  readonly analyser!: any;
 
   @Getter("song")
   song!: W.IMusic;
@@ -164,6 +173,7 @@ export default class Player extends Vue {
   play() {
     this.$audio.play();
     this.playing = true;
+    this.analyser.connect();
   }
 
   // 暂停音频
@@ -233,8 +243,8 @@ export default class Player extends Vue {
     transform: translateY(0)
 
   .player-web
-    display: flex;
-    flex: 1;
+    display: flex
+    flex: 1
 
   .player-header
     position: absolute
@@ -367,6 +377,13 @@ export default class Player extends Vue {
 
   .player-mini
     display: none
+
+  .play-analyser
+    position: relative
+    left: 0
+    top: 0
+    right: 0
+    z-index: 0
 
 @keyframes moveAround
   from

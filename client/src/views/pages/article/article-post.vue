@@ -13,18 +13,16 @@
       <time :datetime="article.lastModified">{{ article.lastModified }}</time>
     </div>
     <div class="article-content">
-      <p>
-        {{ article.description }}
-        <a v-if="isLinked" class="read-more" :href="moreLink(article)"
-          >Read more
-        </a>
-      </p>
+      <p class="article-description">{{ article.description }}</p>
+      <a v-if="isLinked" class="read-more" :href="moreLink(article)"
+        >Read more</a
+      >
     </div>
-    <div class="article-tags" v-if="article.tags">
+    <div v-if="article.tags" class="article-tags">
       <a
-        class="tag-item bg-color"
         v-for="(tag, index) of tags()"
         :key="`tag-${index}`"
+        class="tag-item bg-color"
         href="tag/"
         >{{ tag }}</a
       >
@@ -79,7 +77,7 @@ export default class ArticlePost extends Vue {
 
 .article
   margin: 0
-  padding 1.5625rem
+  padding: 1.5625rem
   position: relative
   overflow: hidden
 
@@ -101,10 +99,16 @@ export default class ArticlePost extends Vue {
       margin-right: 0.5rem
 
   .article-content
-    font-size .875rem
+    font-size: 0.875rem
     line-height: 1.6
     color: #c2c2c2
     overflow-wrap: break-word
+
+    .article-description
+      display: -webkit-box
+      -webkit-box-orient: vertical
+      -webkit-line-clamp: 3
+      overflow: hidden
 
   .article-tags
     margin: 0

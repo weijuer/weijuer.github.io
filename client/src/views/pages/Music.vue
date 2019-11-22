@@ -228,7 +228,6 @@ export default class Music extends Vue {
         color: $themes[info]
 
     .media-body
-
       .media-content
         flex: 2
 
@@ -242,12 +241,12 @@ export default class Music extends Vue {
 
       .media-status
         .icon
-          width 28px
-          height 28px
-          display none
+          width: 28px
+          height: 28px
+          display: none
 
           &.icon-playing
-            display inline-block
+            display: inline-block
 
 .tags-cloud
   .tag-item
@@ -295,7 +294,8 @@ export default class Music extends Vue {
   .music-page
     .music
       grid-template-columns: auto
-      gap: .5rem
+      gap: 0.5rem
+
   .app-footer
-    display none
+    display: none
 </style>
