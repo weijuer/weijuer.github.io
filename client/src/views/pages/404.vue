@@ -7,7 +7,7 @@
 
 <style scoped lang="stylus">
 .error-page
-  flex-direction column
+  flex-direction: column
   justify-content: center
   align-items: center
 

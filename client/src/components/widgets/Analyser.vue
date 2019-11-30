@@ -11,16 +11,16 @@ export default class Analyser extends Vue {
   @Ref("$analyser")
   readonly $analyser!: HTMLCanvasElement;
 
-  // @Prop()
-  audio: HTMLAudioElement = new Audio("test.mp3");
+  @Prop()
+  audio!: HTMLAudioElement;
 
-  audioContext: any = new AudioContext();
+  audioContext: any;
 
-  analyser: any = null;
+  analyser: any;
 
-  output: any = null;
+  output: any;
 
-  canvasCtx: any = null;
+  canvasCtx: any;
 
   mounted() {
     this.$on("connect", () => {
@@ -32,6 +32,8 @@ export default class Analyser extends Vue {
    * 连接：source → analyser → destination
    */
   connect() {
+    // 创建audioContext
+    this.audioContext = this.audioContext || new AudioContext();
     // 创建节点
     let source = this.audioContext.createMediaElementSource(this.audio);
     // 创建分析器
