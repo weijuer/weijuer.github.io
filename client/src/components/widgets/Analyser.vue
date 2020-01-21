@@ -38,7 +38,7 @@ export default class Analyser extends Vue {
     let source = this.audioContext.createMediaElementSource(this.audio);
     // 创建分析器
     this.analyser = this.audioContext.createAnalyser();
-    this.analyser.fftSize = 512;
+    this.analyser.fftSize = 256;
 
     // 连接到音频播放器
     source.connect(this.analyser);
@@ -49,12 +49,10 @@ export default class Analyser extends Vue {
     this.canvasCtx.fillStyle = "rgba(255,255,255,.5)";
 
     // 计算出采样比率44100所需的缓冲区长度
-    let length =
-      ((this.analyser.frequencyBinCount * 44100) /
-        this.audioContext.sampleRate) |
-      0;
+    let bufferLength = this.analyser.frequencyBinCount;
+    console.log(bufferLength);
     // 创建数据
-    this.output = new Uint8Array(length);
+    this.output = new Uint8Array(bufferLength);
     // 绘制
     this.draw();
   }
@@ -75,6 +73,7 @@ export default class Analyser extends Vue {
     this.canvasCtx.clearRect(0, 0, width, height);
     for (var i = 0; i < meterNum; i++) {
       var value = this.output[i * step];
+      console.log("value", value);
       this.canvasCtx.fillRect(
         i * (meterWidth + gap),
         height - value + minHeight,

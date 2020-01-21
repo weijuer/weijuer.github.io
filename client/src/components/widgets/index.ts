@@ -9,6 +9,8 @@ import Player from "./Player.vue";
 import Link from "./Link.vue";
 import Icon from "./Icon.vue";
 import Progress from "./Progress.vue";
+import List from "./List.vue";
+import Item from "./Item.vue";
 
 export {
   BackToTop,
@@ -21,5 +23,7 @@ export {
   Player,
   Link,
   Icon,
-  Progress
+  Progress,
+  List,
+  Item
 };

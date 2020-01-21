@@ -27,9 +27,7 @@
             >
               <div class="media-basic">{{ mediaBasic }}</div>
             </marquee>
-            <div class="media-time">
-              {{ currentTime | formatTime }} / {{ duration | formatTime }}
-            </div>
+            <div class="media-time">{{ currentTime | formatTime }} / {{ duration | formatTime }}</div>
           </div>
 
           <w-slider @change="updateCurrentTime" v-model="progress" />
@@ -37,6 +35,7 @@
           <div class="player">
             <audio
               ref="$audio"
+              crossorigin="anonymous"
               @timeupdate="onUpdateTime"
               @loadedmetadata="onLoadedmetadata"
               :src="song.url"

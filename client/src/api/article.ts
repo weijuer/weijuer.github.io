@@ -5,7 +5,6 @@ import articles from "@/data/article.json";
  * init DA
  */
 export const initDB = async () => {
-  await db.init();
   return await bulk_add_article(articles);
 };
 
@@ -32,7 +31,7 @@ export const add_article = (article: W.IArticle) => {
  * @param articles
  */
 export const bulk_add_article = (articles: W.IArticle[]) => {
-  return db.table("article").bulkAdd(articles);
+  return db.table("article").bulkPut(articles);
 };
 
 /**

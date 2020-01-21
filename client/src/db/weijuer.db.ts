@@ -14,25 +14,12 @@ class WeijuerDB extends Dexie {
 
     // create table
     this.version(1).stores({
-      music: "++id,songid,title,type,author,link,lrc,pic,url,lastModified"
-    });
-
-    this.version(1).stores({
+      music: "++id,songid,title,type,author,link,lrc,pic,url,lastModified",
       article: "++id,title,author,lastModified,description,tags"
     });
 
     this.music = this.table("music");
     this.article = this.table("article");
-  }
-
-  async init() {
-    try {
-      // clear database
-      console.log("Clearing database...");
-      await Promise.all([this.music.clear(), this.article.clear()]);
-    } catch (ex) {
-      console.error(ex);
-    }
   }
 }
 

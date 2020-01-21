@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+@Component
 export default class WItem extends Vue {
   @Prop({ type: String })
   link!: string;

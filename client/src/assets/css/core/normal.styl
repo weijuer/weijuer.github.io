@@ -16,8 +16,8 @@
   height: $scrollbar-width
 
 ::-webkit-scrollbar-button
-  width: $scrollbar-width
-  height: $scrollbar-width
+  width: 0
+  height: 0
 
   &:end:decrement,
   &:start:increment
@@ -25,13 +25,13 @@
 
   &:start,
   &:end
+    display: none
     width: $scrollbar-width
     height: $scrollbar-width
 
   &:start
     border: $scrollbar-width solid transparent
     border-bottom-color: black
-    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.25)
 
     &:hover
       background: #fff
@@ -42,7 +42,6 @@
   &:end
     border: $scrollbar-width solid transparent
     border-top-color: black
-    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.25)
 
     &:hover
       background: #fff
@@ -52,11 +51,14 @@
 
 ::-webkit-scrollbar-thumb
   border-radius: $scrollbar-width
-  background-color: #201c29
+  background-color: #c1c1c1
   box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.25)
 
   &:hover
-    background-color: rgba(0, 0, 0, 0.5)
+    background-color: #a8a8a8
+
+  &:active
+    background-color: #787878
 
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-track
@@ -64,7 +66,7 @@
   border-left: 1px solid transparent
 
 ::-webkit-scrollbar-track
-  background: linear-gradient(to right, #a9a9a9, #9e9e9e)
+  background: #f1f1f1
   border-radius: $scrollbar-width
 
 ::-webkit-scrollbar-track:hover
