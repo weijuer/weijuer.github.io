@@ -1,28 +1,28 @@
 {
   "header": {
-    "weibo":"weibo",
-    "wechat":"wechat",
-    "github":"github",
-    "help":"Help",
-    "contact":"Contact",
-    "faq":"FAQ",
+    "weibo": "weibo",
+    "wechat": "wechat",
+    "github": "github",
+    "help": "Help",
+    "contact": "Contact",
+    "faq": "FAQ",
     "quickSearch": "Type to search...",
     "login": "Sign In",
     "music": "Music"
   },
   "nav": {
-    "home":"Home",
-    "articles":"Articles",
-    "example":"Example",
-    "components":"Components",
-    "music":"Music",
-    "about":"About"
+    "home": "Home",
+    "articles": "Articles",
+    "example": "Example",
+    "components": "Components",
+    "news": "News",
+    "music": "Music",
+    "about": "About"
   },
   "common": {
     "search": "search"
   },
-  "home": {
-  },
+  "home": {},
   "blog": {
     "sideSearch": "Search blog...",
     "categories": "categories",
@@ -31,5 +31,13 @@
     "relative": "relative",
     "read-more": "read more..."
   },
-  "week":["Sun","Mon","Tues","Wed","Thur","Fri","Sat"]
+  "week": [
+    "Sun",
+    "Mon",
+    "Tues",
+    "Wed",
+    "Thur",
+    "Fri",
+    "Sat"
+  ]
 }

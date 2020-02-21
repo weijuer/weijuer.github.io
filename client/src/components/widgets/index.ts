@@ -11,6 +11,8 @@ import Icon from "./Icon.vue";
 import Progress from "./Progress.vue";
 import List from "./List.vue";
 import Item from "./Item.vue";
+import Pulse from "./Pulse.vue";
+import Badge from "./Badge.vue";
 
 export {
   BackToTop,
@@ -25,5 +27,7 @@ export {
   Icon,
   Progress,
   List,
-  Item
+  Item,
+  Pulse,
+  Badge
 };

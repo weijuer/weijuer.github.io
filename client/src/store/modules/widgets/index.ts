@@ -5,6 +5,7 @@ import mutations from "./mutations";
 interface State {
   city: string;
   weather: any;
+  news: any;
 }
 
 const state: State = {
@@ -22,6 +23,19 @@ const state: State = {
       tmp: "",
       wind: {}
     }
+  },
+  news: {
+    trends: [],
+    cities: [],
+    provinces: [],
+    iflow: "",
+    levelBlock: [],
+    exposeConfig: "",
+    chinaInfectMapImg: "",
+    total: {
+      china: {}
+    },
+    statisEndTime: ""
   }
 };
 

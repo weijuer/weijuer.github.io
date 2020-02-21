@@ -20,18 +20,18 @@ export default class WIcon extends Vue {
 </script>
 
 <style lang="stylus">
-@import "../../assets/css/core/vars.styl"
+@import '../../assets/css/core/vars.styl';
 
 .icon
-  padding: 0
-  margin: 0
-  width: 100%
-  height: 100%
-  display: flex
-  justify-content: flex-start
-  fill: currentColor
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  fill: currentColor;
 
   for theme in $themes
     &.{theme}
-      color: $themes[theme]
+      color: $themes[theme];
 </style>

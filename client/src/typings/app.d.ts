@@ -37,6 +37,21 @@ declare namespace W {
     url: string;
     lastModified: string;
   }
+
+  interface INews {
+    type: string;
+    trends: any[];
+    cities: any[];
+    provinces: any[];
+    iflow: any;
+    levelBlock: any[];
+    exposeConfig: any;
+    chinaInfectMapImg: string;
+    total: {
+      china: any;
+    };
+    statisEndTime: string;
+  }
 }
 
 declare module "@layout";

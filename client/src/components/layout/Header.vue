@@ -171,7 +171,8 @@ export default class Header extends Vue {
     { name: "home", path: "/home", active: true },
     { name: "articles", path: "/articles", active: false },
     // { name: "example", path: "/example", active: false },
-    { name: "components", path: "/components", active: false },
+    { name: "news", path: "/news", active: false },
+    // { name: "components", path: "/components", active: false },
     { name: "music", path: "/music", active: false }
     // { name: "about", path: "/about", active: false }
   ];
@@ -206,12 +207,12 @@ export default class Header extends Vue {
 
 <style lang="stylus">
 .logo
-  position: relative
-  width: 220px
-  height: 60px
+  position: relative;
+  width: 220px;
+  height: 60px;
 
   .icon-logo
-    width: 100%
-    height: 100%
-    color: #fff
+    width: 100%;
+    height: 100%;
+    color: #fff;
 </style>

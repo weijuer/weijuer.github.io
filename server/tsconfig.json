@@ -4,7 +4,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "ES2017",
+    "target": "ES6",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,

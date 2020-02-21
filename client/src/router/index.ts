@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../views/pages/Home.vue";
+import Home from "../views/Home.vue";
 
 Vue.use(Router);
 
@@ -28,14 +28,14 @@ const routes = [
     path: "/articles.shtml",
     name: "articles",
     component: () =>
-      import(/* webpackChunkName: "article" */ "../views/pages/Articles.vue"),
+      import(/* webpackChunkName: "article" */ "../views/Articles.vue"),
     children: [
       {
         path: "article-detail/:id.shtml",
         name: "article-detail",
         component: () =>
           import(
-            /* webpackChunkName: "article-details" */ "../views/pages/article/article-details.vue"
+            /* webpackChunkName: "article-details" */ "../views/article/article-details.vue"
           )
       }
     ]
@@ -44,33 +44,35 @@ const routes = [
     path: "/example.shtml",
     name: "example",
     component: () =>
-      import(/* webpackChunkName: "example" */ "../views/pages/Example.vue")
+      import(/* webpackChunkName: "example" */ "../views/Example.vue")
   },
   {
     path: "/components.shtml",
     name: "components",
     component: () =>
-      import(
-        /* webpackChunkName: "components" */ "../views/pages/Components.vue"
-      )
+      import(/* webpackChunkName: "components" */ "../views/Components.vue")
+  },
+  {
+    path: "/news.shtml",
+    name: "news",
+    component: () => import(/* webpackChunkName: "news" */ "../views/News.vue")
   },
   {
     path: "/music.shtml",
     name: "music",
     component: () =>
-      import(/* webpackChunkName: "music" */ "../views/pages/Music.vue")
+      import(/* webpackChunkName: "music" */ "../views/Music.vue")
   },
   {
     path: "/about.shtml",
     name: "about",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/pages/About.vue")
+      import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "*",
     name: "404",
-    component: () =>
-      import(/* webpackChunkName: "404" */ "../views/pages/404.vue")
+    component: () => import(/* webpackChunkName: "404" */ "../views/404.vue")
   }
 ];
 

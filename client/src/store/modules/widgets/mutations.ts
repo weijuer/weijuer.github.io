@@ -6,6 +6,9 @@ const mutations: MutationTree<any> = {
   },
   GET_WEATHER(state, weather): void {
     state.weather = weather;
+  },
+  GET_NEWS(state, news): void {
+    state.news = news;
   }
 };
 

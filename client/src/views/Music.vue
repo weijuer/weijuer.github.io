@@ -178,7 +178,7 @@ export default class Music extends Vue {
 }
 </script>
 <style scoped lang="stylus">
-@import "../../assets/css/core/vars.styl"
+@import "../assets/css/core/vars.styl"
 
 .inner-title
   font-size: 0.875rem

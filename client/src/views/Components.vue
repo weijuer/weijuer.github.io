@@ -5,7 +5,11 @@
         <aside class="sidebar"></aside>
         <div class="components">
           <w-list media-list>
-            <w-item v-for="item of 3" :key="`Item${item}`" :title="`Item${item}`" />
+            <w-item
+              v-for="item of 3"
+              :key="`Item${item}`"
+              :title="`Item${item}`"
+            />
           </w-list>
         </div>
       </div>

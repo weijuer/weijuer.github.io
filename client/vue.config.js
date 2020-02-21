@@ -113,6 +113,13 @@ module.exports = {
         pathRewrite: {
           "^/weather": ""
         }
+      },
+      "/news": {
+        target: "https://iflow-api.uc.cn/feiyan/list",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/news": ""
+        }
       }
     }
   }

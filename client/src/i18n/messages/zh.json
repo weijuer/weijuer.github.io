@@ -1,28 +1,28 @@
 {
   "header": {
-    "weibo":"微博",
-    "wechat":"微信",
-    "github":"github",
-    "help":"帮助",
-    "contact":"联系",
-    "faq":"反馈",
+    "weibo": "微博",
+    "wechat": "微信",
+    "github": "github",
+    "help": "帮助",
+    "contact": "联系",
+    "faq": "反馈",
     "quickSearch": "输入搜索内容...",
     "login": "登录",
     "music": "音乐"
   },
-  "nav":{
-    "home":"首页",
-    "articles":"文章",
-    "example":"示例",
-    "components":"组件",
-    "music":"音乐",
-    "about":"关于"
+  "nav": {
+    "home": "首页",
+    "articles": "文章",
+    "example": "示例",
+    "components": "组件",
+    "news": "新闻",
+    "music": "音乐",
+    "about": "关于"
   },
   "common": {
     "search": "搜索"
   },
-  "home": {
-  },
+  "home": {},
   "blog": {
     "sideSearch": "搜索日志",
     "categories": "分类",
@@ -31,5 +31,13 @@
     "relative": "相关",
     "read-more": "查看更多..."
   },
-  "week":["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
+  "week": [
+    "星期日",
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
+    "星期六"
+  ]
 }

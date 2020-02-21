@@ -7,11 +7,7 @@ export default {
       type: String,
       default: "primary"
     },
-    text: String,
-    vertical: {
-      type: String,
-      default: "top"
-    }
+    text: [String, Number]
   },
   render(h, { props, slots }) {
     return h(
@@ -26,26 +22,21 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/css/core/vars.styl"
+@import '../../assets/css/core/vars.styl';
 
 .badge
-  padding: 0
-  margin: 0
-  display: inline-flex
-  justify-content: center
-  align-items: center
-  height: 18px
-  width: 18px
-  border-radius: 50%
-  font-size: 0.8rem
-
-  &.middle
-    vertical-align: middle
-
-  &.top
-    vertical-align: top
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.5rem;
+  background: #e9f4ff;
+  border-radius: 0.625rem;
+  box-sizing: border-box;
+  font-size: 0.2rem;
+  font-family: Rubik-Regular;
 
   for theme in $themes
     &.{theme}
-      background-color: $themes[theme]
+      background-color: lighten($themes[theme], 25);
+      color: $themes[theme];
 </style>

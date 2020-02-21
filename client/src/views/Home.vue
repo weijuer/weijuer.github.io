@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="widgets">
-        <!-- <Weather /> -->
+        <Weather />
       </div>
     </div>
   </main>

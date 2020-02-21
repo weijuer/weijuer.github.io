@@ -72,9 +72,9 @@
         <div class="timeline" :style="{ width: timelineStyle }"></div>
       </div>
 
-      <div class="play-analyser">
+      <!-- <div class="play-analyser">
         <w-analyser ref="analyser" :audio="$audio" />
-      </div>
+      </div>-->
     </div>
   </transition>
 </template>
@@ -224,238 +224,238 @@ export default class Player extends Vue {
 </script>
 
 <style lang="stylus">
-@import "../../assets/css/core/vars.styl"
+@import '../../assets/css/core/vars.styl';
 
 .player-container
-  display: flex
-  justify-content: center
-  padding: 1rem
-  position: fixed
-  left: 0
-  bottom: 0
-  right: 0
-  background: #4a4f54
-  transition: all 1s ease-in-out
-  transform: translateY(100%)
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #4a4f54;
+  transition: all 1s ease-in-out;
+  transform: translateY(100%);
 
   &:hover
-    transform: translateY(0)
+    transform: translateY(0);
 
   .player-web
-    display: flex
-    flex: 1
+    display: flex;
+    flex: 1;
 
   .player-header
-    position: absolute
-    left: 2rem
-    top: -1rem
-    animation: moveAround 3s infinite linear
+    position: absolute;
+    left: 2rem;
+    top: -1rem;
+    animation: moveAround 3s infinite linear;
 
     &.playing
-      animation-play-state: running
+      animation-play-state: running;
 
     &.paused
-      animation-play-state: paused
+      animation-play-state: paused;
 
     .record
-      position: relative
-      width: 100%
-      height: 100%
-      border-radius: 50%
-      background: linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, 0.85) 40%) no-repeat 100% 0, linear-gradient(60deg, rgba(42, 41, 40, 0.85) 60%, transparent 60%) no-repeat 0 100%, repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px)
-      background-size: 50% 100%, 100% 50%, 100% 100%
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, 0.85) 40%) no-repeat 100% 0, linear-gradient(60deg, rgba(42, 41, 40, 0.85) 60%, transparent 60%) no-repeat 0 100%, repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px);
+      background-size: 50% 100%, 100% 50%, 100% 100%;
 
       &:after
-        content: ""
-        position: absolute
-        top: 50%
-        left: 50%
-        margin: -35px
-        border: 1px solid #d9a388
-        width: 68px
-        height: 68px
-        border-radius: 50%
-        box-shadow: 0 0 0 4px #da5b33, inset 0 0 0 27px #da5b33
-        background: #b5ac9a
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -35px;
+        border: 1px solid #d9a388;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px #da5b33, inset 0 0 0 27px #da5b33;
+        background: #b5ac9a;
 
     .album-cover
-      width: 4rem
-      height: 4rem
-      background: linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, 0.85) 40%) no-repeat 100% 0, linear-gradient(60deg, rgba(42, 41, 40, 0.85) 60%, transparent 60%) no-repeat 0 100%, repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px)
-      box-shadow: 0 0 0 20px #000
-      border-radius: 50%
+      width: 4rem;
+      height: 4rem;
+      background: linear-gradient(30deg, transparent 40%, rgba(42, 41, 40, 0.85) 40%) no-repeat 100% 0, linear-gradient(60deg, rgba(42, 41, 40, 0.85) 60%, transparent 60%) no-repeat 0 100%, repeating-radial-gradient(#2a2928, #2a2928 4px, #ada9a0 5px, #2a2928 6px);
+      box-shadow: 0 0 0 20px #000;
+      border-radius: 50%;
 
   .player-controls
-    flex: 1
-    display: flex
-    align-items: center
-    justify-content: center
-    margin-left: 6rem
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6rem;
 
     .btn
-      margin: 0 1rem
-      display: inline-flex
-      width: 2rem
-      height: 2rem
-      position: relative
-      border: 2px solid #fff
-      border-radius: 50%
+      margin: 0 1rem;
+      display: inline-flex;
+      width: 2rem;
+      height: 2rem;
+      position: relative;
+      border: 2px solid #fff;
+      border-radius: 50%;
 
       &:before,
       &:after
-        content: ""
-        display: inline-block
-        position: absolute
-        left: 0
-        top: 20%
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 20%;
 
       &.btn-prev
         &:before
-          left: -4px
-          border: 8px solid transparent
-          border-right: 10px solid #fff
+          left: -4px;
+          border: 8px solid transparent;
+          border-right: 10px solid #fff;
 
         &:after
-          left: 4px
-          border: 8px solid transparent
-          border-right: 10px solid #fff
+          left: 4px;
+          border: 8px solid transparent;
+          border-right: 10px solid #fff;
 
       &.btn-start
         &:before
-          left: 10px
-          border: 8px solid transparent
-          border-left: 12px solid #fff
+          left: 10px;
+          border: 8px solid transparent;
+          border-left: 12px solid #fff;
 
       &.btn-pause
         &:before
-          left: 8px
-          width: 0
-          height: 16px
-          border: 2px solid #fff
+          left: 8px;
+          width: 0;
+          height: 16px;
+          border: 2px solid #fff;
 
         &:after
-          left: 16px
-          width: 0
-          height: 16px
-          border: 2px solid #fff
+          left: 16px;
+          width: 0;
+          height: 16px;
+          border: 2px solid #fff;
 
       &.btn-next
         &:before
-          left: 8px
-          border: 8px solid transparent
-          border-left: 10px solid #fff
+          left: 8px;
+          border: 8px solid transparent;
+          border-left: 10px solid #fff;
 
         &:after
-          left: 16px
-          border: 8px solid transparent
-          border-left: 10px solid #fff
+          left: 16px;
+          border: 8px solid transparent;
+          border-left: 10px solid #fff;
 
   .player-body
-    flex: 2
-    margin: 0 1rem
-    color: #fff
+    flex: 2;
+    margin: 0 1rem;
+    color: #fff;
 
     .media-desc
-      display: flex
-      justify-content: space-between
-      font-size: 1rem
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
 
       .media-marquee
-        flex: 1
-        margin-right: 1rem
+        flex: 1;
+        margin-right: 1rem;
 
       .media-time
-        text-align: center
+        text-align: center;
 
   .player-settings
-    flex: 1
-    margin: 0 1rem
+    flex: 1;
+    margin: 0 1rem;
 
     .btn-volume
-      color: #fff
+      color: #fff;
 
   .player-mini
-    display: none
+    display: none;
 
   .play-analyser
-    position: relative
-    left: 0
-    top: 0
-    right: 0
-    z-index: 0
+    position: relative;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 0;
 
 @keyframes moveAround
   from
-    transform: rotate(0deg)
+    transform: rotate(0deg);
 
   to
-    transform: rotate(360deg)
+    transform: rotate(360deg);
 
 @media (max-width: 768px)
   .player-container
-    flex-direction: column
-    transform: translateY(0)
-    padding: 10px
+    flex-direction: column;
+    transform: translateY(0);
+    padding: 10px;
 
     .player-web
-      display: none
+      display: none;
 
     .player-mini
-      display: flex
-      height: 34px
+      display: flex;
+      height: 34px;
 
       .player-header
-        left: 1rem
-        top: 0
+        left: 1rem;
+        top: 0;
 
         .album-cover
-          width: 2rem
-          height: 2rem
-          box-shadow: 0 0 0 10px #000
+          width: 2rem;
+          height: 2rem;
+          box-shadow: 0 0 0 10px #000;
 
       .player-body
-        margin: 0 0 0 3.5rem
+        margin: 0 0 0 3.5rem;
 
         .song-title
-          font-size: 0.875rem
-          margin-bottom: 0
+          font-size: 0.875rem;
+          margin-bottom: 0;
 
         .song-author
-          font-size: 0.75rem
-          margin-bottom: 0
+          font-size: 0.75rem;
+          margin-bottom: 0;
 
       .player-controls
-        margin-left: 0
-        justify-content: flex-end
+        margin-left: 0;
+        justify-content: flex-end;
 
         .btn
-          width: 34px
-          height: 34px
-          margin: 0
-          border: 0
-          border-radius: 0
+          width: 34px;
+          height: 34px;
+          margin: 0;
+          border: 0;
+          border-radius: 0;
 
           &.btn-start
             &:before
-              top: 9px
-              left: 12px
+              top: 9px;
+              left: 12px;
 
           &.btn-pause
             &:before
-              top: 10px
-              left: 12px
+              top: 10px;
+              left: 12px;
 
             &:after
-              top: 10px
-              left: 19px
+              top: 10px;
+              left: 19px;
 
       .timeline
-        display: block
-        position: absolute
-        left: 0
-        bottom: 0
-        width: 0
-        height: 2px
-        background: $themeColor
-        transition: all 1s ease-in-out
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: $themeColor;
+        transition: all 1s ease-in-out;
 </style>
