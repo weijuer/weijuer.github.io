@@ -37,6 +37,6 @@ export default {
 
   for theme in $themes
     &.{theme}
-      background-color: lighten($themes[theme], 25);
+      background-color: lighten($themes[theme], 35);
       color: $themes[theme];
 </style>

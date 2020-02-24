@@ -1,44 +1,50 @@
 <template>
   <main class="news-page">
     <div class="container">
-      <card :desc="`数据截至 ${news.statisEndTime}`">
+      <card @desc-click="refresh()">
         <template slot="title">
           <span>全国实时动态</span>
-          <pulse>
-            <w-icon class="refresh-btn" slot="icon" name="refresh" />
-          </pulse>
+          <pulse />
+        </template>
+        <template slot="desc">
+          <span>{{ `数据截至 ${news.statisEndTime}` }}</span>
+          <w-icon class="refresh-btn" slot="icon" name="refresh" />
         </template>
         <div class="summary" v-cloak>
           <div class="summary-item large">
             <div class="summary-label">确诊</div>
-            <div class="summary-num">{{ news.total.china.sure_cnt }}</div>
+            <div class="summary-num text-primary">{{ news.total.china.sure_cnt }}</div>
             <div class="summary-line">
               <div class="summary-text">较昨日</div>
-              <badge type="info" :text="news.total.china.sure_cnt_incr" />
+              <badge type="primary" :text="news.total.china.sure_cnt_incr" />
             </div>
           </div>
           <div class="summary-item">
             <div class="summary-label">疑似</div>
-            <div class="summary-num">{{ news.total.china.like_cnt }}</div>
+            <div class="summary-num text-warning">{{ news.total.china.like_cnt }}</div>
             <div class="summary-line">
-              <badge type="info" :text="news.total.china.like_cnt_incr" />
+              <badge type="warning" :text="news.total.china.like_cnt_incr" />
             </div>
           </div>
           <div class="summary-item">
             <div class="summary-label">治愈</div>
-            <div class="summary-num">{{ news.total.china.cure_cnt }}</div>
+            <div class="summary-num text-success">{{ news.total.china.cure_cnt }}</div>
             <div class="summary-line">
-              <badge type="info" :text="news.total.china.cure_cnt_incr" />
+              <badge type="success" :text="news.total.china.cure_cnt_incr" />
             </div>
           </div>
           <div class="summary-item">
             <div class="summary-label">死亡</div>
-            <div class="summary-num">{{ news.total.china.die_cnt }}</div>
+            <div class="summary-num text-default">{{ news.total.china.die_cnt }}</div>
             <div class="summary-line">
-              <badge type="info" :text="news.total.china.die_cnt_incr" />
+              <badge type="default" :text="news.total.china.die_cnt_incr" />
             </div>
           </div>
         </div>
+      </card>
+
+      <card title="疫情分布图" :desc="`数据截至 ${news.statisEndTime}`">
+        <img :src="news.chinaInfectMapImg" />
       </card>
     </div>
   </main>
@@ -72,8 +78,7 @@ export default class News extends Vue {
     this.get_news();
   }
 
-  private refresh(): void {
-    debugger;
+  refresh(): void {
     this.get_news();
   }
 }
@@ -88,12 +93,14 @@ export default class News extends Vue {
     justify-content: space-between;
 
     .summary-item
-      text-align: center;
-      padding-top: 14px;
+      padding: 14px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       &.large
+        align-items: start;
         margin-top: -1rem;
-        text-align: left;
 
         .summary-num
           font-size: 1.875rem;
@@ -103,6 +110,7 @@ export default class News extends Vue {
 
       .summary-num
         font-size: 1.25rem;
+        margin: 0.25rem 0;
 
       .summary-line
         display: flex;
@@ -114,4 +122,5 @@ export default class News extends Vue {
   .refresh-btn
     width: 20px;
     height: 20px;
+    margin-left: 0.375rem;
 </style>

@@ -27,7 +27,7 @@ export default class WIcon extends Vue {
   margin: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
   fill: currentColor;
 

@@ -110,3 +110,8 @@ make-grid($class = "")
   loop-grid-columns($grid-columns, $class, width)
   loop-grid-columns($grid-columns, $class, order)
   loop-grid-columns($grid-columns, $class, offset)
+
+makeThemeText()
+  for theme in $themes
+    .text-{theme}
+      color: $themes[theme]

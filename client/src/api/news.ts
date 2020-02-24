@@ -15,9 +15,9 @@ if (process.env.NODE_ENV === "production") {
  */
 function get_news() {
   const params = {
-    trend: 1,
-    iflow: 1,
-    district: 1,
+    // trend: 1,
+    // iflow: 1,
+    // district: 1,
     uc_param_str: "pccplo"
   };
   return service({
@@ -48,20 +48,14 @@ function set_local_news(news: any) {
  * 疫情数据接口
  */
 export async function get_covid_news() {
-  const localData: any = await get_local_news();
-  console.log("local", localData);
-  if (localData) {
-    return localData;
-  } else {
-    const res: any = await get_news();
+  const res: any = await get_news();
 
-    // 结果处理
-    if (res.code === 0) {
-      let news = res.data;
-      news.type = "covid";
-      // 存入本地缓存
-      await set_local_news(news);
-      return news;
-    }
+  // 结果处理
+  if (res.code === 0) {
+    let news = res.data;
+    news.type = "covid";
+    // 存入本地缓存
+    await set_local_news(news);
+    return news;
   }
 }

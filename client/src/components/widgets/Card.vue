@@ -4,7 +4,9 @@
       <h3 class="card-title" v-if="$slots.title || title">
         <slot name="title">{{ title }}</slot>
       </h3>
-      <span class="card-desc">{{ desc }}</span>
+      <div class="card-desc" v-if="$slots.title || title" @click="descHandler">
+        <slot name="desc">{{ desc }}</slot>
+      </div>
     </div>
     <div class="card-body">
       <slot />
@@ -20,7 +22,7 @@ export default class Card extends Vue {
   @Prop({ type: String })
   type!: string;
 
-  @Prop({ default: () => {}, type: Object })
+  @Prop({ default: () => {}, type: [Object, String] })
   title: any;
 
   @Prop({ type: String })
@@ -28,6 +30,10 @@ export default class Card extends Vue {
 
   get cardType() {
     return this.type ? `card-${this.type}` : "";
+  }
+
+  descHandler() {
+    this.$emit("desc-click");
   }
 }
 </script>
