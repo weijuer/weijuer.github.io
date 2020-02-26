@@ -79,6 +79,9 @@ service.interceptors.response.use(
       console.log(`error:===>${message}`);
     }
 
+    // 4.清除加载中动画
+    store.commit("CHANGE_LOADING", false);
+
     return Promise.reject(error);
   }
 );

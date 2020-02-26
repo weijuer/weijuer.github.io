@@ -1,51 +1,74 @@
 <template>
   <main class="news-page">
     <div class="container">
-      <card @desc-click="refresh()">
-        <template slot="title">
-          <span>全国实时动态</span>
-          <pulse />
-        </template>
-        <template slot="desc">
-          <span>{{ `数据截至 ${news.statisEndTime}` }}</span>
-          <w-icon class="refresh-btn" slot="icon" name="refresh" />
-        </template>
-        <div class="summary" v-cloak>
-          <div class="summary-item large">
-            <div class="summary-label">确诊</div>
-            <div class="summary-num text-primary">{{ news.total.china.sure_cnt }}</div>
-            <div class="summary-line">
-              <div class="summary-text">较昨日</div>
-              <badge type="primary" :text="news.total.china.sure_cnt_incr" />
+      <div class="covid-news">
+        <aside class="aside">
+          <card @desc-click="refresh()">
+            <template slot="title">
+              <span>全国实时动态</span>
+              <pulse />
+            </template>
+            <template slot="desc">
+              <span>{{ `数据截至 ${news.statisEndTime}` }}</span>
+              <w-icon class="refresh-btn" slot="icon" name="refresh" />
+            </template>
+            <div class="summary" v-cloak>
+              <div class="summary-item large">
+                <div class="summary-label">确诊</div>
+                <div class="summary-num text-primary">
+                  {{ news.total.china.sure_cnt }}
+                </div>
+                <div class="summary-line">
+                  <div class="summary-text">较昨日</div>
+                  <badge
+                    type="primary"
+                    :text="news.total.china.sure_cnt_incr"
+                  />
+                </div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-label">疑似</div>
+                <div class="summary-num text-warning">
+                  {{ news.total.china.like_cnt }}
+                </div>
+                <div class="summary-line">
+                  <badge
+                    type="warning"
+                    :text="news.total.china.like_cnt_incr"
+                  />
+                </div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-label">治愈</div>
+                <div class="summary-num text-success">
+                  {{ news.total.china.cure_cnt }}
+                </div>
+                <div class="summary-line">
+                  <badge
+                    type="success"
+                    :text="news.total.china.cure_cnt_incr"
+                  />
+                </div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-label">死亡</div>
+                <div class="summary-num text-default">
+                  {{ news.total.china.die_cnt }}
+                </div>
+                <div class="summary-line">
+                  <badge type="default" :text="news.total.china.die_cnt_incr" />
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="summary-item">
-            <div class="summary-label">疑似</div>
-            <div class="summary-num text-warning">{{ news.total.china.like_cnt }}</div>
-            <div class="summary-line">
-              <badge type="warning" :text="news.total.china.like_cnt_incr" />
-            </div>
-          </div>
-          <div class="summary-item">
-            <div class="summary-label">治愈</div>
-            <div class="summary-num text-success">{{ news.total.china.cure_cnt }}</div>
-            <div class="summary-line">
-              <badge type="success" :text="news.total.china.cure_cnt_incr" />
-            </div>
-          </div>
-          <div class="summary-item">
-            <div class="summary-label">死亡</div>
-            <div class="summary-num text-default">{{ news.total.china.die_cnt }}</div>
-            <div class="summary-line">
-              <badge type="default" :text="news.total.china.die_cnt_incr" />
-            </div>
-          </div>
-        </div>
-      </card>
+          </card>
+        </aside>
 
-      <card title="疫情分布图" :desc="`数据截至 ${news.statisEndTime}`">
-        <img :src="news.chinaInfectMapImg" />
-      </card>
+        <div class="news">
+          <card title="疫情分布图" :desc="`数据截至 ${news.statisEndTime}`">
+            <img :src="news.chinaInfectMapImg" />
+          </card>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -85,42 +108,67 @@ export default class News extends Vue {
 </script>
 
 <style lang="stylus">
-.news-page
+.news-page {
   font-size: 0.32rem;
 
-  .summary
-    display: flex;
-    justify-content: space-between;
+  .covid-news {
+    display: grid;
+    grid-template-columns: 30% minmax(0, 1fr);
+    gap: 2rem;
 
-    .summary-item
-      padding: 14px 6px;
+    .refresh-btn {
+      width: 20px;
+      height: 20px;
+      margin-left: 0.375rem;
+    }
+
+    .summary {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: space-between;
 
-      &.large
-        align-items: start;
-        margin-top: -1rem;
-
-        .summary-num
-          font-size: 1.875rem;
-
-      .summary-label
-        font-size: 0.875rem;
-
-      .summary-num
-        font-size: 1.25rem;
-        margin: 0.25rem 0;
-
-      .summary-line
+      .summary-item {
+        padding: 14px 6px;
         display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        .summary-text
-          margin-right: 0.375rem;
-          color: #999;
+        &.large {
+          align-items: start;
+          margin-top: -1rem;
 
-  .refresh-btn
-    width: 20px;
-    height: 20px;
-    margin-left: 0.375rem;
+          .summary-num {
+            font-size: 1.875rem;
+          }
+        }
+
+        .summary-label {
+          font-size: 0.875rem;
+        }
+
+        .summary-num {
+          font-size: 1.25rem;
+          margin: 0.25rem 0;
+        }
+
+        .summary-line {
+          display: flex;
+
+          .summary-text {
+            margin-right: 0.375rem;
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .news-page {
+    .covid-news {
+      grid-template-columns: auto;
+      gap: 0.5rem;
+    }
+  }
+}
 </style>

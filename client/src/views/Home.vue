@@ -41,9 +41,9 @@
           </nav>
         </div>
       </div>
-      <div class="widgets">
+      <!-- <div class="widgets">
         <Weather />
-      </div>
+      </div> -->
     </div>
   </main>
 </template>

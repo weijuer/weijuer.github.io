@@ -1,14 +1,7 @@
 import service from "@/utils/service";
 import db from "@/db/weijuer.db";
 
-let news_api: string;
-
-if (process.env.NODE_ENV === "production") {
-  // UC news api
-  news_api = `https://iflow-api.uc.cn/feiyan/list`;
-} else {
-  news_api = "/news";
-}
+let news_api: string = "/news";
 
 /**
  * 获取最新疫情信息
@@ -18,7 +11,6 @@ function get_news() {
     // trend: 1,
     // iflow: 1,
     // district: 1,
-    uc_param_str: "pccplo"
   };
   return service({
     url: `${news_api}`,
