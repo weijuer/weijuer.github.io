@@ -9,8 +9,8 @@ let news_api: string = "/news";
 function get_news() {
   const params = {
     // trend: 1,
-    // iflow: 1,
     // district: 1,
+    iflow: 1
   };
   return service({
     url: `${news_api}`,

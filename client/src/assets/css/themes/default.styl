@@ -14,11 +14,18 @@ makeThemeText()
     background: $bgColor
 
   .app-footer
-    background: rgba(0, 0, 0, 0.7)
+    background: $themeBgColor
     color: #fff
 
+    .app-footer-section
+      .btn-link
+        color: #fff
+        
+        &:hover
+          color: $themeColor
+
   .app-header-bar.app-header-bar--menu
-    background: rgba(30, 36, 42, 0.8)
+    background: $themeBgColor
 
     .menu-section .nav
       .nav-item
@@ -35,4 +42,4 @@ makeThemeText()
 @media all and (max-width: 768px)
   .default
     .menu-section.active
-      background: rgba(30, 36, 42, 0.8)
+      background: $themeBgColor

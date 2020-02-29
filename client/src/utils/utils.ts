@@ -4,7 +4,7 @@
 export const Debounce = (fn: Function, t: number) => {
   let delay = t || 500;
   let timer: any;
-  return function() {
+  return function () {
     let args = arguments;
     if (timer) {
       clearTimeout(timer);
@@ -23,7 +23,7 @@ export const Throttle = (fn: Function, t: number) => {
   let last: number;
   let timer: number;
   let interval = t || 500;
-  return function() {
+  return function () {
     let args = arguments;
     let now = +new Date();
     if (last && now - last < interval) {
@@ -38,3 +38,18 @@ export const Throttle = (fn: Function, t: number) => {
     }
   };
 };
+
+/**
+ * 数组根据字段排序
+ */
+export function arraySort(field: string, order: string = "des") {
+  return (a: any, b: any) => {
+    const _a = a[field];
+    const _b = b[field];
+    if (order === "des") {
+      return _a - _b;
+    } else {
+      return _b - _a;
+    }
+  };
+}
