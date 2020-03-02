@@ -64,7 +64,7 @@
                     <td class="text-primary">
                       <div class="sure-summary">
                         <span class="sure-num">{{ item.sure_cnt }}</span>
-                        <badge type="primary" :text="item.sure_new_cnt || '0'" />
+                        <badge type="no" :text="item.sure_new_cnt || '0'" />
                       </div>
                     </td>
                     <td class="text-success">{{ item.cure_cnt }}</td>
@@ -91,7 +91,7 @@ import { arraySort } from "../utils/utils";
     Card,
     Pulse,
     Badge,
-    [Icon.name]: Icon
+    wIcon: Icon
   }
 })
 export default class News extends Vue {
@@ -186,6 +186,11 @@ export default class News extends Vue {
         .sure-summary
           display: flex;
           justify-content: center;
+
+          .badge
+            font-weight: normal;
+            height: 12px;
+            padding: 0;
 
           .sure-num
             margin-right: 4px;

@@ -32,7 +32,7 @@ export default {
   background: #e9f4ff;
   border-radius: 0.625rem;
   box-sizing: border-box;
-  font-size: 0.2rem;
+  font-size: 12px;
   font-family: Rubik-Regular;
 
   for theme in $themes
