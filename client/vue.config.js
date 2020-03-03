@@ -1,5 +1,6 @@
 const path = require("path");
-const pages = require("./src/config/pages");
+const pkgName = process.env.npm_package_name;
+const zipPath = `./${pkgName}.zip`;
 
 const resolve = dir => {
   return path.join(__dirname, dir);
@@ -44,12 +45,15 @@ module.exports = {
     }
 
     // 生产环境下打包dist为zip
-    if (process.env.NODE_ENV === "production") {
-      config
-        .plugin("zip")
-        .use(require("zip-webpack-plugin"), [
-          { path: resolve("dist"), filename: "dist.zip" }
-        ]);
+    if (process.env.PKG_ZIP === "true") {
+      config.plugin("zip").use(require("filemanager-webpack-plugin"), [
+        {
+          onEnd: {
+            delete: [zipPath],
+            archive: [{ source: "./dist", destination: zipPath }]
+          }
+        }
+      ]);
     }
   },
   // 构建时开启多进程处理babel编译

@@ -7,7 +7,8 @@
           class="ICP btn-link"
           href="http://www.beian.miit.gov.cn/"
           target="_black"
-        >苏ICP备19065586号-1</a>
+          >苏ICP备19065586号-1</a
+        >
       </section>
     </div>
   </footer>

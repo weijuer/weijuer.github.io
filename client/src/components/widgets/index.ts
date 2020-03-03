@@ -13,6 +13,7 @@ import List from "./List.vue";
 import Item from "./Item.vue";
 import Pulse from "./Pulse.vue";
 import Badge from "./Badge.vue";
+import Chart from "./Chart.vue";
 
 export {
   BackToTop,
@@ -29,5 +30,6 @@ export {
   List,
   Item,
   Pulse,
-  Badge
+  Badge,
+  Chart
 };

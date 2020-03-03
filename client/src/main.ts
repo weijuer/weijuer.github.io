@@ -5,6 +5,10 @@ import store from "@/store";
 import i18n from "@/i18n";
 import "./registerServiceWorker";
 
+// echarts
+import echarts from "echarts";
+Vue.prototype.$echarts = echarts;
+
 Vue.config.productionTip = false;
 
 new Vue({

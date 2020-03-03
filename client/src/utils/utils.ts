@@ -4,7 +4,7 @@
 export const Debounce = (fn: Function, t: number) => {
   let delay = t || 500;
   let timer: any;
-  return function () {
+  return function() {
     let args = arguments;
     if (timer) {
       clearTimeout(timer);
@@ -23,7 +23,7 @@ export const Throttle = (fn: Function, t: number) => {
   let last: number;
   let timer: number;
   let interval = t || 500;
-  return function () {
+  return function() {
     let args = arguments;
     let now = +new Date();
     if (last && now - last < interval) {
