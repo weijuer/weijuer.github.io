@@ -47,6 +47,10 @@
         </aside>
 
         <div class="news">
+          <card title="全国疫情地图" :desc="`数据截至 ${news.statisEndTime}`">
+            <Chart :options="mapOptions" />
+          </card>
+
           <card title="各地数据" :desc="`数据截至 ${news.statisEndTime}`">
             <div class="provice-list">
               <table class="table">
@@ -73,10 +77,6 @@
                 </tbody>
               </table>
             </div>
-          </card>
-
-          <card title="全国疫情地图" :desc="`数据截至 ${news.statisEndTime}`">
-            <Chart :options="mapOptions" />
           </card>
         </div>
       </div>
@@ -134,21 +134,17 @@ export default class News extends Vue {
       }
     },
     visualMap: {
-      // 左下角的颜色区域
       type: "piecewise",
-      min: 0,
-      max: 1000,
-      itemWidth: 40,
-      bottom: 60,
+      itemWidth: 20,
+      bottom: 0,
+
       left: 20,
       pieces: [
-        // 自定义『分段式视觉映射组件（visualMapPiecewise）』的每一段的范围，以及每一段的文字，以及每一段的特别的样式
-        { gt: 900, lte: 1000, label: "非常好", color: "#6ad86e" }, // (900, 1000]
-        { gt: 500, lte: 900, label: "正常", color: "#9adcfa" }, // (500, 900]
-        { gt: 310, lte: 500, label: "警告", color: "#ffeb3b" }, // (310, 500]
-        { gt: 200, lte: 300, label: "较差", color: "#ff9800" }, // (200, 300]
-        { gt: 10, lte: 200, label: "非常差", color: "orangered" }, // (10, 200]
-        { value: 0, label: "无数据", color: "#999" } // [0]
+        { max: 99, color: "#ffe7db", symbol: "circle" },
+        { min: 100, max: 499, color: "#ffbc9b", symbol: "circle" },
+        { min: 500, max: 999, color: "#fc8958", symbol: "circle" },
+        { min: 1000, max: 20000, color: "#ee5c1c", symbol: "circle" },
+        { min: 20001, color: "#a53809", symbol: "circle" }
       ]
     },
     geo: {
@@ -183,6 +179,10 @@ export default class News extends Vue {
 
   get provinces() {
     let provinces = this.news.provinces;
+    provinces.map(item => {
+      item.value = item.sure_cnt;
+      item.name = item.province;
+    });
     return provinces.sort(arraySort("sure_cnt", "desc"));
   }
 
