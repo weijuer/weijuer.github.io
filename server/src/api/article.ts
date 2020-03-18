@@ -21,7 +21,7 @@ export const get_articles = () => {
  * 批量新增articles
  * @param articles
  */
-export const bulk_add_article = (articles: W.IArticle[]) => {
+export const bulk_add_article = (articles: any[]) => {
   return db.table("articles").bulkAdd(articles);
 };
 
@@ -29,7 +29,7 @@ export const bulk_add_article = (articles: W.IArticle[]) => {
  * 新增article
  * @param article
  */
-export const add_article = (article: W.IArticle) => {
+export const add_article = (article: any) => {
   return db.table("articles").add(article);
 };
 

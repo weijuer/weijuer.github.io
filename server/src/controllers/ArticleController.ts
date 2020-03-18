@@ -18,7 +18,7 @@ export class ArticleController {
    * 获取当前日志列表
    */
   @Get("/articles")
-  all(): Promise<W.IArticle[]> {
+  all(): Promise<any[]> {
     return this.articleRepository.findAll();
   }
 
@@ -47,7 +47,7 @@ export class ArticleController {
     await utils.saveLocalData('article', articles);
     // 保存到IndexDB
     // this.articleRepository.bulk(articles);
-    return {code: 1000, message: 'success'};
+    return { code: 1000, message: 'success' };
   }
 
   @Post('/getPDF')

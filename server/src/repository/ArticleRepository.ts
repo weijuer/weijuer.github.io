@@ -12,11 +12,11 @@ export class ArticleRepository {
         return articleService.get_article(id);
     }
 
-    save(article: W.IArticle) {
+    save(article: any) {
         return articleService.add_article(article);
     }
 
-    bulk(articles: W.IArticle[]) {
+    bulk(articles: any[]) {
         return articleService.bulk_add_article(articles);
     }
 

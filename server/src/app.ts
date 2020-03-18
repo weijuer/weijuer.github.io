@@ -5,7 +5,7 @@ import cors from 'koa2-cors'
 import bodyParser from 'koa-bodyparser'
 import views from 'koa-views'
 import serve from 'koa-static'
-import { distPath, viewPath } from './config'
+import config from './config'
 
 /**
  * Setup routing-controllers to use typedi container.
@@ -17,7 +17,7 @@ const app = createKoaServer({
 })
 
 // 静态资源
-app.use(serve(distPath));
+app.use(serve(config.distPath));
 // koaBody
 app.use(bodyParser());
 
@@ -30,7 +30,7 @@ app.use(cors({
 }));
 
 // 模板引擎 handlebars
-app.use(views(viewPath, {
+app.use(views(config.viewPath, {
   map: { html: 'handlebars' }
 }));
 

@@ -1,4 +1,4 @@
-import {Service} from "typedi";
+import { Service } from "typedi";
 import Dexie from "dexie";
 
 /**
@@ -6,7 +6,7 @@ import Dexie from "dexie";
  */
 @Service()
 class ArticleDatabase extends Dexie {
-  articles!: Dexie.Table<W.IArticle, number>;
+  articles!: Dexie.Table<any, number>;
 
   constructor() {
     // init Database name

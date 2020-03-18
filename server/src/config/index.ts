@@ -1,6 +1,11 @@
 import { resolve } from '../utils/utils'
 
-export const app = 'typescript-server';
-export const port = 8888;
-export const distPath = resolve('../../src/public');
-export const viewPath = resolve('../../src/public/views');
+/**
+ * 默认配置项
+ */
+export default {
+  app: 'typescript-server',
+  port: 3000,
+  distPath: resolve('../../src/public'),
+  viewPath: resolve('../../src/public/views')
+}
