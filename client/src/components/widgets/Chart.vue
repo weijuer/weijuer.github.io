@@ -1,5 +1,5 @@
 <template>
-  <div class="w-chart" id="wChart" style="height:400px;" ref="$chart"></div>
+  <div class="w-chart" id="wChart" style="height:340px;" ref="$chart"></div>
 </template>
 
 <script lang="ts">
@@ -249,9 +249,9 @@ export default class WChart extends Vue {
 </script>
 
 <style lang="stylus">
-@import '../../assets/css/core/vars.styl';
+@import '../../assets/css/core/vars.styl'
 
 .w-chart
-  width: 100%;
-  height: 100%;
+  width: 100%
+  height: 100%
 </style>

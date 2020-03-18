@@ -121,7 +121,7 @@ export default class News extends Vue {
         } = params.data;
 
         let html = `
-          <div class="title">${province}</div>
+          <div class="title" style="border-bottom: 1px dashed #fff;">${province}</div>
           <div class="detail">
             <span>确诊：${sure_cnt}</span>
             <span>疑似：${like_cnt}</span>
@@ -135,10 +135,9 @@ export default class News extends Vue {
     },
     visualMap: {
       type: "piecewise",
-      itemWidth: 20,
+      itemWidth: 10,
       bottom: 0,
-
-      left: 20,
+      left: 0,
       pieces: [
         { max: 99, color: "#ffe7db", symbol: "circle" },
         { min: 100, max: 499, color: "#ffbc9b", symbol: "circle" },
@@ -149,8 +148,8 @@ export default class News extends Vue {
     },
     geo: {
       map: "china", // 表示中国地图
-      roam: true, // 是否开启鼠标缩放和平移漫游
-      zoom: 1.2, // 当前视角的缩放比例（地图的放大比例）
+      roam: false, // 是否开启鼠标缩放和平移漫游
+      zoom: 1.25, // 当前视角的缩放比例（地图的放大比例）
       label: {
         show: true
       },
@@ -214,82 +213,82 @@ export default class News extends Vue {
 
 <style lang="stylus">
 .news-page
-  font-size: 12px;
+  font-size: 12px
 
   .covid-news
-    display: grid;
-    grid-template-columns: 30% minmax(0, 1fr);
-    gap: 2rem;
+    display: grid
+    grid-template-columns: 30% minmax(0, 1fr)
+    gap: 2rem
 
     .refresh-btn
-      width: 20px;
-      height: 20px;
-      margin-left: 0.375rem;
+      width: 20px
+      height: 20px
+      margin-left: 0.375rem
 
     .summary
-      display: flex;
-      justify-content: space-between;
+      display: flex
+      justify-content: space-between
 
       .summary-item
-        padding: 14px 6px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 14px 6px
+        display: flex
+        flex-direction: column
+        align-items: center
 
         &.large
-          align-items: start;
-          margin-top: -1rem;
+          align-items: start
+          margin-top: -1rem
 
           .summary-num
-            font-size: 1.875rem;
+            font-size: 1.875rem
 
         .summary-label
-          font-size: 0.875rem;
+          font-size: 0.875rem
 
         .summary-num
-          font-size: 1.25rem;
-          margin: 0.25rem 0;
+          font-size: 1.25rem
+          margin: 0.25rem 0
 
         .summary-line
-          display: flex;
+          display: flex
 
           .summary-text
-            margin-right: 0.375rem;
-            color: #999;
+            margin-right: 0.375rem
+            color: #999
 
 .table
-  width: 100%;
-  word-break: keep-all;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-size: 14px;
+  width: 100%
+  word-break: keep-all
+  border-collapse: collapse
+  border-spacing: 0
+  font-size: 14px
 
   thead,
   tbody
     tr
       th,
       td
-        padding: 6px 0;
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-        border-bottom: 1px solid #f3f3f3;
+        padding: 6px 0
+        font-size: 14px
+        font-weight: 600
+        text-align: center
+        border-bottom: 1px solid #f3f3f3
 
         .sure-summary
-          display: flex;
-          justify-content: center;
+          display: flex
+          justify-content: center
 
           .badge
-            font-weight: normal;
-            height: 12px;
-            padding: 0;
+            font-weight: normal
+            height: 12px
+            padding: 0
 
           .sure-num
-            margin-right: 4px;
+            margin-right: 4px
 
 @media (max-width: 768px)
   .news-page
     .covid-news
-      grid-template-columns: auto;
-      gap: 0.5rem;
+      grid-template-columns: auto
+      gap: 0.5rem
 </style>
