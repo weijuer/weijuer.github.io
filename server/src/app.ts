@@ -5,7 +5,9 @@ import cors from 'koa2-cors'
 import bodyParser from 'koa-bodyparser'
 import views from 'koa-views'
 import serve from 'koa-static'
+import mongoose from 'mongoose'
 import config from './config'
+
 
 /**
  * Setup routing-controllers to use typedi container.
@@ -33,5 +35,11 @@ app.use(cors({
 app.use(views(config.viewPath, {
   map: { html: 'handlebars' }
 }));
+
+// mongoose
+mongoose.connect(config.db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 export default app
