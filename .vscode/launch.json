@@ -4,6 +4,24 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch via NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "debug"
+      ],
+      "cwd": "${workspaceFolder}/server",
+      "port": 9229,
+      "sourceMaps": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch app nodemon",
       "runtimeExecutable": "nodemon",
       "program": "${workspaceFolder}/server/src/index.js",
