@@ -8,7 +8,7 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run-script",
-        "debug"
+        "watch-server"
       ],
       "cwd": "${workspaceFolder}/server",
       "port": 9229,
@@ -22,18 +22,21 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch app nodemon",
+      "name": "Launch via nodemon",
       "runtimeExecutable": "nodemon",
-      "program": "${workspaceFolder}/server/src/index.js",
+      "args": [
+        "${workspaceFolder}/server/src/server.ts"
+      ],
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
       "restart": true,
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "env": {
-        "TS_NODE_PROJECT": "${workspaceFolder}/server/tsconfig.json"
-      }
     },
     {
       "name": "Current TS File",

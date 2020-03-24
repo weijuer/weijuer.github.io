@@ -1,32 +1,28 @@
-import { Tag } from "./Tag";
+import { Schema, Model, model, Document } from 'mongoose'
+import { TagDocument } from './Tag'
 
-export class Article {
-
+export interface ArticleDocument extends Document {
   id?: number;
   title: string;
   author: string;
-  portrait?: string;
   url: string;
+  portrait?: string;
   description: string;
-  tags?: Tag[];
-  lastModified: string;
-  createDate: Date = new Date();
-
-  constructor(id: number,
-    title: string,
-    author: string,
-    portrait: string,
-    url: string,
-    description: string,
-    tags: Tag[],
-    lastModified: string, ) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.portrait = portrait;
-    this.url = url;
-    this.description = description;
-    this.tags = tags;
-    this.lastModified = lastModified;
-  }
+  tags?: TagDocument[];
+  lastModified?: string;
+  createTime?: string;
 }
+
+const ArticleSchma: Schema = new Schema({
+  id: Number,
+  title: { type: String, required: true },
+  author: { type: String, required: true },
+  url: { type: String, required: true },
+  portrait: { type: String },
+  description: { type: String, required: true },
+  tags: { type: Array, default: [] },
+  lastModified: { type: Date, default: Date.now },
+  createTime: { type: Date, default: Date.now }
+})
+
+export const ArticleModel: Model<ArticleDocument> = model<ArticleDocument>('Article', ArticleSchma)

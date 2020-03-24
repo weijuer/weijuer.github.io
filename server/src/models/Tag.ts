@@ -1,10 +1,15 @@
-export class Tag {
+import { Schema, Model, model, Document } from 'mongoose'
 
-  id: number;
-  name: string;
-
-  constructor(id: number, name: string) {
-      this.id = id;
-      this.name = name;
-  }
+export interface TagDocument extends Document {
+  id?: number;
+  name: string
+  createTime?: string;
 }
+
+const TagSchma: Schema = new Schema({
+  id: Number,
+  name: { type: String, required: true },
+  createTime: { type: Date, default: Date.now }
+})
+
+export const TagModel: Model<TagDocument> = model<TagDocument>('Tag', TagSchma)

@@ -9,13 +9,9 @@
   "scripts": {
     "serve": "node dist/server.js",
     "build-ts": "tsc",
-    "watch-ts": "tsc -w",
-    "watch": "npm run tslint && npm run watch-ts",
-    "build": "npm run build-ts && npm run copy-static-assets",
-    "watch-node": "NODE_ENV=local nodemon dist/server.js",
-    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts",
-    "debug": "nodemon --ext js,ts --exec node -r ts-node/register --inspect src/server.ts",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "watch-node": "nodemon dist/server.js",
+    "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/server.ts",
+    "debug": "nodemon --ext js,ts --exec node -r ts-node/register --inspect src/server.ts"
   },
   "devDependencies": {
     "@types/consolidate": "^0.14.0",

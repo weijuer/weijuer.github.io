@@ -2,6 +2,7 @@ import { Get, Post, Param, JsonController, Body } from 'routing-controllers'
 import { Service, Inject } from "typedi";
 import browser from "../utils/browser";
 import * as utils from '../utils/utils';
+import { ArticleRepository } from '../repository/AirticleRepository';
 
 /**
  * 日志文章
@@ -11,13 +12,13 @@ import * as utils from '../utils/utils';
 export class ArticleController {
 
   @Inject()
-  // articleRepository: ArticleRepository;
+  articleRepository: ArticleRepository;
 
   /**
    * 获取当前日志列表
    */
   @Get("/articles")
-  all(): Promise<any[]> {
+  all() {
     return this.articleRepository.findAll();
   }
 
