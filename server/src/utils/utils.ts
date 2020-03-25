@@ -2,6 +2,13 @@ import fs from 'fs';
 import path from "path";
 const dataPath = './server/src/data';
 
+// 缩写 console.log
+export const log = (...args: any[]) => {
+  args.unshift(`[Brower]`);
+  // args.push('color: green;');
+  return console.log.apply(console, args);
+}
+
 /**
  * 路径拼接
  * @param dir 
@@ -36,8 +43,8 @@ export const getChildNode = (element: Element, selector: string) => {
  * @param v 
  * @param selector 
  */
-export const getText = (element: Element, selector: string) => {
-  return element.querySelector(selector) && element.querySelector(selector).innerHTML.trim();
+export function getText(element: Element, selector: string) {
+  return element.querySelector(selector) && element.querySelector(selector).textContent.trim();
 };
 
 /**
@@ -46,7 +53,7 @@ export const getText = (element: Element, selector: string) => {
  * @param selector 
  * @param attr 
  */
-export const getAttr = (element: Element, selector: string, attr: string) => {
+export function getAttr(element: Element, selector: string, attr: string) {
   return element.querySelector(selector) && element.querySelector(selector).getAttribute(attr);
 };
 
@@ -97,19 +104,19 @@ export const saveLocalData = async (type: string, data: Object) => {
 }
 
 /**
- * 遍历对象
- * @param {*} object 
+ * 提取函数
+ * @param element 当前元素
+ * @param airticle 待创建对象
  */
-export const getItem = (element: Element, object: any) => {
-  var _item: any = {};
-  for (let key in object) {
-    if (object.hasOwnProperty(key)) {
-      if (element.nodeName === 'A') {
-        _item[key] = getAttr(element, object[key], 'href');
-      } else {
-        _item[key] = getText(element, object[key]);
-      }
+export function getItem(element: Element, airticle: object) {
+  log(`element===>${element}`, airticle);
+  var item: any = {};
+  for (let [key, value] of Object.entries(airticle)) {
+    if (key === 'url') {
+      item[key] = getAttr(element, value, 'href');
+    } else {
+      item[key] = getText(element, value);
     }
   }
-  return _item;
+  return item;
 }

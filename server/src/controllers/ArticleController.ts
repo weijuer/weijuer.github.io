@@ -31,13 +31,13 @@ export class ArticleController {
     // 测试
     const _options = {
       url: 'https://www.infoq.cn/topic/Front-end',
-      target: '.article-list>.list>.list-item',
+      target: '.article-list>.list>.article-item',
       item: {
         title: '.info .com-article-title',
-        url: '.info .favorite > a',
+        url: '.info .com-article-title',
         description: '.info .summary',
         author: '.info .editor > a.author',
-        lastModified: '.info .extra .date'
+        lastModified: '.info .author-date-wrap .date'
       }
     };
 
