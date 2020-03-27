@@ -1,6 +1,5 @@
 import puppeteer from "puppeteer-core";
-import { log, getItem } from './utils'
-
+import { log } from './utils'
 
 // chrome本地路径
 const pathToExtension = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe';
@@ -128,8 +127,9 @@ class Browser {
     log(`页面元素加载完毕...target:===> ${options.target}`);
 
     // 分析数据
-    const result = await this.process(options)
-    log(`解析完成... result:===>${JSON.stringify(result, null, 4)}`);
+    log(`开始分析数据...`)
+    const result = await this.evaluate(options);
+    log(`分析完成... result:===>${JSON.stringify(result, null, 4)}`);
 
     // 关闭浏览器
     this.exit();
@@ -137,44 +137,82 @@ class Browser {
     return result;
   }
 
+
+
+  /**
+   * 分析页面：A.在浏览器中执行一段JavaScript代码
+   * @param options 
+   */
+  async evaluate(options: any) {
+    return await this.page.evaluate(this.processByFunction, options);
+  }
+
+  /**
+   * 分析页面：C.获取某一类节点的某个属性集合
+   * @param options 
+   */
+  async getNodesData(selector: string, options: any) {
+    return await this.page.$$eval(selector, this.process, options);
+  }
+
+  /**
+   * 分析页面：B.获取某一个节点的某个属性
+   * @param selector CSS选择器
+   * @param attr 属性名称
+   */
+  async getNodeData(selector: string, attr: string) {
+    if (attr) {
+      return await this.page.$eval(selector, (el: Element) => el.getAttribute(attr));
+    } else {
+      return await this.page.$eval(selector, (el: Element) => el.textContent);
+    }
+  }
+
   /**
    * 分析数据
    * @param {*} options 
    */
-  async process(options: any) {
+  async process(elements: any[], options: any) {
     console.log('process start')
-    // 分析页面：A.在浏览器中执行一段JavaScript代码
-    // const result = await this.page.evaluate(this.processByFunction, options);
-
-    // 分析页面：B.获取某一个节点的某个属性
-    // const text = await this.page.$eval('.text', (el: Element) => el.textContent);
-
-    // 分析页面：C.获取某一类节点的某个属性集合
-    // const result = await this.page.$$eval(options.target, this.process, options);
-
+    console.log('process elements', elements)
     // 解析数据
-    // return items.map(element => getItem(element, options.item));
-    return await this.page.$$eval(options.target, (elements: any[]) => {
-      console.log('process elements', elements)
-      console.log('process getItem', getItem)
-      return Array.from(elements).map(element => {
-        console.log(element)
-        return getItem(element, options.item)
-      })
+    return Array.from(elements).map(element => {
+      let item: any = {};
+      for (let [key, value] of Object.entries(options.item)) {
+        if (key === 'url') {
+          item[key] = element.querySelector(value).getAttribute('href')
+        } else {
+          item[key] = element.querySelector(value).textContent.trim()
+        }
+      }
+      return item;
     })
   }
 
   /**
   * 执行JS分析数据
   * @param {*} options 
-  * @param {*} tools 
   */
   processByFunction(options: any) {
     // 获取待爬取节点集合，并转为数组
     const targets = Array.from(document.querySelectorAll(options.target));
     console.log(`targets size:===>${targets.length}`);
     // 解析数据
-    return targets.map(element => getItem(element, options.item));
+    return targets.map(element => {
+      let item: any = {};
+      for (let [key, value] of Object.entries(options.item)) {
+        if (key === 'url') {
+          item[key] = element.querySelector(value).getAttribute('href')
+        } else {
+          item[key] = element.querySelector(value).textContent.trim()
+        }
+      }
+      return item;
+    });
+  }
+
+  proccessData() {
+
   }
 
 }

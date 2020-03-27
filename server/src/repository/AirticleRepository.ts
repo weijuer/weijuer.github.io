@@ -17,9 +17,12 @@ export class ArticleRepository {
         return model.save();
     }
 
+    update(article: any) {
+        return ArticleModel.updateOne({ _id: article.id }, article)
+    }
+
     bulk(articles: any[]) {
-        let model = new ArticleModel({ ...articles })
-        return model.save()
+        return ArticleModel.collection.insertMany(articles)
     }
 
     remove(id: string) {

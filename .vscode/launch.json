@@ -4,7 +4,24 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch via NPM",
+      "name": "Launch Program",
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register"
+      ],
+      "args": [
+        "${workspaceFolder}/server/src/server.ts"
+      ],
+      "sourceMaps": true,
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch run-script",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run-script",
@@ -24,19 +41,19 @@
       "request": "launch",
       "name": "Launch via nodemon",
       "runtimeExecutable": "nodemon",
-      "args": [
-        "${workspaceFolder}/server/src/server.ts"
-      ],
       "runtimeArgs": [
         "-r",
         "ts-node/register"
       ],
+      "args": [
+        "${workspaceFolder}/server/src/server.ts"
+      ],
       "restart": true,
       "sourceMaps": true,
-      "cwd": "${workspaceRoot}",
+      "cwd": "${workspaceFolder}/server",
       "protocol": "inspector",
       "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "internalConsoleOptions": "neverOpen"
     },
     {
       "name": "Current TS File",

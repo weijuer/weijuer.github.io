@@ -44,9 +44,9 @@ export class ArticleController {
     // 爬取日志
     const articles = await browser.scrape(_options);
     // 保存到本地文件
-    await utils.saveLocalData('article', articles);
-    // 保存到IndexDB
-    // this.articleRepository.bulk(articles);
+    // await utils.saveLocalData('article', articles);
+    // 保存到mongodb
+    await this.articleRepository.bulk(articles);
     return { code: 1000, message: 'success' };
   }
 

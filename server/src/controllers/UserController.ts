@@ -3,7 +3,7 @@ import { Service } from "typedi";
 import { UserDocument, UserModel } from '../models/User'
 
 @Service()
-@JsonController('/users')
+@JsonController("/users")
 export class PostController {
 
     @Get("/")
