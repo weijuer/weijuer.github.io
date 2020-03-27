@@ -1,11 +1,11 @@
 import { Service } from "typedi";
-import { ArticleModel, ArticleDocument } from '../models/Article';
+import { ArticleModel } from '../models/Article';
 
 @Service()
 export class ArticleRepository {
 
     findAll() {
-        return ArticleModel.find();
+        return ArticleModel.find().lean();
     }
 
     findOne(id: string) {

@@ -23,6 +23,9 @@ var Index = new Vue({
       let data = { options: this.options };
 
       fetch(url, {
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(data),
         method: "POST",
         credentials: "include",
@@ -38,6 +41,9 @@ var Index = new Vue({
       let data = { url: this.options.url };
 
       fetch(url, {
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(data),
         method: "POST",
         credentials: "include",

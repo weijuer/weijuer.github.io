@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach to node",
+      "type": "node",
+      "request": "attach",
+      "restart": true,
+      "processId": "${command:PickProcess}"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
@@ -21,32 +28,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch run-script",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run-script",
-        "watch-server"
-      ],
-      "cwd": "${workspaceFolder}/server",
-      "port": 9229,
-      "sourceMaps": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "Launch via nodemon",
       "runtimeExecutable": "nodemon",
-      "runtimeArgs": [
-        "-r",
-        "ts-node/register"
-      ],
       "args": [
-        "${workspaceFolder}/server/src/server.ts"
+        "src/server.ts"
       ],
       "restart": true,
       "sourceMaps": true,
@@ -72,21 +57,6 @@
       "protocol": "inspector",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
-    },
-    {
-      "name": "Debug Current TS Tests File",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/node_modules/.bin/_mocha",
-      "args": [
-        "-r",
-        "ts-node/register",
-        "${relativeFile}", // 调试当前文件
-        "--colors",
-        "-t 100000" // 设置超时时间，因为调试时执行时间较长容易触发超时
-      ],
-      "cwd": "${workspaceRoot}",
-      "protocol": "inspector"
     }
   ]
 }

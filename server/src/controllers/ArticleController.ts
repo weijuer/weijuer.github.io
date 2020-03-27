@@ -1,7 +1,6 @@
-import { Get, Post, Param, JsonController, Body } from 'routing-controllers'
+import { Get, Post, JsonController, Body, BodyParam } from 'routing-controllers'
 import { Service, Inject } from "typedi";
 import browser from "../utils/browser";
-import * as utils from '../utils/utils';
 import { ArticleRepository } from '../repository/AirticleRepository';
 
 /**
@@ -51,7 +50,7 @@ export class ArticleController {
   }
 
   @Post('/getPDF')
-  async getPDF(@Param("url") url: string) {
+  async getPDF(@BodyParam('url') url: string) {
     // 生成PDF
     await browser.printPDF(url);
   }
