@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "serve": "node dist/server.js",
-    "build-ts": "tsc",
+    "build": "tsc",
+    "dev": "nodemon src/server.ts",
     "debug": "nodemon --exec ts-node src/server.ts"
   },
   "devDependencies": {
@@ -49,12 +50,13 @@
     "typedi": "^0.8.0"
   },
   "nodemonConfig": {
+    "restartable": "rs",
     "ignore": [
       ".git",
       "node_modules/*",
       "dist"
     ],
-    "delay": "3000",
+    "delay": "1000",
     "watch": [
       "src/*"
     ],

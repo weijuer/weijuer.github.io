@@ -30,12 +30,17 @@
       "request": "launch",
       "name": "Launch via nodemon",
       "runtimeExecutable": "nodemon",
-      "args": [
-        "src/server.ts"
-      ],
+      "program": "${workspaceFolder}/server/src/server.ts",
       "restart": true,
       "sourceMaps": true,
       "cwd": "${workspaceFolder}/server",
+      "preLaunchTask": "tsc:watch",
+      "outFiles": [
+        "${workspaceFolder}/server/dist/**/*.js"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "protocol": "inspector",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"

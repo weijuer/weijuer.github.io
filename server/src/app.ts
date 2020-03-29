@@ -1,6 +1,7 @@
 import 'reflect-metadata'
-import { createKoaServer, useContainer } from 'routing-controllers'
+import { useKoaServer, useContainer } from 'routing-controllers'
 import { Container } from "typedi"
+import Koa from 'koa'
 import cors from 'koa2-cors'
 import bodyParser from 'koa-bodyparser'
 import views from 'koa-views'
@@ -8,13 +9,13 @@ import serve from 'koa-static'
 import mongoose from 'mongoose'
 import config from './config'
 
-
+const app: Koa<any, {}> = new Koa()
 /**
  * Setup routing-controllers to use typedi container.
  */
 useContainer(Container);
 
-const app = createKoaServer({
+useKoaServer(app, {
   controllers: [`${__dirname}/controllers/**/*{.js,.ts}`],
 })
 

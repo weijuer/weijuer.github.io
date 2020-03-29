@@ -18,7 +18,7 @@ export class ArticleController {
    */
   @Get("/articles")
   all() {
-    return this.articleRepository.findAll();
+    return this.articleRepository.findAll()
   }
 
   /**
@@ -52,7 +52,7 @@ export class ArticleController {
   @Post('/getPDF')
   async getPDF(@BodyParam('url') url: string) {
     // 生成PDF
-    await browser.printPDF(url);
+    await browser.printPDF(url)
   }
 
 }
