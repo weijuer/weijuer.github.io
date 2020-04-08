@@ -3,11 +3,11 @@ import { JsonController, UploadedFile, Post } from 'routing-controllers'
 /**
  * 上传文件
  */
-@JsonController()
+@JsonController("files")
 export class FileController {
 
     @Post("/uploadfile")
-    saveFile(@UploadedFile("file", { required: true }) file: File) {
-
+    saveFile(@UploadedFile("file") file: any) {
+        return file.name
     }
 }
