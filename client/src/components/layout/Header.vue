@@ -172,7 +172,7 @@ export default class Header extends Vue {
     { name: "articles", path: "/articles", active: false },
     // { name: "example", path: "/example", active: false },
     { name: "news", path: "/news", active: false },
-    // { name: "components", path: "/components", active: false },
+    { name: "components", path: "/components", active: false },
     { name: "music", path: "/music", active: false }
     // { name: "about", path: "/about", active: false }
   ];

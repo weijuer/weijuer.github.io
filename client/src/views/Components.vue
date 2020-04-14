@@ -4,9 +4,9 @@
       <div class="popular-components">
         <aside class="sidebar"></aside>
         <div class="components">
-          <w-list media-list>
+          <w-list class="virtual-list-demo" media-list virtual-list>
             <w-item
-              v-for="item of 3"
+              v-for="item of 1000"
               :key="`Item${item}`"
               :title="`Item${item}`"
             />
@@ -35,6 +35,10 @@ export default class Components extends Vue {}
   display: grid
   grid-template-columns: 30% 70%
   gap: 4rem
+
+  .virtual-list-demo
+    height 400px
+    overflow-y auto
 
 @media (max-width: 768px)
   .popular-components

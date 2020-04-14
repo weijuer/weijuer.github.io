@@ -1,6 +1,6 @@
 <template>
-  <div class="w-list" :class="listType" @scroll="handleScroll">
-    <ul>
+  <div ref="container" class="w-list" :class="listType" @scroll="handleScroll">
+    <ul :style="getVirtualStyle()">
       <slot />
     </ul>
   </div>
@@ -32,7 +32,27 @@ export default class WList extends Vue {
       "virtual-list": virtualList
     };
   }
-  handleScroll() {}
+
+  // 开始索引
+  startIndex: number = 0;
+  // 结束索引
+  endIndex: number = 0;
+  // 开始索引偏移量
+  startOffset: number = 0;
+
+  getVirtualStyle() {
+    return {
+      transform: `translateY(${this.startOffset}px)`
+    };
+  }
+
+  handleScroll() {
+    const container: any = this.$refs.container;
+    const top = container.scrollTop;
+    this.startOffset = top;
+    this.startIndex = Math.floor(top / 30);
+    this.endIndex = this.startIndex * 20;
+  }
 }
 </script>
 
