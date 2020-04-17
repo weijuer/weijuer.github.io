@@ -4,9 +4,14 @@
       <div class="popular-components">
         <aside class="sidebar"></aside>
         <div class="components">
-          <w-list class="virtual-list-demo" media-list virtual-list>
+          <w-list
+            class="virtual-list-demo"
+            :originalData.sync="listData"
+            media-list
+            virtual-list
+          >
             <w-item
-              v-for="item of 1000"
+              v-for="item of listData"
               :key="`Item${item}`"
               :title="`Item${item}`"
             />
@@ -27,7 +32,9 @@ import { List, Item } from "@widgets";
     [Item.name]: Item
   }
 })
-export default class Components extends Vue {}
+export default class Components extends Vue {
+  listData: Array<number> = Array(1000).fill(1);
+}
 </script>
 
 <style lang="stylus">
