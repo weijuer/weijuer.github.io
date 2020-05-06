@@ -115,22 +115,11 @@
           >
             <nav class="app-nav">
               <ul class="nav">
-                <li
-                  class="nav-item"
-                  v-for="(menu, index) in menus"
-                  :key="`menu-${index}`"
-                >
-                  <router-link
-                    tag="a"
-                    class="nav-link"
-                    :to="{ name: menu.name }"
-                    >{{ $t("nav." + menu.name) }}</router-link
-                  >
-                  <svg
-                    class="shape-container"
-                    viewBox="0 0 60 40"
-                    version="1.1"
-                  >
+                <li class="nav-item" v-for="(menu, index) in menus" :key="`menu-${index}`">
+                  <router-link tag="a" class="nav-link" :to="{ name: menu.name }">{{
+                    $t('nav.' + menu.name)
+                  }}</router-link>
+                  <svg class="shape-container" viewBox="0 0 60 40" version="1.1">
                     <rect class="shape" />
                   </svg>
                 </li>
@@ -144,9 +133,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Getter, Action } from "vuex-class";
-import { Link, Icon } from "@widgets";
+import { Component, Vue } from 'vue-property-decorator'
+import { Getter, Action } from 'vuex-class'
+import { Link, Icon } from '@widgets'
 
 @Component({
   components: {
@@ -156,63 +145,63 @@ import { Link, Icon } from "@widgets";
 })
 export default class Header extends Vue {
   @Getter
-  isScrollUp!: boolean;
+  isScrollUp!: boolean
 
   @Getter
-  isPageScroll!: boolean;
+  isPageScroll!: boolean
 
   @Getter
-  isSidebarActive!: boolean;
+  isSidebarActive!: boolean
 
-  @Action("ToggleSidebar")
-  toggleSidebar!: () => void;
+  @Action('ToggleSidebar')
+  toggleSidebar!: () => void
 
   menus: Array<any> = [
-    { name: "home", path: "/home", active: true },
-    { name: "articles", path: "/articles", active: false },
-    // { name: "example", path: "/example", active: false },
-    { name: "news", path: "/news", active: false },
-    { name: "components", path: "/components", active: false },
-    { name: "music", path: "/music", active: false }
+    { name: 'home', path: '/home', active: true },
+    { name: 'articles', path: '/articles', active: false },
+    { name: 'example', path: '/example', active: false },
+    { name: 'news', path: '/news', active: false },
+    { name: 'components', path: '/components', active: false },
+    { name: 'music', path: '/music', active: false }
     // { name: "about", path: "/about", active: false }
-  ];
+  ]
 
-  isToggle: boolean = false;
+  isToggle: boolean = false
 
   private get appHeaderType() {
-    let type = "";
+    let type = ''
 
     if (this.isPageScroll) {
-      type += "app-header-fixed";
+      type += 'app-header-fixed'
     }
 
     if (this.isScrollUp) {
-      type += " app-scrollUp";
+      type += ' app-scrollUp'
     }
 
-    return type;
+    return type
   }
 
   toggleShadow(event: any) {
-    event = event || window.event;
-    let target = event.target || event.srcElement;
-    if (target.nodeName.toLowerCase() === "section") {
-      this.toggleSidebar();
+    event = event || window.event
+    let target = event.target || event.srcElement
+    if (target.nodeName.toLowerCase() === 'section') {
+      this.toggleSidebar()
     }
     // 阻止事件冒泡
-    event.stopPropagation();
+    event.stopPropagation()
   }
 }
 </script>
 
 <style lang="stylus">
 .logo
-  position: relative;
-  width: 220px;
-  height: 60px;
+  position: relative
+  width: 220px
+  height: 60px
 
   .icon-logo
-    width: 100%;
-    height: 100%;
-    color: #fff;
+    width: 100%
+    height: 100%
+    color: #fff
 </style>
