@@ -1,19 +1,18 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "@/router";
-import store from "@/store";
-import i18n from "@/i18n";
-import "./registerServiceWorker";
+import Vue, { createApp, h } from 'vue'
+import App from './App.vue'
+import router from '@/router'
+import store from '@/store'
+import i18n from '@/i18n'
+import './registerServiceWorker'
 
 // echarts
-import echarts from "echarts";
-Vue.prototype.$echarts = echarts;
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
-Vue.config.productionTip = false;
-
-new Vue({
-  router,
-  store,
+createApp({
   i18n,
-  render: h => h(App)
-}).$mount("#app");
+  render: () => h(App)
+})
+  .use(router)
+  .use(store)
+  .mount('#app')
