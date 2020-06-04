@@ -6,10 +6,10 @@ import { Get, Controller, Render } from 'routing-controllers'
 @Controller()
 export class IndexController {
   @Get('/')
-  @Render('index.html')
+  // @Render('index.html')
   async index() {
     return {
-      title: "Welcome!"
+      title: "Welcome s!"
     }
   }
 }
