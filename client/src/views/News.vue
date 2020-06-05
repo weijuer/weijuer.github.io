@@ -18,28 +18,70 @@
                 <div class="summary-num text-primary">{{ news.total.china.sure_cnt }}</div>
                 <div class="summary-line">
                   <div class="summary-text">较昨日</div>
-                  <badge type="primary" :text="news.total.china.sure_cnt_incr" />
+                  <badge type="primary" :text="news.total.china.sure_cnt_incr || '0'" />
                 </div>
               </div>
               <div class="summary-item">
                 <div class="summary-label">疑似</div>
                 <div class="summary-num text-warning">{{ news.total.china.like_cnt }}</div>
                 <div class="summary-line">
-                  <badge type="warning" :text="news.total.china.like_cnt_incr" />
+                  <badge type="warning" :text="news.total.china.like_cnt_incr || '0'" />
                 </div>
               </div>
               <div class="summary-item">
                 <div class="summary-label">治愈</div>
                 <div class="summary-num text-success">{{ news.total.china.cure_cnt }}</div>
                 <div class="summary-line">
-                  <badge type="success" :text="news.total.china.cure_cnt_incr" />
+                  <badge type="success" :text="news.total.china.cure_cnt_incr || '0'" />
                 </div>
               </div>
               <div class="summary-item">
                 <div class="summary-label">死亡</div>
                 <div class="summary-num text-default">{{ news.total.china.die_cnt }}</div>
                 <div class="summary-line">
-                  <badge type="default" :text="news.total.china.die_cnt_incr" />
+                  <badge type="default" :text="news.total.china.die_cnt_incr || '0'" />
+                </div>
+              </div>
+            </div>
+          </card>
+
+          <card @desc-click="refresh()">
+            <template slot="title">
+              <span>海外实时动态</span>
+              <pulse />
+            </template>
+            <template slot="desc">
+              <span>{{ `数据截至 ${news.statisEndTime}` }}</span>
+              <w-icon class="refresh-btn" slot="icon" name="refresh" />
+            </template>
+            <div class="summary" v-cloak>
+              <div class="summary-item large">
+                <div class="summary-label">确诊</div>
+                <div class="summary-num text-primary">{{ news.total.foreign.sure_cnt }}</div>
+                <div class="summary-line">
+                  <div class="summary-text">较昨日</div>
+                  <badge type="primary" :text="news.total.foreign.cure_new_cnt || '0'" />
+                </div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-label">疑似</div>
+                <div class="summary-num text-warning">{{ news.total.foreign.like_cnt }}</div>
+                <div class="summary-line">
+                  <badge type="warning" text="0" />
+                </div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-label">治愈</div>
+                <div class="summary-num text-success">{{ news.total.foreign.cure_cnt }}</div>
+                <div class="summary-line">
+                  <badge type="success" :text="news.total.foreign.cure_new_cnt || '0'" />
+                </div>
+              </div>
+              <div class="summary-item">
+                <div class="summary-label">死亡</div>
+                <div class="summary-num text-default">{{ news.total.foreign.die_cnt }}</div>
+                <div class="summary-line">
+                  <badge type="default" :text="news.total.foreign.die_new_cnt || '0'" />
                 </div>
               </div>
             </div>
@@ -85,10 +127,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Getter, Action } from "vuex-class";
-import { Card, Pulse, Badge, Icon, Chart } from "@widgets";
-import { arraySort } from "../utils/utils";
+import { Component, Vue } from 'vue-property-decorator'
+import { Getter, Action } from 'vuex-class'
+import { Card, Pulse, Badge, Icon, Chart } from '@widgets'
+import { arraySort } from '../utils/utils'
 
 @Component({
   components: {
@@ -101,10 +143,10 @@ import { arraySort } from "../utils/utils";
 })
 export default class News extends Vue {
   @Getter
-  news!: W.INews;
+  news!: W.INews
 
-  @Action("GET_NEWS")
-  get_news!: () => W.INews;
+  @Action('GET_NEWS')
+  get_news!: () => W.INews
 
   // map
   private mapOptions: any = {
@@ -118,7 +160,7 @@ export default class News extends Vue {
           cure_cnt,
           sure_new_cnt,
           sure_new_zero_days
-        } = params.data;
+        } = params.data
 
         let html = `
           <div class="title" style="border-bottom: 1px dashed #fff;">${province}</div>
@@ -128,26 +170,26 @@ export default class News extends Vue {
             <span>治愈：${cure_cnt}</span>
             <span>死亡：${die_cnt}</span>
           </div>
-        `;
+        `
 
-        return html;
+        return html
       }
     },
     visualMap: {
-      type: "piecewise",
+      type: 'piecewise',
       itemWidth: 10,
       bottom: 0,
       left: 0,
       pieces: [
-        { max: 99, color: "#ffe7db", symbol: "circle" },
-        { min: 100, max: 499, color: "#ffbc9b", symbol: "circle" },
-        { min: 500, max: 999, color: "#fc8958", symbol: "circle" },
-        { min: 1000, max: 20000, color: "#ee5c1c", symbol: "circle" },
-        { min: 20001, color: "#a53809", symbol: "circle" }
+        { max: 99, color: '#ffe7db', symbol: 'circle' },
+        { min: 100, max: 499, color: '#ffbc9b', symbol: 'circle' },
+        { min: 500, max: 999, color: '#fc8958', symbol: 'circle' },
+        { min: 1000, max: 20000, color: '#ee5c1c', symbol: 'circle' },
+        { min: 20001, color: '#a53809', symbol: 'circle' }
       ]
     },
     geo: {
-      map: "china", // 表示中国地图
+      map: 'china', // 表示中国地图
       roam: false, // 是否开启鼠标缩放和平移漫游
       zoom: 1.25, // 当前视角的缩放比例（地图的放大比例）
       label: {
@@ -155,18 +197,18 @@ export default class News extends Vue {
       },
       itemStyle: {
         // 地图区域的多边形 图形样式。
-        borderColor: "rgba(0, 0, 0, 0.2)",
+        borderColor: 'rgba(0, 0, 0, 0.2)',
         emphasis: {
           // 高亮状态下的多边形和标签样式
           shadowBlur: 20,
-          shadowColor: "rgba(0, 0, 0, 0.5)"
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
         }
       }
     },
     series: [
       {
-        name: "",
-        type: "map",
+        name: '',
+        type: 'map',
         geoIndex: 0,
         label: {
           show: true
@@ -174,39 +216,39 @@ export default class News extends Vue {
         data: []
       }
     ]
-  };
+  }
 
   get provinces() {
-    let provinces = this.news.provinces;
+    let provinces = this.news.provinces
     provinces.map(item => {
-      item.value = item.sure_cnt;
-      item.name = item.province;
-    });
-    return provinces.sort(arraySort("sure_cnt", "desc"));
+      item.value = item.sure_cnt
+      item.name = item.province
+    })
+    return provinces.sort(arraySort('sure_cnt', 'desc'))
   }
 
   private mounted(): void {
-    this.init();
+    this.init()
   }
 
   private async init() {
-    await this.get_news();
+    await this.get_news()
 
     this.mapOptions.series = [
       {
-        name: "",
-        type: "map",
+        name: '',
+        type: 'map',
         geoIndex: 0,
         label: {
           show: true
         },
         data: this.provinces
       }
-    ];
+    ]
   }
 
   refresh(): void {
-    this.get_news();
+    this.get_news()
   }
 }
 </script>
@@ -217,7 +259,7 @@ export default class News extends Vue {
 
   .covid-news
     display: grid
-    grid-template-columns: 30% minmax(0, 1fr)
+    grid-template-columns: 35% minmax(0, 1fr)
     gap: 2rem
 
     .refresh-btn

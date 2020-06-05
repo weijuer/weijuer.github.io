@@ -1,24 +1,27 @@
 <script>
 export default {
   functional: true,
-  name: "Badge",
+  name: 'Badge',
   props: {
     type: {
       type: String,
-      default: "primary"
+      default: 'primary'
     },
-    text: [String, Number]
+    text: {
+      type: [String, Number],
+      default: 0
+    }
   },
   render(h, { props, slots }) {
     return h(
-      "span",
+      'span',
       {
-        class: ["badge", props.type, props.vertical]
+        class: ['badge', props.type, props.vertical]
       },
       props.text || slots().default
-    );
+    )
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

@@ -33,7 +33,8 @@ const state: State = {
     exposeConfig: "",
     chinaInfectMapImg: "",
     total: {
-      china: {}
+      china: {},
+      foreign: {}
     },
     statisEndTime: ""
   }

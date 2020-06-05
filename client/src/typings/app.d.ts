@@ -49,6 +49,7 @@ declare namespace W {
     chinaInfectMapImg: string;
     total: {
       china: any;
+      foreign: any;
     };
     statisEndTime: string;
   }
