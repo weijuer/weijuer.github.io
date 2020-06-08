@@ -18,10 +18,11 @@
         "ts-node/register"
       ],
       "args": [
-        "${workspaceFolder}/server/src/server.ts"
+        "${workspaceFolder}/server/src/app.ts"
       ],
       "sourceMaps": true,
       "cwd": "${workspaceFolder}/server",
+      "protocol": "inspector",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
     },
@@ -30,7 +31,7 @@
       "request": "launch",
       "name": "Launch via nodemon",
       "runtimeExecutable": "nodemon",
-      "program": "${workspaceFolder}/server/src/server.ts",
+      "program": "${workspaceFolder}/server/src/app.ts",
       "restart": true,
       "sourceMaps": true,
       "cwd": "${workspaceFolder}/server",

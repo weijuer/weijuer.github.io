@@ -23,8 +23,8 @@ export class PostController {
         return userModel.save()
     }
 
-    @Delete("/:id")
-    delete(@Param("id") id: string) {
-        return UserModel.remove({ _id: id });
+    @Delete("/:name")
+    delete(@Param("name") name: string) {
+        return UserModel.remove({ name: name });
     }
 }
