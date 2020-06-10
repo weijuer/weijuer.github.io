@@ -9,7 +9,7 @@ import serve from 'koa-static'
 import mongoose from 'mongoose'
 import config from './config'
 import { logger, accessLogger } from './config/logger'
-import { testJob } from './jobs/blog-job'
+import { blogJob } from './jobs/blog-job'
 
 const app: Koa<any, {}> = new Koa()
 /**
@@ -58,7 +58,7 @@ mongoose.connect(config.db, {
 app.listen(config.port, () => console.log(`Server run as http://127.0.0.1:${config.port}`))
 
 // 任务执行
-testJob()
+blogJob()
 
 // 捕获全局状态下的error
 app.on('error', (err) => {

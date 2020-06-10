@@ -1,6 +1,5 @@
 <template>
   <div ref="list" class="infinite-list-container" @scroll="scrollEvent($event)">
-    <span>test {{screenHeight}}</span>
     <div class="infinite-list-phantom" :style="{ height: listHeight + 'px' }"></div>
     <div class="infinite-list" :style="{ transform: getTransform }">
       <div
@@ -8,7 +7,7 @@
         class="infinite-list-item"
         v-for="item in visibleData"
         :key="item.id"
-        :style="{ height: itemSize + 'px'}"
+        :style="{ height: itemHeight + 'px'}"
       >{{ item.value }}</div>
     </div>
   </div>
@@ -18,27 +17,27 @@
 export default {
   name: 'VirtualList',
   props: {
-    //所有列表数据
+    // 所有列表数据
     listData: {
       type: Array,
       default: () => []
     },
-    //每项高度
-    itemSize: {
+    // 每项高度
+    itemHeight: {
       type: Number,
-      default: 200
+      default: 100
     }
   },
   computed: {
-    //列表总高度
+    // 列表总高度
     listHeight() {
-      return this.listData.length * this.itemSize
+      return this.listData.length * this.itemHeight
     },
-    //可显示的列表项数
+    // 可显示的列表项数
     visibleCount() {
-      return Math.ceil(this.screenHeight / this.itemSize)
+      return Math.ceil(this.screenHeight / this.itemHeight)
     },
-    //偏移量对应的style
+    // 偏移量对应的style
     getTransform() {
       return `translate3d(0,${this.startOffset}px,0)`
     },
@@ -48,11 +47,7 @@ export default {
     }
   },
   mounted() {
-    this.screenHeight = 300 || this.$el.clientHeight
-    this.start = 0
-    this.end = this.start + this.visibleCount
-    console.log('listData', this.listData)
-    console.log('listHeight', this.listHeight)
+    this.pageRender()
   },
   data() {
     return {
@@ -67,15 +62,22 @@ export default {
     }
   },
   methods: {
+    pageRender() {
+      this.screenHeight = this.$refs.list.clientHeight
+      this.start = 0
+      this.end = this.start + this.visibleCount
+      console.log('listData', this.listData)
+      console.log('listHeight', this.listHeight)
+    },
     scrollEvent() {
       //当前滚动位置
       let scrollTop = this.$refs.list.scrollTop
       //此时的开始索引
-      this.start = Math.floor(scrollTop / this.itemSize)
+      this.start = Math.floor(scrollTop / this.itemHeight)
       //此时的结束索引
       this.end = this.start + this.visibleCount
       //此时的偏移量
-      this.startOffset = scrollTop - (scrollTop % this.itemSize)
+      this.startOffset = scrollTop - (scrollTop % this.itemHeight)
     }
   }
 }

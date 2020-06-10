@@ -2,7 +2,7 @@
   <main class="example-page">
     <button @click="test">{{ state.message }}</button>
     <div class="virtual-list-example">
-      <virtual-list :listData="state.dataList" itemSize="20" />
+      <virtual-list :listData="state.dataList" itemHeight="100" />
     </div>
   </main>
 </template>
@@ -59,5 +59,5 @@ export default {
 
 <style lang="stylus" scoped>
 .virtual-list-example
-  height: 300px
+  height: 600px
 </style>>

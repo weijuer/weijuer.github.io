@@ -1,7 +1,7 @@
 import { Get, Post, JsonController, Body, BodyParam } from 'routing-controllers'
-import { Service, Inject } from "typedi";
-import browser from "../utils/browser";
-import { ArticleRepository } from '../repository/AirticleRepository';
+import { Service, Inject } from 'typedi'
+import browser from '../utils/browser'
+import { ArticleRepository } from '../repository/AirticleRepository'
 
 /**
  * 日志文章
@@ -9,21 +9,20 @@ import { ArticleRepository } from '../repository/AirticleRepository';
 @Service()
 @JsonController()
 export class ArticleController {
-
   @Inject()
-  articleRepository: ArticleRepository;
+  articleRepository: ArticleRepository
 
   /**
    * 获取当前日志列表
    */
-  @Get("/articles")
+  @Get('/articles')
   all() {
     return this.articleRepository.findAll()
   }
 
   /**
    * 抓取日志文章
-   * @param options 
+   * @param options
    */
   @Post('/scrapeArticles')
   async scrapeArticles(@Body() options: any) {
@@ -36,17 +35,15 @@ export class ArticleController {
         url: '.info .com-article-title',
         description: '.info .summary',
         author: '.info .editor > a.author',
-        lastModified: '.info .author-date-wrap .date'
-      }
-    };
+        lastModified: '.info .author-date-wrap .date',
+      },
+    }
 
     // 爬取日志
-    const articles = await browser.scrape(_options);
-    // 保存到本地文件
-    // await utils.saveLocalData('article', articles);
+    const articles = await browser.scrape(_options)
     // 保存到mongodb
-    await this.articleRepository.bulk(articles);
-    return { code: 1000, message: 'success' };
+    await this.articleRepository.bulk(articles)
+    return { code: 1000, message: 'success', data: articles }
   }
 
   @Post('/getPDF')
@@ -54,5 +51,4 @@ export class ArticleController {
     // 生成PDF
     await browser.printPDF(url)
   }
-
 }
