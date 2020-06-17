@@ -15,7 +15,20 @@ const routes = [
   {
     path: '/example',
     name: 'Example',
-    component: () => import(/* webpackChunkName: "example" */ '../views/Example.vue')
+    component: () => import(/* webpackChunkName: "example" */ '../views/Example.vue'),
+    children: [
+      {
+        path: 'virtualList',
+        name: 'virtualList',
+        component: () =>
+          import(/* webpackChunkName: "virtualList" */ '../views/example/virtualList.vue')
+      },
+      {
+        path: 'books',
+        name: 'books',
+        component: () => import(/* webpackChunkName: "books" */ '../views/example/books.vue')
+      }
+    ]
   }
 ]
 

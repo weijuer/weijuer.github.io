@@ -1,42 +1,25 @@
 <template>
   <main class="example-page">
-    <button @click="test">{{ state.message }}</button>
-    <div class="virtual-list-example">
-      <virtual-list :listData="state.dataList" itemHeight="100" />
-    </div>
+    <aside>
+      <nav>
+        <router-link to="/example/virtualList">virtualList</router-link>|
+        <router-link to="/example/books">books</router-link>
+      </nav>
+    </aside>
+    <article>
+      <transition name="page-view">
+        <router-view />
+      </transition>
+    </article>
   </main>
 </template>
 
 <script>
-import { reactive, onMounted, onUnmounted } from 'vue'
-import VirtualList from 'Widgets/VirtualList.vue'
-
-const dataStorage = {
-  fetch() {
-    const dataList = []
-    for (let i = 0; i < 10000; i++) {
-      dataList.push({
-        id: i + 1,
-        value: `第${i + 1}个冰淇淋`,
-        price: Math.random() * 10000
-      })
-    }
-    dataStorage.uid = dataList.length
-    return dataList
-  }
-}
+import { onMounted, onUnmounted } from 'vue'
 
 export default {
   name: 'example',
-  components: {
-    VirtualList
-  },
   setup() {
-    const state = reactive({
-      dataList: dataStorage.fetch(),
-      message: 'test'
-    })
-
     onMounted(() => {
       console.log(`onMounted`)
     })
@@ -45,19 +28,25 @@ export default {
       console.log(`onUnmounted`)
     })
 
-    function test() {
-      alert(state.message)
-    }
-
-    return {
-      state,
-      test
-    }
+    return {}
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.virtual-list-example
-  height: 600px
-</style>>
+.example-page
+  display: grid
+  grid-template-columns: 30% minmax(0, 1fr)
+  gap: 2rem
+
+// 页面切换动画
+.page-view-enter-active
+  transition: all 0.2s ease-in 0.25s
+
+.page-view-leave-active
+  transition: all 0.2s ease-out 0s
+
+.page-view-enter,
+.page-view-leave-to
+  opacity: 0
+</style>
