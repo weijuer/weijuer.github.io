@@ -1,15 +1,13 @@
 <template>
-  <div class="home">
-    <todo />
-  </div>
+  <Page />
 </template>
 
 <script>
-import Todo from 'Widgets/Todo.vue'
+import { Page } from 'Layout'
 export default {
   name: 'Home',
   components: {
-    Todo
+    Page
   }
 }
 </script>

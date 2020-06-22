@@ -1,3 +1,3 @@
-import Layout from './Layout.vue'
+import Page from './Page.vue'
 
-export { Layout }
+export { Page }
