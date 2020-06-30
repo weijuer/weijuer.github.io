@@ -29,4 +29,4 @@ RUN yarn
 EXPOSE 3000
 
 # 运行命令
-ENTRYPOINT pm2-runtime start docker_pm2.json
+ENTRYPOINT pm2-runtime start docker_pm2.js

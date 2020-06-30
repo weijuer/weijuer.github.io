@@ -1,13 +1,13 @@
-import puppeteer from "puppeteer-core";
+import puppeteer from 'puppeteer-core'
 import { log } from './utils'
 
 // chrome本地路径
-const pathToExtension = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe';
+const pathToExtension = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'
 
 class Browser {
-  options: any;
-  browser: any;
-  page: any;
+  options: any
+  browser: any
+  page: any
 
   constructor(options: any = {}) {
     this.options = {
@@ -24,12 +24,12 @@ class Browser {
       defaultViewport: { width: 1280, height: 1080 },
       // 减缓效果
       slowMo: 300,
-      ...options
-    };
+      ...options,
+    }
     // 浏览器对象
-    this.browser = null;
+    this.browser = null
     // 页面对象
-    this.page = null;
+    this.page = null
   }
 
   /**
@@ -37,13 +37,13 @@ class Browser {
    */
   async start() {
     if (!this.browser) {
-      this.browser = await puppeteer.launch(this.options);
-      log('浏览器已启动...');
+      this.browser = await puppeteer.launch(this.options)
+      log('浏览器已启动...')
       this.browser.once('disconnected', () => {
-        this.browser = null;
-      });
+        this.browser = null
+      })
     }
-    return this.browser;
+    return this.browser
   }
 
   /**
@@ -51,39 +51,39 @@ class Browser {
    */
   async exit() {
     if (!this.browser) {
-      return;
+      return
     }
-    await this.browser.close();
-    log('浏览器已关闭！');
+    await this.browser.close()
+    log('浏览器已关闭！')
   }
 
   /**
    * 打开浏览器
-   * @param {*} url 
+   * @param {*} url
    */
   async open(url: string) {
     // 启动浏览器
-    await this.start();
+    await this.start()
     // 创建一个page对象
-    this.page = await this.browser.newPage();
-    log('page对象创建完毕...');
+    this.page = await this.browser.newPage()
+    log('page对象创建完毕...')
     // 缓存状态下多页面可能不正常
-    await this.page.setCacheEnabled(false);
+    await this.page.setCacheEnabled(false)
     // 设置页面视窗大小
-    await this.page.setViewport({ width: 1280, height: 1080 });
+    await this.page.setViewport({ width: 1280, height: 1080 })
     // 允许执行js脚本
-    await this.page.setJavaScriptEnabled(true);
+    await this.page.setJavaScriptEnabled(true)
     // 跳转到目标地址
     await this.page.goto(url, {
       timeout: 7000,
-      waitUntil: 'networkidle0'
-    });
+      waitUntil: 'networkidle0',
+    })
 
     // 监听页面日志
-    this.page.on('console', (msg: any) => console.log('PAGE LOG:', msg.text()));
+    this.page.on('console', (msg: any) => console.log('PAGE LOG:', msg.text()))
 
-    log('页面初次加载完毕...');
-    return this.page;
+    log('页面初次加载完毕...')
+    return this.page
   }
 
   /**
@@ -91,12 +91,12 @@ class Browser {
    */
   async printPDF(url: string) {
     // 打开浏览器
-    await this.open(url);
-    log('开始打印PDF中...');
-    await this.page.pdf({ path: 'page.pdf' });
-    log('打印PDF完毕...');
+    await this.open(url)
+    log('开始打印PDF中...')
+    await this.page.pdf({ path: 'page.pdf' })
+    log('打印PDF完毕...')
     // 关闭浏览器
-    this.exit();
+    this.exit()
   }
 
   /**
@@ -104,12 +104,12 @@ class Browser {
    */
   async screenshot(url: string) {
     // 打开浏览器
-    await this.open(url);
-    log('开始截图中...');
-    await this.page.screenshot({ path: 'screenshot.png', type: 'png', fullPage: true });
-    log('截图完毕...');
+    await this.open(url)
+    log('开始截图中...')
+    await this.page.screenshot({ path: 'screenshot.png', type: 'png', fullPage: true })
+    log('截图完毕...')
     // 关闭浏览器
-    this.exit();
+    this.exit()
   }
 
   /**
@@ -118,41 +118,30 @@ class Browser {
    * @param options 数据处理对象
    */
   async scrape(options: any) {
-
     // 打开浏览器
-    await this.open(options.url);
+    await this.open(options.url)
 
     // 等待被选的元素
-    await this.page.waitForSelector(options.target);
-    log(`页面元素加载完毕...target:===> ${options.target}`);
+    await this.page.waitForSelector(options.target)
+    log(`页面元素加载完毕...target:===> ${options.target}`)
 
     // 分析数据
     log(`开始分析数据...`)
-    const result = await this.evaluate(options);
-    log(`分析完成... result:===>${JSON.stringify(result, null, 4)}`);
+    const result = await this.evaluate(options)
+    log(`分析完成... result:===>${JSON.stringify(result, null, 4)}`)
 
     // 关闭浏览器
-    this.exit();
+    this.exit()
 
-    return result;
+    return result
   }
-
-
 
   /**
    * 分析页面：A.在浏览器中执行一段JavaScript代码
-   * @param options 
+   * @param options
    */
   async evaluate(options: any) {
-    return await this.page.evaluate(this.processByFunction, options);
-  }
-
-  /**
-   * 分析页面：C.获取某一类节点的某个属性集合
-   * @param options 
-   */
-  async getNodesData(selector: string, options: any) {
-    return await this.page.$$eval(selector, this.process, options);
+    return await this.page.evaluate(this.processByFunction, options)
   }
 
   /**
@@ -162,22 +151,30 @@ class Browser {
    */
   async getNodeData(selector: string, attr: string) {
     if (attr) {
-      return await this.page.$eval(selector, (el: Element) => el.getAttribute(attr));
+      return await this.page.$eval(selector, (el: Element) => el.getAttribute(attr))
     } else {
-      return await this.page.$eval(selector, (el: Element) => el.textContent);
+      return await this.page.$eval(selector, (el: Element) => el.textContent)
     }
   }
 
   /**
+   * 分析页面：C.获取某一类节点的某个属性集合
+   * @param options
+   */
+  async getNodesData(selector: string, options: any) {
+    return await this.page.$$eval(selector, this.process, options)
+  }
+
+  /**
    * 分析数据
-   * @param {*} options 
+   * @param {*} options
    */
   async process(elements: any[], options: any) {
     console.log('process start')
     console.log('process elements', elements)
     // 解析数据
-    return Array.from(elements).map(element => {
-      let item: any = {};
+    return Array.from(elements).map((element) => {
+      let item: any = {}
       for (let [key, value] of Object.entries(options.item)) {
         if (key === 'url') {
           item[key] = element.querySelector(value).getAttribute('href')
@@ -185,21 +182,21 @@ class Browser {
           item[key] = element.querySelector(value).textContent.trim()
         }
       }
-      return item;
+      return item
     })
   }
 
   /**
-  * 执行JS分析数据
-  * @param {*} options 
-  */
+   * 执行JS分析数据
+   * @param {*} options
+   */
   processByFunction(options: any) {
     // 获取待爬取节点集合，并转为数组
-    const targets = Array.from(document.querySelectorAll(options.target));
-    console.log(`targets size:===>${targets.length}`);
+    const targets = Array.from(document.querySelectorAll(options.target))
+    console.log(`targets size:===>${targets.length}`)
     // 解析数据
-    return targets.map(element => {
-      let item: any = {};
+    return targets.map((element) => {
+      let item: any = {}
       for (let [key, value] of Object.entries(options.item)) {
         if (key === 'url') {
           item[key] = element.querySelector(value).getAttribute('href')
@@ -207,22 +204,17 @@ class Browser {
           item[key] = element.querySelector(value).textContent.trim()
         }
       }
-      return item;
-    });
+      return item
+    })
   }
-
-  proccessData() {
-
-  }
-
 }
 
 // 初始化
-const browser = new Browser();
+const browser = new Browser()
 
 // 退出时结束浏览器，防止内存泄漏
 process.on('exit', () => {
   browser.exit()
-});
+})
 
-export default browser;
+export default browser

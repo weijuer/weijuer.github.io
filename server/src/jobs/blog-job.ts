@@ -1,6 +1,6 @@
 import schedule from 'node-schedule'
 import browser from '../utils/browser'
-import { ArticleRepository } from '../repository/AirticleRepository'
+import { ArticleService } from '../services/AirticleService'
 
 // 日志任务，每天08:00:00 抓取最新业界日志
 export function testJob() {
@@ -14,7 +14,7 @@ export function blogJob() {
   schedule.scheduleJob('0 0 8 * * *', async () => {
     console.log(`blogJob ${new Date()}`)
 
-    const articleRepository = new ArticleRepository()
+    const articleService = new ArticleService()
 
     // 测试
     const options = {
@@ -32,6 +32,6 @@ export function blogJob() {
     // 爬取日志
     const articles = await browser.scrape(options)
     // 保存到mongodb
-    await articleRepository.bulk(articles)
+    await articleService.bulk(articles)
   })
 }
