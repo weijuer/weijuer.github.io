@@ -1,30 +1,30 @@
-import { JsonController, Get, Post, Param, Delete, Body } from "routing-controllers";
-import { Service } from "typedi";
-import { UserDocument, UserModel } from '../models/User'
+import { JsonController, Get, Post, Param, Delete, Body } from 'routing-controllers'
+import { Inject } from 'typedi'
+import { UserService } from '../services/UserService'
+import { UserDocument } from '../models/User'
 
-@Service()
-@JsonController("/users")
-export class PostController {
+@JsonController('/users')
+export class UserController {
+  @Inject()
+  userService: UserService
 
-    @Get("/queryUsers")
-    all() {
-        // lean不转换成Document
-        return UserModel.find({}).lean();
-    }
+  @Get('/queryUsers')
+  all() {
+    return this.userService.findAll()
+  }
 
-    @Get("/:name")
-    one(@Param("name") username: string) {
-        return UserModel.findOne({ username: username });
-    }
+  @Get('/:username')
+  one(@Param('username') username: string) {
+    return this.userService.findOne(username)
+  }
 
-    @Post("/")
-    post(@Body() person: UserDocument) {
-        const userModel = new UserModel({ ...person })
-        return userModel.save()
-    }
+  @Post('/')
+  save(@Body() user: UserDocument) {
+    return this.userService.save(user)
+  }
 
-    @Delete("/:name")
-    delete(@Param("name") username: string) {
-        return UserModel.remove({ username: username });
-    }
+  @Delete('/:username')
+  delete(@Param('username') username: string) {
+    return this.userService.remove(username)
+  }
 }

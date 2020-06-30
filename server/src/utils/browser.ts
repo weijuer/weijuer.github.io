@@ -199,9 +199,11 @@ class Browser {
       let item: any = {}
       for (let [key, value] of Object.entries(options.item)) {
         if (key === 'url') {
-          item[key] = element.querySelector(value).getAttribute('href')
+          item[key] =
+            element.querySelector(value) && element.querySelector(value).getAttribute('href')
         } else {
-          item[key] = element.querySelector(value).textContent.trim()
+          item[key] =
+            element.querySelector(value) && element.querySelector(value).textContent.trim()
         }
       }
       return item

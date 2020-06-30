@@ -1,30 +1,31 @@
 import { Service } from 'typedi'
-import { ArticleModel } from '../models/Article'
+import { UserModel } from '../models/User'
 
 @Service()
-export class ArticleService {
+export class UserService {
   findAll() {
-    return ArticleModel.find().lean()
+    // lean不转换成Document
+    return UserModel.find().lean()
   }
 
-  findOne(id: string) {
-    return ArticleModel.findById(id)
+  findOne(username: string) {
+    return UserModel.findOne({ username })
   }
 
-  save(article: any) {
-    let model = new ArticleModel({ ...article })
+  save(user: any) {
+    let model = new UserModel({ ...user })
     return model.save()
   }
 
-  update(article: any) {
-    return ArticleModel.updateOne({ _id: article.id }, article)
+  update(user: any) {
+    return UserModel.updateOne({ _id: user.id }, user)
   }
 
-  bulk(articles: any[]) {
-    return ArticleModel.collection.insertMany(articles)
+  bulk(users: any[]) {
+    return UserModel.collection.insertMany(users)
   }
 
-  remove(id: string) {
-    return ArticleModel.remove({ _id: id })
+  remove(username: string) {
+    return UserModel.remove({ username })
   }
 }

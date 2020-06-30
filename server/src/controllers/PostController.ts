@@ -1,9 +1,8 @@
 import { JsonController, Get, Post as HttpPost, Param, Delete, Body } from 'routing-controllers'
-import { Service } from 'typedi'
+
 import { PostService } from '../services/PostService'
 import { Post } from '../models/Post'
 
-@Service()
 @JsonController()
 export class PostController {
   constructor(private postService: PostService) {}

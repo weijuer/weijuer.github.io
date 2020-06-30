@@ -9,7 +9,7 @@ export class IndexController {
   // @Render('index.html')
   async index() {
     return {
-      title: "Welcome s!"
+      title: 'Welcome s!',
     }
   }
 }

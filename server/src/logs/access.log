@@ -35,3 +35,5 @@
 [2020-06-30T13:57:19.481] [INFO] access - ::ffff:127.0.0.1 - - "GET /api/v1/articles/ HTTP/1.1" 200 9799 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
 [2020-06-30T13:59:41.375] [INFO] access - ::ffff:127.0.0.1 - - "GET /api/v1/articles HTTP/1.1" 200 9799 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
 [2020-06-30T14:00:18.742] [INFO] access - ::ffff:127.0.0.1 - - "GET /api/v1/articles/5e7d8fad3c31533010f96aa7 HTTP/1.1" 200 1781 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
+[2020-06-30T14:47:29.143] [INFO] access - ::ffff:127.0.0.1 - - "GET /api/v1/scrapeArticles HTTP/1.1" 200 3473 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
+[2020-06-30T15:42:39.070] [INFO] access - ::ffff:127.0.0.1 - - "GET /api/v1/articles HTTP/1.1" 200 9799 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
