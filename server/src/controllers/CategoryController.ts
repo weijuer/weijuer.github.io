@@ -1,12 +1,10 @@
 import { JsonController, Get, Post, Param, Delete, Body } from 'routing-controllers'
-import { Service } from 'typedi'
 import { CategoryService } from '../services/CategoryService'
 import { Category } from '../models/Category'
 
-@Service()
 @JsonController()
 export class CategoryController {
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   @Get('/categories')
   all(): Promise<Category[]> {
