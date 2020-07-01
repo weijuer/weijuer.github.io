@@ -25,13 +25,13 @@ const ArticleSchma: Schema = new Schema({
   createTime: { type: Date, default: Date.now },
 })
 
-/* ArticleSchma.pre('save',  (next) => {
+ArticleSchma.pre('save', (next) => {
   if (this.isNew) {
     this.createTime = this.lastModified = Date.now()
   } else {
     this.lastModified = Date.now()
   }
   next()
-}) */
+})
 
 export const ArticleModel: Model<ArticleDocument> = model<ArticleDocument>('Article', ArticleSchma)

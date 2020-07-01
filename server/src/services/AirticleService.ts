@@ -11,8 +11,14 @@ export class ArticleService {
     return ArticleModel.findById(id)
   }
 
-  findByPage(query: any = {}, offset: number = 1, limit: number = 10) {
-    return ArticleModel.find(query).skip(offset).limit(limit)
+  async findByPage(query: any = {}, offset: number = 1, limit: number = 10) {
+    const totalCount = await ArticleModel.count(query)
+    const data = await ArticleModel.find(query).skip(offset).limit(limit).lean()
+    return {
+      data,
+      totalCount,
+      pageSize: limit,
+    }
   }
 
   save(article: any) {

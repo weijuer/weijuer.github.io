@@ -25,9 +25,10 @@ export class ArticleController {
    * @memberof ArticleController
    */
   @Post('/articles')
-  async getArticles(@Body() options: any) {
-    const { query, index, pageSize } = options
-    const articles = await this.articleService.findByPage(query, index, pageSize)
+  getArticles(@Body() options: any) {
+    const { query = {}, index, pageSize } = options
+    const offset = (index - 1) * pageSize
+    return this.articleService.findByPage(query, offset, pageSize)
   }
 
   /**
