@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <section class="layout">
     <header>
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>|
@@ -8,8 +8,8 @@
     <main>
       <router-view />
     </main>
-    <footer></footer>
-  </div>
+    <footer>@copyright W.J</footer>
+  </section>
 </template>
 
 <script>
