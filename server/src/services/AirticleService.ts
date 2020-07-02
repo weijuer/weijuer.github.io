@@ -11,13 +11,26 @@ export class ArticleService {
     return ArticleModel.findById(id)
   }
 
-  async findByPage(query: any = {}, offset: number = 1, limit: number = 10) {
+  /**
+   * 分页查询
+   * @param {*} [query={}]
+   * @param {number} [index=1]
+   * @param {number} [pageSize=10]
+   * @returns
+   * @memberof ArticleService
+   */
+  async findByPage(query: any = {}, index: number = 1, pageSize: number = 10) {
+    // 计算skip偏移量
+    const offset = (index - 1) * pageSize
+    // 总条数
     const totalCount = await ArticleModel.count(query)
-    const data = await ArticleModel.find(query).skip(offset).limit(limit).lean()
+    // 分页数据
+    const data = await ArticleModel.find(query).skip(offset).limit(pageSize).lean()
     return {
       data,
+      index,
+      pageSize,
       totalCount,
-      pageSize: limit,
     }
   }
 

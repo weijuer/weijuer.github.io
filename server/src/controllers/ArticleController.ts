@@ -27,8 +27,7 @@ export class ArticleController {
   @Post('/articles')
   getArticles(@Body() options: any) {
     const { query = {}, index, pageSize } = options
-    const offset = (index - 1) * pageSize
-    return this.articleService.findByPage(query, offset, pageSize)
+    return this.articleService.findByPage(query, index, pageSize)
   }
 
   /**
