@@ -218,7 +218,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 html,
 body
   margin: 0

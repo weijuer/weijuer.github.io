@@ -12,3 +12,5 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" src="@/assets/style/index.styl" />

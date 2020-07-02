@@ -50,6 +50,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+ul
+  list-style: none
+
 .ribbon
   background: #c0392b
   color: #fff

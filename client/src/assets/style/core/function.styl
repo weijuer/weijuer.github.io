@@ -1,0 +1,117 @@
+percentage($n)
+  if ($n == 0)
+    0
+  else
+    unit($n * 100, "%")
+
+clearfix()
+  &:before,
+  &:after
+    content: " "
+    display: table
+
+  &:after
+    clear: both
+
+full-height()
+  position: relative
+  height: 100%
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+
+// Centered container element
+container-fixed($gutter = $grid-gutter-width)
+  margin-right: auto
+  margin-left: auto
+  padding-left: floor(($gutter / 2))
+  padding-right: ceil(($gutter / 2))
+
+  clearfix()
+
+// Creates a wrapper for a series of columns
+make-row($gutter = $grid-gutter-width)
+  display: flex
+  flex-wrap: wrap
+  margin-left: ceil(($gutter / -2))
+  margin-right: floor(($gutter / -2))
+
+  clearfix()
+
+make-special-columns()
+  for $point in "" sm md lg xl
+    if ($point == "")
+      .col,
+      .col-auto
+        @extend $col
+    else
+      .col-{$point},
+      .col-{$point}-auto
+        @extend $col
+
+make-grid-columns()
+  $col
+    position: relative
+    width: 100%
+    min-height: 1px
+    padding-right: ceil(($grid-gutter-width / 2))
+    padding-left: floor(($grid-gutter-width / 2))
+
+  // Common styles for all sizes of grid columns, widths 1-12
+  for $index in 1 .. $grid-columns
+    .col-xs-{$index},
+    .col-sm-{$index},
+    .col-md-{$index},
+    .col-lg-{$index},
+    .col-{$index}
+      @extend $col
+
+  make-special-columns()
+
+calc-grid-column($index, $class, $type)
+  if ($type == width)
+    if ($index == 0)
+      .col-{$class}
+        flex-basis: 0%
+        flex-grow: 1
+        max-width: 100%
+
+      .col-{$class}-auto
+        flex: 0 0 auto
+        width: auto
+        max-width: none
+    else
+      .col-{$class}-{$index}
+        flex: 0 0 percentage(($index / $grid-columns))
+        max-width: percentage(($index / $grid-columns))
+  else if ($type == order)
+    if ($index == 0)
+      .order-first
+        order: -1
+
+      .order-last
+        order: 13
+
+      .order-0
+        order: 0
+    else
+      .order-{$index}
+        order: $index
+  else if ($type == offset)
+    .offset-{$index}
+      margin-left: percentage(($index / $grid-columns))
+
+loop-grid-columns($grid-columns, $class, $type)
+  for $index in 0 .. $grid-columns
+    calc-grid-column($index, $class, $type)
+
+make-grid($class = "")
+  loop-grid-columns($grid-columns, $class, width)
+  loop-grid-columns($grid-columns, $class, order)
+  loop-grid-columns($grid-columns, $class, offset)
+
+makeThemeText()
+  for theme in $themes
+    .text-{theme}
+      color: $themes[theme]

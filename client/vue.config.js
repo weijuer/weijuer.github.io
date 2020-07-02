@@ -69,10 +69,6 @@ module.exports = {
   devServer: {
     // 是否在浏览器打开
     open: false,
-    // 生成local和network网络环境
-    host: '0.0.0.0',
-    // 端口号
-    port: 8081,
     proxy: {
       '/api': {
         target: 'https://api.apiopen.top',

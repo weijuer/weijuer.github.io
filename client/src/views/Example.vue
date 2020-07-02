@@ -1,5 +1,5 @@
 <template>
-  <main class="example-page">
+  <div class="example-page">
     <aside>
       <nav>
         <router-link to="/example/virtualList">virtualList</router-link>|
@@ -9,7 +9,7 @@
     <article>
       <router-view />
     </article>
-  </main>
+  </div>
 </template>
 
 <script>
