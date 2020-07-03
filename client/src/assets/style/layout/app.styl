@@ -14,16 +14,30 @@
         right: 0
         z-index: 2
         flex-shrink: 0
-        box-shadow: 0 0 2.25rem #9da5ab
+        box-shadow: 0 0 1px #9da5ab
         transition: all 0.5s 0.2s
 
         .app-header-content
+            padding: 10px 0
             display: flex
+            align-items: center
             justify-content: space-between
 
+            .app-header-nav
+                .menu-link
+                    color: #7b7b7b
+
         .app-header-logo
-            width: 45px
-            height: 45px
+            height: 60px
+
+            .logo
+                height: 100%
+                display: flex
+                align-items: center
+                filter: invert(1)
+
+                .logo-img
+                    width: 60px
 
     .app-main
         flex: 1 1 auto
@@ -35,7 +49,14 @@
         .app-footer-content
             padding: 1rem 0
             display: flex
+            align-items: center
             justify-content: space-between
+
+            .app-footer-logo
+                color: #fff
+
+                .logo-letter
+                    color: #fff
 
             .app-header-section
                 display: flex
@@ -55,3 +76,7 @@
         .menu-link
             border-radius: 0.25rem
             padding: 0.5rem 0.875rem
+            color: #fff
+
+            &:hover
+                background: #e8e8e8

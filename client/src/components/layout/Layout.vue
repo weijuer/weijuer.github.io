@@ -1,11 +1,13 @@
 <template>
-  <section class="app-layout">
+  <section class="app-layout default">
     <header class="app-header">
       <div class="container">
         <div class="app-header-content">
           <section class="app-header-section">
-            <div class="logo">
-              <a href>W.J</a>
+            <div class="app-header-logo">
+              <a class="logo" href="/">
+                <img class="logo-img" src="~@/assets/logo-letter.png" />
+              </a>
             </div>
           </section>
           <section class="app-header-section">
@@ -33,8 +35,8 @@
       <div class="container">
         <div class="app-footer-content">
           <div class="app-footer-logo">
-            <span>2020©</span>
-            <a href>W.J</a>
+            <span class="copyright">2020©</span>
+            <a class="logo-letter" href>W.J</a>
           </div>
           <div class="app-footer-nav">
             <ul class="menu-nav">
