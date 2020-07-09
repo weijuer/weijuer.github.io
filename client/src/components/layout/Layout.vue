@@ -3,28 +3,24 @@
     <header class="app-header">
       <div class="container">
         <div class="app-header-content">
-          <section class="app-header-section">
-            <div class="app-header-logo">
-              <a class="logo" href="/">
-                <img class="logo-img" src="~@/assets/logo-letter.png" />
-              </a>
-            </div>
-          </section>
-          <section class="app-header-section">
-            <nav>
-              <ul class="menu-nav app-header-nav">
-                <li>
-                  <router-link class="menu-link" to="/">Home</router-link>
-                </li>
-                <li>
-                  <router-link class="menu-link" to="/about">About</router-link>
-                </li>
-                <li>
-                  <router-link class="menu-link" to="/example">Example</router-link>
-                </li>
-              </ul>
-            </nav>
-          </section>
+          <div class="app-header-logo">
+            <a class="logo" href="/">
+              <img class="logo-img" src="~@/assets/logo-letter.png" />
+            </a>
+          </div>
+          <nav class="nav">
+            <ul class="menu-nav app-header-nav">
+              <li>
+                <router-link class="menu-link" to="/">Home</router-link>
+              </li>
+              <li>
+                <router-link class="menu-link" to="/about">About</router-link>
+              </li>
+              <li>
+                <router-link class="menu-link" to="/example">Example</router-link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>

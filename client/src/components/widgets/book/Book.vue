@@ -11,7 +11,9 @@
     <!-- pages -->
     <ul class="papers">
       <li></li>
-      <li></li>
+      <li>
+        <slot />
+      </li>
       <li></li>
       <li></li>
       <li></li>
@@ -70,11 +72,24 @@ ul
   backface-visibility: hidden
   z-index: 10
 
+  &:before,
+  &:after
+    content: ""
+    position: absolute
+    top: 0
+    border: 10px solid #c0392b
+
+  &:before
+    left: -20px
+
+  &:after
+    right: -20px
+
 .w-book
   margin: 0
   position: relative
-  width: 160px
-  height: 220px
+  width: 140px
+  height: 180px
   perspective: 1000px
   transform-style: preserve-3d
 
@@ -129,6 +144,7 @@ ul
       transform: rotateY(-38deg) translateZ(0px)
       z-index: 100
       background-color: #000
+      overflow: hidden
 
       &:after
         content: ""
