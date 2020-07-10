@@ -29,6 +29,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "books" */ '../views/example/books.vue')
       }
     ]
+  },
+  {
+    path: '/article',
+    name: 'Article',
+    component: () => import(/* webpackChunkName: "Article" */ '../views/Article.vue'),
+    children: [
+      {
+        path: 'virtualList',
+        name: 'virtualList',
+        component: () =>
+          import(/* webpackChunkName: "virtualList" */ '../views/example/virtualList.vue')
+      }
+    ]
   }
 ]
 

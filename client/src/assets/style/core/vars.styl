@@ -5,46 +5,41 @@
 // Grid
 // ============================================================
 $grid-breakpoints ?= {
-  xs: 468px,
-  sm: 768px,
-  md: 992px,
-  lg: 1280px - 16px,
-  xl: 1600px - 16px,
-  xxl: 1920px - 16px
+  xs: 768px,
+  sm: 992px,
+  md: 1280px - 16px,
+  lg: 1600px - 16px,
+  xl: 1920px - 16px
 }
 $grid-gutter ?= 8px
 $grid-gutter-width ?= 30px
 $grid-columns ?= 12
 $grid-gutters ?= {
-  xs: ($grid-gutter / 4),
-  sm: ($grid-gutter / 2),
-  md: $grid-gutter,
-  lg: ($grid-gutter * 2),
-  xl: ($grid-gutter * 3),
-  xxl: ($grid-gutter * 4)
+  xs: ($grid-gutter / 2),
+  sm: $grid-gutter,
+  md: ($grid-gutter * 2),
+  lg: ($grid-gutter * 3),
+  xl: ($grid-gutter * 4)
 }
 // == Container sizes
 $container-widths ?= {
-  xs: 468px + $grid-gutters.xs,
-  sm: 720px + $grid-gutters.sm,
-  md: 940px + $grid-gutters.md,
-  lg: 1140px + $grid-gutters.lg,
-  xl: 1340px + $grid-gutters.xl,
-  xxl: 1540px + $grid-gutters.xxl
+  xs: 720px + $grid-gutters.xs,
+  sm: 940px + $grid-gutters.sm,
+  md: 1140px + $grid-gutters.md,
+  lg: 1340px + $grid-gutters.lg,
+  xl: 1540px + $grid-gutters.xl
 }
 $container-max-widths ?= {
   md: $grid-breakpoints.md,
   lg: $grid-breakpoints.lg,
-  xl: $grid-breakpoints.xl,
-  xxl: $grid-breakpoints.xxl
+  xl: $grid-breakpoints.xl
 }
 $screen-min-widths ?= {
   xs: $grid-breakpoints.xs,
   sm: $grid-breakpoints.sm,
   md: $grid-breakpoints.md,
   lg: $grid-breakpoints.lg,
-  xl: $grid-breakpoints.xl,
-  xxl: $grid-breakpoints.xxl
+  xl: $grid-breakpoints.xl
 }
 // colors
 // ============================================================
