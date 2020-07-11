@@ -14,8 +14,8 @@ const routes = [
   },
   {
     path: '/example',
-    name: 'Example',
-    component: () => import(/* webpackChunkName: "example" */ '../views/Example.vue'),
+    name: 'Examples',
+    component: () => import(/* webpackChunkName: "example" */ '../views/Examples.vue'),
     children: [
       {
         path: 'virtualList',
@@ -31,15 +31,15 @@ const routes = [
     ]
   },
   {
-    path: '/article',
-    name: 'Article',
-    component: () => import(/* webpackChunkName: "Article" */ '../views/Article.vue'),
+    path: '/articles',
+    name: 'Articles',
+    component: () => import(/* webpackChunkName: "Articles" */ '../views/Articles.vue'),
     children: [
       {
-        path: 'virtualList',
-        name: 'virtualList',
+        path: 'article-detail',
+        name: 'article-detail',
         component: () =>
-          import(/* webpackChunkName: "virtualList" */ '../views/example/virtualList.vue')
+          import(/* webpackChunkName: "article-detail" */ '../views/article/article-detail.vue')
       }
     ]
   }

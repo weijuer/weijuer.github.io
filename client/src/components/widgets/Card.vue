@@ -25,7 +25,7 @@ export default {
     desc: String
   },
   emits: ['desc-click'],
-  setup(context, props) {
+  setup(props, context) {
     const state = reactive({
       cardType: computed(() => (props.type ? `card-${props.type}` : ''))
     })

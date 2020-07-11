@@ -13,7 +13,7 @@
               <router-link class="menu-link" to="/">Home</router-link>
             </li>
             <li>
-              <router-link class="menu-link" to="/article">Article</router-link>
+              <router-link class="menu-link" to="/articles">Article</router-link>
             </li>
             <li>
               <router-link class="menu-link" to="/example">Example</router-link>

@@ -28,10 +28,12 @@ module.exports = {
     // 配置路径别名
     config.resolve.alias
       .set('@', resolve('src'))
+      .set('Api', resolve('src/api'))
       .set('Views', resolve('src/views'))
       .set('Assets', resolve('src/assets'))
       .set('Mixins', resolve('src/mixins'))
       .set('Utils', resolve('src/utils'))
+      .set('Store', resolve('src/store'))
       .set('Layout', resolve('src/components/layout'))
       .set('Widgets', resolve('src/components/widgets'))
 
@@ -71,10 +73,9 @@ module.exports = {
     open: false,
     proxy: {
       '/api': {
-        target: 'https://api.apiopen.top',
+        target: 'http://localhost:3000',
         // 获取cookie
         changeOrigin: true,
-        pathRewrite: { '^/api': '' },
         secure: false
       },
       '/music1': {

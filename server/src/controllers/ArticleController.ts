@@ -14,8 +14,9 @@ export class ArticleController {
    * 获取当前日志列表
    */
   @Get('/articles')
-  all() {
-    return this.articleService.findAll()
+  async all() {
+    const articles = await this.articleService.findAll()
+    return { code: 10000, data: articles }
   }
 
   /**

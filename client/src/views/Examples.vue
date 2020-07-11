@@ -16,7 +16,7 @@
 import { onMounted, onUnmounted } from 'vue'
 
 export default {
-  name: 'example',
+  name: 'Examples',
   setup() {
     onMounted(() => {
       console.log(`onMounted`)
