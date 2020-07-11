@@ -59,7 +59,7 @@ export default {
   grid-template-columns: 30% minmax(0, 1fr)
   gap: 2rem
 
-@media (max-width: 768px)
+@media (max-width: 468px)
   .article-page
     grid-template-columns: auto
     gap: 0.5rem
