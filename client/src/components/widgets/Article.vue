@@ -3,7 +3,7 @@
     <header class="article-header">
       <router-link
         v-if="isLinked"
-        :to="{ name: 'article-detail', params: { id: article._id } }"
+        :to="{ name: 'article-detail', params: { id: article.id } }"
       >{{ article.title }}</router-link>
       <span v-else>{{ article.title }}</span>
     </header>

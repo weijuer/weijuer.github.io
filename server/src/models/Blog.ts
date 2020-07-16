@@ -14,7 +14,7 @@ export interface BlogDocument extends Document {
 }
 
 const BlogSchma: Schema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String, unique: true, required: true },
   author: { type: String, required: true },
   body: { type: String, required: true },
   comments: [{ body: String, date: String }],

@@ -2,7 +2,7 @@
 node_modules
 .vscode
 dist
-src/logs
+logs
 
 # local env files
 .env.local

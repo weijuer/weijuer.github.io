@@ -7,12 +7,12 @@ log4js.configure({
     access: {
       type: 'dateFile',
       pattern: '-yyyy-MM-dd.log',
-      filename: resolve('../logs/access.log'),
+      filename: resolve('../../logs/access.log'),
     },
     app: {
       type: 'dateFile',
       pattern: '-yyyy-MM-dd.log',
-      filename: resolve('../logs/app.log'),
+      filename: resolve('../../logs/app.log'),
     },
     out: {
       type: 'console',

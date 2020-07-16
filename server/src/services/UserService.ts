@@ -8,12 +8,15 @@ export class UserService {
     return UserModel.find().lean()
   }
 
-  findOne(username: string) {
-    return UserModel.findOne({ username })
+  async findOne(username: string) {
+    const res = await UserModel.findOne({ username }).lean()
+    console.log(res)
+    return JSON.stringify(res)
   }
 
   save(user: any) {
     let model = new UserModel({ ...user })
+    console.log(model)
     return model.save()
   }
 

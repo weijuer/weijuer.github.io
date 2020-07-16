@@ -52,6 +52,7 @@ app.use(
 mongoose.connect(config.db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 })
 
 // 启动

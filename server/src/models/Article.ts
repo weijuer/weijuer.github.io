@@ -2,7 +2,6 @@ import { Schema, Model, model, Document } from 'mongoose'
 import { TagDocument } from './Tag'
 
 export interface ArticleDocument extends Document {
-  id?: number
   title: string
   author: string
   url: string
@@ -14,8 +13,7 @@ export interface ArticleDocument extends Document {
 }
 
 const ArticleSchma: Schema = new Schema({
-  id: Number,
-  title: { type: String, required: true },
+  title: { type: String, unique: true, required: true },
   author: { type: String, required: true },
   url: { type: String, required: true },
   portrait: { type: String },
