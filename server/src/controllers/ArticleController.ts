@@ -1,4 +1,4 @@
-import { Get, Post, JsonController, Body, Param } from 'routing-controllers'
+import { Get, Post, JsonController, Body, Param, QueryParam } from 'routing-controllers'
 import { Inject } from 'typedi'
 import { ArticleService } from '../services/AirticleService'
 
@@ -13,7 +13,7 @@ export class ArticleController {
   /**
    * 获取当前日志列表
    */
-  @Get('/articles')
+  @Get('/articles', { transformResponse: false })
   async all() {
     const articles = await this.articleService.findAll()
     return { code: 10000, data: articles }
@@ -38,8 +38,9 @@ export class ArticleController {
    * @returns
    * @memberof ArticleController
    */
-  @Get('/articles/:id')
-  one(@Param('id') id: string) {
-    return this.articleService.findOne(id)
+  @Get('/article', { transformResponse: false })
+  async one(@QueryParam('id') id: string) {
+    const article = await this.articleService.findOne(id)
+    return { code: 10000, data: article }
   }
 }

@@ -14,12 +14,12 @@ export function get_articles() {
 
 /**
  * 获取单条文章详情
- * @param {*} data
+ * @param {*} params GET请求参数对象
  */
-export function get_article(data) {
+export function get_article(params) {
   return service({
-    url: `${base_url}/v1/articles`,
+    url: `${base_url}/v1/article`,
     method: 'get',
-    data
+    params
   })
 }

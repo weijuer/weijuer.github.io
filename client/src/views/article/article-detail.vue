@@ -1,30 +1,32 @@
 <template>
-  <article-post :article="article" type="detail"></article-post>
+  <w-article :article="article" type="detail" />
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { Article } from 'Widgets'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { get_article } from 'Api/article'
 
 export default {
   name: 'article-detail',
+  components: {
+    [Article.name]: Article
+  },
   setup() {
     // 使用vue-router
-    const router = useRouter()
+    const route = useRoute()
     // 文章对象
     let article = ref({})
 
-    onMounted(async () => {
-      await getArticle()
-    })
-
     // 获取单条文章详情
     async function getArticle() {
-      const id = Number(router.params.id)
-      article = await get_article(id)
+      const { id } = route.query
+      article = await get_article({ id: id })
       console.log(`article:==>${JSON.stringify(article)}`)
     }
+
+    getArticle()
 
     return {
       article,

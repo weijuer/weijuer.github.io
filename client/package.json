@@ -8,9 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "0.20.0-0",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0-beta.20",
+    "vue": "^3.0.0-rc.1",
     "vue-router": "^4.0.0-beta.2",
     "vuex": "^4.0.0-beta.4"
   },
@@ -20,16 +20,16 @@
     "@vue/cli-plugin-router": "~4.4.6",
     "@vue/cli-plugin-vuex": "~4.4.6",
     "@vue/cli-service": "~4.4.6",
-    "@vue/compiler-sfc": "^3.0.0-beta.20",
+    "@vue/compiler-sfc": "3.0.0-rc.1",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "7.0.0-rc.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^7.0.0-alpha.9",
-    "stylus": "^0.54.7",
+    "eslint-plugin-vue": "^7.0.0-beta.0",
+    "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vue-next": "~0.1.3"
   }

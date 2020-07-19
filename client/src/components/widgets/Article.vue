@@ -2,8 +2,9 @@
   <article class="article" :class="[articleType]">
     <header class="article-header">
       <router-link
+        :data-id="article._id"
         v-if="isLinked"
-        :to="{ name: 'article-detail', params: { id: article.id } }"
+        :to="{ name: 'article-detail', query: { id: article._id } }"
       >{{ article.title }}</router-link>
       <span v-else>{{ article.title }}</span>
     </header>

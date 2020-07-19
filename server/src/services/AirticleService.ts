@@ -8,7 +8,7 @@ export class ArticleService {
   }
 
   findOne(id: string) {
-    return ArticleModel.findById(id)
+    return ArticleModel.findById(id).lean()
   }
 
   /**

@@ -1743,11 +1743,6 @@ minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.npm.taobao.org/minimist/download/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI=
 
-mitt@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npm.taobao.org/mitt/download/mitt-2.0.1.tgz#9e8a075b4daae82dd91aac155a0ece40ca7cb393"
-  integrity sha1-nooHW02q6C3ZGqwVWg7OQMp8s5M=
-
 mkdirp-classic@^0.5.2:
   version "0.5.3"
   resolved "https://registry.npm.taobao.org/mkdirp-classic/download/mkdirp-classic-0.5.3.tgz#fa10c9115cc6d8865be221ba47ee9bed78601113"
@@ -1795,10 +1790,10 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.npm.taobao.org/mongoose-legacy-pluralize/download/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha1-O6n5H6UHtRhtOZ+0CFS/8Y+1Y+Q=
 
-mongoose@^5.9.24:
-  version "5.9.24"
-  resolved "https://registry.npm.taobao.org/mongoose/download/mongoose-5.9.24.tgz?cache=0&sync_timestamp=1594672116505&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmongoose%2Fdownload%2Fmongoose-5.9.24.tgz#ba7f95529da8fa2160d9b4d708b3fe9856c56636"
-  integrity sha1-un+VUp2o+iFg2bTXCLP+mFbFZjY=
+mongoose@^5.9.25:
+  version "5.9.25"
+  resolved "https://registry.npm.taobao.org/mongoose/download/mongoose-5.9.25.tgz?cache=0&sync_timestamp=1595012206990&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmongoose%2Fdownload%2Fmongoose-5.9.25.tgz#620da737ec9a667f84404ad4f35bb60338dd0b4b"
+  integrity sha1-Yg2nN+yaZn+EQErU81u2AzjdC0s=
   dependencies:
     bson "^1.1.4"
     kareem "2.3.1"
@@ -2150,17 +2145,16 @@ pupa@^2.0.1:
   dependencies:
     escape-goat "^2.0.0"
 
-puppeteer-core@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.npm.taobao.org/puppeteer-core/download/puppeteer-core-5.1.0.tgz#e0158af3f2d2ddc94856153201998ca1a4a095ac"
-  integrity sha1-4BWK8/LS3clIVhUyAZmMoaSglaw=
+puppeteer-core@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npm.taobao.org/puppeteer-core/download/puppeteer-core-5.2.0.tgz?cache=0&sync_timestamp=1594987904045&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpuppeteer-core%2Fdownload%2Fpuppeteer-core-5.2.0.tgz#d5474cfb0814440dfe36b949f40fcaa8885b7ae4"
+  integrity sha1-1UdM+wgURA3+NrlJ9A/KqIhbeuQ=
   dependencies:
     debug "^4.1.0"
     devtools-protocol "0.0.767361"
     extract-zip "^2.0.0"
     https-proxy-agent "^4.0.0"
     mime "^2.0.3"
-    mitt "^2.0.1"
     pkg-dir "^4.2.0"
     progress "^2.0.1"
     proxy-from-env "^1.0.0"
@@ -2737,10 +2731,10 @@ typedi@^0.8.0:
   resolved "https://registry.npm.taobao.org/typedi/download/typedi-0.8.0.tgz#d8e203bd1d41a96e2b0a5c6295147d74b2b2d03e"
   integrity sha1-2OIDvR1BqW4rClxilRR9dLKy0D4=
 
-typescript@^3.9.6:
-  version "3.9.6"
-  resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.9.6.tgz?cache=0&sync_timestamp=1594795802405&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftypescript%2Fdownload%2Ftypescript-3.9.6.tgz#8f3e0198a34c3ae17091b35571d3afd31999365a"
-  integrity sha1-jz4BmKNMOuFwkbNVcdOv0xmZNlo=
+typescript@^3.9.7:
+  version "3.9.7"
+  resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.9.7.tgz?cache=0&sync_timestamp=1595056727848&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftypescript%2Fdownload%2Ftypescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
+  integrity sha1-mNYApevcOPQMsndSLxLcgA6eJfo=
 
 uglify-js@^3.1.4:
   version "3.9.4"
