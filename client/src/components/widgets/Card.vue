@@ -55,6 +55,9 @@ $theme-color = #2ecc71
   background-color: #fff
   border-radius: 10px
 
+  &.card-sticky
+    position: sticky
+
   &:after
     content: ""
     display: block

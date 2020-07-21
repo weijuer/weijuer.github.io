@@ -1,7 +1,7 @@
 <template>
   <section class="grid article-page">
     <aside>
-      <w-card title="分类">测试</w-card>
+      <w-card type="sticky" style="top: 100px" title="分类">测试</w-card>
     </aside>
     <article>
       <div class="articles">
