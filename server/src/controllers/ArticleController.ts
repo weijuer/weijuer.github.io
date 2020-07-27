@@ -5,7 +5,7 @@ import { ArticleService } from '../services/AirticleService'
 /**
  * 日志文章
  */
-@JsonController('/api/v1')
+@JsonController('/api/v1', { transformResponse: false })
 export class ArticleController {
   @Inject()
   articleService: ArticleService
@@ -13,7 +13,7 @@ export class ArticleController {
   /**
    * 获取当前日志列表
    */
-  @Get('/articles', { transformResponse: false })
+  @Get('/articles')
   async all() {
     const articles = await this.articleService.findAll()
     return { code: 10000, data: articles }
@@ -26,9 +26,10 @@ export class ArticleController {
    * @memberof ArticleController
    */
   @Post('/articles')
-  getArticles(@Body() options: any) {
+  async getArticles(@Body() options: any) {
     const { query = {}, index, pageSize } = options
-    return this.articleService.findByPage(query, index, pageSize)
+    const articlePage = await this.articleService.findByPage(query, index, pageSize)
+    return { code: 10000, data: articlePage }
   }
 
   /**
@@ -38,7 +39,7 @@ export class ArticleController {
    * @returns
    * @memberof ArticleController
    */
-  @Get('/article', { transformResponse: false })
+  @Get('/article')
   async one(@QueryParam('id') id: string) {
     const article = await this.articleService.findOne(id)
     return { code: 10000, data: article }

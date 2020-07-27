@@ -25,12 +25,25 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { Modal } from 'Widgets'
-import { ref, reactive, toRefs, computed, watch, watchEffect } from 'vue'
+import {
+  ref,
+  reactive,
+  toRefs,
+  computed,
+  watch,
+  watchEffect,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+} from 'vue'
 
 export default {
   name: 'About',
   components: {
-    [Modal.name]: Modal
+    [Modal.name]: Modal,
   },
   setup() {
     // 使用vuex
@@ -48,7 +61,7 @@ export default {
       salary: 1000,
       // 定义一个计算属性
       computedSalary: computed(() => `${state.salary}元`),
-      author: computed(() => store.state.author)
+      author: computed(() => store.state.author),
     })
 
     // 如果响应性的属性有变更，就会触发这个函数, 但他是惰性的
@@ -81,6 +94,28 @@ export default {
       modalState.value = !modalState.value
     }
 
+    // 3.x生命周期
+    console.log('setup')
+
+    onBeforeMount(() => {
+      console.log('onBeforeMount')
+    })
+    onMounted(() => {
+      console.log('onMounted')
+    })
+    onBeforeUpdate(() => {
+      console.log('onBeforeUpdate')
+    })
+    onUpdated(() => {
+      console.log('onUpdated')
+    })
+    onBeforeUnmount(() => {
+      console.log('onBeforeUnmount')
+    })
+    onUnmounted(() => {
+      console.log('onUnmounted')
+    })
+
     return {
       // 使用toRefs返回展开对象
       ...toRefs(state),
@@ -90,8 +125,8 @@ export default {
       stopWatch,
       increment,
       gotoHome,
-      toggleModalState
+      toggleModalState,
     }
-  }
+  },
 }
 </script>
