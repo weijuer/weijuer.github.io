@@ -73,8 +73,15 @@ export default {
   grid-template-columns: minmax(0, 1fr) 30%
   gap: 2rem
 
+.articles
+  background: #fff
+  border-radius: 10px
+
 @media (max-width: 468px)
   .article-page
     grid-template-columns: auto
     gap: 0.5rem
+
+    aside
+      display: none
 </style>

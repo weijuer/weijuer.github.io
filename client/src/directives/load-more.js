@@ -7,16 +7,23 @@ export default {
     console.log(el, binding, vnode, prevVnode)
   },
   mounted(el, binding) {
-    el.style.overflow = 'auto'
-    el.style.maxHeight = '600px'
+    let scroll = {
+      last: 0,
+      current: 0,
+      direction: ''
+    }
     el.addEventListener('scroll', function() {
       // A.判断向下滚动
+      scroll.last = el.scrollTop
+      scroll.direction = scroll.last < scroll.current ? 'up' : 'down'
+      scroll.current = scroll.last
+
       // B.判断是否到底
       // offset
       const options = binding.value
       const offset = options.offset || 10
       const distance = el.scrollHeight - el.scrollTop - el.clientHeight
-      if (distance <= offset) {
+      if (scroll.direction === 'down' && distance <= offset) {
         options.onLoad()
       }
     })
