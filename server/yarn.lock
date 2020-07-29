@@ -189,10 +189,10 @@
     "@types/bson" "*"
     "@types/node" "*"
 
-"@types/mongoose@^5.7.32":
-  version "5.7.32"
-  resolved "https://registry.npm.taobao.org/@types/mongoose/download/@types/mongoose-5.7.32.tgz#66265946d07a3418626843e7e93a00995675adb2"
-  integrity sha1-ZiZZRtB6NBhiaEPn6ToAmVZ1rbI=
+"@types/mongoose@^5.7.34":
+  version "5.7.34"
+  resolved "https://registry.npmjs.org/@types/mongoose/-/mongoose-5.7.34.tgz#37d226fbb00b91319ca70014d0240d09a7164187"
+  integrity sha512-AGzGNS+/eu6IAaMU38wis5ZWlePJhIIo9BKr2/qgkZylgWmX/eO21vNl7QWEstXb80r3US2ZwEnFYjBWIDXfBQ==
   dependencies:
     "@types/mongodb" "*"
     "@types/node" "*"
@@ -209,10 +209,10 @@
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.0.10.tgz#dbfaa170bd9eafccccb6d7060743a761b0844afd"
   integrity sha1-2/qhcL2er8zMttcGB0OnYbCESv0=
 
-"@types/node@^14.0.26":
-  version "14.0.26"
-  resolved "https://registry.npmjs.org/@types/node/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
-  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
+"@types/node@^14.0.27":
+  version "14.0.27"
+  resolved "https://registry.npmjs.org/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
+  integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
 
 "@types/puppeteer-core@^2.0.0":
   version "2.0.0"
@@ -1818,10 +1818,10 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.npm.taobao.org/mongoose-legacy-pluralize/download/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha1-O6n5H6UHtRhtOZ+0CFS/8Y+1Y+Q=
 
-mongoose@^5.9.25:
-  version "5.9.25"
-  resolved "https://registry.npm.taobao.org/mongoose/download/mongoose-5.9.25.tgz?cache=0&sync_timestamp=1595012206990&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmongoose%2Fdownload%2Fmongoose-5.9.25.tgz#620da737ec9a667f84404ad4f35bb60338dd0b4b"
-  integrity sha1-Yg2nN+yaZn+EQErU81u2AzjdC0s=
+mongoose@^5.9.26:
+  version "5.9.26"
+  resolved "https://registry.npmjs.org/mongoose/-/mongoose-5.9.26.tgz#86674b322e7d801291b31073d1ca9bb449cee253"
+  integrity sha512-mVddZM1mB8xg9oJQZAXaN762B01puV+jL5mPqg1HBXpEs7TG6ZZ/hEk98YRJMJff/YhIzuK3a3oos6XWtTaVUQ==
   dependencies:
     bson "^1.1.4"
     kareem "2.3.1"
