@@ -13,6 +13,7 @@
 
 ::-webkit-scrollbar
   width: $scrollbar-width
+  height: $scrollbar-width
 
 ::-webkit-scrollbar-button
   width: 0
@@ -60,6 +61,10 @@
 ::-webkit-scrollbar-track
   border-right: 1px solid transparent
   border-left: 1px solid transparent
+
+::-webkit-scrollbar-track
+  border-radius: $scrollbar-width
+  background: #e4e4e4
 
 html
   font-family: $fontFamily
