@@ -5,7 +5,8 @@
         :data-id="article._id"
         v-if="isLinked"
         :to="{ name: 'article-detail', query: { id: article._id } }"
-      >{{ article.title }}</router-link>
+        >{{ article.title }}</router-link
+      >
       <span v-else>{{ article.title }}</span>
     </header>
     <div class="article-author">
@@ -22,7 +23,8 @@
         :key="`tag-${index}`"
         class="tag-item bg-color"
         href="tag/"
-      >{{ tag }}</a>
+        >{{ tag }}</a
+      >
     </div>
   </article>
 </template>
@@ -34,14 +36,14 @@ export default {
   name: 'w-article',
   props: {
     type: { type: String, default: 'normal' },
-    article: { default: () => {}, type: Object },
+    article: { default: () => {}, type: Object }
   },
   emits: ['desc-click'],
   setup(props) {
     const state = reactive({
       tags: computed(() => props.article.tags && props.article.tags.split(',')),
       articleType: computed(() => (props.type ? `article-${props.type}` : '')),
-      isLinked: computed(() => props.type && props.type === 'list'),
+      isLinked: computed(() => props.type && props.type === 'list')
     })
 
     function moreLink(article) {
@@ -50,9 +52,9 @@ export default {
 
     return {
       ...toRefs(state),
-      moreLink,
+      moreLink
     }
-  },
+  }
 }
 </script>
 
@@ -80,7 +82,6 @@ export default {
   padding: 1.5625rem
   position: relative
   overflow: hidden
-  background: #fff
 
   &-normal
     background: #fff

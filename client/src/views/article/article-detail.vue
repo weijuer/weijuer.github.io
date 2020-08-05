@@ -1,5 +1,5 @@
 <template>
-  <w-article :article="article" type="card" />
+  <w-article class="article-normal" :article="article" type="card" />
 </template>
 
 <script>
@@ -11,7 +11,7 @@ import { get_article } from 'Api/article'
 export default {
   name: 'article-detail',
   components: {
-    [Article.name]: Article,
+    [Article.name]: Article
   },
   setup() {
     // 使用vue-router
@@ -30,8 +30,8 @@ export default {
 
     return {
       article,
-      getArticle,
+      getArticle
     }
-  },
+  }
 }
 </script>
