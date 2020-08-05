@@ -13,6 +13,18 @@ export function get_articles() {
 }
 
 /**
+ * 分页获取文章列表
+ * @param {*} data
+ */
+export function get_articles_by_page(data) {
+  return service({
+    url: `${base_url}/v1/articles`,
+    method: 'POST',
+    data
+  })
+}
+
+/**
  * 获取单条文章详情
  * @param {*} params GET请求参数对象
  */

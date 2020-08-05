@@ -34,14 +34,14 @@ export default {
   name: 'w-article',
   props: {
     type: { type: String, default: 'normal' },
-    article: { default: () => {}, type: Object }
+    article: { default: () => {}, type: Object },
   },
   emits: ['desc-click'],
   setup(props) {
     const state = reactive({
       tags: computed(() => props.article.tags && props.article.tags.split(',')),
       articleType: computed(() => (props.type ? `article-${props.type}` : '')),
-      isLinked: computed(() => props.type && props.type === 'list')
+      isLinked: computed(() => props.type && props.type === 'list'),
     })
 
     function moreLink(article) {
@@ -50,9 +50,9 @@ export default {
 
     return {
       ...toRefs(state),
-      moreLink
+      moreLink,
     }
-  }
+  },
 }
 </script>
 
@@ -80,12 +80,13 @@ export default {
   padding: 1.5625rem
   position: relative
   overflow: hidden
+  background: #fff
 
   &-normal
     background: #fff
 
   &-card
-    border-radius: 4px
+    border-radius: 10px
 
   &-bordered
     border-bottom: 1px dashed #e4e4e4

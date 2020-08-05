@@ -10,8 +10,8 @@
   "dependencies": {
     "axios": "0.20.0-0",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0-rc.1",
-    "vue-router": "^4.0.0-beta.2",
+    "vue": "^3.0.0-rc.5",
+    "vue-router": "^4.0.0-beta.4",
     "vuex": "^4.0.0-beta.4"
   },
   "devDependencies": {
@@ -20,10 +20,10 @@
     "@vue/cli-plugin-router": "~4.4.6",
     "@vue/cli-plugin-vuex": "~4.4.6",
     "@vue/cli-service": "~4.4.6",
-    "@vue/compiler-sfc": "3.0.0-rc.1",
+    "@vue/compiler-sfc": "3.0.0-rc.5",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "7.0.0-rc.0",
+    "eslint": "7.5.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
