@@ -52,7 +52,7 @@ import { Bubble } from 'Widgets'
 export default {
   name: 'Home',
   components: {
-    Bubble: Bubble
+    Bubble
   },
   setup() {}
 }

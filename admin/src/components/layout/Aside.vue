@@ -32,6 +32,10 @@ export default {
 <style lang="stylus" scoped>
 .aside
   width: 265px
+  display flex
+  flex 0 0 auto
+  flex-direction column
+  background-color: #1e1e2d;
 
   &.aside-fixed
     position: fixed
@@ -63,4 +67,22 @@ export default {
         display: flex
         flex-direction: column
         flex-grow: 1
+
+@media (max-width: 991.98px)
+  .aside
+    z-index: 1001;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -295px;
+    width: 275px;
+
+
+@media (min-width: 992px)
+  .aside
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
 </style>
