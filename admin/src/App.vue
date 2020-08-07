@@ -9,6 +9,9 @@ export default {
 </script>
 
 <style lang="stylus">
+*, :after, :before
+  box-sizing: border-box;
+
 body,
 html
   height: 100%

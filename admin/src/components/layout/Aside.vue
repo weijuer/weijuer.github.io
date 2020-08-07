@@ -9,27 +9,57 @@
       </div>
     </div>
     <nav class="aside-menu">
-      <ul class="menu-nav">
-        <li class="menu-item">
-          <a href="###" class="menu-link">
-            <i class="menu-icon"></i>
-            <span class="menu-text"></span>
-            <i class="menu-arrow"></i>
-          </a>
-          <ul class="menu-submenu"></ul>
-        </li>
-      </ul>
+      <w-menu>
+        <w-menu-item :item="menuData"></w-menu-item>
+      </w-menu>
     </nav>
   </aside>
 </template>
 
 <script>
+import { ref } from 'vue'
+import Menu from './Menu'
+import MenuItem from './MenuItem'
+
+// demo data
+var MenuData = {
+  name: 'My Tree',
+  children: [
+    { name: 'hello' },
+    { name: 'wat' },
+    {
+      name: 'child folder',
+      children: [
+        {
+          name: 'child folder',
+          children: [{ name: 'hello' }, { name: 'wat' }]
+        },
+        { name: 'hello' },
+        { name: 'wat' },
+        {
+          name: 'child folder',
+          children: [{ name: 'hello' }, { name: 'wat' }]
+        }
+      ]
+    }
+  ]
+}
+
 export default {
-  name: 'Aside'
+  name: 'Aside',
+  components: {
+    [Menu.name]: Menu,
+    [MenuItem.name]: MenuItem
+  },
+  setup() {
+    const menuData = ref(MenuData)
+
+    return { menuData }
+  }
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .aside
   width: 265px
   display flex
@@ -52,21 +82,20 @@ export default {
     padding: 0 25px
     height: 65px
 
+    .brand-logo
+      > a
+        font-size: 20px;
+        color: #fff;
+        text-decoration: none;
+
   .aside-menu
     position: relative
+    max-height 90vh
 
     .menu-nav
-      margin: 0
-      list-style: none
-      padding: 15px 0
-
-      >.menu-item
-        position: relative
-        margin: 0
-        padding: 0
-        display: flex
-        flex-direction: column
-        flex-grow: 1
+      .menu-item
+        .menu-link
+          padding: 9px 25px;
 
 @media (max-width: 991.98px)
   .aside
