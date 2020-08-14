@@ -5,7 +5,9 @@
         <a href>W.J</a>
       </div>
       <div class="brand-actions">
-        <button>《</button>
+        <button>
+          <i class="w-icon w-icon-arrow"></i>
+        </button>
       </div>
     </div>
     <nav class="aside-menu">

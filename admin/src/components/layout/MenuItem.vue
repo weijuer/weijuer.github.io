@@ -3,9 +3,9 @@
     <a href="#" class="menu-link" @click="toggle">
       <i class="menu-icon"></i>
       <span class="menu-text">{{ item.name }}</span>
-      <i class="menu-arrow" v-if="isfolder">[{{ isOpen ? '-' : '+' }}]</i>
+      <i class="menu-arrow" v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</i>
     </a>
-    <ul class="menu-submenu" v-show="isOpen" v-if="isfolder">
+    <ul class="menu-submenu" v-show="isOpen" v-if="isFolder">
       <w-menu-item v-for="(child, index) in item.children" :key="index" :item="child"></w-menu-item>
     </ul>
   </li>
@@ -20,7 +20,7 @@ export default {
     item: Object
   },
   setup(props, context) {
-    console.log(context)
+    console.log(context, props)
     // 是否展开
     let isOpen = ref(false)
     // 是否有子集
