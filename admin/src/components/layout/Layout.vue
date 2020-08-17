@@ -1,8 +1,10 @@
 <template>
   <article class="layout">
     <header>
-      <router-link to="/">Home</router-link>| <router-link to="/about">About</router-link>|
-      <router-link to="/example">Example</router-link>
+      <div class="container">
+        <router-link to="/">Home</router-link>| <router-link to="/about">About</router-link>|
+        <router-link to="/example">Example</router-link>
+      </div>
     </header>
     <main>
       <router-view />
