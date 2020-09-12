@@ -1,0 +1,206 @@
+// svg-icon
+// -------------------------------------
+.svg-icon
+  width: 1.5rem
+  height: 1.5rem
+  vertical-align: middle
+  fill: currentColor
+  overflow: hidden
+
+// link
+// -------------------------------------
+.link
+  position: relative
+
+  &:after
+    content: ""
+    display: block
+
+// toolbar
+// -------------------------------------
+.toolbar
+  margin: 1rem 0 0.5rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+// text
+// -------------------------------------
+.box-reflect
+  -webkit-box-reflect: below -1rem -webkit-linear-gradient(top, transparent, transparent 40%, rgba(0, 0, 0, 0.4))
+
+.text-shadowing
+  transition: 0.3s 0.2s ease-in-out
+
+  &:hover
+    animation: text-shadowing 0.3s 0.2s linear forwards
+
+.text-magic
+  display: flex
+  justify-content: center
+  position: relative
+  z-index: 2
+  font-family: Raleway, Verdana, Arial
+  font-size: 24px
+  color: red
+  overflow: hidden
+  filter: contrast(200%)
+  text-shadow: 1px 0 0 red
+  transform: scale(2)
+  animation: move 0.95s infinite
+  overflow: hidden
+
+  &:before
+    content: ""
+    width: 100%
+    height: 1px
+    display: flex
+    position: absolute
+    left: 0
+    z-index: 4
+    background: #000
+    animation: text-magic-white-move 10s ease-out infinite
+
+  &:after
+    content: attr(data-word)
+    position: absolute
+    top: 0
+    left: -1px
+    height: 36px
+    color: rgba(255, 255, 255, 0.8)
+    overflow: hidden
+    z-index: 3
+    color: cyan
+    filter: contrast(200%)
+    text-shadow: -1px 0 0 cyan
+    mix-blend-mode: lighten
+    animation: text-magic-move 1.1s infinite 0.2s
+
+@keyframes text-shadowing
+  from
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4)
+
+  to
+    text-shadow: 0 6px 2px rgba(0, 0, 0, 0.4)
+
+@keyframes text-magic-white-move
+  9%
+    top: 38px
+
+  14%
+    top: 8px
+
+  18%
+    top: 42px
+
+  22%
+    top: 1px
+
+  32%
+    top: 32px
+
+  34%
+    top: 12px
+
+  40%
+    top: 26px
+
+  43%
+    top: 7px
+
+  99%
+    top: 30px
+
+@keyframes text-magic-move
+  10%
+    top: -0.4px
+    left: -1.1px
+
+  20%
+    top: 0.4px
+    left: -0.2px
+
+  30%
+    left: 0.5px
+
+  40%
+    top: -0.3px
+    left: -0.7px
+
+  50%
+    left: 0.2px
+
+  60%
+    top: 1.8px
+    left: -1.2px
+
+  70%
+    top: -1px
+    left: 0.1px
+
+  80%
+    top: -0.4px
+    left: -0.9px
+
+  90%
+    left: 1.2px
+
+  100%
+    left: -1.2px
+
+.text-effect-1
+  position: relative
+  display: inline-block
+  padding: 0 14px
+  background: #e8e8e8
+  transition: transform 0.3s
+  transform-origin: 50% 0
+  transform-style: preserve-3d
+
+  &:before
+    position: absolute
+    top: 100%
+    left: 0
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    content: attr(data-hover)
+    background: #e8e8e8
+    transition: background 0.3s
+    transform: rotateX(-90deg)
+    transform-origin: 50% 0
+
+  &:hover
+    transform: rotateX(90deg) translateY(-20px)
+
+    &:before
+      background: lighten(#e8e8e8, 12%)
+      color: #3699ff
+
+// shadow
+// -------------------------------------
+.shadow
+  filter: url("#sticky")
+
+  &:after
+    content: ""
+    display: inline-block
+    position: absolute
+    top: 110%
+    height: 10px
+    width: 40%
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 80%)
+
+  &.shadow-moving
+    &:after
+      animation: shadow-moving 2s 0.6s ease-in-out infinite
+
+@keyframes shadow-moving
+  0%,
+  100%
+    width: 40%
+
+  50%
+    width: 90%

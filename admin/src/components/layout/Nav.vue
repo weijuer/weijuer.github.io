@@ -1,21 +1,34 @@
 <template>
   <nav class="aside-menu">
-    <ul class="menu-nav">
-      <li class="menu-item">
-        <a href="###" class="menu-link">
-          <i class="menu-icon"></i>
-          <span class="menu-text"></span>
-          <i class="menu-arrow"></i>
-        </a>
-        <ul class="menu-submenu"></ul>
-      </li>
-    </ul>
+    <w-menu :menus="menuData"></w-menu>
   </nav>
 </template>
 
 <script>
+import { ref } from 'vue'
+import { Menu, MenuItem } from './menu'
+
+const MenuData = [
+  { name: '文章管理' },
+  { name: '账号管理' },
+  { name: '设置' },
+  {
+    name: 'child folder',
+    children: [{ name: 'hello' }, { name: 'wat' }],
+  },
+]
+
 export default {
-  name: 'Nav'
+  name: 'w-nav',
+  components: {
+    [Menu.name]: Menu,
+    [MenuItem.name]: MenuItem,
+  },
+  setup() {
+    const menuData = ref(MenuData)
+
+    return { menuData }
+  },
 }
 </script>
 

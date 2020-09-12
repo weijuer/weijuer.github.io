@@ -2,13 +2,15 @@
   <section class="grid article-page">
     <article>
       <div class="articles" v-loadmore="loadOptions">
-        <w-article
-          v-for="(article, index) of articles"
-          :article="article"
-          :key="`article-${index}`"
-          type="list"
-          class="article-bordered"
-        />
+        <transition-group v-on:before-enter="beforeEnter" v-on:enter="enter" appear>
+          <w-article
+            v-for="(article, index) of articles"
+            :article="article"
+            :key="`article-${index}`"
+            type="list"
+            class="article-bordered"
+          />
+        </transition-group>
       </div>
     </article>
     <aside>
@@ -57,31 +59,69 @@ export default {
       getArticles()
     }
 
+    function beforeEnter(el) {
+      el.style.opacity = 0
+    }
+
+    function enter(el, done) {
+      // console.log(el.dataset.index)
+      let delay = el.dataset.index * 300
+      setTimeout(() => {
+        el.style.transition = 'opacity 0.3s '
+        el.style.opacity = 1
+        el.style.animation = 'one-in 0.3s infinite'
+        el.style['animation-iteration-count'] = 1
+        done()
+      }, delay)
+    }
+
     return {
       ...toRefs(state),
       getArticles,
       loadOptions,
       onLoad,
+      beforeEnter,
+      enter,
     }
   },
 }
 </script>
 
 <style lang="stylus" scoped>
-.grid
+.grid {
   display: grid
   grid-template-columns: minmax(0, 1fr) 30%
   gap: 2rem
+}
 
-.articles
+.articles {
   background: #fff
   border-radius: 10px
+}
 
-@media (max-width: 468px)
-  .article-page
+.v-list-enter,
+.v-leave-to {
+  opacity: 0
+  transform: translateY(80px)
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.6s ease
+}
+
+.v-leave-active {
+  position: absolute
+}
+
+@media (max-width: 468px) {
+  .article-page {
     grid-template-columns: auto
     gap: 0.5rem
 
-    aside
+    aside {
       display: none
+    }
+  }
+}
 </style>

@@ -34,53 +34,17 @@
         </i>
       </div>
     </div>
-    <nav class="aside-menu">
-      <w-menu>
-        <w-menu-item :item="menuData"></w-menu-item>
-      </w-menu>
-    </nav>
+    <w-nav />
   </aside>
 </template>
 
 <script>
-import { ref } from 'vue'
-import Menu from './Menu'
-import MenuItem from './MenuItem'
-
-// demo data
-var MenuData = {
-  name: 'My Tree',
-  children: [
-    { name: 'hello' },
-    { name: 'wat' },
-    {
-      name: 'child folder',
-      children: [
-        {
-          name: 'child folder',
-          children: [{ name: 'hello' }, { name: 'wat' }],
-        },
-        { name: 'hello' },
-        { name: 'wat' },
-        {
-          name: 'child folder',
-          children: [{ name: 'hello' }, { name: 'wat' }],
-        },
-      ],
-    },
-  ],
-}
+import Nav from './Nav'
 
 export default {
   name: 'Aside',
   components: {
-    [Menu.name]: Menu,
-    [MenuItem.name]: MenuItem,
-  },
-  setup() {
-    const menuData = ref(MenuData)
-
-    return { menuData }
+    [Nav.name]: Nav,
   },
 }
 </script>
@@ -109,6 +73,7 @@ export default {
     flex-direction: row
     padding: 0 25px
     height: 65px
+    background-color: #1a1a27
 
     .brand-logo {
       > a {

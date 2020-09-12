@@ -1,22 +1,23 @@
 <template>
   <article class="app-layout">
-    <header class="app-header">
-      <div class="container">
-        <router-link to="/">Home</router-link>|
-        <router-link to="/about">About</router-link>|
-        <router-link to="/example">Example</router-link>
-      </div>
-    </header>
+    <w-header />
     <main class="app-main">
       <router-view />
     </main>
-    <footer class="app-footer">@copyright W.J</footer>
+    <footer class="app-footer">
+      <div class="container">2020@copyright W.J</div>
+    </footer>
   </article>
 </template>
 
 <script>
+import Header from './Header'
+
 export default {
   name: 'Layout',
+  components: {
+    [Header.name]: Header,
+  },
 }
 </script>
 
@@ -43,6 +44,22 @@ export default {
 @media (min-width: 992px) {
   .app-layout {
     padding-left: 265px
+
+    .app-header {
+      display: flex
+      justify-content: space-between
+      height: 65px
+      position: relative
+      z-index: 2
+
+      &.header-fixed {
+        position: fixed
+        top: 0
+        right: 0
+        left: 0
+        z-index: 97
+      }
+    }
   }
 }
 </style>

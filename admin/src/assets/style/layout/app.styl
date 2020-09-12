@@ -1,0 +1,54 @@
+@import "../core/vars"
+
+body,
+html {
+  height: 100%
+  margin: 0
+  padding: 0
+  font-size: 14px
+  font-weight: 400
+  font-family: Poppins, Helvetica, "sans-serif"
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+}
+
+body {
+  display: flex
+  flex-direction: column
+  background: #eef0f8
+  color: #3f4254
+}
+
+#app {
+  display: flex
+  flex: 1 0 auto
+}
+
+// nav
+.menu-nav1 {
+  display: flex
+  margin: 0
+  padding: 0
+  list-style: none
+
+  > li {
+    display: flex
+    align-items: center
+    padding: 0 0.5rem
+
+    .menu-link {
+      padding: 0.5rem 0.875rem
+      color: #7b7b7b
+
+      &.router-link-active,
+      &:hover {
+        transform: rotateX(90deg) translateY(-20px)
+
+        &:before {
+          background: lighten(#e8e8e8, 12%)
+          color: #3699ff
+        }
+      }
+    }
+  }
+}

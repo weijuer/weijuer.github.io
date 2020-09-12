@@ -1,11 +1,11 @@
 @import "../core/vars"
 
-.app-layout
+.app-layout {
   display: flex
   flex-direction: column
   min-height: 100vh
 
-  .app-header
+  .app-header {
     margin: 0
     padding: 0
     height: $header-height + 0px
@@ -18,63 +18,84 @@
     box-shadow: 0 0 1px #9da5ab
     transition: all 0.5s 0.2s
 
-    .app-header-content
+    .app-header-content {
       padding: 10px 0
       display: flex
       align-items: center
       justify-content: space-between
+    }
 
-    .app-header-logo
+    .app-header-logo {
       height: 60px
 
-      .logo
+      .logo {
         height: 100%
         display: flex
         align-items: center
 
         // filter: hue-rotate(140deg)
-        .logo-img
+        .logo-img {
           width: 60px
+        }
+      }
+    }
+  }
 
-  .app-main
+  .app-main {
     flex: 1 1 auto
     padding: 20px 0 20px
+  }
 
-  .app-footer
+  .app-footer {
     background: #fff
     box-shadow: 0 0 1px #9da5ab
 
-    .app-footer-content
+    .app-footer-content {
       padding: 1rem 0
       display: flex
       align-items: center
       justify-content: space-between
 
-      .app-footer-logo
+      .app-footer-logo {
         color: #7b7b7b
 
-        .logo-letter
+        .logo-letter {
           color: #7b7b7b
+        }
+      }
 
-      .app-header-section
+      .app-header-section {
         display: flex
+      }
+    }
+  }
+}
 
 // nav
-.menu-nav
+.menu-nav {
   display: flex
   margin: 0
   padding: 0
   list-style: none
 
-  > li
+  > li {
     display: flex
     align-items: center
     padding: 0 0.5rem
 
-    .menu-link
+    .menu-link {
       padding: 0.5rem 0.875rem
       color: #7b7b7b
 
       &.router-link-active,
-      &:hover
-        background: #e8e8e8
+      &:hover {
+        transform: rotateX(90deg) translateY(-20px)
+
+        &:before {
+          background: lighten(#e8e8e8, 12%)
+          color: #3699ff
+        }
+      }
+    }
+  }
+}
