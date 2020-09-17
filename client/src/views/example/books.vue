@@ -11,10 +11,10 @@
 import { Book } from 'Widgets'
 
 export default {
-  name: 'v-books',
+  name: 'books',
   components: {
-    [Book.name]: Book
-  }
+    [Book.name]: Book,
+  },
 }
 </script>
 

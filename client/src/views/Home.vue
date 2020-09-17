@@ -9,9 +9,7 @@
         </Bubble>
       </div>
       <div class="nickname box-reflect">Weijuer</div>
-      <div class="description text-shadowing">
-        Talking is cheap, show me the codes.
-      </div>
+      <div class="description text-shadowing">Talking is cheap, show me the codes.</div>
       <div class="links hidden">
         <nav class="social-links">
           <ul class="nav">
@@ -42,7 +40,7 @@
     </div>
     <!-- <div class="widgets">
         <Weather />
-      </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -50,25 +48,25 @@
 import { Bubble } from 'Widgets'
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
-    Bubble
+    Bubble,
   },
-  setup() {}
+  setup() {},
 }
 </script>
 
 <style lang="stylus">
 $bubble-color = #4cbf30
 
-.author
+.author {
   height: 60vh
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
 
-  .avatar
+  .avatar {
     display: flex
     justify-content: center
     position: relative
@@ -76,22 +74,30 @@ $bubble-color = #4cbf30
     height: 8rem
     margin-bottom: 2rem
 
-    .avatar-logo
+    .avatar-logo {
       width: 100%
       height: auto
+    }
+  }
 
-  .nickname
+  .nickname {
     margin-bottom: 1rem
     font-size: 2rem
     text-transform: uppercase
+  }
 
-  .description
+  .description {
     text-transform: capitalize
     font-style: italic
     transition: all 0.3s ease-in-out
+  }
+}
 
-@media (max-width: 768px)
-  .app-main
-    &.home-page
+@media (max-width: 768px) {
+  .app-main {
+    &.home-page {
       flex-direction: row
+    }
+  }
+}
 </style>

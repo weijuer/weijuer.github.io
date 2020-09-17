@@ -9,12 +9,27 @@ import { ref } from 'vue'
 import { Menu, MenuItem } from './menu'
 
 const MenuData = [
-  { name: '文章管理' },
-  { name: '账号管理' },
-  { name: '设置' },
   {
-    name: 'child folder',
-    children: [{ name: 'hello' }, { name: 'wat' }],
+    name: '菜单1',
+    level: 0,
+    children: [
+      {
+        name: '菜单1-1',
+        level: 1,
+        children: [
+          { name: '菜单1-1-1', level: 2 },
+          { name: '菜单1-1-2', level: 2 },
+        ],
+      },
+    ],
+  },
+  {
+    name: '菜单2',
+    level: 0,
+    children: [
+      { name: '菜单2-1', level: 1 },
+      { name: '菜单2-2', level: 1 },
+    ],
   },
 ]
 

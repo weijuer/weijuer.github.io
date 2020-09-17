@@ -25,7 +25,7 @@ import { Card, Article } from 'Widgets'
 import { get_articles_by_page } from 'Api/article'
 
 export default {
-  name: 'Articles',
+  name: 'articles',
   components: {
     [Card.name]: Card,
     [Article.name]: Article,

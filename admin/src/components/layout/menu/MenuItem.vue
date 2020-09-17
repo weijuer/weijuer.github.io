@@ -1,12 +1,17 @@
 <template>
-  <li class="menu-item" :data-level="menuLevel" :style="menuItemStyle">
-    <a href="#" class="menu-link" @click="toggle">
+  <li class="menu-item" :class="{'active': isOpen}" :data-level="menuLevel">
+    <a href="#" class="menu-link" :style="menuItemStyle()" @click="toggle">
       <i class="menu-icon"></i>
       <span class="menu-text">{{ item.name }}</span>
       <i class="menu-arrow" v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</i>
     </a>
     <ul v-if="isFolder" class="menu-submenu" :class="{'active': isOpen}">
-      <w-menu-item v-for="(child, index) in item.children" :key="index" :item="child"></w-menu-item>
+      <w-menu-item
+        v-for="(child, index) in item.children"
+        :key="index"
+        :item="child"
+        :level="item.level"
+      ></w-menu-item>
     </ul>
   </li>
 </template>
@@ -37,9 +42,10 @@ export default {
       }
     }
 
+    // 子菜单样式
     function menuItemStyle() {
       return {
-        'padding-left': `${menuLevel.value * 20}px`,
+        paddingLeft: `${(menuLevel.value + 1) * 20 + 24}px`,
       }
     }
 
@@ -88,27 +94,33 @@ export default {
     }
   }
 
+  &.active,
   &:hover {
     >.menu-link {
-      // background-color: #1b1b28
-      >.menu-text {
+      background-color: #1b1b28
+
+      .menu-arrow,
+      .menu-icon,
+      .menu-text {
         color: #fff
       }
     }
   }
 
   .menu-submenu {
-    padding-left: 14px
+    padding: 0
+    display: none
     transition: transform 0.3s
 
     >.menu-item {
       >.menu-link {
-        padding: 0 24px
+        padding-left: 40px
       }
     }
 
     &.active {
-      transform: translateY(100%)
+      display: block
+      transform: translateY(0%)
     }
   }
 }

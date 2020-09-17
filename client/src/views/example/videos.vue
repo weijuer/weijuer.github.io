@@ -8,7 +8,7 @@
 import { Video } from 'Widgets'
 
 export default {
-  name: 'v-videos',
+  name: 'videos',
   components: {
     [Video.name]: Video,
   },

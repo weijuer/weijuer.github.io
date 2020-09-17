@@ -15,23 +15,23 @@ const dataStorage = {
       dataList.push({
         id: i + 1,
         value: `第${i + 1}个冰淇淋`,
-        price: Math.random() * 10000
+        price: Math.random() * 10000,
       })
     }
     dataStorage.uid = dataList.length
     return dataList
-  }
+  },
 }
 
 export default {
-  name: 'example',
+  name: 'virtual-list',
   components: {
-    VirtualList
+    VirtualList,
   },
   setup() {
     const state = reactive({
       dataList: dataStorage.fetch(),
-      message: 'test'
+      message: 'test',
     })
 
     onMounted(() => {
@@ -48,13 +48,14 @@ export default {
 
     return {
       state,
-      test
+      test,
     }
-  }
+  },
 }
 </script>
 
 <style lang="stylus" scoped>
-.virtual-list-example
+.virtual-list-example {
   height: 600px
+}
 </style>

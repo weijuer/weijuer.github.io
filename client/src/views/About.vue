@@ -41,7 +41,7 @@ import {
 } from 'vue'
 
 export default {
-  name: 'About',
+  name: 'about',
   components: {
     [Modal.name]: Modal,
   },
