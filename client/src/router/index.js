@@ -21,17 +21,17 @@ const routes = [
         path: 'virtualList',
         name: 'virtualList',
         component: () =>
-          import(/* webpackChunkName: "virtualList" */ '../views/example/virtualList.vue')
+          import(/* webpackChunkName: "virtualList" */ '../views/examples/virtualList.vue')
       },
       {
         path: 'books',
         name: 'books',
-        component: () => import(/* webpackChunkName: "books" */ '../views/example/books.vue')
+        component: () => import(/* webpackChunkName: "books" */ '../views/examples/books.vue')
       },
       {
         path: 'videos',
         name: 'videos',
-        component: () => import(/* webpackChunkName: "videos" */ '../views/example/videos.vue')
+        component: () => import(/* webpackChunkName: "videos" */ '../views/examples/videos.vue')
       }
     ]
   },
@@ -44,7 +44,7 @@ const routes = [
     path: '/article-detail',
     name: 'article-detail',
     component: () =>
-      import(/* webpackChunkName: "article-detail" */ '../views/article/article-detail.vue')
+      import(/* webpackChunkName: "article-detail" */ '../views/articles/article-detail.vue')
   }
 ]
 
