@@ -1,6 +1,6 @@
 <template>
   <div class="videos">
-    <w-video theme="green" source="http://39.134.157.205/PLTV/88888888/224/3221225591/index.m3u8"></w-video>
+    <w-video theme="green" source="http://cctvalih5ca.v.myalicdn.com/live/cctv1_2/index.m3u8"></w-video>
   </div>
 </template>
 
