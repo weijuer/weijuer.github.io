@@ -5,7 +5,6 @@ export function generateRoutes() {
   // 递归获取 views 文件夹下的所有.vue文件
   const files = require.context('@/views', true, /\.vue$/)
 
-  console.log('files', files)
   const routes = []
   files.keys().forEach(key => {
     console.log('key', key)
