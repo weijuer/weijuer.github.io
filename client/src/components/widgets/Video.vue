@@ -1,6 +1,6 @@
 <template>
   <video
-    id="video"
+    ref="video"
     class="w-video video-js vjs-default-skin"
     controls
     preload="auto"
@@ -27,9 +27,10 @@ export default {
   setup() {
     const message = ref('暂不支持该格式')
     const type = computed(() => {})
+    const video = ref(null)
 
     onMounted(() => {
-      videojs('video', {
+      videojs(video.value, {
         withCredentials: true,
       })
     })
@@ -37,6 +38,7 @@ export default {
     return {
       message,
       type,
+      video,
     }
   },
 }
