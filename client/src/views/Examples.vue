@@ -2,9 +2,9 @@
   <div class="example-page">
     <aside>
       <nav>
-        <router-link to="/example/virtualList">virtualList</router-link>|
-        <router-link to="/example/books">books</router-link>|
-        <router-link to="/example/videos">videos</router-link>
+        <router-link to="/virtualList">virtualList</router-link>|
+        <router-link to="/books">books</router-link>|
+        <router-link to="/videos">videos</router-link>
       </nav>
     </aside>
     <article>

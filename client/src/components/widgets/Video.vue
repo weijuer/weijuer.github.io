@@ -1,5 +1,12 @@
 <template>
-  <video class="w-video" controls preload="auto" width="400" height="auto">
+  <video
+    id="video"
+    class="w-video video-js vjs-default-skin"
+    controls
+    preload="auto"
+    width="400"
+    height="auto"
+  >
     <slot>
       <source :src="source" type="application/x-mpegURL" />
     </slot>
@@ -8,7 +15,9 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import videojs from 'video.js'
+import 'video.js/dist/video-js.min.css'
+import { ref, computed, onMounted } from 'vue'
 
 export default {
   name: 'w-video',
@@ -18,6 +27,12 @@ export default {
   setup() {
     const message = ref('暂不支持该格式')
     const type = computed(() => {})
+
+    onMounted(() => {
+      videojs('video', {
+        withCredentials: true,
+      })
+    })
 
     return {
       message,
@@ -29,7 +44,7 @@ export default {
 
 <style>
 .w-video {
-  height: auto;
+  height: 200px;
   max-width: 100%;
   object-fit: fill;
 }

@@ -119,6 +119,10 @@ module.exports = {
         pathRewrite: {
           '^/news': ''
         }
+      },
+      '/live': {
+        target: 'http://cctvalih5ca.v.myalicdn.com',
+        changeOrigin: true
       }
     }
   }
