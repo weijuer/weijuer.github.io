@@ -23,7 +23,7 @@
             <li>
               <router-link
                 class="menu-link text-effect-1"
-                to="/example"
+                to="/examples"
                 data-hover="Example"
               >Example</router-link>
             </li>

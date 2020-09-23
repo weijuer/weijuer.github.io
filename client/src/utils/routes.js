@@ -11,20 +11,19 @@ export function generateRoutes() {
     let module = files(key).default
     let name = module.name
     // 文件路径
-    let filePath = files.resolve(key)
+    // let filePath = files.resolve(key)
+    let filePath = `@/views/${key.substr(2)}`
     let componentPath = `/* webpackChunkName: "${name}" */ ${filePath}`
+    console.log(`componentPath`, componentPath)
 
     routes.push({
       path: `/${name}`,
       name: name,
-      component: () => import(componentPath)
+      // component: () => import(componentPath)
+      component: module
     })
   })
 
   console.table(routes)
   return routes
 }
-
-const generator = generateRoutes()
-
-export default generator

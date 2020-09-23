@@ -1,7 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import { generateRoutes } from 'Utils/routes'
+
+const generatedRoutes = generateRoutes()
 
 const routes = [
+  {
+    path: '/',
+    name: 'Index',
+    redirect: '/home'
+  },
+  ...generatedRoutes
+]
+
+const routes1 = [
   {
     path: '/',
     name: 'Home',
@@ -47,6 +59,8 @@ const routes = [
       import(/* webpackChunkName: "article-detail" */ '../views/articles/article-detail.vue')
   }
 ]
+
+console.log(routes1)
 
 const router = createRouter({
   history: createWebHashHistory(),
