@@ -1,66 +1,20 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import { generateRoutes } from 'Utils/routes'
+import { staticRoutes, dynamicRoutes } from 'Utils/routes'
 
-const generatedRoutes = generateRoutes()
+const customRoutes = staticRoutes
+
+// 日志
+console.table(staticRoutes)
+console.table(dynamicRoutes)
 
 const routes = [
   {
     path: '/',
-    name: 'Index',
+    name: 'index',
     redirect: '/home'
   },
-  ...generatedRoutes
+  ...customRoutes
 ]
-
-const routes1 = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/example',
-    name: 'Examples',
-    component: () => import(/* webpackChunkName: "example" */ '../views/Examples.vue'),
-    children: [
-      {
-        path: 'virtualList',
-        name: 'virtualList',
-        component: () =>
-          import(/* webpackChunkName: "virtualList" */ '../views/examples/virtualList.vue')
-      },
-      {
-        path: 'books',
-        name: 'books',
-        component: () => import(/* webpackChunkName: "books" */ '../views/examples/books.vue')
-      },
-      {
-        path: 'videos',
-        name: 'videos',
-        component: () => import(/* webpackChunkName: "videos" */ '../views/examples/videos.vue')
-      }
-    ]
-  },
-  {
-    path: '/articles',
-    name: 'Articles',
-    component: () => import(/* webpackChunkName: "Articles" */ '../views/Articles.vue')
-  },
-  {
-    path: '/article-detail',
-    name: 'article-detail',
-    component: () =>
-      import(/* webpackChunkName: "article-detail" */ '../views/articles/article-detail.vue')
-  }
-]
-
-console.log(routes1)
 
 const router = createRouter({
   history: createWebHashHistory(),
