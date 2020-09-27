@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { staticRoutes, dynamicRoutes } from 'Utils/routes'
 
-const customRoutes = staticRoutes
+const customRoutes = dynamicRoutes
 
 // 日志
 console.table(staticRoutes)

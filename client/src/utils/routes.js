@@ -5,6 +5,8 @@ export function generateRoutes() {
   // 递归获取 views 文件夹下的所有.vue文件
   const files = require.context('@/views', true, /\.vue$/)
 
+  console.log('files', files)
+
   const routes = []
   files.keys().forEach(key => {
     console.log('key', key)
@@ -12,12 +14,13 @@ export function generateRoutes() {
     let name = module.name
     // 文件路径
     // let filePath = files.resolve(key)
-    let filePath = `../views/${key.substr(2)}`
+    let filePath = `${key.substr(2)}`
 
     routes.push({
       path: `/${name}`,
       name: name,
-      component: () => import(`/* webpackChunkName: "${name}" */ ${filePath}`)
+      component: () => import(/* webpackChunkName: "[name]" */ `Views/${filePath}`)
+      // component: () => import(`/* webpackChunkName: "${name}" */ Views/${filePath}`)
       // component: module
       // component: resolve => require([`${filePath}`], resolve)
     })
@@ -30,19 +33,19 @@ export function generateRoutes() {
 // 静态路由
 const staticRoutes = [
   {
-    path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+    path: '/home',
+    name: 'home',
+    component: () => import(/* webpackChunkName: "home" */ '../views/home.vue')
   },
   {
     path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    name: 'about',
+    component: () => import(/* webpackChunkName: "about" */ '../views/about.vue')
   },
   {
-    path: '/example',
-    name: 'Examples',
-    component: () => import(/* webpackChunkName: "example" */ '../views/Examples.vue'),
+    path: '/examples',
+    name: 'examples',
+    component: () => import(/* webpackChunkName: "examples" */ '../views/examples.vue'),
     children: [
       {
         path: 'virtualList',
@@ -64,8 +67,8 @@ const staticRoutes = [
   },
   {
     path: '/articles',
-    name: 'Articles',
-    component: () => import(/* webpackChunkName: "Articles" */ '../views/Articles.vue')
+    name: 'articles',
+    component: () => import(/* webpackChunkName: "articles" */ '../views/articles.vue')
   },
   {
     path: '/article-detail',

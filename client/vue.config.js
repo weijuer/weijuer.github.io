@@ -20,10 +20,6 @@ module.exports = {
   // 多页配置
   // pages: pages.getPages(),
   productionSourceMap: false,
-  css: {
-    // css拆分ExtractTextPlugin插件，默认true
-    extract: true
-  },
   chainWebpack: config => {
     // 配置路径别名
     config.resolve.alias
