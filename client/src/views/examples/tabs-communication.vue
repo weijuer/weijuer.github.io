@@ -1,9 +1,25 @@
 <template>
   <article class="example tabs-communication">
     <h1>Cross Tabs Communication</h1>
-    <div>
+    <h5>
       This page shows the ways to share or sync messages between tabs which have the same origin.
-    </div>
+    </h5>
+
+    <w-card title="Broadcast Channel">
+      <div class="form">
+        <input type="text" />
+        <w-button type="button">send message</w-button>
+      </div>
+      <p>[send]</p>
+    </w-card>
+
+    <w-card title="Broadcast Channel">
+      <div class="form">
+        <input type="text" />
+        <w-button type="button">send message</w-button>
+      </div>
+      <p>[send]</p>
+    </w-card>
 
     <w-card title="Broadcast Channel">
       <div class="form">

@@ -4,7 +4,7 @@
     class="w-video video-js vjs-default-skin"
     controls
     preload="auto"
-    width="400"
+    width="300"
     height="auto"
   >
     <slot>

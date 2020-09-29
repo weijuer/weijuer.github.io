@@ -1,8 +1,11 @@
 <template>
   <div class="videos">
-    <w-video theme="green" source="/live/cctv4_2/index.m3u8"></w-video>
-    <w-video theme="green" source="/live/cctv5_2/index.m3u8"></w-video>
-    <w-video theme="green" source="/live/cctv6_2/index.m3u8"></w-video>
+    <w-video
+      v-for="video in 13"
+      :key="video"
+      theme="green"
+      :source="`/live/cctv${video}_2/index.m3u8`"
+    ></w-video>
   </div>
 </template>
 
@@ -17,5 +20,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus">
+.videos {
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-gap: 10px
+
+  .w-video {
+    border-radius: 6px
+  }
+}
+
+@media (max-width: 992px) {
+  .videos {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
 </style>
