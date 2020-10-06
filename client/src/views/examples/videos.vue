@@ -36,4 +36,10 @@ export default {
     grid-template-columns: repeat(2, 1fr)
   }
 }
+
+@media (max-width: 768px) {
+  .videos {
+    grid-template-columns: auto
+  }
+}
 </style>

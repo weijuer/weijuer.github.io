@@ -11,7 +11,7 @@
         <nav class="nav">
           <ul class="menu-nav app-header-nav">
             <li>
-              <router-link class="menu-link text-effect-1" to="/" data-hover="Home"
+              <router-link class="menu-link text-effect-1" to="/home" data-hover="Home"
                 >Home</router-link
               >
             </li>

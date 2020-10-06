@@ -7,26 +7,28 @@
         class="infinite-list-item"
         v-for="item in visibleData"
         :key="item.id"
-        :style="{ height: itemHeight + 'px'}"
-      >{{ item.value }}</div>
+        :style="{ height: itemHeight + 'px' }"
+      >
+        {{ item.value }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'VirtualList',
+  name: 'w-virtual-list',
   props: {
     // 所有列表数据
     listData: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     // 每项高度
     itemHeight: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   computed: {
     // 列表总高度
@@ -44,7 +46,7 @@ export default {
     //获取真实显示列表数据
     visibleData() {
       return this.listData.slice(this.start, Math.min(this.end, this.listData.length))
-    }
+    },
   },
   mounted() {
     this.pageRender()
@@ -58,7 +60,7 @@ export default {
       //起始索引
       start: 0,
       //结束索引
-      end: null
+      end: null,
     }
   },
   methods: {
@@ -78,8 +80,8 @@ export default {
       this.end = this.start + this.visibleCount
       //此时的偏移量
       this.startOffset = scrollTop - (scrollTop % this.itemHeight)
-    }
-  }
+    },
+  },
 }
 </script>
 
