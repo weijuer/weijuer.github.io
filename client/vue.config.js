@@ -12,7 +12,7 @@ module.exports = {
   // 生产环境构建文件的目录
   outputDir: 'dist',
   // 静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录
-  assetsDir: 'assets/global',
+  assetsDir: 'assets',
   // 是否关闭文件名哈希
   filenameHashing: false,
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)
