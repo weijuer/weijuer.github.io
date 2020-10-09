@@ -1,6 +1,6 @@
 <template>
   <div class="virtual-list-example">
-    <virtual-list :listData="state.dataList" itemHeight="100" />
+    <w-virtual-list :listData="state.dataList" itemHeight="100" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ const dataStorage = {
 export default {
   name: 'virtual-list',
   components: {
-    VirtualList,
+    [VirtualList.name]: VirtualList,
   },
   setup() {
     const state = reactive({

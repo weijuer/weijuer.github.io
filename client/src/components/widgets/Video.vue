@@ -1,12 +1,5 @@
 <template>
-  <video
-    ref="video"
-    class="w-video video-js vjs-default-skin"
-    controls
-    preload="auto"
-    width="300"
-    height="auto"
-  >
+  <video ref="video" class="w-video video-js vjs-default-skin" controls preload="auto">
     <slot>
       <source :src="source" type="application/x-mpegURL" />
     </slot>
@@ -44,10 +37,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus">
 .w-video {
-  height: 200px;
-  max-width: 100%;
-  object-fit: fill;
+  width: 100%
+  height: 200px
+  object-fit: fill
+
+  .vjs-big-play-button {
+    top: 50%
+    left: 50%
+    width: 1.5em
+    height: 1.5em
+    border-radius: 50%
+    transform: translate(-50%, -50%)
+  }
 }
 </style>
