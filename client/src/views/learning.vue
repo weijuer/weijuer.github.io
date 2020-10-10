@@ -1,8 +1,8 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="learning">
+    <h1>This is an learning test</h1>
     <section>
-      <div>{{author}}</div>
+      <div>{{ author }}</div>
       <div>{{ message }}</div>
       <button type="button" @click="gotoHome">go Home</button>
     </section>
@@ -11,6 +11,7 @@
       <button type="button" @click="increment">increment</button>
     </section>
     <section>
+      <h5>弹窗</h5>
       <button type="button" @click="toggleModalState">open Modal</button>
       <teleport to="#modal-wrapper">
         <w-modal v-if="modalState">
@@ -18,13 +19,19 @@
         </w-modal>
       </teleport>
     </section>
+    <section>
+      <h5>w-tooltip</h5>
+      <w-tooltip tip="我是正常模式">我是一行文字</w-tooltip>
+      <w-tooltip direction="top" tip="我在上方">我是一行文字</w-tooltip>
+      <w-tooltip direction="bottom" tip="我下方">我是一行文字</w-tooltip>
+    </section>
   </div>
 </template>
 
 <script>
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { Modal } from 'Widgets'
+import { Modal, Tooltip } from 'Widgets'
 import {
   ref,
   reactive,
@@ -41,9 +48,10 @@ import {
 } from 'vue'
 
 export default {
-  name: 'about',
+  name: 'learning',
   components: {
     [Modal.name]: Modal,
+    [Tooltip.name]: Tooltip,
   },
   setup() {
     // 使用vuex
@@ -57,7 +65,7 @@ export default {
 
     // 定义多个，则使用reactive
     const state = reactive({
-      message: 'vue 3.0 demo',
+      message: 'vue learning',
       salary: 1000,
       // 定义一个计算属性
       computedSalary: computed(() => `${state.salary}元`),
@@ -91,6 +99,7 @@ export default {
 
     // 弹窗状态切换
     function toggleModalState() {
+      debugger
       modalState.value = !modalState.value
     }
 

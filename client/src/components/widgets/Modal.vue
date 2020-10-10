@@ -9,17 +9,19 @@
 export default {
   name: 'w-modal',
   props: {
-    value: Boolean
+    value: Boolean,
   },
-  emits: ['close']
+  emits: ['close'],
 }
 </script>
 
 <style lang="stylus" scoped>
-.w-modal
+.w-modal {
   position: relative
 
   // 样式插槽内容
-  ::v-slotted(p)
+  ::v-slotted(p) {
     font-style: italic
+  }
+}
 </style>

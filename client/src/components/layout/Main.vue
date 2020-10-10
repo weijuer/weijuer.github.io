@@ -1,14 +1,13 @@
 <template>
   <main class="app-main">
-    <div class="container">
-      <router-view />
-    </div>
+    <router-view />
+    <!-- <div class="container"></div> -->
   </main>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'Main',
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
   <section class="app-layout default">
+    <svg-symbols />
     <Header />
     <Main />
     <Footer />
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import SvgSymbols from './SvgSymbols'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -14,10 +16,11 @@ import Footer from './Footer'
 export default {
   name: 'Layout',
   components: {
+    SvgSymbols,
     Header,
     Main,
-    Footer
-  }
+    Footer,
+  },
 }
 </script>
 

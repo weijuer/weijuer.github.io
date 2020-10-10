@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 $bubble-color = #4cbf30
 
 .author {

@@ -38,9 +38,9 @@ const staticRoutes = [
     component: () => import(/* webpackChunkName: "home" */ '../views/home.vue')
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/about.vue')
+    path: '/learning',
+    name: 'learning',
+    component: () => import(/* webpackChunkName: "learning" */ '../views/learning.vue')
   },
   {
     path: '/examples',

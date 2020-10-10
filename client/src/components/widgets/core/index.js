@@ -1,3 +1,5 @@
 import Button from './Button'
+import Tooltip from './Tooltip'
+import Icon from './Icon'
 
-export { Button }
+export { Button, Tooltip, Icon }
