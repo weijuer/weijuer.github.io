@@ -130,7 +130,7 @@ export default {
   margin: 0 auto
   font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif
   border: 0px solid #36383a
-  border-width: 40px 16px 60px
+  border-width: 40px 12px 60px
   border-radius: 20px
   color: #474c57
 
@@ -184,9 +184,11 @@ export default {
         position: relative
         clear: both
         display: inline-block
-        padding: 12px 18px
         margin: 0 0 20px 0
-        font: 16px / 20px "Noto Sans", sans-serif
+        padding: 12px 18px
+        font-size: 14px
+        line-height: 1.5
+        word-break: break-word
         border-radius: 10px
         background-color: rgba(25, 147, 147, 0.2)
 

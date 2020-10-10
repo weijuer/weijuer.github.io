@@ -2,9 +2,6 @@
   <article class="example tabs-communication">
     <header>
       <h1 class="title">Cross Tabs Communication</h1>
-      <div class="desc">
-        This page shows the ways to share or sync messages between tabs which have the same origin.
-      </div>
       <div class="author">by Weijuer</div>
     </header>
 
@@ -13,7 +10,9 @@
     </div>
 
     <footer>
-      <a href="#/tabs-communication?tab=1" target="_blank">Open a new tab (same origin) >></a>
+      <a class="w-link-btn" href="#/tabs-communication?tab=1" target="_blank"
+        >Open a new tab (same origin) >></a
+      >
     </footer>
   </article>
 </template>
@@ -34,10 +33,9 @@ export default {
 
 <style lang="stylus">
 .tabs-communication {
-  font-family: "Raleway", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif
-
   header {
     text-align: center
+    margin-bottom: 18px
 
     .title {
       margin: 0
@@ -46,13 +44,38 @@ export default {
       color: #6fafdd
     }
 
-    .desc {
-      color: #999
-    }
-
     .author {
-      padding: 10px 0 30px
+      padding: 10px 0
       color: #a8a8a8
+    }
+  }
+
+  footer {
+    margin: 14px 16px
+    text-align: center
+  }
+}
+
+.w-link-btn {
+  position: relative
+  color: #999
+
+  &:before {
+    content: ""
+    width: 0
+    height: 1px
+    position: absolute
+    left: 0
+    bottom: 0
+    background: #6265fe
+    transition: width 0.5s
+  }
+
+  &:hover {
+    color: #6265fe
+
+    &:before {
+      width: 100%
     }
   }
 }
