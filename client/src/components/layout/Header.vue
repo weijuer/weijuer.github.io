@@ -28,7 +28,7 @@
           </ul>
         </nav>
         <a href="https://github.com/weijuer" class="github-corner">
-          <w-icon width="80" height="80" name="github" />
+          <w-icon style="width: 80px; height: 80px; fill: #151513; color: #fff" name="github" />
         </a>
       </div>
     </div>
@@ -53,27 +53,6 @@ export default {
   position: absolute
   top: 0
   right: 0
-
-  &:hover .octo-arm {
-    animation: octocat-wave 560ms ease-in-out
-  }
-}
-
-@keyframes octocat-wave {
-  0%,
-  100% {
-    transform: rotate(0)
-  }
-
-  20%,
-  60% {
-    transform: rotate(-25deg)
-  }
-
-  40%,
-  80% {
-    transform: rotate(10deg)
-  }
 }
 
 @media (max-width: 720px) {

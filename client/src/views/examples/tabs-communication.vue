@@ -11,6 +11,10 @@
     <div class="content">
       <w-phone />
     </div>
+
+    <footer>
+      <a href="#/tabs-communication?tab=1" target="_blank">Open a new tab (same origin) >></a>
+    </footer>
   </article>
 </template>
 
@@ -24,57 +28,32 @@ export default {
     [Card.name]: Card,
     [Phone.name]: Phone,
   },
-  setup() {
-    function init() {
-      broadcastChannel()
-    }
-
-    // init
-    // init()
-
-    function broadcastChannel() {
-      const bc = new BroadcastChannel('Weijuer')
-      const $container = document.getElementById('broadcast-channel')
-      const $input = $container.querySelector('input')
-      const $btn = $container.querySelector('button')
-      const $info = $container.querySelector('p')
-
-      bc.onmessage = function (e) {
-        const data = e.data
-        const text = '[receive] ' + data.msg + ' —— tab ' + data.from
-        console.log('[BroadcastChannel] receive message:', text)
-        $info.textContent = text
-      }
-
-      bc.onmessageerror = function (e) {
-        console.error(e)
-      }
-
-      $btn.addEventListener('click', function () {
-        const tab = document.getElementById('js-header').dataset.tab
-        const val = $input.value
-        $input.value = ''
-        $info.textContent = '[send] ' + val
-        bc.postMessage({
-          from: tab,
-          msg: val,
-        })
-      })
-    }
-
-    return { init }
-  },
+  setup() {},
 }
 </script>
 
 <style lang="stylus">
 .tabs-communication {
-  // background: linear-gradient(-45deg, #183850 0, #183850 25%, #192c46 50%, #22254c 75%, #22254c 100%)
-  background-repeat: no-repeat
-  background-attachment: fixed
-}
+  font-family: "Raleway", "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif
 
-.tabs-communication section {
-  columns: 20px 3
+  header {
+    text-align: center
+
+    .title {
+      margin: 0
+      line-height: 1
+      font-weight: 100
+      color: #6fafdd
+    }
+
+    .desc {
+      color: #999
+    }
+
+    .author {
+      padding: 10px 0 30px
+      color: #a8a8a8
+    }
+  }
 }
 </style>

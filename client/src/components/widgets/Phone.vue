@@ -2,16 +2,24 @@
   <div class="w-phone">
     <div class="screen">
       <ul class="chat-messages">
-        <li class="chat-message">test</li>
-        <li class="chat-message">test</li>
+        <li
+          v-for="(message, index) of messages"
+          :key="'message' + index"
+          :class="[chatMessageClass(message)]"
+          class="chat-message"
+        >
+          {{ message.msg }}
+        </li>
       </ul>
-
+      <!-- <div class="chat-effect-container" style="filter: none">
+        <div class="chat-effect-bar"></div>
+      </div> -->
       <div class="chat-bar">
-        <button class="chat-control-btn">
+        <button class="chat-btn chat-control-btn">
           <w-icon name="circle-plus" />
         </button>
-        <div class="chat-input" contenteditable></div>
-        <button class="chat-send-btn">
+        <div ref="message" class="chat-input" contenteditable></div>
+        <button @click="sendMessage()" class="chat-btn chat-send-btn">
           <w-icon name="send" />
         </button>
       </div>
@@ -20,12 +28,96 @@
 </template>
 
 <script>
+import { onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, watch, ref } from 'vue'
 import { Icon } from 'Widgets'
 
 export default {
   name: 'w-phone',
   components: {
     [Icon.name]: Icon,
+  },
+  setup() {
+    const message = ref()
+    const messages = ref([])
+
+    // new BroadcastChannel
+    const channel = new BroadcastChannel('BroadcastChannel')
+
+    function broadcastChannel() {
+      channel.onmessage = function (e) {
+        const data = e.data
+        const text = '[receive] ' + data.msg + ' —— ' + data.from
+        console.log('[BroadcastChannel] receive message:', text)
+        messages.value.push({
+          uid: messages.value.length + 1,
+          from: 'BroadcastChannel',
+          source: 'receive',
+          msg: data.msg,
+        })
+      }
+
+      channel.onmessageerror = function (e) {
+        console.error(e)
+      }
+    }
+
+    // send message
+    function sendMessage() {
+      if (!message.value.textContent) {
+        return false
+      }
+
+      const current = {
+        uid: messages.value.length + 1,
+        from: 'BroadcastChannel',
+        source: 'send',
+        msg: message.value.textContent,
+      }
+      // post
+      channel.postMessage(current)
+      // store
+      messages.value.push(current)
+      // clear
+      message.value.textContent = ''
+    }
+
+    function chatMessageClass(message) {
+      return `chat-message-${message.source}`
+    }
+
+    // init
+    function init() {
+      broadcastChannel()
+      console.log('init')
+    }
+
+    // init
+    init()
+
+    onMounted(() => {
+      console.log('onMounted')
+    })
+
+    onBeforeUpdate(() => {
+      console.log('onBeforeUpdate')
+    })
+
+    onUpdated(() => {
+      console.log('onUpdated')
+    })
+
+    onBeforeUnmount(() => {
+      console.log('onBeforeUnmount')
+      // close
+      channel.close()
+    })
+
+    watch(messages.value, (newValue, oldValue) => {
+      console.log(newValue, oldValue)
+      console.log('The new messages value is: ' + messages.value)
+    })
+
+    return { message, messages, sendMessage, chatMessageClass }
   },
 }
 </script>
@@ -72,11 +164,12 @@ export default {
     width: 100%
     height: 100%
     position: relative
-    background: #BEE4F9
+    background: #BEE4F9 -webkit-linear-gradient(-45deg, #183850 0, #183850 25%, #192c46 50%, #22254c 75%, #22254c 100%)
 
     .chat-messages {
       margin: 0
       padding: 12px 8px
+      max-height: 427px
       overflow-x: hidden
       overflow-y: auto
       list-style: none
@@ -99,10 +192,15 @@ export default {
 
         &:before {
           content: ""
+          display: flex
+          justify-content: center
+          align-items: center
           position: absolute
           top: 0
-          width: 50px
-          height: 50px
+          width: 40px
+          height: 40px
+          font-size: 26px
+          color: #fff
           border-radius: 50px
         }
 
@@ -115,14 +213,15 @@ export default {
           border-top: 15px solid rgba(25, 147, 147, 0.2)
         }
 
-        &.chat-message-me {
-          margin-right: 80px
+        &.chat-message-send {
+          margin-right: 60px
           float: right
           color: #0AD5C1
           animation: show-chat-odd 0.15s 1 ease-in
 
           &:before {
-            right: -80px
+            content: "S"
+            right: -60px
             background: green
           }
 
@@ -132,15 +231,16 @@ export default {
           }
         }
 
-        &.chat-message-friend {
-          margin-left: 80px
+        &.chat-message-receive {
+          margin-left: 60px
           float: left
           color: #0EC879
           animation: show-chat-even 0.15s 1 ease-in
 
           &:before {
-            left: -80px
-            background: #ff0
+            content: "R"
+            left: -60px
+            background: #f85365
           }
 
           &:after {
@@ -157,11 +257,11 @@ export default {
       left: 0
       bottom: 0
       width: 100%
-      height: 40px
       background: #32a8e6
 
       .chat-input {
         padding: 10px 6px
+        min-height: 40px
         flex: 1
         overflow: hidden
         font-size: 14px
@@ -169,14 +269,32 @@ export default {
         resize: none
         outline: none
         cursor: text
+
+        &:empty {
+          &:before {
+            content: "Write something..."
+            color: #2B8EC2
+          }
+
+          +.chat-send-btn {
+            color: #2B8EC2
+            cursor: not-allowed
+          }
+        }
+      }
+
+      .chat-btn {
+        color: #fff
+        cursor: pointer
+        background: transparent
       }
     }
   }
 
   button {
-    -webkit-tap-highlight-color: transparent
     border: none
     outline: none
+    -webkit-tap-highlight-color: transparent
   }
 }
 </style>

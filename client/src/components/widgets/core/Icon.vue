@@ -1,5 +1,5 @@
 <template>
-  <svg class="w-icon" v-bind="$attrs">
+  <svg class="w-icon">
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -13,7 +13,7 @@ export default {
     name: String,
   },
   setup(props) {
-    const iconName = computed(() => (props.name ? `#icon-${props.name}` : '#'))
+    const iconName = computed(() => (props.name ? `#${props.name}` : '#'))
 
     return { iconName }
   },
@@ -22,11 +22,36 @@ export default {
 
 <style lang="stylus" scoped>
 .w-icon {
-  width: 1em
+  width: 24px
+  height: 24px
   max-width: 100%
-  height: 1em
   vertical-align: middle
   fill: currentColor
   overflow: hidden
+
+  use {
+    &:hover {
+      path.octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+      }
+    }
+  }
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
 }
 </style>
