@@ -27,6 +27,11 @@
             </li>
           </ul>
         </nav>
+        <div class="settings">
+          <a href="javascript:;" @click="toggleTheme">
+            <w-icon :name="theme" />
+          </a>
+        </div>
         <a href="https://github.com/weijuer" class="github-corner">
           <w-icon style="width: 80px; height: 80px; fill: #151513; color: #fff" name="github" />
         </a>
@@ -36,12 +41,24 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { Icon } from 'Widgets'
 
 export default {
   name: 'Header',
   components: {
     [Icon.name]: Icon,
+  },
+  setup() {
+    const theme = ref('moon')
+
+    // 切换暗黑模式
+    function toggleTheme() {
+      theme.value = theme.value === 'moon' ? 'sun' : 'moon'
+      document.body.classList.toggle('dark-mode')
+    }
+
+    return { theme, toggleTheme }
   },
 }
 </script>
