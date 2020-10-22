@@ -16,3 +16,39 @@ export function importWidgets(directory) {
 
   return modules
 }
+
+/**
+ * throttle (节流)
+ * @param {*} fn
+ * @param {*} time
+ * @description 节流会稀释函数的执行频率
+ */
+export const throttle = (fn, time = 300) => {
+  let flag = true
+
+  return function() {
+    if (!flag) return
+    flag = false
+    setTimeout(() => {
+      fn.apply(this, arguments)
+      flag = true
+    }, time)
+  }
+}
+
+/**
+ * debounce（防抖）
+ * @param {*} fn
+ * @param {*} time
+ * @description 触发高频时间后n秒内函数只会执行一次
+ */
+export const debounce = (fn, time = 300) => {
+  let timeout = null
+
+  return function() {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      fn.apply(this, arguments)
+    }, time)
+  }
+}

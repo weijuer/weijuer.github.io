@@ -7,5 +7,19 @@ import Article from './Article'
 import Bubble from './Bubble'
 import Video from './Video'
 import Phone from './Phone'
+import Uploader from './Uploader'
 
-export { Button, Tooltip, Icon, Book, VirtualList, Modal, Card, Article, Bubble, Video, Phone }
+export {
+  Button,
+  Tooltip,
+  Icon,
+  Book,
+  VirtualList,
+  Modal,
+  Card,
+  Article,
+  Bubble,
+  Video,
+  Phone,
+  Uploader
+}
