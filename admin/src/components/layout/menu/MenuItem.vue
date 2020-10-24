@@ -1,16 +1,16 @@
 <template>
-  <li class="menu-item" :class="{'active': isOpen}" :data-level="menuLevel">
+  <li class="menu-item" :class="{ active: isOpen }" :data-level="menuLevel">
     <a href="#" class="menu-link" :style="menuItemStyle()" @click="toggle">
       <i class="menu-icon"></i>
       <span class="menu-text">{{ item.name }}</span>
-      <i class="menu-arrow" v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</i>
+      <i class="menu-arrow" v-if="isFolder"></i>
     </a>
-    <ul v-if="isFolder" class="menu-submenu" :class="{'active': isOpen}">
+    <ul v-if="isFolder" class="menu-submenu" :class="{ active: isOpen }">
       <w-menu-item
         v-for="(child, index) in item.children"
         :key="index"
         :item="child"
-        :level="item.level"
+        :level="level + 1"
       ></w-menu-item>
     </ul>
   </li>
@@ -22,8 +22,8 @@ import { ref, computed } from 'vue'
 export default {
   name: 'w-menu-item',
   props: {
-    item: Object,
-    level: Number,
+    item: Object, // 菜单对象
+    level: { type: Number, default: 0 }, // 菜单层级
   },
   setup(props, context) {
     console.log(context, props)
@@ -45,7 +45,7 @@ export default {
     // 子菜单样式
     function menuItemStyle() {
       return {
-        paddingLeft: `${(menuLevel.value + 1) * 20 + 24}px`,
+        paddingLeft: `${menuLevel.value * 20 + 24}px`,
       }
     }
 
@@ -85,6 +85,16 @@ export default {
       color: #5c5e81
     }
 
+    .menu-arrow {
+      position: relative
+
+      &:after {
+        content: "\27A4"
+        font-style: normal
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+      }
+    }
+
     .menu-text {
       display: flex
       align-items: center
@@ -102,15 +112,25 @@ export default {
       .menu-arrow,
       .menu-icon,
       .menu-text {
-        color: #fff
+        color: #3699FF
       }
     }
   }
 
-  .menu-submenu {
+  &.active {
+    >.menu-link {
+      .menu-arrow {
+        &:after {
+          transform: rotate(90deg)
+        }
+      }
+    }
+  }
+
+  >.menu-submenu {
     padding: 0
     display: none
-    transition: transform 0.3s
+    transition: all 0.3s linear
 
     >.menu-item {
       >.menu-link {

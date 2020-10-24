@@ -1,5 +1,6 @@
+import * as Core from './core'
 import Book from './book'
 import VirtualList from './VirtualList'
 import Modal from './Modal'
 
-export { Book, VirtualList, Modal }
+export { Core, Book, VirtualList, Modal }
