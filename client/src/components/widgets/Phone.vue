@@ -1,7 +1,7 @@
 <template>
   <div class="w-phone">
     <div class="screen">
-      <ul class="chat-messages">
+      <ul ref="chatMessages" class="chat-messages">
         <li
           v-for="(message, index) of messages"
           :key="'message' + index"
@@ -37,8 +37,12 @@ export default {
     [Icon.name]: Icon,
   },
   setup() {
+    // input element
     const message = ref()
+    // messages data
     const messages = ref([])
+    // chat-messages element
+    const chatMessages = ref()
 
     // new BroadcastChannel
     const channel = new BroadcastChannel('BroadcastChannel')
@@ -79,6 +83,8 @@ export default {
       messages.value.push(current)
       // clear
       message.value.textContent = ''
+      // scroll
+      chatMessages.value.scrollIntoView()
     }
 
     function chatMessageClass(message) {
@@ -117,7 +123,7 @@ export default {
       console.log('The new messages value is: ' + messages.value)
     })
 
-    return { message, messages, sendMessage, chatMessageClass }
+    return { message, messages, chatMessages, sendMessage, chatMessageClass }
   },
 }
 </script>

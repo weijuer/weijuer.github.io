@@ -1,10 +1,12 @@
+import { throttle } from 'Utils/common'
+
 /**
  * 滚底加载
  * @example <div v-loadmore[direction]="{offset: 10, onLoad: ()=>{}}"></div>
  */
 export default {
   beforeMount(el, binding, vnode, prevVnode) {
-    console.log(el, binding, vnode, prevVnode)
+    console.log('v-load-more', el, binding, vnode, prevVnode)
   },
   mounted(el, binding) {
     let scroll = {
@@ -12,7 +14,9 @@ export default {
       current: 0,
       direction: ''
     }
-    el.addEventListener('scroll', function() {
+
+    // 滚动事件处理
+    const onScroll = () => {
       // A.判断向下滚动
       scroll.last = el.scrollTop
       scroll.direction = scroll.last < scroll.current ? 'up' : 'down'
@@ -26,7 +30,10 @@ export default {
       if (scroll.direction === 'down' && distance <= offset) {
         options.onLoad()
       }
-    })
+    }
+
+    // 滚动监听
+    el.addEventListener('scroll', throttle(onScroll, 300))
   },
   beforeUpdate() {},
   updated() {},

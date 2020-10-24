@@ -20,34 +20,36 @@
 </template>
 
 <script>
+import { reactive, ref, toRefs } from 'vue'
+
 export default {
-  name: '',
+  name: 'w-uploader',
   model: {
     prop: 'value',
     event: 'change',
   },
   props: {
     value: String, // 文件服务器地址
-    extensions: String, // 可选文件后缀
+    extensions: {
+      type: String,
+      default: '',
+    }, // 可选文件后缀
     url: String, // 请求地址
     maxSize: Number, // 最大
     tips: String, // 尺寸说明
   },
-  data: function () {
-    return {
-      dataURL: '', // 文件预览blod地址
+  setup() {
+    const state = reactive({
+      dataURL: null, // 文件预览blod地址
       xhr: null, // xhr对象
       percentage: 0, // 上传进度
       error: null, // 错误对象
-    }
-  },
-  computed: {
-    $image: function () {
-      return this.$refs['preview-image']
-    },
-    $file: function () {
-      return this.$refs['file']
-    },
+    })
+
+    // 文件
+    const file = ref(null)
+
+    return { ...toRefs(state), file }
   },
   methods: {
     onChange: function (e) {
@@ -89,12 +91,12 @@ export default {
       }
     },
     onDelete: function (key) {
+      console.log(key)
       // 删除
       this.dataURL = ''
       this.$emit('change', '')
     },
     onPreview: function (file) {
-      var self = this
       // 图片
       if (/^image/.test(file.type)) {
         this.dataURL = URL.createObjectURL(file)
@@ -111,9 +113,8 @@ export default {
       form.append('file', file)
 
       // 构建xhr对象
-      var xhr = window.XMLHttpRequest
-        ? new XMLHttpRequest()
-        : new ActiveXObject('Microsoft.XMLHTTP')
+      var xhr = new XMLHttpRequest()
+
       this.xhr = xhr
       // 建立HTTP请求
       xhr.open('POST', this.url, true)
@@ -128,7 +129,7 @@ export default {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
           // 上传成功
-          self.$emit('on-success', xhr.responseText)
+          self.$emit('on-success', JSON.parse(xhr.responseText))
         }
       }
 
@@ -148,6 +149,7 @@ export default {
       }
     },
     onLoad: function (e) {
+      console.log(e)
       this.percentage = 100
     },
     onError: function (e) {
@@ -168,20 +170,21 @@ export default {
 </script>
 
 <style lang="stylus">
-.upload-container
+.upload-container {
   display: flex
   align-items: center
 
-  .preview
+  .preview {
     position: relative
     margin-right: 1em
 
-    img
+    img {
       display: block
       width: 64px
       height: 64px
+    }
 
-    .trigger
+    .trigger {
       display: flex
       justify-content: center
       align-items: center
@@ -190,31 +193,39 @@ export default {
       color: #bbb
       border: 1px dashed #bbb
 
-      &:before
+      &:before {
         content: ""
         width: 60%
         border-top: 2px solid
+      }
 
-      &:after
+      &:after {
         content: ""
         position: absolute
         height: 60%
         border-left: 2px solid
+      }
+    }
+  }
+}
 
 .empty-cols,
-.upload-container
-  .tips
+.upload-container {
+  .tips {
     font-size: 14px
     color: #7d7d7d
+  }
+}
 
-.visually-hidden
+.visually-hidden {
   position: absolute !important
   height: 1px
   width: 1px
   overflow: hidden
   clip: rect(1px, 1px, 1px, 1px)
+}
 
-.icon-btn
+.icon-btn {
   width: 22px
   height: 22px
   text-align: center
@@ -222,11 +233,10 @@ export default {
   top: -8px
   right: -8px
   color: #fff
+}
 
-.del-icon-btn
-  position: relative
-
-  &:after
+.del-icon-btn {
+  &:after {
     content: "\2716"
     display: block
     width: 22px
@@ -235,10 +245,13 @@ export default {
     background: #1ea0f2
     border: 1px solid #1ea0f2
     border-radius: 50%
+  }
 
-  &:hover:after
+  &:hover:after {
     background: #f00
     border-color: #f00
+  }
+}
 </style>
 
 

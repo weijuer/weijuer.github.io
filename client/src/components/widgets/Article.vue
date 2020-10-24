@@ -1,5 +1,5 @@
 <template>
-  <article class="article" :class="[articleType]">
+  <div class="article" :class="[articleType]">
     <header class="article-header">
       <router-link
         :data-id="article._id"
@@ -26,7 +26,7 @@
         >{{ tag }}</a
       >
     </div>
-  </article>
+  </div>
 </template>
 
 <script>
@@ -36,14 +36,14 @@ export default {
   name: 'w-article',
   props: {
     type: { type: String, default: 'normal' },
-    article: { default: () => {}, type: Object }
+    article: { default: () => {}, type: Object },
   },
   emits: ['desc-click'],
   setup(props) {
     const state = reactive({
       tags: computed(() => props.article.tags && props.article.tags.split(',')),
       articleType: computed(() => (props.type ? `article-${props.type}` : '')),
-      isLinked: computed(() => props.type && props.type === 'list')
+      isLinked: computed(() => props.type && props.type === 'list'),
     })
 
     function moreLink(article) {
@@ -52,15 +52,15 @@ export default {
 
     return {
       ...toRefs(state),
-      moreLink
+      moreLink,
     }
-  }
+  },
 }
 </script>
 
 <style lang="stylus">
 .link-read-more,
-.read-more
+.read-more {
   background: linear-gradient(to right, #ff8a00, #da1b60)
   -webkit-background-clip: text
   -webkit-text-fill-color: transparent
@@ -69,55 +69,65 @@ export default {
   border-bottom: 1px solid #da1b60
   padding-bottom: 0.15rem
 
-  &:hover
+  &:hover {
     background: linear-gradient(to right, #da1b60, #ff8a00)
     background-clip: text
     -webkit-text-fill-color: transparent
     box-decoration-break: clone
     border-bottom: 1px solid #ff8a00
     text-shadow: none
+  }
+}
 
-.article
+.article {
   margin: 0
   padding: 1.5625rem
   position: relative
   overflow: hidden
 
-  &-normal
+  &-normal {
     background: #fff
+  }
 
-  &-card
+  &-card {
     border-radius: 10px
+  }
 
-  &-bordered
+  &-bordered {
     border-bottom: 1px dashed #e4e4e4
+  }
 
-  .article-header
+  .article-header {
     font-size: 1rem
+  }
 
-  .article-author
-    strong
+  .article-author {
+    strong {
       font-size: 14px
       margin-right: 0.5rem
+    }
+  }
 
-  .article-content
+  .article-content {
     font-size: 0.875rem
     line-height: 1.6
     color: #c2c2c2
     overflow-wrap: break-word
 
-    .article-description
+    .article-description {
       display: -webkit-box
       -webkit-box-orient: vertical
       -webkit-line-clamp: 3
       overflow: hidden
+    }
+  }
 
-  .article-tags
+  .article-tags {
     margin: 0
     padding: 0.5rem 0 1rem
     line-height: 1.8
 
-    .tag-item
+    .tag-item {
       color: #fff
       text-transform: uppercase
       font-weight: 700
@@ -127,7 +137,11 @@ export default {
       margin: 0 0.12rem
       padding: 0.2rem 0.85rem 0.25rem 0.85rem
 
-      &:hover
+      &:hover {
         color: darken(#fff, 10)
         position: relative
+      }
+    }
+  }
+}
 </style>

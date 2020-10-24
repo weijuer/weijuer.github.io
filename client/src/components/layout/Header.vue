@@ -7,6 +7,9 @@
             <img class="logo-img" src="~@/assets/logo-letter.png" />
             <!-- <span class="text-magic" data-word="W.J">W.J</span> -->
           </a>
+          <a class="menu-toggle-btn" href="javascript:;" @click="toggleTheme">
+            <w-icon :name="theme" />
+          </a>
         </div>
         <nav class="nav">
           <ul class="menu-nav app-header-nav">
@@ -21,21 +24,35 @@
               >
             </li>
             <li>
+              <router-link class="menu-link text-effect-1" to="/examples" data-hover="News"
+                >News</router-link
+              >
+            </li>
+            <li>
               <router-link class="menu-link text-effect-1" to="/examples" data-hover="Example"
                 >Example</router-link
               >
             </li>
+
+            <li>
+              <a class="setting-btn" href="javascript:;" @click="toggleTheme">
+                <w-icon :name="theme" />
+              </a>
+            </li>
           </ul>
         </nav>
-        <a href="https://github.com/weijuer" class="github-corner">
-          <w-icon style="width: 80px; height: 80px; fill: #151513; color: #fff" name="github" />
-        </a>
+        <div class="settings">
+          <a href="https://github.com/weijuer" class="setting-btn github-corner">
+            <w-icon style="width: 80px; height: 80px; fill: #151513; color: #fff" name="github" />
+          </a>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import { ref } from 'vue'
 import { Icon } from 'Widgets'
 
 export default {
@@ -43,21 +60,41 @@ export default {
   components: {
     [Icon.name]: Icon,
   },
+  setup() {
+    const theme = ref('moon')
+
+    // 切换暗黑模式
+    function toggleTheme() {
+      theme.value = theme.value === 'moon' ? 'sun' : 'moon'
+      document.body.classList.toggle('dark-mode')
+    }
+
+    return { theme, toggleTheme }
+  },
 }
 </script>
 
 <style lang="stylus">
-.github-corner {
-  width: 80px
-  height: 80px
+.settings {
   position: absolute
   top: 0
   right: 0
+
+  .setting-btn {
+    display: inline-block
+  }
+
+  .github-corner {
+    width: 80px
+    height: 80px
+  }
 }
 
-@media (max-width: 720px) {
-  .github-corner {
-    display: none
+@media (max-width: 1156px) {
+  .settings {
+    .github-corner {
+      display: none
+    }
   }
 }
 </style>

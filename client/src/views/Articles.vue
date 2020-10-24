@@ -2,7 +2,7 @@
   <section class="grid article-page">
     <article>
       <div class="articles" v-loadmore="loadOptions">
-        <transition-group v-on:before-enter="beforeEnter" v-on:enter="enter" appear>
+        <transition-group @:before-enter="beforeEnter" @:enter="enter" appear>
           <w-article
             v-for="(article, index) of articles"
             :article="article"

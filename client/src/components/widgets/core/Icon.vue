@@ -1,6 +1,6 @@
 <template>
   <svg class="w-icon">
-    <use :xlink:href="iconName" />
+    <use :xlink:href="iconName" :class="[useClass]" />
   </svg>
 </template>
 
@@ -11,6 +11,7 @@ export default {
   name: 'w-icon',
   props: {
     name: String,
+    useClass: String,
   },
   setup(props) {
     const iconName = computed(() => (props.name ? `#${props.name}` : '#'))

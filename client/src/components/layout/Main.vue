@@ -1,7 +1,8 @@
 <template>
   <main class="app-main">
-    <router-view />
-    <!-- <div class="container"></div> -->
+    <div class="container">
+      <router-view />
+    </div>
   </main>
 </template>
 

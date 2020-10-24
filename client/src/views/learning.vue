@@ -25,13 +25,22 @@
       <w-tooltip direction="top" tip="我在上方">我是一行文字</w-tooltip>
       <w-tooltip direction="bottom" tip="我下方">我是一行文字</w-tooltip>
     </section>
+
+    <section>
+      <w-uploader
+        @on-success="onUploaded"
+        url="/api/files/uploadfile"
+        extensions="png,jpg"
+        tips="上传测试"
+      />
+    </section>
   </div>
 </template>
 
 <script>
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { Modal, Tooltip } from 'Widgets'
+import { Modal, Tooltip, Uploader } from 'Widgets'
 import {
   ref,
   reactive,
@@ -52,6 +61,7 @@ export default {
   components: {
     [Modal.name]: Modal,
     [Tooltip.name]: Tooltip,
+    [Uploader.name]: Uploader,
   },
   setup() {
     // 使用vuex
@@ -103,6 +113,10 @@ export default {
       modalState.value = !modalState.value
     }
 
+    const onUploaded = (e) => {
+      console.log(e)
+    }
+
     // 3.x生命周期
     console.log('setup')
 
@@ -135,6 +149,7 @@ export default {
       increment,
       gotoHome,
       toggleModalState,
+      onUploaded,
     }
   },
 }
