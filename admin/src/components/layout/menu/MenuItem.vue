@@ -1,7 +1,9 @@
 <template>
   <li class="menu-item" :class="{ active: isOpen }" :data-level="menuLevel">
     <a href="#" class="menu-link" :style="menuItemStyle()" @click="toggle">
-      <i class="menu-icon"></i>
+      <i class="menu-icon">
+        <w-icon name="default-menu" />
+      </i>
       <span class="menu-text">{{ item.name }}</span>
       <i class="menu-arrow" v-if="isFolder"></i>
     </a>
@@ -17,10 +19,14 @@
 </template>
 
 <script>
+import { Core } from 'Widgets'
 import { ref, computed } from 'vue'
 
 export default {
   name: 'w-menu-item',
+  components: {
+    [Core.Icon.name]: Core.Icon,
+  },
   props: {
     item: Object, // 菜单对象
     level: { type: Number, default: 0 }, // 菜单层级
@@ -69,7 +75,7 @@ export default {
     flex-grow: 1
     align-items: stretch
     margin: 0
-    padding: 9px 25px
+    padding: 8px 24px
     min-height: 44px
     position: relative
     text-decoration: none

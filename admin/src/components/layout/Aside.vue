@@ -1,5 +1,5 @@
 <template>
-  <aside class="aside" :style="asideStyle">
+  <aside class="aside aside-fixed" :class="[asideStyle]">
     <div class="brand">
       <div class="brand-logo">
         <a href>W.J</a>
@@ -36,11 +36,7 @@ export default {
       store.dispatch('base/toggleMini')
     }
 
-    const asideStyle = computed(() => {
-      return {
-        width: isMini.value ? '70px' : '265px',
-      }
-    })
+    const asideStyle = computed(() => (isMini.value ? 'aside-mini' : ''))
 
     onUpdated(() => {
       console.log('onUpdated', isMini.value)
@@ -68,12 +64,37 @@ export default {
     z-index: 98
   }
 
+  &.aside-mini {
+    width: 70px
+
+    .brand {
+      .brand-logo {
+        display: none
+      }
+    }
+
+    .aside-menu {
+      .menu-nav {
+        .menu-item {
+          .menu-arrow,
+          .menu-text {
+            display: none
+          }
+        }
+      }
+    }
+
+    + .app-layout {
+      padding-left: 70px
+    }
+  }
+
   .brand {
     display: flex
     justify-content: space-between
     align-items: center
     flex-direction: row
-    padding: 0 25px
+    padding: 0 24px
     height: 65px
     background-color: #1a1a27
 
@@ -82,6 +103,12 @@ export default {
         font-size: 20px
         color: #fff
         text-decoration: none
+      }
+    }
+
+    .brand-actions {
+      .icon-only {
+        color: #fff
       }
     }
   }
@@ -94,22 +121,17 @@ export default {
 
 @media (max-width: 991.98px) {
   .aside {
-    width: 275px
-    position: fixed
-    top: 0
-    bottom: 0
-    left: -295px
-    z-index: 1001
+    &.aside-fixed {
+      left: -100%
+    }
   }
 }
 
 @media (min-width: 992px) {
   .aside {
-    position: fixed
-    top: 0
-    bottom: 0
-    left: 0
-    z-index: 98
+    &.aside-fixed {
+      left: 0
+    }
   }
 }
 </style>
