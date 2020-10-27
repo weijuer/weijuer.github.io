@@ -4,19 +4,19 @@
     <main class="app-main">
       <router-view />
     </main>
-    <footer class="app-footer">
-      <div class="container">2020@copyright W.J</div>
-    </footer>
+    <w-footer />
   </article>
 </template>
 
 <script>
 import Header from './Header'
+import Footer from './Footer'
 
 export default {
   name: 'Layout',
   components: {
     [Header.name]: Header,
+    [Footer.name]: Footer,
   },
 }
 </script>
@@ -27,6 +27,7 @@ export default {
   flex-direction: column
   flex: 1 auto
   min-width: 0
+  transition: all 0.2s linear
 
   .app-header {
     display: flex

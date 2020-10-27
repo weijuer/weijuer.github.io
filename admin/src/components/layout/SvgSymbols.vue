@@ -98,6 +98,8 @@ export default {
 
 <style lang="stylus">
 .w-icon {
+  fill: #fff
+
   &:hover {
     use {
       fill: #3699FF

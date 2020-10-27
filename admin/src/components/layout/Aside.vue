@@ -1,13 +1,13 @@
 <template>
-  <aside class="aside">
+  <aside class="aside" :style="asideStyle">
     <div class="brand">
       <div class="brand-logo">
         <a href>W.J</a>
       </div>
       <div class="brand-actions">
-        <i class="w-icon w-icon-arrow">
+        <a @click="toggleMini()" class="icon-only" href="javascript:;">
           <w-icon name="dubble-arrow" />
-        </i>
+        </a>
       </div>
     </div>
     <w-nav />
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { useStore } from 'vuex'
+import { computed, onUpdated } from 'vue'
 import { Core } from 'Widgets'
 import Nav from './Nav'
 
@@ -23,6 +25,28 @@ export default {
   components: {
     [Nav.name]: Nav,
     [Core.Icon.name]: Core.Icon,
+  },
+  setup() {
+    // 使用vuex
+    const store = useStore()
+    const isMini = computed(() => store.state.base.isMini)
+
+    // toggle aside
+    const toggleMini = () => {
+      store.dispatch('base/toggleMini')
+    }
+
+    const asideStyle = computed(() => {
+      return {
+        width: isMini.value ? '70px' : '265px',
+      }
+    })
+
+    onUpdated(() => {
+      console.log('onUpdated', isMini.value)
+    })
+
+    return { toggleMini, asideStyle }
   },
 }
 </script>
@@ -68,29 +92,14 @@ export default {
   }
 }
 
-.w-icon {
-  display: inline-block
-  width: 24px
-  height: 24px
-  cursor: pointer
-}
-
-.w-icon-arrow {
-  &:before,
-  &:after {
-    content: ""
-    display: flex
-  }
-}
-
 @media (max-width: 991.98px) {
   .aside {
-    z-index: 1001
+    width: 275px
     position: fixed
     top: 0
     bottom: 0
     left: -295px
-    width: 275px
+    z-index: 1001
   }
 }
 

@@ -1,10 +1,8 @@
 import Vuex from 'vuex'
+import base from './modules/base'
 
 export default Vuex.createStore({
-  state: {
-    author: 'Weijuer'
-  },
-  mutations: {},
-  actions: {},
-  modules: {}
+  modules: {
+    base
+  }
 })

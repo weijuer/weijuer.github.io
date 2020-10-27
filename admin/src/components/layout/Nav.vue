@@ -11,11 +11,9 @@ import { Menu, MenuItem } from './menu'
 const MenuData = [
   {
     name: '菜单1',
-    level: 0,
     children: [
       {
         name: '菜单1-1',
-        level: 1,
         children: [
           { name: '菜单1-1-1', level: 2 },
           { name: '菜单1-1-2', level: 2 },
@@ -25,7 +23,6 @@ const MenuData = [
   },
   {
     name: '菜单2',
-    level: 0,
     children: [
       { name: '菜单2-1', level: 1 },
       { name: '菜单2-2', level: 1 },
