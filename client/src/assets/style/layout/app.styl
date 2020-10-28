@@ -32,11 +32,15 @@
         height: 100%
         display: flex
         align-items: center
+        color: #333
 
-        // filter: hue-rotate(140deg)
         .logo-img {
           width: 60px
         }
+      }
+
+      .menu-toggle-btn {
+        display: none
       }
     }
   }
@@ -93,6 +97,27 @@
         &:before {
           background: lighten(#e8e8e8, 12%)
           color: #3699ff
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 468px) {
+  .app-layout {
+    .app-header {
+      .app-header-logo {
+        flex: 1
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        .menu-toggle-btn {
+          display: inline-block
+        }
+
+        + .nav {
+          display: none
         }
       }
     }
