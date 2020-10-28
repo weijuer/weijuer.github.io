@@ -1,8 +1,12 @@
-import Vuex from 'vuex'
+import { createStore, createLogger } from 'vuex'
 import base from './modules/base'
 
-export default Vuex.createStore({
+const debug = process.env.NODE_ENV !== 'production'
+
+export default createStore({
   modules: {
     base
-  }
+  },
+  strict: debug,
+  plugins: debug ? [createLogger()] : []
 })

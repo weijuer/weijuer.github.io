@@ -24,11 +24,6 @@
               >
             </li>
             <li>
-              <router-link class="menu-link text-effect-1" to="/examples" data-hover="News"
-                >News</router-link
-              >
-            </li>
-            <li>
               <router-link class="menu-link text-effect-1" to="/examples" data-hover="Example"
                 >Example</router-link
               >
