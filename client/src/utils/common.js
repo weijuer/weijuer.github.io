@@ -52,3 +52,16 @@ export const debounce = (fn, time = 300) => {
     }, time)
   }
 }
+
+/**
+ * 重复字符
+ * @param {*} str
+ * @param {*} times
+ */
+export function repeat(str, times) {
+  if (String.prototype.repeat) {
+    return str.repeat(times)
+  } else {
+    return Array(times + 1).join(str)
+  }
+}
