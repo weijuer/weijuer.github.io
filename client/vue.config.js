@@ -21,6 +21,9 @@ module.exports = {
   // pages: pages.getPages(),
   productionSourceMap: false,
   chainWebpack: config => {
+    // require函数的使用方式无法静态提取依赖项fix
+    config.module.set('unknownContextCritical', false)
+
     // 配置路径别名
     config.resolve.alias
       .set('@', resolve('src'))
