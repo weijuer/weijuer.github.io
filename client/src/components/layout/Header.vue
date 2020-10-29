@@ -6,7 +6,8 @@
           <a class="logo" href="/">
             <!-- <img class="logo-img" src="~@/assets/logo-letter.png" /> -->
             <!-- <span class="text-magic" data-word="W.J">W.J</span> -->
-            <w-icon style="width: 160px; height: 60px; fill: #000" name="logo" />
+            <!-- <span class="logo-text" data-word="W.J">W.J</span> -->
+            <w-icon style="width: 160px; height: 60px; fill: #000" name="logo-text" />
           </a>
           <a class="menu-toggle-btn" href="javascript:;" @click="toggleTheme">
             <w-icon :name="theme" />

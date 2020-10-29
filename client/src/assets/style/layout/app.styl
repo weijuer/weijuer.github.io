@@ -1,5 +1,12 @@
 @import "../core/vars"
 
+@font-face {
+  font-family: "Wallpoet"
+  font-style: normal
+  font-weight: 400
+  src: local("Wallpoet"), url("../../fonts/Wallpoet/Wallpoet-Regular.ttf")
+}
+
 .app-layout {
   display: flex
   flex-direction: column
@@ -33,6 +40,11 @@
         display: flex
         align-items: center
         color: #333
+
+        .logo-text {
+          font-family: "Wallpoet", cursive, Arial
+          font-size: 44px
+        }
 
         .logo-img {
           width: 60px

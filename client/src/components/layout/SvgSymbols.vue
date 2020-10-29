@@ -82,6 +82,49 @@
       </g>
     </symbol>
 
+    <symbol id="logo-text" viewBox="0 0 160 60">
+      <text x="20" y="46" fill="currentColor" class="logo-text">
+        <tspan>W</tspan>
+        <tspan>.</tspan>
+        <tspan fill="#3699FF">J</tspan>
+      </text>
+      <path
+        id="textPath"
+        d="M10 46L107.411 46L117.45 0L121.967 49.5L131.503 17L138.53 46L156.098 46"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-dasharray="24 256"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="256"
+          to="0"
+          dur="1s"
+          repeatCount="indefinite"
+        ></animate>
+      </path>
+    </symbol>
+
+    <symbol id="heartbeat" viewBox="0 0 160 60">
+      <path
+        id="tailPath"
+        d="M0 31L107.411 31L117.45 0L121.967 49.5L131.503 17L138.53 31L156.098 31"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-dasharray="20 256"
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          from="256"
+          to="0"
+          dur="1s"
+          repeatCount="indefinite"
+        ></animate>
+      </path>
+    </symbol>
+
     <symbol id="github" viewBox="0 0 250 250">
       <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
       <path
@@ -137,6 +180,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.logo-text {
+  font-family: "Wallpoet", cursive, Arial
+  font-size: 50px
+}
+
 svg#github {
   &:hover {
     .octo-arm {
