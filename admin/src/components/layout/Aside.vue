@@ -48,8 +48,10 @@ export default {
 </script>
 
 <style lang="stylus">
+$aside-width = 265px
+
 .aside {
-  width: 265px
+  width: $aside-width
   display: flex
   flex: 0 0 auto
   flex-direction: column
@@ -122,7 +124,7 @@ export default {
 @media (max-width: 991.98px) {
   .aside {
     &.aside-fixed {
-      left: -100%
+      left: -($aside-width)
     }
   }
 }
