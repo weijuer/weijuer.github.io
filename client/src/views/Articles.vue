@@ -8,9 +8,10 @@
             :article="article"
             :key="`article-${index}`"
             type="list"
-            class="article-bordered"
           />
         </transition-group>
+
+        <a @click="onLoad()" href="javascript:;">再来点儿</a>
       </div>
     </article>
     <aside>
@@ -54,7 +55,6 @@ export default {
 
     // 滚底加载
     function onLoad() {
-      console.log('到底了， 加载吧')
       loadOptions.index++
       getArticles()
     }
@@ -95,8 +95,15 @@ export default {
 }
 
 .articles {
-  background: #fff
-  border-radius: 10px
+  .article {
+    margin-bottom: 20px
+    border-radius: 10px
+    background: #fff
+
+    &:last-child {
+      margin-bottom: 0
+    }
+  }
 }
 
 .v-list-enter,
