@@ -1,39 +1,37 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Login from '../views/login.vue'
+import { Page } from 'Layout'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/example',
-    name: 'Example',
-    component: () => import(/* webpackChunkName: "example" */ '../views/Example.vue'),
+    path: '/home',
+    name: 'admin-layout',
+    component: Page,
     children: [
       {
-        path: 'virtualList',
-        name: 'virtualList',
-        component: () =>
-          import(/* webpackChunkName: "virtualList" */ '../views/example/virtualList.vue')
-      },
-      {
-        path: 'books',
-        name: 'books',
-        component: () => import(/* webpackChunkName: "books" */ '../views/example/books.vue')
+        path: '',
+        name: 'home',
+        component: () => import(/* webpackChunkName: "home" */ '../views/home.vue')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'not-found',
+    component: () => import(/* webpackChunkName: "not-found" */ '../views/error/404.vue')
   }
 ]
 
+// base
+const baseUrl = process.env.NODE_ENV === 'production' ? '/admin' : ''
+
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(baseUrl),
   routes
 })
 
