@@ -5,6 +5,7 @@
         :data-id="article._id"
         v-if="isLinked"
         :to="{ name: 'article-detail', query: { id: article._id } }"
+        target="_blank"
         >{{ article.title }}</router-link
       >
       <span v-else>{{ article.title }}</span>
@@ -36,14 +37,14 @@ export default {
   name: 'w-article',
   props: {
     type: { type: String, default: 'normal' },
-    article: { default: () => {}, type: Object },
+    article: { default: () => {}, type: Object }
   },
   emits: ['desc-click'],
   setup(props) {
     const state = reactive({
       tags: computed(() => props.article.tags && props.article.tags.split(',')),
       articleType: computed(() => (props.type ? `article-${props.type}` : '')),
-      isLinked: computed(() => props.type && props.type === 'list'),
+      isLinked: computed(() => props.type && props.type === 'list')
     })
 
     function moreLink(article) {
@@ -52,94 +53,93 @@ export default {
 
     return {
       ...toRefs(state),
-      moreLink,
+      moreLink
     }
-  },
+  }
 }
 </script>
 
 <style lang="stylus">
-.link-read-more,
-.read-more {
-  background: linear-gradient(to right, #ff8a00, #da1b60)
-  -webkit-background-clip: text
-  -webkit-text-fill-color: transparent
-  box-decoration-break: clone
-  font-weight: 700
-  border-bottom: 1px solid #da1b60
-  padding-bottom: 0.15rem
+.link-read-more, .read-more {
+  background: linear-gradient(to right, #ff8a00, #da1b60);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  box-decoration-break: clone;
+  font-weight: 700;
+  border-bottom: 1px solid #da1b60;
+  padding-bottom: 0.15rem;
 
   &:hover {
-    background: linear-gradient(to right, #da1b60, #ff8a00)
-    background-clip: text
-    -webkit-text-fill-color: transparent
-    box-decoration-break: clone
-    border-bottom: 1px solid #ff8a00
-    text-shadow: none
+    background: linear-gradient(to right, #da1b60, #ff8a00);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    box-decoration-break: clone;
+    border-bottom: 1px solid #ff8a00;
+    text-shadow: none;
   }
 }
 
 .article {
-  margin: 0
-  padding: 1.5625rem
-  position: relative
-  overflow: hidden
+  margin: 0;
+  padding: 1.5625rem;
+  position: relative;
+  overflow: hidden;
 
   &-normal {
-    background: #fff
+    background: #fff;
   }
 
   &-card {
-    border-radius: 10px
+    border-radius: 10px;
   }
 
   &-bordered {
-    border-bottom: 1px dashed #e4e4e4
+    border-bottom: 1px dashed #e4e4e4;
   }
 
   .article-header {
-    font-size: 1rem
+    font-size: 1rem;
   }
 
   .article-author {
     strong {
-      font-size: 14px
-      margin-right: 0.5rem
+      font-size: 14px;
+      margin-right: 0.5rem;
     }
   }
 
   .article-content {
-    font-size: 0.875rem
-    line-height: 1.6
-    color: #c2c2c2
-    overflow-wrap: break-word
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #c2c2c2;
+    overflow-wrap: break-word;
 
     .article-description {
-      display: -webkit-box
-      -webkit-box-orient: vertical
-      -webkit-line-clamp: 3
-      overflow: hidden
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
   }
 
   .article-tags {
-    margin: 0
-    padding: 0.5rem 0 1rem
-    line-height: 1.8
+    margin: 0;
+    padding: 0.5rem 0 1rem;
+    line-height: 1.8;
 
     .tag-item {
-      color: #fff
-      text-transform: uppercase
-      font-weight: 700
-      font-size: 0.66rem
-      white-space: nowrap
-      border-radius: 2rem
-      margin: 0 0.12rem
-      padding: 0.2rem 0.85rem 0.25rem 0.85rem
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.66rem;
+      white-space: nowrap;
+      border-radius: 2rem;
+      margin: 0 0.12rem;
+      padding: 0.2rem 0.85rem 0.25rem 0.85rem;
 
       &:hover {
-        color: darken(#fff, 10)
-        position: relative
+        color: darken(#fff, 10);
+        position: relative;
       }
     }
   }

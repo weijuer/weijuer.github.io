@@ -55,7 +55,7 @@ import { Icon } from 'Widgets'
 export default {
   name: 'Header',
   components: {
-    [Icon.name]: Icon,
+    [Icon.name]: Icon
   },
   setup() {
     const theme = ref('moon')
@@ -67,30 +67,30 @@ export default {
     }
 
     return { theme, toggleTheme }
-  },
+  }
 }
 </script>
 
 <style lang="stylus">
 .settings {
-  position: absolute
-  top: 0
-  right: 0
+  position: absolute;
+  top: 0;
+  right: 0;
 
   .setting-btn {
-    display: inline-block
+    display: inline-block;
   }
 
   .github-corner {
-    width: 80px
-    height: 80px
+    width: 80px;
+    height: 80px;
   }
 }
 
 @media (max-width: 1156px) {
   .settings {
     .github-corner {
-      display: none
+      display: none;
     }
   }
 }

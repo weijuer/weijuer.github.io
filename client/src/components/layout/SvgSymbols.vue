@@ -85,8 +85,8 @@
     <symbol id="logo-text" viewBox="0 0 160 60">
       <text x="20" y="46" fill="currentColor" class="logo-text">
         <tspan>W</tspan>
-        <tspan>.</tspan>
-        <tspan fill="#3699FF">J</tspan>
+        <!-- <tspan>.</tspan> -->
+        <!-- <tspan fill="#3699FF">J</tspan> -->
       </text>
       <path
         id="textPath"
@@ -175,38 +175,35 @@
 
 <script>
 export default {
-  name: 'svg-symbols',
+  name: 'svg-symbols'
 }
 </script>
 
 <style lang="stylus" scoped>
 .logo-text {
-  font-family: "Wallpoet", cursive, Arial
-  font-size: 50px
+  font-family: 'Wallpoet', cursive, Arial;
+  font-size: 50px;
 }
 
 svg#github {
   &:hover {
     .octo-arm {
-      animation: octocat-wave 560ms ease-in-out
+      animation: octocat-wave 560ms ease-in-out;
     }
   }
 }
 
 @keyframes octocat-wave {
-  0%,
-  100% {
-    transform: rotate(0)
+  0%, 100% {
+    transform: rotate(0);
   }
 
-  20%,
-  60% {
-    transform: rotate(-25deg)
+  20%, 60% {
+    transform: rotate(-25deg);
   }
 
-  40%,
-  80% {
-    transform: rotate(10deg)
+  40%, 80% {
+    transform: rotate(10deg);
   }
 }
 </style>
