@@ -37,6 +37,25 @@ export const throttle = (fn, time = 300) => {
 }
 
 /**
+ * throttle (节流)
+ * @param {*} fn
+ * @param {*} wait
+ */
+export function throttle1(fn, wait) {
+  var timer = null
+  return function() {
+    var context = this,
+      args = arguments
+    if (!timer) {
+      timer = setTimeout(() => {
+        fn.apply(context, args)
+        timer = null
+      }, wait)
+    }
+  }
+}
+
+/**
  * debounce（防抖）
  * @param {*} fn
  * @param {*} time

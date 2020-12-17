@@ -11,9 +11,6 @@
             <li>
               <a class="menu-link" href>Contact</a>
             </li>
-            <li>
-              <a class="menu-link" href>Me</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -23,6 +20,6 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
 }
 </script>
