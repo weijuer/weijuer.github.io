@@ -10,22 +10,22 @@
   "dependencies": {
     "@videojs/vhs-utils": "^2.3.0",
     "axios": "0.21.0",
-    "core-js": "^3.8.1",
-    "video.js": "^7.10.2",
+    "core-js": "^3.9.1",
+    "video.js": "^7.11.4",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-rc.6",
     "vuex": "^4.0.0-rc.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.9",
-    "@vue/cli-plugin-eslint": "~4.5.9",
-    "@vue/cli-plugin-router": "~4.5.9",
-    "@vue/cli-plugin-vuex": "~4.5.9",
-    "@vue/cli-service": "~4.5.9",
-    "@vue/compiler-sfc": "^3.0.4",
+    "@vue/cli-plugin-babel": "~4.5.11",
+    "@vue/cli-plugin-eslint": "~4.5.11",
+    "@vue/cli-plugin-router": "~4.5.11",
+    "@vue/cli-plugin-vuex": "~4.5.11",
+    "@vue/cli-service": "~4.5.11",
+    "@vue/compiler-sfc": "^3.0.7",
     "babel-eslint": "10.1.0",
-    "eslint": "^7.15.0",
-    "eslint-plugin-vue": "^7.3.0",
+    "eslint": "^7.21.0",
+    "eslint-plugin-vue": "^7.6.0",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2"
   }

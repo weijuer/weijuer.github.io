@@ -4,8 +4,9 @@
       <nav>
         <router-link to="/virtual-list">virtual-list</router-link>|
         <router-link to="/books">books</router-link>|
-        <router-link to="/videos">videos</router-link>
-        <router-link to="/tabs-communication">tabs-communication</router-link>
+        <router-link to="/videos">videos</router-link>|
+        <router-link to="/tabs-communication">tabs-communication</router-link>|
+        <router-link to="/letters">letters</router-link>
       </nav>
     </aside>
     <article>
@@ -41,8 +42,8 @@ export default {
 
 <style lang="stylus" scoped>
 .example-page {
-  display: grid
-  grid-template-columns: 30% minmax(0, 1fr)
-  gap: 2rem
+    display: grid;
+    grid-template-columns: 30% minmax(0, 1fr);
+    gap: 2rem;
 }
 </style>

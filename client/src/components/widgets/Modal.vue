@@ -17,11 +17,11 @@ export default {
 
 <style lang="stylus" scoped>
 .w-modal {
-  position: relative
+    position: relative;
 
-  // 样式插槽内容
-  ::v-slotted(p) {
-    font-style: italic
-  }
+    // 样式插槽内容
+    ::v-slotted(p) {
+        font-style: italic;
+    }
 }
 </style>

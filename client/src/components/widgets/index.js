@@ -8,6 +8,7 @@ import Bubble from './Bubble'
 import Video from './Video'
 import Phone from './Phone'
 import Uploader from './Uploader'
+import Letter from './Letter'
 
 export {
   Button,
@@ -21,5 +22,6 @@ export {
   Bubble,
   Video,
   Phone,
-  Uploader
+  Uploader,
+  Letter
 }

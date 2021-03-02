@@ -1,16 +1,20 @@
 body.dark-mode {
-  filter: invert(1) hue-rotate(180deg)
-  transition: color 300ms, background-color 300ms
+  filter: invert(1) hue-rotate(180deg);
+  transition: color 300ms, background-color 300ms;
+
+  img, video {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 
 .app-layout {
   &.default {
     .app-header {
-      background: #fff
+      background: #fff;
     }
 
     .app-main {
-      background: #f2f2f2
+      background: #f2f2f2;
     }
   }
 }
