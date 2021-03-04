@@ -6,7 +6,7 @@
         <router-link to="/books">books</router-link>|
         <router-link to="/videos">videos</router-link>|
         <router-link to="/tabs-communication">tabs-communication</router-link>|
-        <router-link to="/letters">letters</router-link>
+        <router-link to="/letter-example">letter</router-link>
       </nav>
     </aside>
     <article>
