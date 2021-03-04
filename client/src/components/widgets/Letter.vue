@@ -79,8 +79,10 @@ export default {
         border-style: solid;
         border-width: 110px 170px;
         border-color: #00334c transparent transparent;
+        transform: rotateX(0deg);
         transform-origin: top;
-        transition: transform 0.4s ease, z-index 0.6s;
+        transition: transform 0.4s 0.6s ease, z-index 1s;
+        z-index: 2;
     }
 
     &::after {
@@ -105,7 +107,8 @@ export default {
         background: #fff repeating-linear-gradient(#F1EDE9, #F1EDE9 31px, #94ACD4 31px, #94ACD4 32px);
         background-attachment: scroll;
         box-shadow: 0 2px 26px rgb(0 0 0 / 12%);
-        transition: transform 0.4s 0.6s linear, z-index 0.6s;
+        transform: translateY(0px);
+        transition: transform 0.4s ease, z-index 1s, -webkit-transform 0.4s ease;
 
         h1, p {
             font-size: 16px;
@@ -123,10 +126,13 @@ export default {
 
         &::before {
             transform: rotateX(180deg);
+            transition: transform 0.4s ease, z-index 0.6s;
+            z-index: 1;
         }
 
         .letter {
             transform: translateY(-100%);
+            transition: transform 0.4s 0.6s ease, z-index 0.6s, -webkit-transform 0.4s 0.6s ease;
             z-index: 2;
         }
     }
