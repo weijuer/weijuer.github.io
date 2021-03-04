@@ -14,8 +14,8 @@
       </main>
       <footer class="footer">
         <div class="greetings">
-          <p>此致，</p>
-          <p>敬礼。</p>
+          <p class="best">此致，</p>
+          <p class="regards">敬礼。</p>
         </div>
         <div class="sign">
           <div class="author">XXX</div>
@@ -63,6 +63,7 @@ export default {
     border-bottom-right-radius: 6px;
     background-color: #00334c;
     box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
+    transform: translateY(240px);
     transition: transform 0.4s ease, z-index 0.6s;
 
     &::before, &::after {
@@ -72,31 +73,30 @@ export default {
         top: 0;
         left: 0;
         bottom: 0;
-        z-index: 1;
+        z-index: 2;
     }
 
     &::before {
         border-style: solid;
-        border-width: 110px 170px;
+        border-width: 150px 170px;
         border-color: #00334c transparent transparent;
         transform: rotateX(0deg);
         transform-origin: top;
         transition: transform 0.4s 0.6s ease, z-index 1s;
-        z-index: 2;
+        z-index: 3;
     }
 
     &::after {
         border-style: solid;
-        border-width: 120px 170px;
+        border-width: 110px 170px;
         border-color: transparent #0077B2 #006da3;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
-        z-index: 3;
     }
 
     .letter {
         margin: 0 auto;
-        padding: 0 16px;
+        padding: 40px 14px;
         width: 90%;
         height: 90%;
         position: relative;
@@ -109,6 +109,7 @@ export default {
         box-shadow: 0 2px 26px rgb(0 0 0 / 12%);
         transform: translateY(0px);
         transition: transform 0.4s ease, z-index 1s, -webkit-transform 0.4s ease;
+        z-index: 1;
 
         h1, p {
             font-size: 16px;
@@ -119,11 +120,21 @@ export default {
             margin-bottom: 0;
             text-indent: 2em;
         }
+
+        .footer {
+            .greetings {
+                .best {
+                    text-indent: 0;
+                }
+            }
+
+            .sign {
+                text-align: right;
+            }
+        }
     }
 
     &.open {
-        transform: translateY(240px);
-
         &::before {
             transform: rotateX(180deg);
             transition: transform 0.4s ease, z-index 0.6s;
@@ -131,7 +142,7 @@ export default {
         }
 
         .letter {
-            transform: translateY(-100%);
+            transform: translateY(-80%);
             transition: transform 0.4s 0.6s ease, z-index 0.6s, -webkit-transform 0.4s 0.6s ease;
             z-index: 2;
         }

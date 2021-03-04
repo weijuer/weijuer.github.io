@@ -14,12 +14,3 @@ export default {
   },
 }
 </script>
-
-<style lang="stylus" scoped>
-.letter-example {
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-</style>
