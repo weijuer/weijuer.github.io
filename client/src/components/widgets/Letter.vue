@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'open': isOpen}" @click="toggle" class="envelope" ref="envelope">
+  <div :class="{'open': isOpen}" class="envelope" ref="envelope">
     <article class="letter">
       <header>
         <div class="date"></div>
@@ -23,7 +23,9 @@
         </div>
       </footer>
     </article>
-    <div @click="toggle" class="action"></div>
+    <div class="action">
+      <div @click="toggle" class="heart"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -56,14 +58,13 @@ export default {
     --envelopeHeight: 240px;
     position: relative;
     margin: 0 auto;
-    width: 340px;
-    height: 240px;
+    width: 300px;
+    height: 200px;
     max-width: 400px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     background-color: #00334c;
     box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
-    transform: translateY(240px);
     transition: transform 0.4s ease, z-index 0.6s;
 
     &::before, &::after {
@@ -78,7 +79,7 @@ export default {
 
     &::before {
         border-style: solid;
-        border-width: 150px 170px;
+        border-width: 140px 150px;
         border-color: #00334c transparent transparent;
         transform: rotateX(0deg);
         transform-origin: top;
@@ -88,7 +89,7 @@ export default {
 
     &::after {
         border-style: solid;
-        border-width: 110px 170px;
+        border-width: 90px 150px;
         border-color: transparent #0077B2 #006da3;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
@@ -96,19 +97,19 @@ export default {
 
     .letter {
         margin: 0 auto;
-        padding: 40px 14px;
-        width: 90%;
+        padding: 0 14px 40px;
+        width: 96%;
         height: 90%;
         position: relative;
         top: 5%;
         border-radius: 6px;
         line-height: 32px;
         overflow: auto;
-        background: #fff repeating-linear-gradient(#F1EDE9, #F1EDE9 31px, #94ACD4 31px, #94ACD4 32px);
-        background-attachment: scroll;
-        box-shadow: 0 2px 26px rgb(0 0 0 / 12%);
+        // background: #ffd9b4 repeating-linear-gradient(#fbe4ce, #ffebd6 31px, #94ACD4 31px, #94ACD4 32px);
+        background: #ffd9b4;
+        // background: #fff url('~Assets/img/example/bg/bg_flowers.png') top / cover no-repeat;
         transform: translateY(0px);
-        transition: transform 0.4s ease, z-index 1s, -webkit-transform 0.4s ease;
+        transition: transform 0.4s ease, z-index 1s;
         z-index: 1;
 
         h1, p {
@@ -142,10 +143,46 @@ export default {
         }
 
         .letter {
-            transform: translateY(-80%);
-            transition: transform 0.4s 0.6s ease, z-index 0.6s, -webkit-transform 0.4s 0.6s ease;
+            height: 200%;
+            transform: translateY(-90%);
+            transition: transform 0.4s 0.6s ease, z-index 0.6s, height 0.4s 0.6s ease;
             z-index: 2;
         }
+    }
+
+    .action {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 4;
+    }
+}
+
+.heart {
+    position: relative;
+    width: 60px;
+    height: 60px;
+
+    &::before, &::after {
+        position: absolute;
+        content: '';
+        left: 30px;
+        top: 8px;
+        width: 30px;
+        height: 50px;
+        background: red;
+        border-radius: 20px 20px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+    }
+
+    &::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
     }
 }
 </style>
