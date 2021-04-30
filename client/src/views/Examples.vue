@@ -1,5 +1,8 @@
 <template>
   <div class="example-page">
+    <article>
+      <router-view />
+    </article>
     <aside>
       <nav>
         <router-link to="/virtual-list">virtual-list</router-link>|
@@ -9,9 +12,6 @@
         <router-link to="/letter-example">letter</router-link>
       </nav>
     </aside>
-    <article>
-      <router-view />
-    </article>
   </div>
 </template>
 

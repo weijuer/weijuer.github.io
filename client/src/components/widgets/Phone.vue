@@ -206,6 +206,7 @@ export default {
   }
 
   .screen {
+    padding-top: 22px;
     width: calc(100% - 20px);
     height: calc(100% - 20px);
     position: relative;
