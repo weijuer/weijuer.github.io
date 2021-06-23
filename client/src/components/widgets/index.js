@@ -9,6 +9,7 @@ import Video from './Video'
 import Phone from './Phone'
 import Uploader from './Uploader'
 import Letter from './Letter'
+import Note from './Note'
 
 export {
   Button,
@@ -23,5 +24,6 @@ export {
   Video,
   Phone,
   Uploader,
-  Letter
+  Letter,
+  Note
 }

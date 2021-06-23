@@ -9,7 +9,8 @@
         <router-link to="/books">books</router-link>|
         <router-link to="/videos">videos</router-link>|
         <router-link to="/tabs-communication">tabs-communication</router-link>|
-        <router-link to="/letter-example">letter</router-link>
+        <router-link to="/letter-example">letter</router-link>|
+        <router-link to="/notes">notes</router-link>
       </nav>
     </aside>
   </div>
