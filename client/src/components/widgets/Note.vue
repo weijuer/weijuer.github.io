@@ -30,5 +30,9 @@ export default {
     border: 1px solid;
     border-color: transparent #efe4e4;
   }
+
+  &.active {
+    border: 2px solid purple;
+  }
 }
 </style>
