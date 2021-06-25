@@ -2,21 +2,21 @@
   <div class="voiceinator">
     <h1>The Voiceinator 6000</h1>
 
-    <select v-model="utter.lang" @change="changeLang">
+    <select v-model="lang" @change="changeLang">
       <option value="">Select a Language</option>
       <option v-for="lang in langs" :key="lang" :value="lang">{{ lang }}</option>
     </select>
 
-    <select v-model="utter.voice" @change="changeVoice">
+    <select v-model="voice" @change="changeVoice">
       <option value="">Select a Voice</option>
-      <option v-for="voice in voices" :key="voice" :value="voice.name">
+      <option v-for="voice in voices" :key="voice" :value="voice">
         {{ voice.name + '(' + voice.lang + ')' }}
       </option>
     </select>
 
     <label for="rate">Rate:</label>
     <input
-      v-model="utter.rate"
+      v-model="rate"
       @change="changeOptions"
       name="rate"
       type="range"
@@ -27,7 +27,7 @@
 
     <label for="pitch">Pitch:</label>
     <input
-      v-model="utter.pitch"
+      v-model="pitch"
       @change="changeOptions"
       name="pitch"
       type="range"
@@ -36,9 +36,7 @@
       step="0.1"
     />
 
-    <textarea v-model="utter.text" ref="note" name="text">
-Type what you want me to say.  👍!</textarea
-    >
+    <textarea v-model="text" ref="note" name="text">Type what you want me to say.  👍!</textarea>
     <button @click="toggle(false)">Stop!</button>
     <button @click="toggle(true)">Speak</button>
 
@@ -61,16 +59,12 @@ export default {
     const note = ref(null)
     const state = reactive({
       localVoices: [],
-      utter: {
-        lang: 'en',
-        pitch: 0.2,
-        rate: 1,
-        voice: '',
-        text: '',
-      },
-      voices: computed(() =>
-        state.localVoices.filter((voice) => voice.lang.includes(state.utter.lang))
-      ),
+      lang: '',
+      pitch: 1,
+      rate: 1,
+      voice: '',
+      text: '',
+      voices: computed(() => state.localVoices.filter((voice) => voice.lang.includes(state.lang))),
       langs: computed(() =>
         state.voices
           .reduce((arr, voice) => {
@@ -90,7 +84,13 @@ export default {
 
     function toggle(startOver = true) {
       if (startOver) {
-        const utter = Object.assign(new SpeechSynthesisUtterance(), state.utter)
+        const { pitch, rate, voice, text } = state
+        let utter = Object.assign(new SpeechSynthesisUtterance(), {
+          pitch,
+          rate,
+          voice,
+          text,
+        })
         synth.speak(utter)
       } else {
         synth.cancel()
@@ -121,7 +121,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 html {
   font-size: 10px;
   box-sizing: border-box;
@@ -131,16 +131,6 @@ html {
   box-sizing: inherit;
 }
 
-/* body {
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #3BC1AC;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  background-image: radial-gradient(circle at 100% 150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, #42D2BB 10%, #3BC1AC 11%, #3BC1AC 23%, #42D2BB 24%, #42D2BB 30%, #3BC1AC 31%, #3BC1AC 43%, #42D2BB 44%, #42D2BB 50%, #3BC1AC 51%, #3BC1AC 63%, #42D2BB 64%, #42D2BB 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, #42D2BB 5%, #3BC1AC 6%, #3BC1AC 15%, #42D2BB 16%, #42D2BB 20%, #3BC1AC 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, #42D2BB 5%, #3BC1AC 6%, #3BC1AC 15%, #42D2BB 16%, #42D2BB 20%, #3BC1AC 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent);
-  background-size: 100px 50px;
-} */
 .voiceinator {
   padding: 2rem;
   width: 50rem;
