@@ -10,17 +10,17 @@ $grid-breakpoints ?= {
   md: 1280px - 16px,
   lg: 1600px - 16px,
   xl: 1920px - 16px
-}
-$grid-gutter ?= 8px
-$grid-gutter-width ?= 30px
-$grid-columns ?= 12
+};
+$grid-gutter ?= 8px;
+$grid-gutter-width ?= 30px;
+$grid-columns ?= 12;
 $grid-gutters ?= {
   xs: ($grid-gutter / 2),
   sm: $grid-gutter,
   md: ($grid-gutter * 2),
   lg: ($grid-gutter * 3),
   xl: ($grid-gutter * 4)
-}
+};
 // == Container sizes
 $container-widths ?= {
   xs: 720px + $grid-gutters.xs,
@@ -28,19 +28,19 @@ $container-widths ?= {
   md: 1140px + $grid-gutters.md,
   lg: 1340px + $grid-gutters.lg,
   xl: 1540px + $grid-gutters.xl
-}
+};
 $container-max-widths ?= {
   md: $grid-breakpoints.md,
   lg: $grid-breakpoints.lg,
   xl: $grid-breakpoints.xl
-}
+};
 $screen-min-widths ?= {
   xs: $grid-breakpoints.xs,
   sm: $grid-breakpoints.sm,
   md: $grid-breakpoints.md,
   lg: $grid-breakpoints.lg,
   xl: $grid-breakpoints.xl
-}
+};
 // colors
 // ============================================================
 $themes = {
@@ -55,11 +55,11 @@ $themes = {
   light: #fff,
   brand: #2ecc71,
   focus: #8e44ad
-}
-$themeColor = #ba68c8
-$themeBgColor = rgba(30, 36, 42, 0.7)
-$bgColor = #ede7f6
-$header-height = 80
-$header-mini-height = 48
-$scrollbar-width = 6px
-$fontFamily = "Avenir Next", "Helvetica Neue", Helvetica, PingFangSC, MicrosoftYaHei, -apple-system, BlinkMacSystemFont, Arial, sans-serif
+};
+$themeColor = #ba68c8;
+$themeBgColor = rgba(30, 36, 42, 0.7);
+$bgColor = #ede7f6;
+$header-height = 80;
+$header-mini-height = 48;
+$scrollbar-width = 4px;
+$fontFamily = 'Avenir Next', 'Helvetica Neue', Helvetica, PingFangSC, MicrosoftYaHei, -apple-system, BlinkMacSystemFont, Arial, sans-serif;

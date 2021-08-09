@@ -89,45 +89,43 @@ export default {
 
 <style lang="stylus" scoped>
 .grid {
-  display: grid
-  grid-template-columns: minmax(0, 1fr) 30%
-  gap: 2rem
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30%;
+  gap: 2rem;
 }
 
 .articles {
   .article {
-    margin-bottom: 20px
-    border-radius: 10px
-    background: #fff
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: #fff;
 
     &:last-child {
-      margin-bottom: 0
+      margin-bottom: 0;
     }
   }
 }
 
-.v-list-enter,
-.v-leave-to {
-  opacity: 0
-  transform: translateY(80px)
+.v-list-enter, .v-leave-to {
+  opacity: 0;
+  transform: translateY(80px);
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.6s ease
+.v-enter-active, .v-leave-active {
+  transition: all 0.6s ease;
 }
 
 .v-leave-active {
-  position: absolute
+  position: absolute;
 }
 
-@media (max-width: 468px) {
+@media (max-width: 768px) {
   .article-page {
-    grid-template-columns: auto
-    gap: 0.5rem
+    grid-template-columns: auto;
+    gap: 0.5rem;
 
     aside {
-      display: none
+      display: none;
     }
   }
 }
