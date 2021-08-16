@@ -1,4 +1,4 @@
-import Menu from './Menu'
-import MenuItem from './MenuItem'
+import Menu from "./Menu.vue";
+import MenuItem from "./MenuItem.vue";
 
-export { Menu, MenuItem }
+export { Menu, MenuItem };

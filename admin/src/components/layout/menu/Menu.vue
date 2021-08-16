@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MenuItem from './MenuItem'
+import MenuItem from './MenuItem.vue'
 
 export default {
   name: 'w-menu',
@@ -22,8 +22,8 @@ export default {
 
 <style lang="stylus">
 .menu-nav {
-  margin: 0
-  list-style: none
-  padding: 15px 0
+  margin: 0;
+  list-style: none;
+  padding: 15px 0;
 }
 </style>

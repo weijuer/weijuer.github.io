@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import Aside from './Aside'
-import Layout from './Layout'
-import SvgSymbols from './SvgSymbols'
+import Aside from './Aside.vue'
+import Layout from './Layout.vue'
+import SvgSymbols from './SvgSymbols.vue'
 
 export default {
   name: 'Page',

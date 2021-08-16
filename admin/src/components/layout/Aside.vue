@@ -18,7 +18,7 @@
 import { useStore } from 'vuex'
 import { computed, onUpdated } from 'vue'
 import { Core } from 'Widgets'
-import Nav from './Nav'
+import Nav from './Nav.vue'
 
 export default {
   name: 'Aside',
@@ -48,83 +48,82 @@ export default {
 </script>
 
 <style lang="stylus">
-$aside-width = 265px
+$aside-width = 265px;
 
 .aside {
-  width: $aside-width
-  display: flex
-  flex: 0 0 auto
-  flex-direction: column
-  background-color: #1e1e2d
-  transition: all 0.2s linear
+  width: $aside-width;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  background-color: #1e1e2d;
+  transition: all 0.2s linear;
 
   &.aside-fixed {
-    position: fixed
-    top: 0
-    bottom: 0
-    left: 0
-    z-index: 98
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 98;
   }
 
   &.aside-mini {
-    width: 70px
+    width: 70px;
 
     .brand {
       .brand-logo {
-        display: none
+        display: none;
       }
     }
 
     .aside-menu {
       .menu-nav {
         .menu-item {
-          .menu-arrow,
-          .menu-text {
-            display: none
+          .menu-arrow, .menu-text {
+            display: none;
           }
         }
       }
     }
 
     + .app-layout {
-      padding-left: 70px
+      padding-left: 70px;
     }
   }
 
   .brand {
-    display: flex
-    justify-content: space-between
-    align-items: center
-    flex-direction: row
-    padding: 0 24px
-    height: 65px
-    background-color: #1a1a27
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 24px;
+    height: 65px;
+    background-color: #1a1a27;
 
     .brand-logo {
       > a {
-        font-size: 20px
-        color: #fff
-        text-decoration: none
+        font-size: 20px;
+        color: #fff;
+        text-decoration: none;
       }
     }
 
     .brand-actions {
       .icon-only {
-        color: #fff
+        color: #fff;
       }
     }
   }
 
   .aside-menu {
-    position: relative
-    max-height: 90vh
+    position: relative;
+    max-height: 90vh;
   }
 }
 
 @media (max-width: 991.98px) {
   .aside {
     &.aside-fixed {
-      left: -($aside-width)
+      left: -($aside-width);
     }
   }
 }
@@ -132,7 +131,7 @@ $aside-width = 265px
 @media (min-width: 992px) {
   .aside {
     &.aside-fixed {
-      left: 0
+      left: 0;
     }
   }
 }
