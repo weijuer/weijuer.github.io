@@ -1,31 +1,21 @@
+// 引入所有views下的.vue文件
+const modules = import.meta.glob('../views/*/*.vue')
+
+console.log(modules)
+
 /**
  * 根据文件夹生成路由
  */
 export function generateRoutes() {
   // 递归获取 views 文件夹下的所有.vue文件
-  const files = require.context('@/views', true, /\.vue$/)
-
-  console.log('files', files)
-
   const routes = []
-  files.keys().forEach(key => {
-    console.log('key', key)
-    let module = files(key).default
-    let name = module.name
-    // 文件路径
-    // let filePath = files.resolve(key)
-    let filePath = `${key.substr(2)}`
-
+  Object.keys(modules).forEach((key) => {
+    const fileName = key.split('/')
+    const name = `W${fileName.substring(0, 1).toUpperCase() + fileName.substring(1)}`
     routes.push({
-      path: `/${name}`,
-      name: name,
-      component: () => import(/* webpackChunkName: "[name]" */ `Views/${filePath}`)
-      // component: () => import(`/* webpackChunkName: "${name}" */ Views/${filePath}`)
-      // component: module
-      // component: resolve => require([`${filePath}`], resolve)
+      [name]: modules[key]?.default,
     })
   })
-
   console.table(routes)
   return routes
 }
@@ -35,47 +25,47 @@ const staticRoutes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/home.vue')
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
   {
     path: '/learning',
     name: 'learning',
-    component: () => import(/* webpackChunkName: "learning" */ '../views/learning.vue')
+    component: () => import(/* webpackChunkName: "learning" */ '../views/Learning.vue'),
   },
   {
     path: '/examples',
     name: 'examples',
-    component: () => import(/* webpackChunkName: "examples" */ '../views/examples.vue'),
+    component: () => import(/* webpackChunkName: "examples" */ '../views/Examples.vue'),
     children: [
       {
         path: 'virtualList',
         name: 'virtualList',
         component: () =>
-          import(/* webpackChunkName: "virtualList" */ '../views/examples/virtualList.vue')
+          import(/* webpackChunkName: "virtualList" */ '../views/examples/virtualList.vue'),
       },
       {
         path: 'books',
         name: 'books',
-        component: () => import(/* webpackChunkName: "books" */ '../views/examples/books.vue')
+        component: () => import(/* webpackChunkName: "books" */ '../views/examples/books.vue'),
       },
       {
         path: 'videos',
         name: 'videos',
-        component: () => import(/* webpackChunkName: "videos" */ '../views/examples/videos.vue')
-      }
-    ]
+        component: () => import(/* webpackChunkName: "videos" */ '../views/examples/videos.vue'),
+      },
+    ],
   },
   {
     path: '/articles',
     name: 'articles',
-    component: () => import(/* webpackChunkName: "articles" */ '../views/articles.vue')
+    component: () => import(/* webpackChunkName: "articles" */ '../views/Articles.vue'),
   },
   {
     path: '/article-detail',
     name: 'article-detail',
     component: () =>
-      import(/* webpackChunkName: "article-detail" */ '../views/articles/article-detail.vue')
-  }
+      import(/* webpackChunkName: "article-detail" */ '../views/articles/article-detail.vue'),
+  },
 ]
 
 // 批量生成

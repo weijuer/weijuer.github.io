@@ -1,15 +1,15 @@
 import { Button, Tooltip, Icon } from './core'
-import Book from './book/Book'
-import VirtualList from './VirtualList'
-import Modal from './Modal'
-import Card from './Card'
-import Article from './Article'
-import Bubble from './Bubble'
-import Video from './Video'
-import Phone from './Phone'
-import Uploader from './Uploader'
-import Letter from './Letter'
-import Note from './Note'
+import Book from './book/Book.vue'
+import VirtualList from './VirtualList.vue'
+import Modal from './Modal.vue'
+import Card from './Card.vue'
+import Article from './Article.vue'
+import Bubble from './Bubble.vue'
+import Video from './Video.vue'
+import Phone from './Phone.vue'
+import Uploader from './Uploader.vue'
+import Letter from './Letter.vue'
+import Note from './Note.vue'
 
 export {
   Button,
@@ -25,5 +25,5 @@ export {
   Phone,
   Uploader,
   Letter,
-  Note
+  Note,
 }

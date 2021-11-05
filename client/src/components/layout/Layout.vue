@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import Symbols from './Symbols'
-import Header from './Header'
-import Main from './Main'
-import Footer from './Footer'
+import Symbols from './Symbols.vue'
+import Header from './Header.vue'
+import Main from './Main.vue'
+import Footer from './Footer.vue'
 
 export default {
   name: 'Layout',
