@@ -2,43 +2,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "Api/*": [
-        "src/api/*"
-      ],
-      "Views/*": [
-        "src/views/*"
-      ],
-      "Assets/*": [
-        "src/assets/*"
-      ],
-      "Mixins/*": [
-        "src/mixins/*"
-      ],
-      "Utils/*": [
-        "src/utils/*"
-      ],
-      "Store/*": [
-        "src/store/*"
-      ],
-      "Layout/*": [
-        "src/components/layout/*"
-      ],
-      "Widgets/*": [
-        "src/components/widgets/*"
-      ]
+      "@/*": ["src/*"],
+      "Api/*": ["src/api/*"],
+      "Views/*": ["src/views/*"],
+      "Assets/*": ["src/assets/*"],
+      "Mixins/*": ["src/mixins/*"],
+      "Utils/*": ["src/utils/*"],
+      "Store/*": ["src/store/*"],
+      "Layout/*": ["src/components/layout/*"],
+      "Widgets/*": ["src/components/widgets/*"]
     },
     "target": "es2020",
     "module": "commonjs",
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

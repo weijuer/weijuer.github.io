@@ -1,6 +1,6 @@
-// 引入所有views下的.vue文件
-const modules = import.meta.glob('../views/*/*.vue')
-
+// 引入views下及其子目录下所有的.vue文件
+const modules = import.meta.glob('../views/**/*.vue')
+// 1
 console.log(modules)
 
 /**
@@ -9,11 +9,13 @@ console.log(modules)
 export function generateRoutes() {
   // 递归获取 views 文件夹下的所有.vue文件
   const routes = []
-  Object.keys(modules).forEach((key) => {
-    const fileName = key.split('/')
-    const name = `W${fileName.substring(0, 1).toUpperCase() + fileName.substring(1)}`
+  Object.entries(modules).forEach(([fileName, component]) => {
+    const name = fileName.match(/([a-zA-Z\-]+)\.vue$/)[1]
+    // const name = `W${fileName.substring(0, 1).toUpperCase() + fileName.substring(1)}`
     routes.push({
-      [name]: modules[key]?.default,
+      path: `/${name}`,
+      name,
+      component,
     })
   })
   console.table(routes)

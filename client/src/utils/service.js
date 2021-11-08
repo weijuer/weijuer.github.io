@@ -3,13 +3,13 @@ import store from 'Store'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_API_BASE_URL,
+  baseURL: '/',
   withCredentials: true,
-  timeout: 5000
+  timeout: 5000,
 })
 
 // error
-const err = error => {
+const err = (error) => {
   if (error.response) {
     const data = error.response.data
     const token = store.getters['common/token']
@@ -37,7 +37,7 @@ const err = error => {
 }
 
 // request interceptor
-service.interceptors.request.use(config => {
+service.interceptors.request.use((config) => {
   // do something before request is sent
   const token = store.getters['common/token']
 
@@ -49,7 +49,7 @@ service.interceptors.request.use(config => {
 }, err)
 
 // response interceptor
-service.interceptors.response.use(response => {
+service.interceptors.response.use((response) => {
   const res = response.data
 
   // if the custom code is not 10000, it is judged as an error.
